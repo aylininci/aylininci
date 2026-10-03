@@ -574,6 +574,115 @@
 </div>
 
 <footer>
+  <!--
+  BU DOSYA KOD DEĞİL, KOPYALANACAK PARÇALARDAN OLUŞUYOR.
+  Google Analytics'i kurduğunda bu iki parçayı index.html'e eklemen gerekiyor.
+-->
+
+<!-- ============================================================
+  1) FOOTER'A YASAL LİNKLER
+  Mevcut <footer> içindeki uygun bir yere (iletişim bölümünün
+  altına ya da en alta) şu satırı ekle:
+============================================================= -->
+
+<p style="font-size:0.85rem; opacity:0.75; margin-top:12px;">
+  <a href="kvkk-aydinlatma-metni.html" style="color:inherit;">KVKK Aydınlatma Metni</a>
+  ·
+  <a href="cerez-politikasi.html" style="color:inherit;">Çerez Politikası</a>
+  ·
+  <a href="gizlilik-politikasi.html" style="color:inherit;">Gizlilik Politikası</a>
+</p>
+
+
+<!-- ============================================================
+  2) ÇEREZ ONAY BANNER'I
+  Bu bloğu index.html'in kapanış </body> etiketinden hemen önce
+  ekle. Google Analytics kodunu (gtag.js) AŞAĞIDAKİ ile
+  DEĞİŞTİRMEN gerekiyor — yani Analytics script'ini normal
+  <head>'e koymak yerine, kullanıcı "Kabul Et" demeden
+  yüklenmeyecek şekilde bu banner'ın içindeki
+  loadAnalytics() fonksiyonuna taşı.
+============================================================= -->
+
+<div id="cerez-banner" style="
+  position:fixed; left:0; right:0; bottom:0; z-index:9999;
+  background:var(--canvas-deep,#150F26); color:#F3F0FB;
+  padding:18px 20px; display:none;
+  box-shadow:0 -4px 20px rgba(0,0,0,0.25);
+  font-family:'Inter',sans-serif;
+">
+  <div style="max-width:920px; margin:0 auto; display:flex; gap:18px; align-items:center; flex-wrap:wrap;">
+    <p style="margin:0; flex:1; min-width:240px; font-size:0.9rem; line-height:1.5;">
+      Bu site, kullanım istatistiklerini ölçmek için analitik çerezler kullanır. Detaylar için
+      <a href="cerez-politikasi.html" style="color:#C6EE3B;">Çerez Politikası</a>'nı inceleyebilirsin.
+    </p>
+    <div style="display:flex; gap:10px; flex-shrink:0;">
+      <button id="cerez-reddet" style="
+        background:transparent; color:#F3F0FB; border:1px solid rgba(255,255,255,0.3);
+        padding:9px 16px; border-radius:100px; font-size:0.85rem; cursor:pointer;
+      ">Reddet</button>
+      <button id="cerez-kabul" style="
+        background:#8C74E8; color:#150F26; border:none;
+        padding:9px 18px; border-radius:100px; font-size:0.85rem; font-weight:600; cursor:pointer;
+      ">Kabul Et</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var KEY = 'aylininci-cerez-onay'; // değerler: 'kabul' | 'red'
+
+  function getConsent() {
+    try { return localStorage.getItem(KEY); } catch (e) { return null; }
+  }
+  function setConsent(value) {
+    try { localStorage.setItem(KEY, value); } catch (e) {}
+  }
+
+  // GOOGLE ANALYTICS'İ BURADA YÜKLE
+  // GA kurulum kodunu Google Analytics panelinden aldığında,
+  // <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
+  // ve devamındaki gtag('config', ...) kodunu buraya, bu fonksiyonun İÇİNE taşı.
+  function loadAnalytics() {
+    // Örnek — kendi ölçüm kimliğinle (G-XXXXXXX) değiştir:
+    // var s = document.createElement('script');
+    // s.async = true;
+    // s.src = 'https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX';
+    // document.head.appendChild(s);
+    // window.dataLayer = window.dataLayer || [];
+    // function gtag(){ dataLayer.push(arguments); }
+    // gtag('js', new Date());
+    // gtag('config', 'G-XXXXXXX', { anonymize_ip: true });
+  }
+
+  var consent = getConsent();
+  if (consent === 'kabul') {
+    loadAnalytics();
+  } else if (consent === null) {
+    var banner = document.getElementById('cerez-banner');
+    if (banner) banner.style.display = 'block';
+  }
+  // consent === 'red' ise hiçbir şey yüklenmez, banner da gösterilmez.
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var kabulBtn = document.getElementById('cerez-kabul');
+    var reddetBtn = document.getElementById('cerez-reddet');
+    var banner = document.getElementById('cerez-banner');
+
+    if (kabulBtn) kabulBtn.addEventListener('click', function () {
+      setConsent('kabul');
+      loadAnalytics();
+      if (banner) banner.style.display = 'none';
+    });
+    if (reddetBtn) reddetBtn.addEventListener('click', function () {
+      setConsent('red');
+      if (banner) banner.style.display = 'none';
+    });
+  });
+})();
+</script>
+
   <div class="wrap footer-grid">
     <div class="footer-brand">
       <img src="./aylin-inci-logo.png" alt="Aylin İnci">
