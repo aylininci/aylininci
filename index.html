@@ -628,10 +628,9 @@
     </div>
   </div>
 </div>
-
 <script>
 (function () {
-  var KEY = 'aylininci-cerez-onay'; // değerler: 'kabul' | 'red'
+  var KEY = 'aylininci-cerez-onay';
 
   function getConsent() {
     try { return localStorage.getItem(KEY); } catch (e) { return null; }
@@ -640,20 +639,8 @@
     try { localStorage.setItem(KEY, value); } catch (e) {}
   }
 
-  // GOOGLE ANALYTICS'İ BURADA YÜKLE
-  // GA kurulum kodunu Google Analytics panelinden aldığında,
-  // <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
-  // ve devamındaki gtag('config', ...) kodunu buraya, bu fonksiyonun İÇİNE taşı.
   function loadAnalytics() {
-    // Örnek — kendi ölçüm kimliğinle (G-XXXXXXX) değiştir:
-    // var s = document.createElement('script');
-    // s.async = true;
-    // s.src = 'https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX';
-    // document.head.appendChild(s);
-    // window.dataLayer = window.dataLayer || [];
-    // function gtag(){ dataLayer.push(arguments); }
-    // gtag('js', new Date());
-    // gtag('config', 'G-XXXXXXX', { anonymize_ip: true });
+    // Google Analytics kodun hazır olduğunda buraya ekleyeceksin.
   }
 
   var consent = getConsent();
@@ -663,7 +650,6 @@
     var banner = document.getElementById('cerez-banner');
     if (banner) banner.style.display = 'block';
   }
-  // consent === 'red' ise hiçbir şey yüklenmez, banner da gösterilmez.
 
   document.addEventListener('DOMContentLoaded', function () {
     var kabulBtn = document.getElementById('cerez-kabul');
@@ -682,7 +668,6 @@
   });
 })();
 </script>
-
   <div class="wrap footer-grid">
     <div class="footer-brand">
       <img src="./aylin-inci-logo.png" alt="Aylin İnci">
