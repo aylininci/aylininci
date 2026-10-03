@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GEO: Yapay Zeka Destekli Arama İçin İçerik Yapısı Nasıl Kurulur? | Aylin İnci</title>
+<meta name="description" content="ChatGPT, Perplexity ve Google AI Overviews gibi üretken arama sistemleri içeriğinizi nasıl okuyor? Varlık netliği, yapılandırılmış veri, alıntılanabilirlik ve GEO için pratik bir içerik mimarisi rehberi.">
+<link rel="canonical" href="https://aylininci.com/blog/yapay-zeka-arama-icin-icerik-yapisi.html">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Aylin İnci">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="GEO: Yapay Zeka Destekli Arama İçin İçerik Yapısı Nasıl Kurulur?">
+<meta property="og:description" content="Üretken arama sistemleri içeriği nasıl okuyor, alıntılanabilirlik ve GEO için pratik içerik mimarisi.">
+<meta property="og:url" content="https://aylininci.com/blog/yapay-zeka-arama-icin-icerik-yapisi.html">
+<meta property="og:site_name" content="Aylin İnci">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:image" content="https://aylininci.com/blog/images/yapay-zeka-arama-icin-icerik-yapisi-hero.webp">
+<meta property="og:image:width" content="1800">
+<meta property="og:image:height" content="1200">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="GEO: Yapay Zeka Destekli Arama İçin İçerik Yapısı">
+<meta name="twitter:description" content="Varlık netliği, yapılandırılmış veri ve alıntılanabilirlik için pratik bir rehber.">
+<meta name="twitter:image" content="https://aylininci.com/blog/images/yapay-zeka-arama-icin-icerik-yapisi-hero.webp">
+
+<link rel="icon" type="image/png" href="../favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "image": "https://aylininci.com/blog/images/yapay-zeka-arama-icin-icerik-yapisi-hero.webp",
+  "headline": "GEO: Yapay Zeka Destekli Arama İçin İçerik Yapısı Nasıl Kurulur?",
+  "description": "ChatGPT, Perplexity ve Google AI Overviews gibi üretken arama sistemleri içeriğinizi nasıl okuyor? Varlık netliği, yapılandırılmış veri ve alıntılanabilirlik için pratik bir GEO rehberi.",
+  "author": {"@type": "Person", "name": "Aylin İnci", "url": "https://aylininci.com"},
+  "publisher": {"@type": "Person", "name": "Aylin İnci", "url": "https://aylininci.com"},
+  "datePublished": "2026-08-28",
+  "dateModified": "2026-08-28",
+  "inLanguage": "tr",
+  "mainEntityOfPage": {"@type": "WebPage", "@id": "https://aylininci.com/blog/yapay-zeka-arama-icin-icerik-yapisi.html"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Anasayfa", "item": "https://aylininci.com/"},
+    {"@type": "ListItem", "position": 2, "name": "İçerikler", "item": "https://aylininci.com/#icerikler"},
+    {"@type": "ListItem", "position": 3, "name": "Yapay zeka destekli arama sistemleri için içerik yapısı", "item": "https://aylininci.com/blog/yapay-zeka-arama-icin-icerik-yapisi.html"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "GEO, klasik SEO'nun yerini mi alıyor?", "acceptedAnswer": {"@type": "Answer", "text": "Hayır, GEO klasik SEO'nun üzerine kurulur, onun yerine geçmez. Teknik SEO temelleri (crawl edilebilirlik, hız, mobil uyumluluk, yapılandırılmış veri) hala hem klasik arama hem de üretken arama sistemleri için ön koşuldur. GEO, bu temelin üzerine içeriğin bir dil modeli tarafından doğru şekilde anlaşılması ve alıntılanmasını kolaylaştıran ek pratikler ekler."}},
+    {"@type": "Question", "name": "robots.txt üzerinden AI botlarını engellemeli miyim?", "acceptedAnswer": {"@type": "Answer", "text": "Bu, işinizin niteliğine ve içerik stratejinize bağlı bir tercih. GPTBot, PerplexityBot, Google-Extended gibi botları engellemek içeriğinizin o sistemler tarafından eğitim verisi ya da anlık yanıt kaynağı olarak kullanılmasını önler, ama aynı zamanda o platformlardaki görünürlüğünüzü de sıfırlar. Görünürlük ve marka bilinirliği önemliyse bu botlara izin vermek, rekabetçi/özel içerik söz konusuysa engellemek daha mantıklı olabilir."}},
+    {"@type": "Question", "name": "Yapılandırılmış veri (schema) gerçekten AI arama sonuçlarını etkiliyor mu?", "acceptedAnswer": {"@type": "Answer", "text": "Doğrudan bir garanti olmasa da, yapılandırılmış veri içeriğin ne olduğunu (bir makale mi, bir ürün mü, bir SSS mi) makine tarafından okunabilir şekilde netleştirir. Bu netlik, hem klasik arama motorlarının hem de dil modellerinin içeriği doğru bağlamda işlemesini kolaylaştırır ve alıntılanma ihtimalini artıran dolaylı ama gerçek bir faktördür."}}
+  ]
+}
+</script>
+
+<style>
+  :root{
+    --canvas:#F6F4FB; --canvas-soft:#FBFAFF; --canvas-deep:#150F26;
+    --surface-card:#FFFFFF; --surface-strong:#EFEAFA;
+    --ink:#241A3D; --ink-active:#150F26;
+    --body:#4B4459; --body-strong:#241A3D;
+    --muted:#7A7189; --muted-soft:#A79CC4;
+    --hairline:#E3DEF2; --hairline-strong:#CFC5EA;
+    --primary:#6C4BD6; --primary-active:#5636B8; --on-primary:#FFFFFF;
+    --lime:#B8E01A; --lime-ink:#2A1F4D;
+    --shadow-soft:0 4px 16px rgba(36,26,61,0.06);
+    --font-display:'Fraunces', 'Times New Roman', serif;
+    --font-body:'Inter', sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --canvas:#150F26; --canvas-soft:#1B1330;
+      --surface-card:#1F1636; --surface-strong:#241A3D;
+      --ink:#F3F0FB; --ink-active:#FFFFFF;
+      --body:#C9C0DE; --body-strong:#F3F0FB;
+      --muted:#9A8FBA; --muted-soft:#7A7189;
+      --hairline:rgba(255,255,255,0.08); --hairline-strong:rgba(255,255,255,0.16);
+      --primary:#8C74E8; --primary-active:#A290F0; --on-primary:#150F26;
+    }
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--canvas);color:var(--body);font-family:var(--font-body);line-height:1.7;}
+  .wrap{max-width:760px;margin:0 auto;padding:0 24px;}
+  nav.nav{border-bottom:1px solid var(--hairline);padding:18px 0;position:sticky;top:0;background:var(--canvas);z-index:10;}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;max-width:920px;}
+  nav a.brand{color:var(--ink-active);font-family:var(--font-display);font-weight:600;text-decoration:none;font-size:1.1rem;}
+  nav a.back{color:var(--primary);text-decoration:none;font-size:0.9rem;font-weight:500;}
+  article header.article-head{padding:56px 0 32px;}
+  .eyebrow{display:inline-block;background:var(--surface-strong);color:var(--primary-active);font-size:0.78rem;font-weight:600;letter-spacing:0.02em;padding:5px 12px;border-radius:100px;margin-bottom:18px;}
+  h1{font-family:var(--font-display);font-weight:600;font-size:2.1rem;line-height:1.25;color:var(--ink-active);margin:0 0 16px;}
+  .meta-row{display:flex;gap:16px;flex-wrap:wrap;color:var(--muted);font-size:0.9rem;margin-bottom:8px;}
+  .lead{font-size:1.15rem;color:var(--body-strong);}
+  article .content{padding-bottom:64px;}
+  h2{font-family:var(--font-display);font-weight:600;font-size:1.5rem;color:var(--ink-active);margin:44px 0 14px;}
+  h3{font-family:var(--font-display);font-weight:600;font-size:1.2rem;color:var(--ink-active);margin:32px 0 10px;}
+  p{margin:0 0 18px;}
+  ul,ol{margin:0 0 18px;padding-left:1.3em;}
+  li{margin-bottom:8px;}
+  strong{color:var(--body-strong);}
+  code{background:var(--surface-strong);color:var(--ink-active);padding:2px 6px;border-radius:5px;font-size:0.9em;}
+  pre{background:var(--canvas-deep);color:#EFEAFA;padding:18px 20px;border-radius:12px;overflow-x:auto;font-size:0.88rem;line-height:1.6;margin:0 0 22px;}
+  pre code{background:none;color:inherit;padding:0;}
+  blockquote{margin:28px 0;padding:4px 0 4px 20px;border-left:3px solid var(--primary);color:var(--body-strong);font-style:italic;}
+  table{width:100%;border-collapse:collapse;margin:0 0 24px;font-size:0.92rem;}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--hairline);}
+  th{color:var(--ink-active);font-weight:600;}
+  .callout{background:var(--surface-strong);border-radius:14px;padding:20px 22px;margin:0 0 24px;}
+  .callout p:last-child{margin-bottom:0;}
+  .faq-item{border-top:1px solid var(--hairline);padding:20px 0;}
+  .faq-item h3{margin-top:0;}
+  .checklist{list-style:none;padding-left:0;}
+  .checklist li{padding-left:28px;position:relative;}
+  .checklist li::before{content:"✓";position:absolute;left:0;color:var(--primary);font-weight:700;}
+  .author-box{display:flex;gap:14px;align-items:flex-start;background:var(--surface-card);border:1px solid var(--hairline);border-radius:16px;padding:20px;margin-top:48px;}
+  .author-box strong{display:block;color:var(--ink-active);}
+  .related{padding:32px 0 72px;border-top:1px solid var(--hairline);}
+  .related h2{margin-top:0;}
+  .related-list{display:grid;gap:14px;}
+  .related-list a{display:block;background:var(--surface-card);border:1px solid var(--hairline);border-radius:14px;padding:16px 18px;color:var(--ink-active);text-decoration:none;font-weight:500;}
+  .related-list a:hover{border-color:var(--primary);}
+  .related-list span{display:block;color:var(--muted);font-size:0.85rem;font-weight:400;margin-top:4px;}
+  footer.site-footer{border-top:1px solid var(--hairline);padding:28px 0;text-align:center;color:var(--muted);font-size:0.85rem;}
+  footer.site-footer a{color:var(--primary);text-decoration:none;}
+  .hero-image{width:100%;height:auto;display:block;border-radius:16px;margin:8px 0 0;}
+  .hero-wrap{padding:0 0 8px;}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a href="../index.html" class="brand">Aylin İnci</a>
+    <a href="../index.html#icerikler" class="back">← Tüm içerikler</a>
+  </div>
+</nav>
+
+<article>
+  <header class="article-head">
+    <div class="wrap">
+      <span class="eyebrow">GEO</span>
+      <h1>Yapay Zeka Destekli Arama Sistemleri İçin İçerik Yapısı</h1>
+      <div class="meta-row">
+        <span>Aylin İnci</span>
+        <span>·</span>
+        <span>28 Ağustos 2026</span>
+        <span>·</span>
+        <span>Yaklaşık 13 dakika okuma</span>
+      </div>
+      <p class="lead">ChatGPT'ye, Perplexity'ye ya da Google'ın AI Overviews'una bir soru sorulduğunda hangi sitenin kaynak olarak seçileceğini belirleyen kurallar, klasik on sonuç listesinden farklı işliyor. Bu yazıda içeriğinizi bir dil modelinin daha kolay anlayıp alıntılayabileceği şekilde nasıl yapılandıracağınızı anlatıyorum.</p>
+    </div>
+  </header>
+
+  <div class="wrap hero-wrap">
+    <img class="hero-image" src="images/yapay-zeka-arama-icin-icerik-yapisi-hero.webp" alt="Birden fazla kaynağın bir yapay zeka küresinde birleşip tek bir yanıta dönüşmesini simgeleyen soyut 3D illüstrasyon" width="1800" height="1200" fetchpriority="high">
+  </div>
+
+  <div class="content wrap">
+
+    <p>GEO (Generative Engine Optimization) terimi henüz yeni ve etrafında bolca abartı var; bazı içerikler onu SEO'nun tamamen yerini alacak sihirli bir disiplin gibi sunuyor. Gerçek daha sıkıcı ama daha faydalı: GEO, teknik SEO temellerinin üzerine, içeriğin bir dil modeli tarafından net şekilde ayrıştırılmasını ve güvenilir bir kaynak olarak alıntılanmasını kolaylaştıran ek bir katman. Temel olmadan katman bir işe yaramıyor — crawl edilemeyen, yavaş, yapısız bir site GEO pratikleriyle de kazanmıyor.</p>
+    <p>Bu yazıyı yazarken kendi mesleki alanımdan (SEO ve web geliştirme danışmanlığı) örnekler kullanıyorum, ama anlatılan prensiplerin çoğu sektör bağımsız: bir e-ticaret kataloğu, bir sağlık bilgi sitesi ya da bir yazılım dokümantasyonu için de aynı yapılandırma mantığı geçerli. Değişen şey konudur, değişmeyen şey netlik, kaynaklandırma ve makine tarafından okunabilir yapı ihtiyacıdır.</p>
+
+    <h2>1. Üretken arama sistemleri içeriği nasıl kullanıyor?</h2>
+    <p>Google AI Overviews, Perplexity, ChatGPT'nin arama entegrasyonu gibi sistemlerin ortak çalışma mantığı kabaca şöyle: kullanıcı bir soru sorar, sistem (klasik bir arama motoru gibi) alakalı sayfaları getirir, sonra bu sayfalardaki metni bir dil modeline besleyerek özetlenmiş, sentezlenmiş bir yanıt üretir ve genelde kaynak olarak kullandığı sayfalara bağlantı verir. Bu süreçte iki aşama var: <strong>getirme (retrieval)</strong> ve <strong>sentezleme</strong>. Klasik SEO çoğunlukla getirme aşamasını etkiler (sayfanız aday havuzuna girer mi); GEO ise hem getirme hem de sentezleme aşamasında sayfanızın seçilme ve doğru şekilde özetlenme ihtimalini etkiler.</p>
+
+    <h2>2. Varlık (entity) netliği: kim, ne, ne zaman sorularına net cevap</h2>
+    <p>Dil modelleri, insan gibi "bağlamdan anlama" konusunda güçlü olsa da, belirsiz ya da dolaylı anlatılmış bilgiyi yanlış özetleme riski taşır. Bir dil modelinin içeriğinizi doğru aktarabilmesi için en çok işine yarayan şey, konunun ana varlıklarının (kim, ne, hangi ürün, hangi yöntem) cümle içinde açık ve tekrar eden şekilde belirtilmesidir.</p>
+    <ul>
+      <li>"Bu yöntem" ya da "bahsettiğimiz araç" gibi belirsiz referanslar yerine, özellikle bölüm başlarında konunun adını açıkça tekrar edin.</li>
+      <li>Bir kavramı tanımlarken, tanımı mümkünse tek ve net bir cümlede verin ("Core Web Vitals, Google'ın kullanıcı deneyimini ölçmek için kullandığı üç metriktir: LCP, INP ve CLS" gibi) — bu tarz net tanım cümleleri, dil modellerinin doğrudan alıntılamayı tercih ettiği formattır.</li>
+      <li>Sayısal veriler, tarihler ve isimler verirken belirsizlikten kaçının; "yakın zamanda" yerine somut bir tarih, "bazı uzmanlar" yerine somut bir kaynak kullanmak hem güvenilirliği hem alıntılanma ihtimalini artırır.</li>
+    </ul>
+
+    <h2>3. Alıntılanabilir yapı: Soru-cevap ve tanım blokları</h2>
+    <p>İçeriğinizin bir dil modeli tarafından "koparılıp" doğrudan bir yanıta dönüştürülebilmesi için, metnin kendi içinde bağımsız anlam taşıyan bloklar halinde yazılması işe yarıyor. Pratikte bu şu anlama geliyor:</p>
+    <ul>
+      <li><strong>Her H2/H3 başlığını bir soru ya da net bir konu ifadesi olarak yazın</strong> ("Core Web Vitals nedir?" gibi), altındaki ilk cümlede doğrudan cevabı verin, detayları sonraki cümlelere bırakın. Bu "ters piramit" yapısı hem insan okuyucu hem dil modeli için tarama kolaylığı sağlar.</li>
+      <li><strong>Listeler ve tablolar kullanın:</strong> Karşılaştırmalı bilgiyi (ör. iki yöntem arasındaki fark, bir sürecin adımları) düz paragraf yerine liste ya da tablo halinde sunmak, dil modellerinin bu bilgiyi ayrıştırıp yeniden özetlemesini kolaylaştırır.</li>
+      <li><strong>FAQ bölümleri ekleyin:</strong> Sayfanın sonuna, gerçek kullanıcı sorularını yansıtan kısa soru-cevap blokları eklemek (ve bunu <code>FAQPage</code> şemasıyla işaretlemek), hem klasik aramada zengin sonuç hem de üretken aramada doğrudan alıntılanma ihtimalini artırır.</li>
+    </ul>
+
+    <h2>4. Yapılandırılmış veri: makinenin "bu nedir" sorusuna cevabı</h2>
+    <p>Schema.org yapılandırılmış verisi (JSON-LD), sayfanın ne tür bir içerik olduğunu (makale, ürün, SSS, tarif, organizasyon) makineye açıkça bildirir. Bu, klasik SEO'da zengin sonuçlar (rich snippets) için kullanılıyordu; GEO bağlamında ise dil modellerinin içeriği doğru bağlamda işlemesine yardımcı olan ek bir netlik katmanı olarak işlev görüyor. Öncelikli olarak eklenmesi gereken şemalar:</p>
+    <table>
+      <tr><th>Şema tipi</th><th>Ne zaman kullanılır</th></tr>
+      <tr><td><code>Article</code></td><td>Blog yazıları ve haber içerikleri için; yazar, tarih ve konu netliği sağlar</td></tr>
+      <tr><td><code>FAQPage</code></td><td>Sayfa sonunda gerçek kullanıcı sorularına doğrudan cevap veren bloklar için</td></tr>
+      <tr><td><code>Person</code> / <code>Organization</code></td><td>İçeriğin kim tarafından üretildiğini ve uzmanlık/otorite sinyalini netleştirmek için</td></tr>
+      <tr><td><code>BreadcrumbList</code></td><td>Sayfanın site hiyerarşisindeki yerini ve bağlamını belirtmek için</td></tr>
+      <tr><td><code>HowTo</code></td><td>Adım adım süreç anlatan içerikler için (uygulanabilirliği içerik formatına göre değişir)</td></tr>
+    </table>
+
+    <h2>5. Kaynaklandırma ve güvenilirlik sinyalleri</h2>
+    <p>Dil modelleri, iddia niteliğindeki bilgiyi (özellikle istatistik, veri, "en iyi" gibi karşılaştırmalı yargılar) desteksiz cümlelerden çok, bir kaynağa dayandırılmış cümlelerden almayı tercih ediyor; çünkü bu, hem eğitim verisinde hem de canlı getirme aşamasında güvenilirlik sinyali olarak işaretleniyor. Pratik uygulaması:</p>
+    <ul>
+      <li>İstatistiksel bir veri paylaşırken kaynağını (resmi bir rapor, ölçüm aracı, birincil araştırma) açıkça belirtin.</li>
+      <li>Kendi ölçümlerinizi veya vaka çalışmalarınızı paylaşırken yöntemi kısaca açıklayın (kaç sayfa, hangi araç, hangi tarih aralığı) — bu hem insan okuyucuya hem dil modeline "bu bilgi nereden geliyor" sorusuna cevap verir; belirsiz bırakılan bir metodoloji, güçlü bir veriyi bile tartışmaya açık hale getirir.</li>
+      <li>Yazar bilgisini (isim, uzmanlık alanı, varsa bağlantılı profil) sayfada ve yapılandırılmış veride net şekilde belirtmek, E-E-A-T (deneyim, uzmanlık, otorite, güvenilirlik) sinyalini güçlendirir.</li>
+    </ul>
+
+    <h2>6. AI crawler'larına erişim: robots.txt kararı</h2>
+    <p>GPTBot (OpenAI), PerplexityBot, Google-Extended, ClaudeBot gibi çeşitli yapay zeka şirketlerine ait crawler'lar, siteleri hem eğitim verisi hem de canlı yanıt oluşturma amacıyla tarıyor. <code>robots.txt</code> dosyanızda bu botlara özel kurallar tanımlayabilirsiniz:</p>
+    <pre><code>User-agent: GPTBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /</code></pre>
+    <p>Bu bir "hepsine izin ver ya da hepsini engelle" kararı olmak zorunda değil. İçeriğinizin bir kısmını (ör. genel bilgi makaleleri) açık tutup, doğrudan gelir getiren ya da rakiplerin kopyalamasını istemediğiniz kısımları (ör. özel araştırma raporları, ücretli içerik) engellemek gibi karma bir strateji de mümkün. Kararı verirken sorulması gereken soru: bu platformlarda görünür olmak markanız için bir fırsat mı, yoksa içeriğinizin izinsiz kullanılması bir risk mi? Kişisel bir portföy ya da hizmet sitesinde genelde görünürlük tarafı ağır basar, çünkü amaç zaten mümkün olduğunca çok kanaldan bulunabilir olmaktır.</p>
+
+    <h2>7. Sayfa hızının ve crawl edilebilirliğin GEO'daki rolü</h2>
+    <p>Üretken arama sistemlerinin çoğu, yanıt oluşturma sürecinde canlı olarak birden fazla sayfayı hızlıca tarayıp özetliyor. Yavaş açılan, render için JavaScript'e bağımlı (yani sunucu tarafında boş bir HTML döndüren) sayfalar, bu tarama sürecinde tam olarak okunamama riskiyle karşı karşıya. Bu, ilk yazımızda ele aldığımız Core Web Vitals ve temel crawl edilebilirlik pratiklerinin GEO için de neden hala ön koşul olduğunu gösteriyor: içeriğiniz ne kadar iyi yapılandırılmış olursa olsun, crawler onu okuyamıyorsa hiçbir GEO tekniği işe yaramaz.</p>
+
+    <h2>8. Ölçüm: GEO'nun etkisini nasıl takip edersiniz?</h2>
+    <p>GEO henüz Search Console kadar standartlaşmış bir ölçüm altyapısına sahip değil, ama takip edilebilecek birkaç sinyal var:</p>
+    <ul class="checklist">
+      <li>Sunucu loglarında GPTBot, PerplexityBot gibi AI crawler'larının ziyaret sıklığını izleyin; bu, sitenizin bu sistemler tarafından ne kadar aktif taranıp değerlendirildiğinin dolaylı bir göstergesi.</li>
+      <li>Referrer verisinde (Google Analytics ya da sunucu logları) chatgpt.com, perplexity.ai gibi kaynaklardan gelen trafiği ayrı bir segment olarak izleyin; bu trafik küçük olsa da büyüme trendi önemli bir sinyal.</li>
+      <li>Marka adınızı ya da içeriğinizi doğrudan bu araçlara sorup (manuel olarak, periyodik şekilde) sizin içeriğinizin kaynak olarak gösterilip gösterilmediğini kontrol edin.</li>
+      <li>Bu manuel kontrolleri bir tabloya kaydederek zaman içindeki değişimi takip edin; tek bir ölçümden çok, aylar içindeki trend GEO çalışmalarınızın gerçekten etki yaratıp yaratmadığını gösterir.</li>
+    </ul>
+
+    <h2>9. İçerik tazeliği ve güncelleme sıklığı</h2>
+    <p>Üretken arama sistemleri, özellikle hızlı değişen konularda (fiyatlar, güncel istatistikler, teknik standartlar) güncel bilgiye klasik arama motorlarından daha duyarlı davranıyor; çünkü yanlış ya da eski bir bilgiyi doğrudan bir yanıt olarak kullanıcıya sunmanın maliyeti, on tane bağlantı arasından birini göstermekten daha yüksek. Bu, içerik stratejisi açısından şu anlama geliyor:</p>
+    <ul>
+      <li>Sık değişen verilere sahip sayfalarda (fiyat listeleri, güncel oranlar, sürüm numaraları) bir "son güncelleme" tarihini hem görünür şekilde hem de <code>dateModified</code> alanında belirtin.</li>
+      <li>Eski bir yazıyı sıfırdan yeniden yazmak yerine, güncel veriyle düzenli olarak tazelemek (ve bunu değişiklik geçmişinde belirtmek) hem kullanıcı hem de dil modeli için güvenilirlik sinyali oluşturur.</li>
+      <li>Zaman duyarlı iddialarda ("şu an", "güncel olarak") belirsiz ifadeler yerine somut bir tarih veya sürüm belirtmek, içeriğin ne zaman doğru olduğunun net şekilde anlaşılmasını sağlar.</li>
+    </ul>
+
+    <h2>10. Vaka: bir SaaS bilgi bankasının GEO için yeniden yapılandırılması</h2>
+    <p>Danıştığım bir SaaS şirketinin yardım/bilgi bankası içerikleri, uzun yıllar boyunca serbest akan, paragraf ağırlıklı bir üslupla yazılmıştı — teknik olarak doğru ama net bir "cevap cümlesi" içermeyen bir yapıya sahipti. İçerikleri üç değişiklikle yeniden yapılandırdık: her makalenin en üstüne, konuyu tek cümlede özetleyen bir "kısa cevap" bloğu ekledik; alt başlıkları soru formatına çevirdik; ve her makaleye ilgili <code>Article</code> ve <code>FAQPage</code> şemasını ekledik.</p>
+    <p>Üç ay sonra yapılan bir kontrol taramasında, şirketin marka adıyla birlikte yapılan sorularda Perplexity ve ChatGPT'nin arama entegrasyonunun bu bilgi bankası sayfalarını kaynak olarak gösterme sıklığının belirgin şekilde arttığı gözlemlendi. Bu, ölçmesi zor ama iş açısından değerli bir kazanımdı: destek ekibine gelen "bunu nasıl yaparım" tipi soruların bir kısmı, kullanıcıların artık bu bilgiyi doğrudan AI asistanlarından alabilmesi sayesinde azaldı.</p>
+    <blockquote>İçeriği yeniden yazmadık; sadece zaten doğru olan bilgiyi, bir makinenin daha kolay ayrıştırabileceği bir düzene soktuk. GEO'nun en pratik tarafı çoğu zaman budur: yeni içerik üretmek değil, var olan doğru bilgiyi daha net bir kalıba dökmek.</blockquote>
+
+    <h2>11. Çok biçimli (multi-modal) içeriğin rolü</h2>
+    <p>Görsel, video ve tablo gibi metin dışı öğeler, doğru şekilde etiketlendiğinde GEO açısından ek bir katman sağlıyor. Bir görselin <code>alt</code> metni sadece erişilebilirlik için değil, dil modelinin görselin içeriğini anlaması için de bir sinyal. Video içeriklerinde transkript sağlamak, hem klasik SEO'da metin araması için hem de üretken sistemlerin video içeriğini metin olarak işlemesi için değerli. Tablo halinde sunulan karşılaştırmalı veri ise, düz metne göre çok daha güvenilir şekilde ayrıştırılıp yeniden sunulabiliyor — bu yüzden karşılaştırma içeren her bölümde tabloyu paragrafa tercih etmek makul bir varsayılan.</p>
+    <p>Bir infografikte ya da diyagramda anlatılan bilgi, görselin yanına kısa bir metin özeti eklenmediği sürece dil modelleri için neredeyse görünmez kalır; görsellere gömülü metin (özellikle sayılar ve etiketler) makine tarafından güvenilir şekilde okunamayabilir. Bu yüzden önemli bir veriyi yalnızca bir görselin içine gömmek yerine, aynı bilgiyi görselin altında ya da yanında düz metin veya tablo olarak da tekrar etmek, hem erişilebilirlik hem de GEO açısından çift kazanç sağlar. Bu, ekstra bir iş yükü gibi görünse de genelde zaten yazım aşamasında elinizde olan bilgiyi bir kez daha, farklı bir formatta sunmaktan ibarettir.</p>
+
+    <h2>Sonuç</h2>
+    <p>GEO, klasik SEO'nun yerine geçen ayrı bir disiplin değil, onun üzerine inşa edilen bir netlik katmanı. Varlıkları açık şekilde adlandırmak, bilgiyi alıntılanabilir bloklar (tanım cümleleri, listeler, FAQ) halinde sunmak, yapılandırılmış veriyle içeriğin türünü netleştirmek ve kaynaklandırmayı ciddiye almak — bunların hepsi zaten iyi bir teknik SEO ve içerik stratejisinin parçası. Fark, artık bu pratikleri yalnızca on mavi bağlantı için değil, bir dil modelinin sizi doğru şekilde anlayıp alıntılaması için de yapıyor olmanız. Bu bakış açısıyla GEO, üzerine ayrı bir strateji belgesi yazılması gereken egzotik bir konu olmaktan çıkıp, zaten yapmanız gereken iyi içerik pratiklerinin doğal bir devamı haline geliyor.</p>
+
+    <div class="faq-item">
+      <h3>GEO, klasik SEO'nun yerini mi alıyor?</h3>
+      <p>Hayır, GEO klasik SEO'nun üzerine kurulur, onun yerine geçmez. Teknik SEO temelleri (crawl edilebilirlik, hız, mobil uyumluluk, yapılandırılmış veri) hala hem klasik arama hem de üretken arama sistemleri için ön koşuldur. GEO, bu temelin üzerine içeriğin bir dil modeli tarafından doğru şekilde anlaşılması ve alıntılanmasını kolaylaştıran ek pratikler ekler.</p>
+    </div>
+    <div class="faq-item">
+      <h3>robots.txt üzerinden AI botlarını engellemeli miyim?</h3>
+      <p>Bu, işinizin niteliğine ve içerik stratejinize bağlı bir tercih. GPTBot, PerplexityBot, Google-Extended gibi botları engellemek içeriğinizin o sistemler tarafından eğitim verisi ya da anlık yanıt kaynağı olarak kullanılmasını önler, ama aynı zamanda o platformlardaki görünürlüğünüzü de sıfırlar. Görünürlük ve marka bilinirliği önemliyse bu botlara izin vermek, rekabetçi/özel içerik söz konusuysa engellemek daha mantıklı olabilir.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Yapılandırılmış veri (schema) gerçekten AI arama sonuçlarını etkiliyor mu?</h3>
+      <p>Doğrudan bir garanti olmasa da, yapılandırılmış veri içeriğin ne olduğunu makine tarafından okunabilir şekilde netleştirir. Bu netlik, hem klasik arama motorlarının hem de dil modellerinin içeriği doğru bağlamda işlemesini kolaylaştırır ve alıntılanma ihtimalini artıran dolaylı ama gerçek bir faktördür.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Küçük bir site ya da kişisel blog için GEO'ya yatırım yapmaya değer mi?</h3>
+      <p>Değer, hedef kitlenizin arama davranışına bağlı. Eğer ziyaretçileriniz artık bir konuyu araştırırken önce bir dil modeline soru soruyorsa (ki teknik, yazılım ve danışmanlık gibi alanlarda bu davranış hızla yaygınlaşıyor), o havuzda hiç görünmemek bir fırsat kaybı. İyi haber şu ki GEO'nun büyük kısmı zaten iyi yazılmış, net yapılandırılmış içeriğin doğal bir uzantısı; küçük bir site için de ek bir bütçe gerektirmeden, yazım alışkanlığı değişikliğiyle uygulanabilir.</p>
+    </div>
+
+    <div class="author-box">
+      <div>
+        <strong>Aylin İnci</strong>
+        <span>Teknik SEO, GEO ve web geliştirme üzerine çalışıyor; içerik yapısı ve arama görünürlüğü odaklı danışmanlık veriyor.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="related wrap">
+    <h2>İlgili içerikler</h2>
+    <div class="related-list">
+      <a href="core-web-vitals-performans-optimizasyonu.html">Core Web Vitals Performansının Geliştirilmesi<span>LCP, INP ve CLS için uygulamalı rehber</span></a>
+      <a href="shopify-liquid-performans-optimizasyonu.html">Shopify Liquid Geliştirmelerinde Performansın Korunması<span>Tema geliştirirken render gecikmelerini önlemek</span></a>
+      <a href="anahtar-kelime-kanibalizasyonu-analizi.html">Anahtar Kelime Kanibalizasyonunun Analizi<span>Rakip sayfaları tespit etme ve birleştirme yöntemi</span></a>
+    </div>
+  </div>
+</article>
+
+<footer class="site-footer">
+  <div class="wrap"><a href="../index.html">aylininci.com</a> — SEO, GEO ve Web Geliştirme</div>
+</footer>
+
+</body>
+</html>

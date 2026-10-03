@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anahtar Kelime Kanibalizasyonu Nasıl Tespit Edilir ve Çözülür? | Aylin İnci</title>
+<meta name="description" content="Aynı sorgu için birden fazla sayfanın rekabet etmesi neden trafiği düşürür? Search Console verisiyle kanibalizasyon tespiti, niyet ayrıştırma, birleştirme ve canonical/301 karar süreci.">
+<link rel="canonical" href="https://aylininci.com/blog/anahtar-kelime-kanibalizasyonu-analizi.html">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Aylin İnci">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Anahtar Kelime Kanibalizasyonu Nasıl Tespit Edilir ve Çözülür?">
+<meta property="og:description" content="Aynı sorgu için birden fazla sayfanın rekabet etmesini tespit etme, niyet ayrıştırma ve birleştirme yöntemi.">
+<meta property="og:url" content="https://aylininci.com/blog/anahtar-kelime-kanibalizasyonu-analizi.html">
+<meta property="og:site_name" content="Aylin İnci">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:image" content="https://aylininci.com/blog/images/anahtar-kelime-kanibalizasyonu-analizi-hero.webp">
+<meta property="og:image:width" content="1800">
+<meta property="og:image:height" content="1200">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Anahtar Kelime Kanibalizasyonu Nasıl Tespit Edilir ve Çözülür?">
+<meta name="twitter:description" content="Search Console verisiyle kanibalizasyon tespiti, niyet ayrıştırma ve birleştirme yöntemi.">
+<meta name="twitter:image" content="https://aylininci.com/blog/images/anahtar-kelime-kanibalizasyonu-analizi-hero.webp">
+
+<link rel="icon" type="image/png" href="../favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "image": "https://aylininci.com/blog/images/anahtar-kelime-kanibalizasyonu-analizi-hero.webp",
+  "headline": "Anahtar Kelime Kanibalizasyonu Nasıl Tespit Edilir ve Çözülür?",
+  "description": "Aynı sorgu için birden fazla sayfanın rekabet etmesini Search Console verisiyle tespit etme, niyet ayrıştırma, birleştirme ve canonical/301 karar süreci.",
+  "author": {"@type": "Person", "name": "Aylin İnci", "url": "https://aylininci.com"},
+  "publisher": {"@type": "Person", "name": "Aylin İnci", "url": "https://aylininci.com"},
+  "datePublished": "2026-08-28",
+  "dateModified": "2026-08-28",
+  "inLanguage": "tr",
+  "mainEntityOfPage": {"@type": "WebPage", "@id": "https://aylininci.com/blog/anahtar-kelime-kanibalizasyonu-analizi.html"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Anasayfa", "item": "https://aylininci.com/"},
+    {"@type": "ListItem", "position": 2, "name": "İçerikler", "item": "https://aylininci.com/#icerikler"},
+    {"@type": "ListItem", "position": 3, "name": "Anahtar kelime kanibalizasyonunun analizi", "item": "https://aylininci.com/blog/anahtar-kelime-kanibalizasyonu-analizi.html"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "Kanibalizasyon her zaman kötü müdür?", "acceptedAnswer": {"@type": "Answer", "text": "Hayır. Bir sorgu için birden fazla sayfanızın görünmesi, farklı niyetleri (bilgi arama, satın alma, karşılaştırma) doğru şekilde karşılıyorsa sorun değildir, hatta SERP'te daha fazla yer kaplamanızı sağlayabilir. Sorun, aynı niyete hizmet eden sayfaların birbiriyle rekabet ederek ikisinin de otoritesini bölmesidir."}},
+    {"@type": "Question", "name": "301 yönlendirme mi, canonical etiketi mi kullanmalıyım?", "acceptedAnswer": {"@type": "Answer", "text": "Sayfayı tamamen kaldırmayı ve tüm trafiği tek bir sayfaya yönlendirmeyi planlıyorsanız 301 kullanın. Her iki sayfanın da kullanıcı için ayrı ayrı var olması gerekiyorsa (ör. farklı ürün varyantları) ama arama motoruna hangisinin öncelikli olduğunu belirtmek istiyorsanız canonical etiketi kullanın; sayfa kullanıcı için erişilebilir kalır ama indeksleme sinyali tek bir URL'de toplanır."}},
+    {"@type": "Question", "name": "Kanibalizasyonu düzelttikten sonra sonucu ne zaman görürüm?", "acceptedAnswer": {"@type": "Answer", "text": "Google'ın konsolide edilmiş sinyali yeniden değerlendirmesi ve yeni sıralamanın oturması genelde birkaç haftadan iki aya kadar sürebilir. 301 yönlendirmelerde bu süreç canonical etiketine göre biraz daha hızlı işleyebilir çünkü sinyal daha kesin bir şekilde iletilir."}}
+  ]
+}
+</script>
+
+<style>
+  :root{
+    --canvas:#F6F4FB; --canvas-soft:#FBFAFF; --canvas-deep:#150F26;
+    --surface-card:#FFFFFF; --surface-strong:#EFEAFA;
+    --ink:#241A3D; --ink-active:#150F26;
+    --body:#4B4459; --body-strong:#241A3D;
+    --muted:#7A7189; --muted-soft:#A79CC4;
+    --hairline:#E3DEF2; --hairline-strong:#CFC5EA;
+    --primary:#6C4BD6; --primary-active:#5636B8; --on-primary:#FFFFFF;
+    --lime:#B8E01A; --lime-ink:#2A1F4D;
+    --shadow-soft:0 4px 16px rgba(36,26,61,0.06);
+    --font-display:'Fraunces', 'Times New Roman', serif;
+    --font-body:'Inter', sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --canvas:#150F26; --canvas-soft:#1B1330;
+      --surface-card:#1F1636; --surface-strong:#241A3D;
+      --ink:#F3F0FB; --ink-active:#FFFFFF;
+      --body:#C9C0DE; --body-strong:#F3F0FB;
+      --muted:#9A8FBA; --muted-soft:#7A7189;
+      --hairline:rgba(255,255,255,0.08); --hairline-strong:rgba(255,255,255,0.16);
+      --primary:#8C74E8; --primary-active:#A290F0; --on-primary:#150F26;
+    }
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--canvas);color:var(--body);font-family:var(--font-body);line-height:1.7;}
+  .wrap{max-width:760px;margin:0 auto;padding:0 24px;}
+  nav.nav{border-bottom:1px solid var(--hairline);padding:18px 0;position:sticky;top:0;background:var(--canvas);z-index:10;}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;max-width:920px;}
+  nav a.brand{color:var(--ink-active);font-family:var(--font-display);font-weight:600;text-decoration:none;font-size:1.1rem;}
+  nav a.back{color:var(--primary);text-decoration:none;font-size:0.9rem;font-weight:500;}
+  article header.article-head{padding:56px 0 32px;}
+  .eyebrow{display:inline-block;background:var(--surface-strong);color:var(--primary-active);font-size:0.78rem;font-weight:600;letter-spacing:0.02em;padding:5px 12px;border-radius:100px;margin-bottom:18px;}
+  h1{font-family:var(--font-display);font-weight:600;font-size:2.1rem;line-height:1.25;color:var(--ink-active);margin:0 0 16px;}
+  .meta-row{display:flex;gap:16px;flex-wrap:wrap;color:var(--muted);font-size:0.9rem;margin-bottom:8px;}
+  .lead{font-size:1.15rem;color:var(--body-strong);}
+  article .content{padding-bottom:64px;}
+  h2{font-family:var(--font-display);font-weight:600;font-size:1.5rem;color:var(--ink-active);margin:44px 0 14px;}
+  h3{font-family:var(--font-display);font-weight:600;font-size:1.2rem;color:var(--ink-active);margin:32px 0 10px;}
+  p{margin:0 0 18px;}
+  ul,ol{margin:0 0 18px;padding-left:1.3em;}
+  li{margin-bottom:8px;}
+  strong{color:var(--body-strong);}
+  code{background:var(--surface-strong);color:var(--ink-active);padding:2px 6px;border-radius:5px;font-size:0.9em;}
+  pre{background:var(--canvas-deep);color:#EFEAFA;padding:18px 20px;border-radius:12px;overflow-x:auto;font-size:0.88rem;line-height:1.6;margin:0 0 22px;}
+  pre code{background:none;color:inherit;padding:0;}
+  blockquote{margin:28px 0;padding:4px 0 4px 20px;border-left:3px solid var(--primary);color:var(--body-strong);font-style:italic;}
+  table{width:100%;border-collapse:collapse;margin:0 0 24px;font-size:0.92rem;}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--hairline);}
+  th{color:var(--ink-active);font-weight:600;}
+  .callout{background:var(--surface-strong);border-radius:14px;padding:20px 22px;margin:0 0 24px;}
+  .callout p:last-child{margin-bottom:0;}
+  .faq-item{border-top:1px solid var(--hairline);padding:20px 0;}
+  .faq-item h3{margin-top:0;}
+  .checklist{list-style:none;padding-left:0;}
+  .checklist li{padding-left:28px;position:relative;}
+  .checklist li::before{content:"✓";position:absolute;left:0;color:var(--primary);font-weight:700;}
+  .author-box{display:flex;gap:14px;align-items:flex-start;background:var(--surface-card);border:1px solid var(--hairline);border-radius:16px;padding:20px;margin-top:48px;}
+  .author-box strong{display:block;color:var(--ink-active);}
+  .related{padding:32px 0 72px;border-top:1px solid var(--hairline);}
+  .related h2{margin-top:0;}
+  .related-list{display:grid;gap:14px;}
+  .related-list a{display:block;background:var(--surface-card);border:1px solid var(--hairline);border-radius:14px;padding:16px 18px;color:var(--ink-active);text-decoration:none;font-weight:500;}
+  .related-list a:hover{border-color:var(--primary);}
+  .related-list span{display:block;color:var(--muted);font-size:0.85rem;font-weight:400;margin-top:4px;}
+  footer.site-footer{border-top:1px solid var(--hairline);padding:28px 0;text-align:center;color:var(--muted);font-size:0.85rem;}
+  footer.site-footer a{color:var(--primary);text-decoration:none;}
+  .hero-image{width:100%;height:auto;display:block;border-radius:16px;margin:8px 0 0;}
+  .hero-wrap{padding:0 0 8px;}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a href="../index.html" class="brand">Aylin İnci</a>
+    <a href="../index.html#icerikler" class="back">← Tüm içerikler</a>
+  </div>
+</nav>
+
+<article>
+  <header class="article-head">
+    <div class="wrap">
+      <span class="eyebrow">İçerik Stratejisi</span>
+      <h1>Anahtar Kelime Kanibalizasyonunun Analizi: Sayfalarınız Birbirinizle mi Yarışıyor?</h1>
+      <div class="meta-row">
+        <span>Aylin İnci</span>
+        <span>·</span>
+        <span>28 Ağustos 2026</span>
+        <span>·</span>
+        <span>Yaklaşık 13 dakika okuma</span>
+      </div>
+      <p class="lead">Bir siteye yeni içerik eklemek her zaman trafiği artırmaz; bazen mevcut bir sayfanın trafiğini böler. Bu yazıda kanibalizasyonu Search Console verisiyle nasıl tespit edeceğinizi, hangi durumda birleştirmeniz hangi durumda ayrı tutmanız gerektiğini anlatıyorum.</p>
+    </div>
+  </header>
+
+  <div class="wrap hero-wrap">
+    <img class="hero-image" src="images/anahtar-kelime-kanibalizasyonu-analizi-hero.webp" alt="Birden fazla sayfanın tek bir onaylı sonuçta birleşmesini simgeleyen soyut 3D illüstrasyon" width="1800" height="1200" fetchpriority="high">
+  </div>
+
+  <div class="content wrap">
+
+    <p>"Bu konuda zaten bir yazımız var ama yeterince sıralamıyor, bir tane daha yazalım" cümlesini SEO danışmanlığında sık duyarım. Genelde iyi niyetle söylenir ama çoğu zaman sonucu tam tersi olur: yeni sayfa, eski sayfanın az miktardaki otoritesini de kendisiyle paylaşmaya başlar ve ikisi de birbirini SERP'te aşağı çeker. Buna <strong>anahtar kelime kanibalizasyonu</strong> denir — aynı arama niyetine hizmet eden birden fazla sayfanın, kendi sitenizin içinde birbiriyle rekabet etmesi.</p>
+    <p>Bu sorun özellikle uzun süredir aktif olan, çok yazarlı ya da farklı ajanslarla çalışılmış sitelerde birikir; kimse kötü niyetle hareket etmez, sadece geçmişte yayınlanmış içeriklerin tam envanteri elde bulunmadığı için aynı konu farklı zamanlarda tekrar tekrar ele alınır. Bu yazıda hem bu birikimi geriye dönük nasıl temizleyeceğinizi hem de yeni içerik üretirken bunu baştan nasıl önleyeceğinizi ele alıyorum.</p>
+
+    <h2>1. Kanibalizasyon neden gerçek bir sorun?</h2>
+    <p>Google bir sorgu için hangi sayfanızı göstereceğine karar verirken, sitenizdeki en alakalı tek sayfayı seçmeye çalışır. Eğer iki sayfanız da benzer alaka düzeyindeyse üç şey olabilir:</p>
+    <ul>
+      <li>Google, sıralamaya göre "daha iyi" bulduğu sayfayı gösterir, ama bu sayfa dönüşüm için en optimize ettiğiniz sayfa olmayabilir.</li>
+      <li>Google, hangisinin gösterileceğine dair kararsız kalır ve zamanla farklı aramalarda farklı sayfayı gösterir (sıralama dalgalanması) — bu, backlink ve içerik sinyallerinin tek bir sayfada birikmemesi anlamına gelir.</li>
+      <li>Her iki sayfa da, tek bir güçlü sayfanın alabileceği sıralamadan daha düşük bir sırada kalır, çünkü ne biri ne diğeri sorgunun tüm alaka sinyalini tek başına taşıyor.</li>
+    </ul>
+    <p>Sonuç, iki sayfaya bölünmüş, ayrı ayrı zayıf iki performans. Oysa aynı içerik ve dış bağlantı sinyali tek bir sayfada birleşseydi, muhtemelen ikisinin toplamından daha iyi bir sıralama elde edilirdi.</p>
+
+    <h2>2. Kanibalizasyon her zaman kötü değildir</h2>
+    <p>Burada önemli bir ayrım var: aynı <strong>anahtar kelimeyi</strong> içeren iki sayfa, aynı <strong>niyete</strong> hizmet etmiyor olabilir. "Kahve makinesi" araması hem bilgi almak isteyen (kahve makinesi çeşitleri, nasıl seçilir) hem satın almak isteyen (kahve makinesi fiyatları, ürün sayfası) kullanıcılar için yapılabilir. Bu iki niyeti karşılayan iki ayrı sayfaya sahip olmak kanibalizasyon değil, tam tersine niyet çeşitliliğini doğru karşılamaktır. Gerçek kanibalizasyon, aynı niyete hizmet eden, aynı kullanıcı sorusuna aynı derinlikte cevap veren iki sayfanın var olmasıdır.</p>
+
+    <h2>3. Search Console ile tespit yöntemi</h2>
+    <p>Kanibalizasyonu tespit etmenin en güvenilir yolu, tahmin yürütmek değil, gerçek arama performansı verisine bakmaktır. Adım adım süreç şöyle:</p>
+    <ol>
+      <li>Search Console'da <strong>Performans</strong> raporuna gidin, <strong>Sayfalar</strong> ve <strong>Sorgular</strong> tablolarını yan yana açın.</li>
+      <li>Şüphelendiğiniz bir sorguyu (ör. sitenizin ana hizmet/ürün konusu) filtre olarak girin ve "Sayfalar" sekmesine geçin.</li>
+      <li>Aynı sorgu için birden fazla URL'nin gösterim aldığını görüyorsanız, bu bir kanibalizasyon adayıdır. Özellikle gösterimlerin iki sayfa arasında ay bazında yer değiştirdiğini (bir ay A sayfası, ertesi ay B sayfası öne çıkıyor) görüyorsanız bu, Google'ın hangisinin daha alakalı olduğuna karar veremediğinin güçlü bir işaretidir.</li>
+      <li>Aynı analizi, site genelinde otomatikleştirmek için Search Console verisini API veya BigQuery export'u üzerinden çekip, sorgu bazında gruplandırıp birden fazla farklı sayfanın göründüğü sorguları filtreleyen bir tabloya dökebilirsiniz.</li>
+    </ol>
+    <pre><code>-- BigQuery export kullanıyorsanız basit bir mantık örneği
+SELECT query, COUNT(DISTINCT page) AS sayfa_sayisi
+FROM search_console_export
+WHERE date >= DATE_SUB(CURRENT_DATE(), INTERVAL 90 DAY)
+GROUP BY query
+HAVING sayfa_sayisi > 1
+ORDER BY SUM(impressions) DESC</code></pre>
+    <p>BigQuery'e erişiminiz yoksa, Search Console arayüzünde manuel olarak en çok gösterim alan 50-100 sorguyu tek tek "Sayfalar" filtresiyle kontrol etmek de küçük ve orta ölçekli siteler için yeterli bir başlangıçtır.</p>
+
+    <h2>4. Niyet ayrıştırma: hangi sayfa kalmalı?</h2>
+    <p>Kanibalizasyon tespit edildikten sonra asıl karar süreci başlıyor: iki sayfadan hangisi "kazanan" sayfa olmalı? Bunu belirlerken baktığım kriterler:</p>
+    <table>
+      <tr><th>Kriter</th><th>Neden önemli</th></tr>
+      <tr><td>Hangi sayfa daha fazla dış bağlantı (backlink) almış?</td><td>Otorite sinyali zaten o sayfada birikmiş demektir</td></tr>
+      <tr><td>Hangi sayfa daha yüksek dönüşüm oranına sahip?</td><td>İş hedefi açısından "doğru" sayfa bu olabilir</td></tr>
+      <tr><td>Hangi sayfa daha kapsamlı/güncel içeriğe sahip?</td><td>Birleştirme sonrası içerik kalitesi kaybı yaşanmaz</td></tr>
+      <tr><td>Hangi URL yapısı sitenin bilgi mimarisine daha uygun?</td><td>Uzun vadeli URL stratejisiyle tutarlılık sağlar</td></tr>
+    </table>
+    <p>Bu dört kritere göre net bir kazanan çıkmıyorsa, genelde dönüşüm oranı ve backlink sayısı en belirleyici iki faktör oluyor; bir sayfa çok daha fazla dış bağlantı almışsa, içerik kalitesi biraz daha düşük olsa bile o sayfayı korumak (ve içeriğini diğerinden gelen bilgilerle zenginleştirmek) genelde daha hızlı sonuç veriyor.</p>
+
+    <h2>5. Birleştirme: canonical mı, 301 mi?</h2>
+    <p>Kazanan sayfa belirlendikten sonra iki teknik yöntem var:</p>
+    <ul>
+      <li><strong>301 yönlendirme:</strong> Kaybeden sayfayı tamamen kaldırıp, tüm trafiği (ve birikmiş dış bağlantı sinyalini) kazanan sayfaya yönlendirmek. Kaybeden sayfanın ayrı bir kullanıcı ihtiyacına hizmet etmediği, gerçekten gereksiz bir tekrar olduğu durumlarda doğru seçim budur.</li>
+      <li><strong>Canonical etiketi:</strong> Her iki sayfanın da kullanıcı için ayrı ayrı erişilebilir kalması gerekiyorsa (ör. filtrelenmiş bir liste sayfası ile ana kategori sayfası), ama arama motoruna "asıl indekslenmesi gereken bu" demek istiyorsanız <code>&lt;link rel="canonical"&gt;</code> kullanılır. Sayfa kullanıcı tarafından hala görülebilir, ama indeksleme sinyali tek bir URL'de toplanır.</li>
+    </ul>
+    <div class="callout">
+      <p><strong>Dikkat edilmesi gereken nokta:</strong> Birleştirme kararı verildiğinde, kaybeden sayfadaki benzersiz ve değerli içeriği (varsa) kazanan sayfaya taşımayı unutmayın. Sadece yönlendirme yapıp içeriği kaybetmek, kullanıcı açısından bir değer kaybına da yol açabilir. Aynı şekilde, kaybeden sayfanın topladığı yorumlar, değerlendirmeler ya da sosyal kanıt niteliğindeki içerikler varsa bunları da taşımak, birleştirmenin kullanıcı deneyimini zayıflatmadan yapılmasını sağlar.</p>
+    </div>
+    <p>Bir diğer pratik nokta, birleştirme sonrası eski URL'nin harici sitelerden aldığı bağlantıları takip etmek. Zaman zaman büyük ve otoriteli bir sitenin eski URL'e verdiği bağlantı hala o adrese işaret edebilir; 301 yönlendirme bu sinyali yeni sayfaya taşısa da, mümkünse söz konusu siteyle iletişime geçip bağlantıyı doğrudan güncel URL'e çevirmelerini istemek daha temiz ve daha az bağımlı bir çözüm sunar.</p>
+
+    <h2>6. İç linklemeyi güncellemek</h2>
+    <p>Yönlendirme ya da canonical eklemek tek başına yeterli değil; sitenizin içindeki diğer sayfalardan kaybeden URL'ye giden iç bağlantıları da kazanan URL'ye güncellemeniz gerekir. Aksi halde hem kullanıcılar hem de arama motoru botları, artık "ikincil" olan sayfaya doğru sinyal almaya devam eder; bu da birleştirmenin etkisini zayıflatır. Site içi arama ve navigasyon menülerini de bu güncellemeye dahil etmek gerekir.</p>
+
+    <h2>7. Kanibalizasyonu baştan önlemek</h2>
+    <p>Düzeltmekten daha ucuz olan, hiç oluşturmamak. Yeni bir içerik planlarken sorulması gereken basit bir kontrol listesi:</p>
+    <ul class="checklist">
+      <li>Bu konuda zaten sitede bir sayfa var mı? Varsa, yeni bir sayfa mı gerekiyor yoksa mevcut sayfayı güncellemek mi daha doğru?</li>
+      <li>Yeni sayfa gerçekten farklı bir arama niyetine mi hizmet ediyor, yoksa aynı niyeti farklı kelimelerle mi tekrar ediyor?</li>
+      <li>İçerik takviminizde/URL listenizde, hedeflenen ana anahtar kelimeleri (ve yakın varyantlarını) merkezi bir tabloda takip ediyor musunuz?</li>
+      <li>Yeni sayfa yayına alınmadan önce, hedef sorgunun mevcut hangi sayfa(lar) tarafından zaten karşılandığını Search Console'dan kontrol ediyor musunuz?</li>
+    </ul>
+
+    <h2>8. Blog ve kategori sayfalarında yaygın kanibalizasyon senaryoları</h2>
+    <p>En sık karşılaştığım üç senaryo:</p>
+    <ul>
+      <li><strong>Etiket (tag) ve kategori sayfalarının çakışması:</strong> Bir e-ticaret ya da blog sitesinde hem bir kategori sayfası hem de neredeyse aynı ürün/yazı setini listeleyen bir etiket sayfası varsa, ikisi genelde aynı sorgu için rekabet eder. Çözüm genelde etiket sayfalarını <code>noindex</code> yapmak ya da kategori sayfasına canonical vermektir.</li>
+      <li><strong>Farklı zamanlarda yazılmış, konusu örtüşen blog yazıları:</strong> "2023'te en iyi X" ve "2025'te en iyi X" gibi yıl bazlı yazılar yerine, tek bir "kapsamlı ve güncellenen" sayfa tutmak hem kanibalizasyonu önler hem de zamanla biriken otoriteyi tek sayfada toplar.</li>
+      <li><strong>Yerel SEO'da şehir/bölge sayfalarının birbirine çok benzemesi:</strong> Şablon bazlı üretilen, aralarında yalnızca şehir adı değişen sayfalar, yeterince özgün içerik içermiyorsa hem birbirleriyle hem de ana hizmet sayfasıyla rekabet edebilir.</li>
+    </ul>
+
+    <h2>9. Üçüncü parti araçlarla tespit: Search Console'un yeterli olmadığı durumlar</h2>
+    <p>Search Console verisi ücretsiz ve doğrudan Google'dan geldiği için en güvenilir kaynak, ama bazı kısıtları var: yalnızca gösterim alan sorguları gösterir, henüz hiç gösterim almamış (ama potansiyel olarak kanibalizasyona yol açacak) yeni sayfaları erken uyarmaz. Bu noktada Ahrefs, Semrush gibi araçların "içerik kanibalizasyonu" ya da "pozisyon geçmişi" raporları tamamlayıcı bir katman sağlıyor:</p>
+    <ul>
+      <li>Bu araçlar, sitenizin tüm sayfalarını tarayıp hangi sayfaların hangi anahtar kelimeler için sıralandığını topluca gösterir; aynı anahtar kelime kümesi için birden fazla URL'nin sıralandığı durumları otomatik olarak işaretleyebilirler.</li>
+      <li>Zaman içindeki pozisyon dalgalanmasını (bir sayfa yükselirken diğerinin aynı anda düşmesi) görselleştirerek, Search Console'daki ham veriden çıkarılması daha zor olan örüntüleri ortaya çıkarırlar.</li>
+      <li>İçerik yayınlanmadan önce, hedeflenen anahtar kelime için mevcut sıralamaya bakıp "bu konuda zaten güçlü bir sayfamız var mı" sorusuna hızlıca cevap vermeyi sağlarlar.</li>
+    </ul>
+    <p>Ücretsiz bir alternatif olarak, kendi CMS'inizde ya da bir tabloda tüm yayınlanmış içeriklerin başlığını, hedef anahtar kelimesini ve yayın tarihini merkezi olarak tutmak da (bir "içerik envanteri") yeni bir yazı planlanırken hızlı bir çapraz kontrol imkanı verir.</p>
+
+    <h2>10. Vaka: bir B2B blogda üç yazının tek sayfada birleştirilmesi</h2>
+    <p>Danıştığım bir B2B yazılım şirketinde, iki yıl içinde aynı konuda ("proje yönetimi yazılımı nasıl seçilir") üç ayrı blog yazısı yayınlanmıştı — her biri farklı bir yazar tarafından, birbirinden habersiz şekilde. Search Console analizinde bu üç sayfanın toplamda aynı 40'a yakın sorgu için gösterim aldığı, ama hiçbirinin ilk sayfada istikrarlı bir sıralamaya oturamadığı görüldü.</p>
+    <p>En çok backlink alan ve en güncel veriye sahip yazıyı ana sayfa olarak seçtik; diğer ikisindeki benzersiz bölümleri (bir tanesinde iyi bir karşılaştırma tablosu, diğerinde özgün bir vaka çalışması vardı) ana sayfaya taşıdık ve iki eski yazıyı 301 ile yönlendirdik. İç linkleme güncellemesinden altı hafta sonra, birleşen sayfa aynı ana sorgu için ilk sayfanın üst sıralarına çıktı — üç sayfanın topladığı gösterim sayısının toplamından daha yüksek bir tıklama oranıyla.</p>
+    <blockquote>Buradaki asıl ders, "hangi yazı daha iyi" sorusuna tek bir kazananla cevap vermek değil, üç yazının en güçlü parçalarını tek bir kapsamlı kaynakta birleştirmekti. Birleştirme, içerik kaybı değil içerik konsolidasyonu olarak ele alınmalı.</blockquote>
+
+    <h2>11. Birleştirme sonrası nasıl ölçülür?</h2>
+    <p>Bir birleştirme işleminin gerçekten işe yarayıp yaramadığını anlamak için tek bir sayfanın sıralamasına bakmak yeterli değil; toplam etkiyi görmek gerekir:</p>
+    <ol>
+      <li>Birleştirmeden önceki 90 günlük dönemde, ilgili tüm sayfaların (kazanan + kaybedenler) toplam tıklama ve gösterim sayısını Search Console'dan kaydedin.</li>
+      <li>Birleştirmeden sonraki aynı uzunluktaki dönemde, artık tek sayfa haline gelen URL'nin toplam tıklama ve gösterim sayısını karşılaştırın.</li>
+      <li>Yalnızca toplam sayıya değil, ortalama pozisyona da bakın; genelde toplam gösterim biraz düşse bile ortalama pozisyonun iyileşmesi ve tıklama oranının artması, konsolidasyonun işe yaradığının daha güçlü bir göstergesidir.</li>
+      <li>301 yönlendirmelerde eski URL'lerin Search Console'da "Sayfa, yönlendirme içeriyor" durumuna düştüğünü ve yeni URL'nin indekslendiğini Kapsam raporundan doğrulayın.</li>
+    </ol>
+
+    <h2>Sonuç</h2>
+    <p>Kanibalizasyon, "daha fazla içerik daha fazla trafik getirir" varsayımının en sık yanıldığı alanlardan biri. Yeni bir sayfa yazmadan önce mevcut sayfa envanterini ve Search Console verisini kontrol etmek, hangi sayfaların gerçekten aynı niyete hizmet ettiğini görmek ve gerektiğinde birleştirmek, genelde yeni içerik üretmekten çok daha hızlı ve düşük maliyetli bir sıralama kazancı sağlar. En iyi içerik stratejisi bazen yeni bir şey yazmak değil, var olanı doğru yere toplamaktır. Yeni bir yazıya başlamadan önce ayırdığınız beş dakikalık bir kontrol, aylar sonra iki zayıf sayfayı birleştirmek için harcayacağınız saatlerden çok daha ucuza gelir.</p>
+
+    <div class="faq-item">
+      <h3>Kanibalizasyon her zaman kötü müdür?</h3>
+      <p>Hayır. Bir sorgu için birden fazla sayfanızın görünmesi, farklı niyetleri (bilgi arama, satın alma, karşılaştırma) doğru şekilde karşılıyorsa sorun değildir, hatta SERP'te daha fazla yer kaplamanızı sağlayabilir. Sorun, aynı niyete hizmet eden sayfaların birbiriyle rekabet ederek ikisinin de otoritesini bölmesidir.</p>
+    </div>
+    <div class="faq-item">
+      <h3>301 yönlendirme mi, canonical etiketi mi kullanmalıyım?</h3>
+      <p>Sayfayı tamamen kaldırmayı ve tüm trafiği tek bir sayfaya yönlendirmeyi planlıyorsanız 301 kullanın. Her iki sayfanın da kullanıcı için ayrı ayrı var olması gerekiyorsa ama arama motoruna hangisinin öncelikli olduğunu belirtmek istiyorsanız canonical etiketi kullanın.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Kanibalizasyonu düzelttikten sonra sonucu ne zaman görürüm?</h3>
+      <p>Google'ın konsolide edilmiş sinyali yeniden değerlendirmesi ve yeni sıralamanın oturması genelde birkaç haftadan iki aya kadar sürebilir. 301 yönlendirmelerde bu süreç canonical etiketine göre biraz daha hızlı işleyebilir çünkü sinyal daha kesin bir şekilde iletilir.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Kanibalizasyonu önlemek için içerik takvimini nasıl kurmalıyım?</h3>
+      <p>En pratik yöntem, her yayınlanan içeriğin hedef anahtar kelimesini, ana niyetini ve URL'sini tek bir merkezi tabloda tutmak. Yeni bir konu önerildiğinde önce bu tabloda ve Search Console'da hızlı bir arama yapmak, aynı konunun daha önce farklı bir başlıkla ya da farklı bir yazar tarafından işlenip işlenmediğini görmenizi sağlar. Büyük ekiplerde bu kontrolü içerik onay sürecinin zorunlu bir adımı haline getirmek, sorunun kaynağında önlenmesini sağlar.</p>
+    </div>
+
+    <div class="author-box">
+      <div>
+        <strong>Aylin İnci</strong>
+        <span>Teknik SEO, GEO ve web geliştirme üzerine çalışıyor; içerik stratejisi ve arama görünürlüğü odaklı danışmanlık veriyor.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="related wrap">
+    <h2>İlgili içerikler</h2>
+    <div class="related-list">
+      <a href="core-web-vitals-performans-optimizasyonu.html">Core Web Vitals Performansının Geliştirilmesi<span>LCP, INP ve CLS için uygulamalı rehber</span></a>
+      <a href="shopify-liquid-performans-optimizasyonu.html">Shopify Liquid Geliştirmelerinde Performansın Korunması<span>Tema geliştirirken render gecikmelerini önlemek</span></a>
+      <a href="yapay-zeka-arama-icin-icerik-yapisi.html">Yapay Zeka Destekli Arama Sistemleri İçin İçerik Yapısı<span>GEO için yapılandırılmış veri ve içerik netliği</span></a>
+    </div>
+  </div>
+</article>
+
+<footer class="site-footer">
+  <div class="wrap"><a href="../index.html">aylininci.com</a> — SEO, GEO ve Web Geliştirme</div>
+</footer>
+
+</body>
+</html>

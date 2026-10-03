@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Core Web Vitals Nasıl İyileştirilir? LCP, INP, CLS Rehberi | Aylin İnci</title>
+<meta name="description" content="LCP, INP ve CLS'i sahada (CrUX) ve laboratuvarda ölçmekten gerçek düzeltmelere: render-blocking kaynaklar, uzun görevler, layout kaymaları ve önceliklendirme üzerine uygulamalı bir Core Web Vitals rehberi.">
+<link rel="canonical" href="https://aylininci.com/blog/core-web-vitals-performans-optimizasyonu.html">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Aylin İnci">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Core Web Vitals Nasıl İyileştirilir? LCP, INP, CLS Rehberi">
+<meta property="og:description" content="LCP, INP ve CLS'i sahada ve laboratuvarda ölçmekten gerçek düzeltmelere: uygulamalı bir Core Web Vitals rehberi.">
+<meta property="og:url" content="https://aylininci.com/blog/core-web-vitals-performans-optimizasyonu.html">
+<meta property="og:site_name" content="Aylin İnci">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:image" content="https://aylininci.com/blog/images/core-web-vitals-performans-optimizasyonu-hero.webp">
+<meta property="og:image:width" content="1800">
+<meta property="og:image:height" content="1200">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Core Web Vitals Nasıl İyileştirilir? LCP, INP, CLS Rehberi">
+<meta name="twitter:description" content="Sahada ve laboratuvarda ölçümden gerçek düzeltmelere: uygulamalı Core Web Vitals rehberi.">
+<meta name="twitter:image" content="https://aylininci.com/blog/images/core-web-vitals-performans-optimizasyonu-hero.webp">
+
+<link rel="icon" type="image/png" href="../favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "image": "https://aylininci.com/blog/images/core-web-vitals-performans-optimizasyonu-hero.webp",
+  "headline": "Core Web Vitals Nasıl İyileştirilir? LCP, INP, CLS Rehberi",
+  "description": "LCP, INP ve CLS'i sahada (CrUX) ve laboratuvarda ölçmekten gerçek düzeltmelere: uygulamalı bir Core Web Vitals rehberi.",
+  "author": {"@type": "Person", "name": "Aylin İnci", "url": "https://aylininci.com"},
+  "publisher": {"@type": "Person", "name": "Aylin İnci", "url": "https://aylininci.com"},
+  "datePublished": "2026-08-28",
+  "dateModified": "2026-08-28",
+  "inLanguage": "tr",
+  "mainEntityOfPage": {"@type": "WebPage", "@id": "https://aylininci.com/blog/core-web-vitals-performans-optimizasyonu.html"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Anasayfa", "item": "https://aylininci.com/"},
+    {"@type": "ListItem", "position": 2, "name": "İçerikler", "item": "https://aylininci.com/#icerikler"},
+    {"@type": "ListItem", "position": 3, "name": "Core Web Vitals performansının geliştirilmesi", "item": "https://aylininci.com/blog/core-web-vitals-performans-optimizasyonu.html"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "PageSpeed Insights skoru yüksek ama Search Console'da Core Web Vitals kötü görünüyor, bu nasıl mümkün?", "acceptedAnswer": {"@type": "Answer", "text": "PageSpeed Insights'ın üstteki skoru laboratuvar (Lighthouse) verisidir ve tek bir simüle cihaz/ağ koşulunda ölçülür. Search Console'daki Core Web Vitals raporu ise CrUX'tan, yani gerçek kullanıcıların 28 günlük saha verisinden gelir. Laboratuvar skoru iyi olsa da düşük gelir grubu, eski cihaz veya zayıf ağdaki gerçek kullanıcılarınız kötü deneyim yaşıyorsa saha verisi kötü çıkar."}},
+    {"@type": "Question", "name": "Core Web Vitals doğrudan bir sıralama faktörü mü?", "acceptedAnswer": {"@type": "Answer", "text": "Evet, Google'ın sayfa deneyimi sinyalinin bir parçasıdır, ancak göreli ağırlığı içerik alaka düzeyine kıyasla küçüktür. Pratikte etkisi çoğunlukla dolaylıdır: hızlı ve kararlı sayfalar daha düşük hemen çıkma oranı, daha yüksek etkileşim ve daha iyi tarama bütçesi kullanımı sağlar."}},
+    {"@type": "Question", "name": "INP, FID'in yerini neden aldı?", "acceptedAnswer": {"@type": "Answer", "text": "FID yalnızca sayfadaki ilk etkileşimin gecikmesini ölçüyordu ve sayfa ömrü boyunca yaşanan tıklama, dokunma veya tuş etkileşimlerinin tamamını kapsamıyordu. INP, oturum boyunca gözlemlenen tüm etkileşimleri değerlendirip en kötü (yüksek yüzdelik) gecikmeyi raporlayarak gerçek yanıt verebilirliği çok daha iyi yansıtır."}}
+  ]
+}
+</script>
+
+<style>
+  :root{
+    --canvas:#F6F4FB; --canvas-soft:#FBFAFF; --canvas-deep:#150F26;
+    --surface-card:#FFFFFF; --surface-strong:#EFEAFA;
+    --ink:#241A3D; --ink-active:#150F26;
+    --body:#4B4459; --body-strong:#241A3D;
+    --muted:#7A7189; --muted-soft:#A79CC4;
+    --hairline:#E3DEF2; --hairline-strong:#CFC5EA;
+    --primary:#6C4BD6; --primary-active:#5636B8; --on-primary:#FFFFFF;
+    --lime:#B8E01A; --lime-ink:#2A1F4D;
+    --g-violet:#C9B8F2; --g-lime:#DFF29B;
+    --shadow-soft:0 4px 16px rgba(36,26,61,0.06);
+    --font-display:'Fraunces', 'Times New Roman', serif;
+    --font-body:'Inter', sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --canvas:#150F26; --canvas-soft:#1B1330;
+      --surface-card:#1F1636; --surface-strong:#241A3D;
+      --ink:#F3F0FB; --ink-active:#FFFFFF;
+      --body:#C9C0DE; --body-strong:#F3F0FB;
+      --muted:#9A8FBA; --muted-soft:#7A7189;
+      --hairline:rgba(255,255,255,0.08); --hairline-strong:rgba(255,255,255,0.16);
+      --primary:#8C74E8; --primary-active:#A290F0; --on-primary:#150F26;
+      --lime:#C6EE3B; --lime-ink:#1B1330;
+    }
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--canvas);color:var(--body);font-family:var(--font-body);line-height:1.7;}
+  .wrap{max-width:760px;margin:0 auto;padding:0 24px;}
+  nav.nav{border-bottom:1px solid var(--hairline);padding:18px 0;position:sticky;top:0;background:var(--canvas);z-index:10;}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;max-width:920px;}
+  nav a.brand{color:var(--ink-active);font-family:var(--font-display);font-weight:600;text-decoration:none;font-size:1.1rem;}
+  nav a.back{color:var(--primary);text-decoration:none;font-size:0.9rem;font-weight:500;}
+  article header.article-head{padding:56px 0 32px;}
+  .eyebrow{display:inline-block;background:var(--surface-strong);color:var(--primary-active);font-size:0.78rem;font-weight:600;letter-spacing:0.02em;padding:5px 12px;border-radius:100px;margin-bottom:18px;}
+  h1{font-family:var(--font-display);font-weight:600;font-size:2.1rem;line-height:1.25;color:var(--ink-active);margin:0 0 16px;}
+  .meta-row{display:flex;gap:16px;flex-wrap:wrap;color:var(--muted);font-size:0.9rem;margin-bottom:8px;}
+  .lead{font-size:1.15rem;color:var(--body-strong);}
+  article .content{padding-bottom:64px;}
+  h2{font-family:var(--font-display);font-weight:600;font-size:1.5rem;color:var(--ink-active);margin:44px 0 14px;}
+  h3{font-family:var(--font-display);font-weight:600;font-size:1.2rem;color:var(--ink-active);margin:32px 0 10px;}
+  p{margin:0 0 18px;}
+  ul,ol{margin:0 0 18px;padding-left:1.3em;}
+  li{margin-bottom:8px;}
+  strong{color:var(--body-strong);}
+  code{background:var(--surface-strong);color:var(--ink-active);padding:2px 6px;border-radius:5px;font-size:0.9em;}
+  pre{background:var(--canvas-deep);color:#EFEAFA;padding:18px 20px;border-radius:12px;overflow-x:auto;font-size:0.88rem;line-height:1.6;margin:0 0 22px;}
+  pre code{background:none;color:inherit;padding:0;}
+  blockquote{margin:28px 0;padding:4px 0 4px 20px;border-left:3px solid var(--primary);color:var(--body-strong);font-style:italic;}
+  table{width:100%;border-collapse:collapse;margin:0 0 24px;font-size:0.92rem;}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--hairline);}
+  th{color:var(--ink-active);font-weight:600;}
+  .callout{background:var(--surface-strong);border-radius:14px;padding:20px 22px;margin:0 0 24px;}
+  .callout p:last-child{margin-bottom:0;}
+  .faq-item{border-top:1px solid var(--hairline);padding:20px 0;}
+  .faq-item h3{margin-top:0;}
+  .checklist{list-style:none;padding-left:0;}
+  .checklist li{padding-left:28px;position:relative;}
+  .checklist li::before{content:"✓";position:absolute;left:0;color:var(--primary);font-weight:700;}
+  .author-box{display:flex;gap:14px;align-items:flex-start;background:var(--surface-card);border:1px solid var(--hairline);border-radius:16px;padding:20px;margin-top:48px;}
+  .author-box img{width:52px;height:52px;border-radius:50%;object-fit:cover;}
+  .author-box strong{display:block;color:var(--ink-active);}
+  .related{padding:32px 0 72px;border-top:1px solid var(--hairline);}
+  .related h2{margin-top:0;}
+  .related-list{display:grid;gap:14px;}
+  .related-list a{display:block;background:var(--surface-card);border:1px solid var(--hairline);border-radius:14px;padding:16px 18px;color:var(--ink-active);text-decoration:none;font-weight:500;}
+  .related-list a:hover{border-color:var(--primary);}
+  .related-list span{display:block;color:var(--muted);font-size:0.85rem;font-weight:400;margin-top:4px;}
+  footer.site-footer{border-top:1px solid var(--hairline);padding:28px 0;text-align:center;color:var(--muted);font-size:0.85rem;}
+  footer.site-footer a{color:var(--primary);text-decoration:none;}
+  .hero-image{width:100%;height:auto;display:block;border-radius:16px;margin:8px 0 0;}
+  .hero-wrap{padding:0 0 8px;}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a href="../index.html" class="brand">Aylin İnci</a>
+    <a href="../index.html#icerikler" class="back">← Tüm içerikler</a>
+  </div>
+</nav>
+
+<article>
+  <header class="article-head">
+    <div class="wrap">
+      <span class="eyebrow">Teknik SEO</span>
+      <h1>Core Web Vitals Performansının Geliştirilmesi: LCP, INP ve CLS için Sahadan Notlar</h1>
+      <div class="meta-row">
+        <span>Aylin İnci</span>
+        <span>·</span>
+        <span>28 Ağustos 2026</span>
+        <span>·</span>
+        <span>Yaklaşık 12 dakika okuma</span>
+      </div>
+      <p class="lead">PageSpeed skorunu 100 yapmak ayrı bir hedef, gerçek kullanıcıların sayfayı hızlı ve kararlı bulması ayrı bir hedef. Bu yazıda ikisi arasındaki farkı ve üç metriği (LCP, INP, CLS) sahada gerçekten iyileştiren adımları anlatıyorum.</p>
+    </div>
+  </header>
+
+  <div class="wrap hero-wrap">
+    <img class="hero-image" src="images/core-web-vitals-performans-optimizasyonu-hero.webp" alt="Core Web Vitals metriklerini simgeleyen soyut 3D illüstrasyon: fotoğraf, hız göstergesi ve içerik blokları" width="1800" height="1200" fetchpriority="high">
+  </div>
+
+  <div class="content wrap">
+
+    <p>Bir sitenin "hızlı" olup olmadığını sorduğunuzda genellikle iki farklı cevap alırsınız: geliştiricinin "Lighthouse'ta 95 alıyoruz" cevabı ile kullanıcının "sayfa açılırken buton bir anda yer değiştiriyor, sinir bozucu" şikayeti. Bu ikisi çoğu zaman birbiriyle çelişmez ama aynı şeyi de ölçmez. Core Web Vitals'ı gerçekten iyileştirmenin ilk adımı, bu iki farklı gerçekliği ayırt etmek: laboratuvar verisi ve saha verisi.</p>
+
+    <h2>1. Laboratuvar verisi mi, saha verisi mi?</h2>
+    <p>PageSpeed Insights'ı açtığınızda üstte gördüğünüz büyük skor, Lighthouse'un tek bir simüle cihazda ve tek bir ağ koşulunda (genelde orta seviye bir Android cihaz + yavaşlatılmış 4G) yaptığı senkron bir ölçümdür. Bu, <strong>laboratuvar verisidir</strong>: tekrarlanabilir, hata ayıklamak için ideal, ama tek bir kullanıcının tek bir anını temsil eder.</p>
+    <p>Sayfanın biraz aşağısında ise "Discover what your real users are experiencing" başlığı altında farklı bir tablo çıkar. Bu, Chrome kullanıcı deneyimi raporundan (<strong>CrUX</strong>) gelir: son 28 günde, gerçekten o sayfayı Chrome ile ziyaret eden kullanıcılardan toplanan anonim ölçümlerin toplamıdır. Google Arama Konsolu'ndaki "Önemli Web Verileri" raporu da bu saha verisine dayanır — sıralama sinyali olarak kullanılan veri budur, Lighthouse skoru değil.</p>
+    <div class="callout">
+      <p><strong>Sahada gördüğüm en yaygın yanılgı:</strong> Ekip aylarca Lighthouse skorunu 100'e çıkarmaya odaklanıyor, ama Search Console'daki gerçek kullanıcı verisi "Zayıf" kalmaya devam ediyor. Sebep genelde şu: test, geliştiricinin hızlı fiber bağlantısından ya da ofis Wi-Fi'ından yapılıyor; gerçek kullanıcı kitlesinin önemli bir kısmı ise orta seviye bir telefon ve daha yavaş bir mobil bağlantıyla geliyor. İkisi arasındaki farkı kapatmadan "hızlı site" iddiası havada kalıyor.</p>
+    </div>
+
+    <h2>2. Üç metrik, üç farklı problem</h2>
+    <p>Core Web Vitals üç metrikten oluşur ve her biri farklı bir kullanıcı şikayetine karşılık gelir:</p>
+    <table>
+      <tr><th>Metrik</th><th>Neyi ölçer</th><th>İyi eşik (p75)</th></tr>
+      <tr><td>LCP (Largest Contentful Paint)</td><td>Görünür alandaki en büyük içerik öğesinin ne zaman render edildiği</td><td>≤ 2.5 sn</td></tr>
+      <tr><td>INP (Interaction to Next Paint)</td><td>Bir tıklama/dokunma/tuş etkileşiminden sonra ekranın ne kadar sürede tepki verdiği</td><td>≤ 200 ms</td></tr>
+      <tr><td>CLS (Cumulative Layout Shift)</td><td>Sayfa yüklenirken/etkileşim sırasında görsel öğelerin ne kadar "kaydığı"</td><td>≤ 0.1</td></tr>
+    </table>
+    <p>Buradaki "p75" kısmı önemli: Google bu metrikleri ortalama değil, kullanıcılarınızın <strong>%75'inin</strong> yaşadığı deneyimi (75. yüzdelik dilim) baz alarak değerlendiriyor. Yani sitenizin çok hızlı açıldığı iyi senaryolar değil, kullanıcılarınızın çoğunluğunun en kötü ihtimalle yaşadığı deneyim önemli.</p>
+
+    <h2>3. LCP'yi iyileştirmek: en büyük öğeyi olabildiğince erken göstermek</h2>
+    <p>LCP genelde bir görsel, bir video posteri ya da büyük bir başlık metnidir. Sahada en sık karşılaştığım LCP sorunları ve çözümleri şöyle:</p>
+    <ul>
+      <li><strong>Sunucu yanıt süresi (TTFB) yüksek:</strong> LCP'nin saati sunucudan ilk baytın gelmesiyle başlar. TTFB 600ms'nin üzerindeyse, LCP'nin geri kalanı ne kadar optimize edilirse edilsin tavan bir yerde kalır. Statik sayfa üretimi, CDN önbellekleme ve sunucu tarafı önbellek katmanları burada en büyük kazancı sağlar.</li>
+      <li><strong>Render-blocking CSS/JS:</strong> Head içinde senkron yüklenen büyük CSS dosyaları ya da <code>&lt;script&gt;</code> etiketleri, tarayıcının içerik göstermeden önce indirip işlemesi gereken kaynaklardır. Kritik olmayan CSS'i ertelemek, JS'e <code>defer</code> ya da <code>async</code> eklemek doğrudan LCP'yi düşürür.</li>
+      <li><strong>LCP görseline öncelik verilmemesi:</strong> Tarayıcı, HTML'i satır satır işlerken hangi görselin "en büyük içerikli öğe" olacağını önceden bilemez; bu yüzden görseli sayfanın altındaki bir kaynaktan sonra keşfedebilir. <code>fetchpriority="high"</code> ve <code>&lt;link rel="preload" as="image"&gt;</code> ile tarayıcıya "bu görseli hemen indir" demek, LCP'de gözle görülür bir iyileşme sağlar.</li>
+      <li><strong>Lazy loading'in yanlış kullanımı:</strong> <code>loading="lazy"</code> harika bir özellik ama LCP adayı olan, katlanma çizgisinin üstündeki görsele uygulandığında tam tersi etki yapar — tarayıcı görseli geciktirir. Kural basit: ilk ekranda görünen görsellerde <code>lazy</code> kullanmayın, aşağıdakilerde kullanın.</li>
+      <li><strong>Optimize edilmemiş görsel formatı:</strong> WebP/AVIF gibi modern formatlar, aynı görsel kalitesinde JPEG/PNG'ye göre çoğunlukla %30-50 daha küçük dosya boyutu verir. Responsive <code>srcset</code> ile de cihaz genişliğine uygun boyut sunulmalı; masaüstü için hazırlanmış 2400px genişliğindeki bir görseli mobilde 380px'e sıkıştırarak göstermek saf bant genişliği israfıdır.</li>
+    </ul>
+    <pre><code>&lt;link rel="preload" as="image" href="/img/hero.avif" fetchpriority="high"&gt;
+&lt;img src="/img/hero.avif" alt="..." fetchpriority="high" width="1200" height="675"&gt;</code></pre>
+
+    <h2>4. INP'yi iyileştirmek: ana iş parçacığını rahat tutmak</h2>
+    <p>INP, kullanıcı bir şeye tıkladıktan sonra ekranın tepki vermesi için geçen süreyi ölçer. Buradaki asıl düşman, <strong>uzun görevler (long tasks)</strong>: JavaScript'in ana iş parçacığını 50ms'den uzun süre meşgul ettiği bloklardır. Bir kullanıcı bu sırada bir düğmeye tıklarsa, tarayıcı görevi bitirene kadar tepki veremez.</p>
+    <ul>
+      <li><strong>Büyük görevleri parçalayın:</strong> Tek seferde 300ms süren bir fonksiyonu, aralarına tarayıcıya nefes alma payı bırakan (<code>scheduler.yield()</code>, <code>setTimeout(fn, 0)</code> ya da <code>requestIdleCallback</code>) küçük parçalara bölmek, algılanan tepki verebilirliği belirgin şekilde artırır.</li>
+      <li><strong>Üçüncü parti script'leri denetleyin:</strong> Analitik, canlı destek widget'ı, reklam script'leri genelde ana iş parçacığında ağır iş yapar ve geliştirme ekibinin doğrudan kontrolü dışındadır. Bunları <code>async</code> yüklemek, mümkünse kullanıcı etkileşiminden sonra (ör. scroll ya da 3 saniye gecikmeyle) yüklemek büyük fark yaratır.</li>
+      <li><strong>Event handler'larda gereksiz iş yapmayın:</strong> Bir <code>input</code> ya da <code>scroll</code> event handler'ı içinde senkron DOM okuma/yazma döngüsü (layout thrashing) yapılıyorsa, her tuş vuruşu tarayıcıyı yeniden layout hesaplamaya zorlar. DOM okumalarını yazmalardan ayırın, mümkünse <code>requestAnimationFrame</code> içine alın.</li>
+      <li><strong>Hydration maliyetini azaltın:</strong> React/Vue gibi framework tabanlı sitelerde, sayfa "görsel olarak hazır" göründüğü halde JavaScript hala hydrate oluyor olabilir; bu sırada gelen bir tıklama gecikmeli yanıt alır. Kod bölme (code splitting) ve gerekmeyen bileşenleri geciktirerek yüklemek (lazy hydration) burada işe yarar.</li>
+    </ul>
+
+    <h2>5. CLS'i iyileştirmek: yer kaplayan her öğeye önceden yer ayırmak</h2>
+    <p>CLS'in sinir bozucu tarafı, kullanıcının bir şeye tıklamak üzereyken içeriğin aniden kaymasıdır — genelde bir görselin, reklamın ya da fontun geç yüklenmesi yüzünden. Çözüm felsefesi tek cümlede özetlenebilir: <strong>her öğeye, içeriği gelmeden önce yer ayırın.</strong></p>
+    <ul>
+      <li>Görsellerde ve video öğelerinde her zaman <code>width</code> ve <code>height</code> (ya da CSS <code>aspect-ratio</code>) belirtin; tarayıcı böylece içerik gelmeden önce doğru boşluğu ayırabilir.</li>
+      <li>Web fontları için <code>font-display: swap</code> kullanırken, sistem fontu ile web fontu arasındaki metrik farkını (genişlik, yükseklik) <code>size-adjust</code> veya benzer font-metrik override teknikleriyle azaltın; aksi halde font değiştiğinde metin kayar.</li>
+      <li>Reklam, banner ya da dinamik olarak eklenen bileşenler için sabit minimum yükseklikte bir kapsayıcı (skeleton/placeholder) kullanın.</li>
+      <li>Mevcut içeriğin üstüne, kullanıcı etkileşimi olmadan yeni içerik eklemekten kaçının (ör. sayfa yüklendikten 2 saniye sonra üstte beliren bir bildirim çubuğu).</li>
+    </ul>
+
+    <h2>6. Kendi saha verinizi toplamak: RUM neden CrUX'tan daha değerli olabilir</h2>
+    <p>CrUX verisinin bir kısıtı var: yalnızca yeterli trafik alan, Chrome kullanıcı tabanına sahip URL'ler için veri üretiyor. Yeni yayınlanan bir kampanya sayfası, düşük trafikli bir kategori sayfası ya da Chrome dışı bir kullanıcı kitlesine hitap eden bir site için CrUX ya hiç veri vermez ya da "yetersiz veri" der. Bu noktada kendi <strong>RUM (Real User Monitoring)</strong> katmanınızı kurmak, sorunu 28 gün beklemeden, kendi kullanıcı segmentlerinize (ör. yalnızca mobil, yalnızca belirli bir ülke, yalnızca giriş yapmış kullanıcılar) kırılımlı şekilde görmenizi sağlar.</p>
+    <p>Bunun için Google'ın resmi <code>web-vitals</code> JS kütüphanesini sayfaya eklemek yeterli. Kütüphane her metrik hesaplandığında bir callback tetikler; bu veriyi kendi analitik altyapınıza (Google Analytics 4 event'i, ya da basit bir <code>fetch</code> ile kendi log uç noktanıza) gönderebilirsiniz:</p>
+    <pre><code>import {onLCP, onINP, onCLS} from 'web-vitals';
+
+function gonder(metrik) {
+  navigator.sendBeacon('/analytics/vitals', JSON.stringify({
+    ad: metrik.name, deger: metrik.value, id: metrik.id, sayfa: location.pathname
+  }));
+}
+
+onLCP(gonder);
+onINP(gonder);
+onCLS(gonder);</code></pre>
+    <p><code>sendBeacon</code> kullanmak önemli: sayfa kapanırken ya da sekme değişirken bile veri kaybı olmadan gönderim yapılmasını sağlar, ki INP ve CLS gibi metrikler çoğu zaman sayfa ömrünün sonunda (kullanıcı ayrılırken) kesinleşir.</p>
+
+    <h2>7. Sunucu ve CDN katmanı: görünmeyen ama en büyük etkiyi yapan kısım</h2>
+    <p>Front-end optimizasyonları (görsel formatı, kod bölme, preload) genelde en görünür ve en çok konuşulan kısım, ama TTFB'yi düşürmeden LCP'de belirli bir eşiğin altına inmek neredeyse imkansız. Sahada en çok fark yaratan üç değişiklik şunlar oldu:</p>
+    <ul>
+      <li><strong>Statik/edge önbellekleme:</strong> Özellikle içerik sık değişmeyen sayfalarda (blog yazıları, ürün sayfaları, kategori sayfaları), sunucunun her istekte veritabanına gidip HTML üretmesi yerine, bir CDN katmanında (Cloudflare, Fastly, ya da barındırma sağlayıcısının kendi edge cache'i) önbelleklenmiş HTML sunulması TTFB'yi genelde 3-4 kata kadar düşürüyor.</li>
+      <li><strong>Görsel CDN'i ve otomatik format dönüşümü:</strong> Görselleri kendi sunucunuzdan değil, isteğe göre boyutlandırma ve format dönüşümü (AVIF/WebP) yapabilen bir görsel CDN'inden sunmak, hem geliştirme ekibinin manuel olarak onlarca boyut üretme yükünü kaldırıyor hem de her cihaza doğru boyutun gitmesini garantiliyor.</li>
+      <li><strong>HTTP/2 ya da HTTP/3 ve bağlantı yeniden kullanımı:</strong> Özellikle çok sayıda küçük kaynağın (font, ikon, küçük script) ayrı ayrı istek olarak gittiği sitelerde, protokol seviyesindeki çoklama (multiplexing) bağlantı kurulum maliyetini büyük ölçüde azaltıyor.</li>
+    </ul>
+    <blockquote>Bir e-ticaret projesinde kategori sayfalarının LCP'si 4.2 saniyeden 1.9 saniyeye indi; bunun büyük kısmı yeni bir görsel algoritması ya da JavaScript optimizasyonundan değil, sunucu tarafında önbelleklenmemiş bir veritabanı sorgusunun edge'de önbelleklenen statik bir HTML yanıtına dönüştürülmesinden geldi. Front-end'e dokunmadan önce, sunucunun ilk baytı ne kadar sürede gönderdiğini mutlaka kontrol edin.</blockquote>
+
+    <h2>8. Önceliklendirme: hangi sayfadan başlamalı?</h2>
+    <p>Bütün siteyi aynı anda optimize etmeye çalışmak genelde hiçbir şeyi bitirmemekle sonuçlanır. Sahada işe yarayan sıralama şu:</p>
+    <ol>
+      <li><strong>Search Console'daki "Önemli Web Verileri" raporunu açın</strong> ve "Zayıf" ya da "İyileştirilmesi gerekiyor" olarak gruplanan URL gruplarını listeleyin.</li>
+      <li>Bu grupları <strong>trafik hacmine göre</strong> sıralayın — en çok organik trafik alan grup önceliklidir, çünkü oradaki iyileştirme en çok kullanıcıyı etkiler.</li>
+      <li>Her grup için hangi metriğin (LCP/INP/CLS) sorunlu olduğunu tespit edin; genelde tek bir metrik grubu domine eder.</li>
+      <li>Kök nedeni PageSpeed Insights'ın "Diagnostics" bölümünden ve gerekiyorsa Chrome DevTools Performance panelinden doğrulayın; tahmin yürütmeyin.</li>
+    </ol>
+
+    <h2>Sık yapılan hatalar</h2>
+    <ul class="checklist">
+      <li>Sadece anasayfayı optimize edip, en çok trafik alan kategori/ürün sayfalarını atlamak.</li>
+      <li>Tek bir Lighthouse taramasına güvenip, farklı ağ/cihaz koşullarında test etmemek.</li>
+      <li>Üçüncü parti script'lerin etkisini göz ardı etmek — çoğu zaman en büyük INP ve LCP kaybı buradan gelir.</li>
+      <li>CLS'i sadece görsellerle sınırlı sanmak; dinamik içerik enjeksiyonu ve web fontları da en az görseller kadar etkilidir.</li>
+      <li>İyileştirmeden sonra sonucu hemen PageSpeed'ten kontrol edip "düzeldi" demek — saha verisinin (CrUX) yeni durumu yansıtması 28 güne kadar sürebilir.</li>
+    </ul>
+
+    <h2>9. Raporlamayı sürdürülebilir hale getirmek</h2>
+    <p>Tek seferlik bir optimizasyon turu, birkaç ay sonra yeni bir özellik, yeni bir üçüncü parti script ya da fark edilmeden büyüyen bir görsel yüzünden kolayca geri gidebilir. Bu yüzden Core Web Vitals'ı bir proje değil, sürekli izlenen bir metrik seti olarak ele almak gerekiyor. Pratikte işe yarayan yapı şöyle:</p>
+    <ul>
+      <li>Search Console'daki Önemli Web Verileri raporunu aylık olarak gözden geçirin ve yeni "Zayıf" gruplara erken müdahale edin.</li>
+      <li>Büyük bir yayın öncesi (yeni tema, yeni bir üçüncü parti entegrasyon, büyük bir tasarım güncellemesi) mutlaka bir Lighthouse karşılaştırması yapın; regresyonları canlıya çıkmadan yakalamak, sonradan düzeltmekten çok daha ucuz.</li>
+      <li>Mümkünse CI/CD sürecine otomatik bir performans bütçesi (ör. Lighthouse CI) ekleyin; belirlenen eşiklerin altına düşen bir değişiklik, dağıtım öncesi ekibe bildirilsin.</li>
+      <li>RUM verinizi cihaz tipi, bağlantı hızı ve sayfa şablonu kırılımında izleyin; tek bir ortalama sayı, sorunun nerede olduğunu gizleyebilir.</li>
+    </ul>
+
+    <h2>Sonuç</h2>
+    <p>Core Web Vitals'ı iyileştirmek, tek seferlik bir "performans sprintinden" çok, ölçüm disiplinini sürdürmekle ilgili bir çalışma. Laboratuvar verisiyle saha verisini birbirinden ayırmak, önceliklendirmeyi trafiğe göre yapmak ve her metriğin kök nedenine (TTFB, render-blocking kaynaklar, uzun JS görevleri, yer ayrılmamış öğeler) odaklanmak, skor kovalamaktan çok daha kalıcı sonuç veriyor. Asıl hedef zaten skor değil — sayfanın gerçek kullanıcı için hızlı açılması ve kararlı durması.</p>
+
+    <div class="faq-item">
+      <h3>PageSpeed Insights skoru yüksek ama Search Console'da Core Web Vitals kötü görünüyor, bu nasıl mümkün?</h3>
+      <p>PageSpeed Insights'ın üstteki skoru laboratuvar (Lighthouse) verisidir ve tek bir simüle cihaz/ağ koşulunda ölçülür. Search Console'daki rapor ise CrUX'tan, yani gerçek kullanıcıların 28 günlük saha verisinden gelir. Laboratuvar skoru iyi olsa da düşük gelir grubu, eski cihaz veya zayıf ağdaki gerçek kullanıcılarınız kötü deneyim yaşıyorsa saha verisi kötü çıkar.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Core Web Vitals doğrudan bir sıralama faktörü mü?</h3>
+      <p>Evet, Google'ın sayfa deneyimi sinyalinin bir parçasıdır, ancak göreli ağırlığı içerik alaka düzeyine kıyasla küçüktür. Pratikte etkisi çoğunlukla dolaylıdır: hızlı ve kararlı sayfalar daha düşük hemen çıkma oranı, daha yüksek etkileşim ve daha iyi tarama bütçesi kullanımı sağlar.</p>
+    </div>
+    <div class="faq-item">
+      <h3>INP, FID'in yerini neden aldı?</h3>
+      <p>FID yalnızca sayfadaki ilk etkileşimin gecikmesini ölçüyordu ve sayfa ömrü boyunca yaşanan tüm etkileşimleri kapsamıyordu. INP, oturum boyunca gözlemlenen tüm etkileşimleri değerlendirip en kötü yüzdelik gecikmeyi raporlayarak gerçek yanıt verebilirliği çok daha iyi yansıtır.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Core Web Vitals iyileştirmesine ne kadar zaman ayırmalıyım?</h3>
+      <p>Bu, sitenin mevcut durumuna ve teknik borcuna göre değişir; ama genel bir kural olarak ilk turda en çok trafik alan sayfa şablonlarına (anasayfa, kategori/ürün, blog yazısı gibi tek bir grup) odaklanıp ölçülebilir bir iyileşme görmek genelde birkaç haftalık, odaklı bir çalışmadır. Asıl zaman alan kısım tek seferlik düzeltme değil, yukarıda anlattığım sürekli izleme disiplinini kurumsallaştırmaktır.</p>
+    </div>
+
+    <div class="author-box">
+      <div>
+        <strong>Aylin İnci</strong>
+        <span>Teknik SEO, GEO ve web geliştirme üzerine çalışıyor; Shopify ve WordPress projelerinde performans ve arama görünürlüğü odaklı danışmanlık veriyor.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="related wrap">
+    <h2>İlgili içerikler</h2>
+    <div class="related-list">
+      <a href="shopify-liquid-performans-optimizasyonu.html">Shopify Liquid Geliştirmelerinde Performansın Korunması<span>Tema geliştirirken render gecikmelerini ve gereksiz JS'i önlemek</span></a>
+      <a href="anahtar-kelime-kanibalizasyonu-analizi.html">Anahtar Kelime Kanibalizasyonunun Analizi<span>Rakip sayfaları tespit etme ve birleştirme yöntemi</span></a>
+      <a href="yapay-zeka-arama-icin-icerik-yapisi.html">Yapay Zeka Destekli Arama Sistemleri İçin İçerik Yapısı<span>GEO için yapılandırılmış veri ve içerik netliği</span></a>
+    </div>
+  </div>
+</article>
+
+<footer class="site-footer">
+  <div class="wrap"><a href="../index.html">aylininci.com</a> — SEO, GEO ve Web Geliştirme</div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shopify Liquid Geliştirmelerinde Performansın Korunması | Aylin İnci</title>
+<meta name="description" content="Shopify temalarına özel section ve blok eklerken performansı korumak: gereksiz JavaScript, render gecikmeleri, Liquid döngü maliyetleri ve tema puanını düşürmeden özellik geliştirme rehberi.">
+<link rel="canonical" href="https://aylininci.com/blog/shopify-liquid-performans-optimizasyonu.html">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Aylin İnci">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Shopify Liquid Geliştirmelerinde Performansın Korunması">
+<meta property="og:description" content="Shopify temalarına özellik eklerken performansı korumak: gereksiz JS, render gecikmeleri ve Liquid maliyetleri.">
+<meta property="og:url" content="https://aylininci.com/blog/shopify-liquid-performans-optimizasyonu.html">
+<meta property="og:site_name" content="Aylin İnci">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:image" content="https://aylininci.com/blog/images/shopify-liquid-performans-optimizasyonu-hero.webp">
+<meta property="og:image:width" content="1800">
+<meta property="og:image:height" content="1200">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Shopify Liquid Geliştirmelerinde Performansın Korunması">
+<meta name="twitter:description" content="Tema geliştirirken gereksiz JS'i ve render gecikmelerini önlemek için pratik yöntemler.">
+<meta name="twitter:image" content="https://aylininci.com/blog/images/shopify-liquid-performans-optimizasyonu-hero.webp">
+
+<link rel="icon" type="image/png" href="../favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "image": "https://aylininci.com/blog/images/shopify-liquid-performans-optimizasyonu-hero.webp",
+  "headline": "Shopify Liquid Geliştirmelerinde Performansın Korunması",
+  "description": "Shopify temalarına özel section ve blok eklerken performansı korumak: gereksiz JavaScript, render gecikmeleri ve Liquid döngü maliyetleri.",
+  "author": {"@type": "Person", "name": "Aylin İnci", "url": "https://aylininci.com"},
+  "publisher": {"@type": "Person", "name": "Aylin İnci", "url": "https://aylininci.com"},
+  "datePublished": "2026-08-28",
+  "dateModified": "2026-08-28",
+  "inLanguage": "tr",
+  "mainEntityOfPage": {"@type": "WebPage", "@id": "https://aylininci.com/blog/shopify-liquid-performans-optimizasyonu.html"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Anasayfa", "item": "https://aylininci.com/"},
+    {"@type": "ListItem", "position": 2, "name": "İçerikler", "item": "https://aylininci.com/#icerikler"},
+    {"@type": "ListItem", "position": 3, "name": "Liquid geliştirmelerinde performansın korunması", "item": "https://aylininci.com/blog/shopify-liquid-performans-optimizasyonu.html"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "Shopify'ın kendi tema puanı (Theme Store performans skoru) yeterli bir gösterge mi?", "acceptedAnswer": {"@type": "Answer", "text": "İyi bir başlangıç noktası ama tek başına yeterli değil. Tema puanı temanın varsayılan haliyle ölçülür; mağaza sahibinin sonradan eklediği uygulamalar, özel section'lar ve tema düzenlemeleri bu skora dahil değildir. Gerçek performansı görmek için canlı mağazanızı PageSpeed Insights ve Shopify'ın kendi Online Store Speed raporuyla ayrıca test etmeniz gerekir."}},
+    {"@type": "Question", "name": "Her yeni section için ayrı bir JavaScript dosyası mı yüklemeliyim?", "acceptedAnswer": {"@type": "Answer", "text": "Section'a özgü davranış gerekiyorsa evet, ama dosyayı sadece o section sayfada varsa yüklemek şartıyla. Bunu section'ın kendi Liquid dosyası içinde koşullu olarak <script> etiketi eklemek ve `defer` kullanmak, o kodun ihtiyacı olmayan sayfalarda indirilmesini engeller."}},
+    {"@type": "Question", "name": "Uygulama (app) blokları performansı nasıl etkiliyor?", "acceptedAnswer": {"@type": "Answer", "text": "Üçüncü parti uygulamalar genelde kendi script ve CSS dosyalarını sayfaya ekler; bunların sayısı arttıkça hem indirilecek toplam boyut hem de ana iş parçacığındaki iş yükü artar. Kullanılmayan uygulamaları kaldırmak ve kalanların yüklenme şeklini (asenkron mu, hangi sayfalarda) denetlemek genelde en hızlı kazancı sağlar."}}
+  ]
+}
+</script>
+
+<style>
+  :root{
+    --canvas:#F6F4FB; --canvas-soft:#FBFAFF; --canvas-deep:#150F26;
+    --surface-card:#FFFFFF; --surface-strong:#EFEAFA;
+    --ink:#241A3D; --ink-active:#150F26;
+    --body:#4B4459; --body-strong:#241A3D;
+    --muted:#7A7189; --muted-soft:#A79CC4;
+    --hairline:#E3DEF2; --hairline-strong:#CFC5EA;
+    --primary:#6C4BD6; --primary-active:#5636B8; --on-primary:#FFFFFF;
+    --lime:#B8E01A; --lime-ink:#2A1F4D;
+    --shadow-soft:0 4px 16px rgba(36,26,61,0.06);
+    --font-display:'Fraunces', 'Times New Roman', serif;
+    --font-body:'Inter', sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --canvas:#150F26; --canvas-soft:#1B1330;
+      --surface-card:#1F1636; --surface-strong:#241A3D;
+      --ink:#F3F0FB; --ink-active:#FFFFFF;
+      --body:#C9C0DE; --body-strong:#F3F0FB;
+      --muted:#9A8FBA; --muted-soft:#7A7189;
+      --hairline:rgba(255,255,255,0.08); --hairline-strong:rgba(255,255,255,0.16);
+      --primary:#8C74E8; --primary-active:#A290F0; --on-primary:#150F26;
+    }
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--canvas);color:var(--body);font-family:var(--font-body);line-height:1.7;}
+  .wrap{max-width:760px;margin:0 auto;padding:0 24px;}
+  nav.nav{border-bottom:1px solid var(--hairline);padding:18px 0;position:sticky;top:0;background:var(--canvas);z-index:10;}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;max-width:920px;}
+  nav a.brand{color:var(--ink-active);font-family:var(--font-display);font-weight:600;text-decoration:none;font-size:1.1rem;}
+  nav a.back{color:var(--primary);text-decoration:none;font-size:0.9rem;font-weight:500;}
+  article header.article-head{padding:56px 0 32px;}
+  .eyebrow{display:inline-block;background:var(--surface-strong);color:var(--primary-active);font-size:0.78rem;font-weight:600;letter-spacing:0.02em;padding:5px 12px;border-radius:100px;margin-bottom:18px;}
+  h1{font-family:var(--font-display);font-weight:600;font-size:2.1rem;line-height:1.25;color:var(--ink-active);margin:0 0 16px;}
+  .meta-row{display:flex;gap:16px;flex-wrap:wrap;color:var(--muted);font-size:0.9rem;margin-bottom:8px;}
+  .lead{font-size:1.15rem;color:var(--body-strong);}
+  article .content{padding-bottom:64px;}
+  h2{font-family:var(--font-display);font-weight:600;font-size:1.5rem;color:var(--ink-active);margin:44px 0 14px;}
+  h3{font-family:var(--font-display);font-weight:600;font-size:1.2rem;color:var(--ink-active);margin:32px 0 10px;}
+  p{margin:0 0 18px;}
+  ul,ol{margin:0 0 18px;padding-left:1.3em;}
+  li{margin-bottom:8px;}
+  strong{color:var(--body-strong);}
+  code{background:var(--surface-strong);color:var(--ink-active);padding:2px 6px;border-radius:5px;font-size:0.9em;}
+  pre{background:var(--canvas-deep);color:#EFEAFA;padding:18px 20px;border-radius:12px;overflow-x:auto;font-size:0.88rem;line-height:1.6;margin:0 0 22px;}
+  pre code{background:none;color:inherit;padding:0;}
+  blockquote{margin:28px 0;padding:4px 0 4px 20px;border-left:3px solid var(--primary);color:var(--body-strong);font-style:italic;}
+  table{width:100%;border-collapse:collapse;margin:0 0 24px;font-size:0.92rem;}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--hairline);}
+  th{color:var(--ink-active);font-weight:600;}
+  .callout{background:var(--surface-strong);border-radius:14px;padding:20px 22px;margin:0 0 24px;}
+  .callout p:last-child{margin-bottom:0;}
+  .faq-item{border-top:1px solid var(--hairline);padding:20px 0;}
+  .faq-item h3{margin-top:0;}
+  .checklist{list-style:none;padding-left:0;}
+  .checklist li{padding-left:28px;position:relative;}
+  .checklist li::before{content:"✓";position:absolute;left:0;color:var(--primary);font-weight:700;}
+  .author-box{display:flex;gap:14px;align-items:flex-start;background:var(--surface-card);border:1px solid var(--hairline);border-radius:16px;padding:20px;margin-top:48px;}
+  .author-box strong{display:block;color:var(--ink-active);}
+  .related{padding:32px 0 72px;border-top:1px solid var(--hairline);}
+  .related h2{margin-top:0;}
+  .related-list{display:grid;gap:14px;}
+  .related-list a{display:block;background:var(--surface-card);border:1px solid var(--hairline);border-radius:14px;padding:16px 18px;color:var(--ink-active);text-decoration:none;font-weight:500;}
+  .related-list a:hover{border-color:var(--primary);}
+  .related-list span{display:block;color:var(--muted);font-size:0.85rem;font-weight:400;margin-top:4px;}
+  footer.site-footer{border-top:1px solid var(--hairline);padding:28px 0;text-align:center;color:var(--muted);font-size:0.85rem;}
+  footer.site-footer a{color:var(--primary);text-decoration:none;}
+  .hero-image{width:100%;height:auto;display:block;border-radius:16px;margin:8px 0 0;}
+  .hero-wrap{padding:0 0 8px;}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a href="../index.html" class="brand">Aylin İnci</a>
+    <a href="../index.html#icerikler" class="back">← Tüm içerikler</a>
+  </div>
+</nav>
+
+<article>
+  <header class="article-head">
+    <div class="wrap">
+      <span class="eyebrow">Shopify</span>
+      <h1>Shopify Liquid Geliştirmelerinde Performansın Korunması</h1>
+      <div class="meta-row">
+        <span>Aylin İnci</span>
+        <span>·</span>
+        <span>28 Ağustos 2026</span>
+        <span>·</span>
+        <span>Yaklaşık 12 dakika okuma</span>
+      </div>
+      <p class="lead">Bir Shopify temasına yeni bir section, yeni bir uygulama ya da özel bir blok eklemek genelde birkaç saatlik bir iş gibi görünür. Ama her ekleme, farkında olmadan tema puanını düşüren küçük bir maliyet biriktirir. Bu yazıda o maliyeti sıfıra indiren pratik alışkanlıkları anlatıyorum.</p>
+    </div>
+  </header>
+
+  <div class="wrap hero-wrap">
+    <img class="hero-image" src="images/shopify-liquid-performans-optimizasyonu-hero.webp" alt="Shopify tema bileşenlerinin tek bir akışta birleşmesini simgeleyen soyut 3D illüstrasyon" width="1800" height="1200" fetchpriority="high">
+  </div>
+
+  <div class="content wrap">
+
+    <p>Shopify temaları diğer CMS'lerden farklı bir kısıtla çalışır: temanın kendisini değil, üzerine inşa edilen mağazanın büyük kısmını mağaza sahibi ve onun eklediği uygulamalar şekillendirir. Bir geliştirici olarak sizin kontrolünüz sadece Liquid dosyalarıyla, tema CSS/JS'iyle ve section şemalarıyla sınırlı; ama performans sorumluluğunun büyük kısmı yine size düşüyor, çünkü mağaza sahibi "sayfa yavaş" dediğinde bakılan ilk yer temadır.</p>
+    <p>Bu durum, geleneksel bir web projesinden farklı bir çalışma disiplini gerektiriyor. Statik bir sitede performans genelde bir kere kurulur ve nadiren bozulur; Shopify mağazasında ise her yeni uygulama kurulumu, her yeni kampanya section'ı, her tema düzenleyici değişikliği potansiyel bir regresyon noktasıdır. Bu yazıda paylaştığım yöntemler, tek seferlik bir "performans temizliği" değil, sürekli tekrar eden bir geliştirme alışkanlığı olarak düşünülmeli.</p>
+
+    <h2>1. Liquid'in kendi performans maliyeti</h2>
+    <p>Liquid bir şablon dilidir ve her render'da sunucu tarafında yorumlanır (Shopify'ın kendi altyapısında). Liquid kodunun kendisi genelde JavaScript kadar "pahalı" değildir, ama yanlış kullanıldığında ciddi gecikmeye yol açabilir:</p>
+    <ul>
+      <li><strong>İç içe döngüler:</strong> Bir koleksiyon sayfasında her ürün için tüm varyantları, her varyant için de metafield'ları döngüyle geziyorsanız, ürün sayısı arttıkça render süresi doğrusal değil, çoğu zaman daha kötü büyür. Mümkünse döngü içindeki döngüyü, ihtiyaç duyulan veriyi önceden filtreleyerek azaltın.</li>
+      <li><strong>Gereksiz <code>all_products</code> ya da büyük koleksiyon sorguları:</strong> Bir section içinde "önerilen ürünler" göstermek için tüm ürün kataloğunu çekip Liquid içinde filtrelemek, Shopify'ın kendi <code>recommendations</code> API'sini ya da hedefli bir koleksiyon sorgusunu kullanmaktan çok daha maliyetlidir.</li>
+      <li><strong>Metafield okumalarının tekrarlanması:</strong> Aynı metafield'a bir sayfada birden fazla yerden erişiliyorsa, değeri bir <code>{% assign %}</code> ile bir kere değişkene atayıp tekrar tekrar okumak yerine o değişkeni kullanmak, gereksiz tekrar sorgularını önler.</li>
+    </ul>
+    <pre><code>{%- comment -%} Kötü: her döngüde metafield yeniden okunuyor {%- endcomment -%}
+{% for varyant in product.variants %}
+  {{ product.metafields.custom.ozellik }}
+{% endfor %}
+
+{%- comment -%} İyi: bir kere assign, sonra kullan {%- endcomment -%}
+{% assign ozellik = product.metafields.custom.ozellik %}
+{% for varyant in product.variants %}
+  {{ ozellik }}
+{% endfor %}</code></pre>
+
+    <h2>2. Section ve blok eklerken JavaScript disiplinini korumak</h2>
+    <p>Yeni bir section, genelde beraberinde yeni bir JS dosyası getirir: bir slider, bir akordeon, bir görsel karşılaştırma aracı... Sorun şu ki bu dosyalar sıklıkla <code>theme.liquid</code> içine global olarak eklenir ve o section'ın hiç kullanılmadığı sayfalarda bile indirilir.</p>
+    <ul>
+      <li><strong>Section'a özel script'i section'ın kendi dosyasında tutun:</strong> Global <code>theme.js</code> yerine, section'ın Liquid dosyasının sonunda koşullu bir <code>&lt;script src="{{ 'section-adi.js' | asset_url }}" defer&gt;&lt;/script&gt;</code> etiketiyle yüklemek, o kodun yalnızca section gerçekten sayfada varken indirilmesini sağlar.</li>
+      <li><strong>Web component / özel element deseni kullanın:</strong> Shopify'ın Dawn temasından itibaren yaygınlaşan yaklaşım, her section'ı bir <code>customElements.define()</code> ile kendi kapsüllenmiş bileşenine dönüştürmek. Bu, hem kod tekrarını azaltır hem de tarayıcının yalnızca DOM'da o element varken ilgili davranışı çalıştırmasını sağlar.</li>
+      <li><strong>jQuery gibi genel kütüphaneleri tekrar tekrar yüklemeyin:</strong> Farklı geliştiriciler farklı zamanlarda eklediği uygulama/section'larla aynı kütüphaneyi birden fazla kez sayfaya dahil edebilir. Tema dosyalarını periyodik olarak denetleyip yinelenen bağımlılıkları temizlemek gerekir.</li>
+    </ul>
+
+    <h2>3. Uygulamaların (app) gizli maliyeti</h2>
+    <p>Shopify App Store'daki uygulamaların çoğu, mağazanıza kendi script ve CSS dosyalarını <code>theme.liquid</code>'e otomatik olarak enjekte eder — genelde <code>app-block</code> ya da tema uzantısı (theme app extension) mekanizmasıyla. Bu, geliştirme ekibinin doğrudan kod incelemesi yapamadığı bir alan olduğu için performans denetiminde en çok göz ardı edilen kısımdır.</p>
+    <div class="callout">
+      <p><strong>Pratik bir alışkanlık:</strong> Yeni bir uygulama kurulmadan önce ve kurulduktan hemen sonra PageSpeed Insights ile karşılaştırmalı bir ölçüm yapın. Bu, o uygulamanın gerçek maliyetini net olarak gösterir ve "bu uygulama gerçekten gerekli mi" sorusunu veriyle cevaplamanızı sağlar. Kullanılmayan ya da denenip vazgeçilen uygulamaları kaldırmak, çoğu mağazada tek başına en yüksek getirili performans işidir.</p>
+    </div>
+    <p>Ayrıca Shopify, tema düzenleyicisinde "Uygulama katıştırmaları" için performans etkisini gösteren bir rapor sunuyor (Online Store > Themes > Performans). Bu raporu düzenli kontrol etmek, hangi uygulamanın en çok JS/CSS yükü eklediğini erkenden fark etmenizi sağlar.</p>
+
+    <h2>4. Görsel ve medya yönetimi Shopify'a özgü incelikleri</h2>
+    <ul>
+      <li>Shopify'ın kendi CDN'i, <code>{{ image | image_url: width: 800 }}</code> gibi filtrelerle otomatik boyutlandırma ve format dönüşümü (WebP) yapar; bunu manuel olarak yüklenen sabit boyutlu görseller yerine her zaman kullanın.</li>
+      <li><code>srcset</code> ve <code>sizes</code> özniteliklerini section şablonlarında elle yazmak yerine Shopify'ın <code>image_tag</code> filtresine bırakmak, responsive görsel sunumunu hatasız hale getirir.</li>
+      <li>Ürün galerisindeki ilk görsel LCP adayıdır; bu görselde <code>loading="lazy"</code> kullanmayın ve mümkünse <code>fetchpriority="high"</code> ekleyin.</li>
+    </ul>
+
+    <h2>5. Koleksiyon sayfalarında sayfalama ve filtreleme maliyeti</h2>
+    <p>Yüksek ürün sayısına sahip mağazalarda koleksiyon sayfaları, performans sorunlarının en sık biriktiği yerdir. Buradaki tipik hatalar ve çözümleri:</p>
+    <ul>
+      <li><strong>Tüm ürünleri tek sayfada listelemek:</strong> "Kullanıcı deneyimi için sonsuz kaydırma yapalım" düşüncesiyle sayfa başına 48-100 ürün render etmek, hem Liquid render süresini hem de DOM boyutunu büyütür; büyük DOM, tarayıcının layout ve stil hesaplama maliyetini artırarak INP'yi de kötüleştirir. Sayfa başına 24-36 ürün arası makul bir denge sağlar.</li>
+      <li><strong>Filtreleme (faceted search) için tüm ürün setini istemci tarafında filtrelemek:</strong> Shopify'ın kendi <code>filter</code> nesnesini ve Section Rendering API'sini kullanarak yalnızca filtrelenmiş sonucu (tam sayfa yeniden yüklemeden) getirmek, hem daha az veri transferi hem de daha tutarlı bir deneyim sağlar.</li>
+      <li><strong>Section Rendering API'yi doğru kullanmak:</strong> Filtre değiştiğinde tüm sayfayı değil, yalnızca ürün listesi section'ını <code>?section_id=</code> parametresiyle yeniden istemek, sayfanın header/footer gibi değişmeyen kısımlarının tekrar indirilmesini önler.</li>
+    </ul>
+
+    <h2>6. Vaka: 40'tan fazla uygulaması olan bir moda mağazası</h2>
+    <p>Danıştığım bir moda mağazasında, yıllar içinde denenip kaldırılmamış toplam 40'ın üzerinde uygulama birikmişti — bir kısmı aktif olarak kullanılıyordu, büyük kısmı ise "belki bir gün lazım olur" mantığıyla pasif duruyordu. Sayfa kaynak kodunu incelediğimizde, hiçbir işlevi olmayan 11 farklı script dosyasının hala her sayfada yüklendiğini gördük. Bu script'leri kaldırmak (uygulamaları tamamen kaldırıp, tema dosyalarında geriye kalan enjeksiyon kodlarını temizleyerek) tek başına toplam JS boyutunu üçte bir oranında azalttı ve mobil LCP'de yaklaşık 900ms'lik bir iyileşme sağladı.</p>
+    <p>Buradaki ders şu: performans denetimi yaparken yalnızca "şu an aktif olarak kullanılan" uygulamalara değil, temanın <code>theme.liquid</code>, <code>header.liquid</code> ve tüm section dosyalarına sızmış, artık hiçbir işlevi olmayan kod kalıntılarına da bakmak gerekiyor. Bir uygulamayı Shopify yönetim panelinden kaldırmak, o uygulamanın tema dosyalarına elle eklediği kod parçalarını otomatik olarak temizlemez.</p>
+
+    <h2>7. Tema güncellemeleri ve kod temizliği alışkanlığı</h2>
+    <p>Zamanla büyüyen bir tema kod tabanında, kimin hangi amaçla hangi kodu eklediğini takip etmek zorlaşır. Bunu yönetilebilir tutmanın birkaç yolu var:</p>
+    <ul>
+      <li>Her özel section ve blok için, dosyanın başına kısa bir yorum satırıyla ne işe yaradığını ve hangi tarihte eklendiğini not edin; altı ay sonra "bu kod hala gerekli mi" sorusuna cevap vermek çok daha kolay olur.</li>
+      <li>Shopify CLI ve tema kontrol aracı (Theme Check) ile düzenli statik analiz yapın; kullanılmayan değişkenler, verimsiz Liquid kalıpları ve erişilebilirlik sorunları bu şekilde erken yakalanır.</li>
+      <li>Git tabanlı bir sürüm kontrolü kullanıyorsanız, her yayın öncesi değişen dosyaların diff'ini gözden geçirip beklenmedik büyük dosya eklemelerini (ör. optimize edilmemiş bir görsel ya da minify edilmemiş bir kütüphane) fark edin.</li>
+    </ul>
+
+    <h2>8. Tema puanını (Theme Store skoru) yanlış anlamamak</h2>
+    <p>Shopify Theme Store'da temaların yanında görünen performans puanı, temanın varsayılan demo verisiyle, hiçbir uygulama eklenmemiş haliyle ölçülür. Bu puan bir başlangıç kalitesi göstergesidir ama canlı mağazanızın gerçek performansını yansıtmaz. Kendi mağazanız için gerçek referans noktanız, gerçek ürün verisiyle ve gerçek uygulama setiyle yapılan PageSpeed Insights ve Search Console ölçümleri olmalı.</p>
+
+    <h2>9. Geliştirme sürecine performans kontrolünü nasıl yerleştirmeli?</h2>
+    <ol>
+      <li>Her yeni section/blok geliştirmesinden önce, o özelliğin gerçekten yeni bir JS dosyası gerektirip gerektirmediğini sorgulayın; mevcut bir bileşenle çözülebiliyorsa yeni dosya eklemeyin.</li>
+      <li>Geliştirme tamamlandığında, staging ortamında (tema önizleme linkiyle) Lighthouse taraması yapıp mevcut canlı temayla karşılaştırın.</li>
+      <li>Yayına almadan önce, o section'ın sayfada olmadığı bir sayfada gereksiz bir kaynak indirilip indirilmediğini DevTools Network sekmesinden kontrol edin.</li>
+      <li>Üç ayda bir, kurulu uygulamaların listesini gözden geçirip kullanılmayanları kaldırın; bu tek adım genelde en çok göz ardı edilen ama en yüksek etkili adımdır.</li>
+    </ol>
+
+    <h2>10. Geliştirici ile mağaza sahibi arasındaki iletişim boşluğu</h2>
+    <p>Birçok performans sorunu aslında bir iletişim sorunudur. Mağaza sahibi yeni bir uygulama kurar, pazarlama ekibi yeni bir banner section'ı ister, ajans yeni bir kampanya sayfası hazırlar — bunların hiçbiri tek başına "büyük" bir değişiklik gibi görünmez, ama zamanla birikir. Bu boşluğu kapatmanın en etkili yolu, teknik olmayan paydaşlara da anlaşılır bir performans sözleşmesi oluşturmak:</p>
+    <ul>
+      <li>Yeni bir uygulama kurulmadan önce, geliştirme ekibine (ya da danışmana) haber verilmesini bir süreç haline getirin — onay mekanizması değil, sadece görünürlük.</li>
+      <li>"Bu özelliği ekleyebilir miyiz" sorusunu "bu özelliği hangi performans bütçesi içinde ekleyebiliriz" sorusuna dönüştürün; ör. yeni bir section en fazla 15KB JS ekleyebilir gibi somut bir sınır koymak, tartışmayı sübjektiften objektife taşır.</li>
+      <li>Aylık ya da üç aylık bir "tema sağlık kontrolü" (kurulu uygulama sayısı, toplam JS/CSS boyutu, PageSpeed skor trendi) raporunu mağaza sahibiyle paylaşmak, performansı görünmez bir teknik detay olmaktan çıkarıp iş kararlarının bir parçası haline getirir.</li>
+    </ul>
+
+    <h2>Sık yapılan hatalar</h2>
+    <ul class="checklist">
+      <li>Her yeni section için gerekli olmasa bile <code>theme.liquid</code>'e global script eklemek — o kod, section'ın hiç kullanılmadığı sayfalarda bile indirilmeye devam eder.</li>
+      <li>Koleksiyon sayfalarında filtreleme mantığını Liquid döngüleri içinde, büyük veri setleri üzerinde çalıştırmak yerine Shopify'ın kendi filtre altyapısına bırakmamak.</li>
+      <li>Uygulama kurulumlarını performans etkisi ölçmeden, sadece özellik ihtiyacına göre yapmak ve bir süre sonra o uygulamanın hala kurulu olduğunu unutmak.</li>
+      <li>Ürün görsellerini Shopify CDN filtreleri yerine sabit, tek boyutlu dosyalar olarak yüklemek ve her cihaza aynı büyük dosyayı göndermek.</li>
+      <li>Tema puanını canlı mağazanın gerçek performansıyla karıştırmak ve bu yüzden gerçek kullanıcı verisini hiç kontrol etmemek.</li>
+    </ul>
+
+    <h2>Sonuç</h2>
+    <p>Shopify'da performans, tek seferlik bir tema optimizasyonundan çok, her yeni özellik eklendiğinde tekrar sorulması gereken bir disiplin. Liquid döngülerini sadeleştirmek, section script'lerini kapsüllemek, uygulama envanterini düzenli denetlemek ve görsel teslimini Shopify'ın kendi CDN mekanizmasına bırakmak, tema puanını değil gerçek kullanıcı deneyimini koruyan adımlar. Asıl soru "bu özellik eklenebilir mi" değil, "bu özellik hangi maliyetle eklenebilir" olmalı.</p>
+    <p>Yukarıda anlatılan moda mağazası örneğinde uyguladığımız değişikliklerin özeti aşağıdaki gibiydi; küçük ve tek tek bakıldığında mütevazı görünen adımların toplamda ne kadar fark yarattığını göstermesi açısından faydalı bir referans:</p>
+    <table>
+      <tr><th>Adım</th><th>Etki</th></tr>
+      <tr><td>Kullanılmayan 40+ uygulamadan 27'sinin kaldırılması</td><td>Toplam JS boyutunda ~%33 azalma</td></tr>
+      <tr><td>Koleksiyon sayfası ürün sayısının 96'dan 36'ya düşürülmesi</td><td>DOM boyutunda belirgin küçülme, INP'de iyileşme</td></tr>
+      <tr><td>Ürün görsellerinin Shopify CDN filtrelerine taşınması</td><td>Mobil LCP'de ~900ms iyileşme</td></tr>
+      <tr><td>Section script'lerinin koşullu yüklemeye geçirilmesi</td><td>İlgisiz sayfalarda gereksiz indirmenin ortadan kalkması</td></tr>
+    </table>
+    <p>Bu tablodaki hiçbir madde tek başına devrim niteliğinde bir değişiklik değil; hepsi ayrı ayrı birkaç saatlik, sıkıcı denebilecek bakım işleri. Ama toplandığında mağazanın hem arama motorlarındaki hem de gerçek kullanıcı deneyimindeki görünümünü kalıcı olarak değiştiren bir bütün oluşturdular. Shopify performansında genelde aranan "tek büyük çözüm" yoktur; küçük, tekrarlanabilir disiplinlerin toplamı vardır. Bu yüzden bir sonraki adım olarak, kendi mağazanızda kurulu uygulamaların ve tema dosyalarınızın kısa bir envanterini çıkarmanızı öneririm — çoğu zaman en büyük kazanç, en karmaşık teknik çözümde değil, bu envanterin ilk taramasında ortaya çıkar.</p>
+
+    <div class="faq-item">
+      <h3>Shopify'ın kendi tema puanı yeterli bir gösterge mi?</h3>
+      <p>İyi bir başlangıç noktası ama tek başına yeterli değil. Tema puanı temanın varsayılan haliyle ölçülür; mağaza sahibinin sonradan eklediği uygulamalar, özel section'lar ve tema düzenlemeleri bu skora dahil değildir. Gerçek performansı görmek için canlı mağazanızı PageSpeed Insights ve Shopify'ın kendi Online Store Speed raporuyla ayrıca test etmeniz gerekir.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Her yeni section için ayrı bir JavaScript dosyası mı yüklemeliyim?</h3>
+      <p>Section'a özgü davranış gerekiyorsa evet, ama dosyayı sadece o section sayfada varsa yüklemek şartıyla. Bunu section'ın kendi Liquid dosyası içinde koşullu olarak script etiketi eklemek ve defer kullanmak, o kodun ihtiyacı olmayan sayfalarda indirilmesini engeller.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Uygulama blokları performansı nasıl etkiliyor?</h3>
+      <p>Üçüncü parti uygulamalar genelde kendi script ve CSS dosyalarını sayfaya ekler; bunların sayısı arttıkça hem indirilecek toplam boyut hem de ana iş parçacığındaki iş yükü artar. Kullanılmayan uygulamaları kaldırmak ve kalanların yüklenme şeklini denetlemek genelde en hızlı kazancı sağlar.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Özel bir tema mı, Theme Store'dan hazır bir tema mı performans açısından daha avantajlı?</h3>
+      <p>Doğrudan bir avantajdan çok, kontrol farkından bahsetmek daha doğru. Hazır bir tema (özellikle Shopify'ın kendi Dawn tabanlı temaları) modern performans pratiklerini (web component mimarisi, koşullu script yükleme) baştan uyguluyor olabilir; ama zamanla eklenen özelleştirmeler bu avantajı kolayca eritebilir. Özel bir tema da doğru disiplinle en az o kadar hızlı olabilir. Belirleyici olan tema seçimi değil, yukarıda anlatılan geliştirme disiplininin sürdürülüp sürdürülmediği.</p>
+    </div>
+
+    <div class="author-box">
+      <div>
+        <strong>Aylin İnci</strong>
+        <span>Teknik SEO, GEO ve web geliştirme üzerine çalışıyor; Shopify ve WordPress projelerinde performans ve arama görünürlüğü odaklı danışmanlık veriyor.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="related wrap">
+    <h2>İlgili içerikler</h2>
+    <div class="related-list">
+      <a href="core-web-vitals-performans-optimizasyonu.html">Core Web Vitals Performansının Geliştirilmesi<span>LCP, INP ve CLS için uygulamalı rehber</span></a>
+      <a href="anahtar-kelime-kanibalizasyonu-analizi.html">Anahtar Kelime Kanibalizasyonunun Analizi<span>Rakip sayfaları tespit etme ve birleştirme yöntemi</span></a>
+      <a href="yapay-zeka-arama-icin-icerik-yapisi.html">Yapay Zeka Destekli Arama Sistemleri İçin İçerik Yapısı<span>GEO için yapılandırılmış veri ve içerik netliği</span></a>
+    </div>
+  </div>
+</article>
+
+<footer class="site-footer">
+  <div class="wrap"><a href="../index.html">aylininci.com</a> — SEO, GEO ve Web Geliştirme</div>
+</footer>
+
+</body>
+</html>
