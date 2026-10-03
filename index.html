@@ -178,6 +178,68 @@
 
   @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} *{transition:none !important;} }
 </style>
+  <!--
+  index.html dosyanızdaki mevcut <title> ve <meta name="description"> etiketlerinden
+  HEMEN SONRA, </head> kapanışından önce aşağıdaki satırları ekleyin.
+  Mevcut title/description etiketlerinizi SİLMEYİN — onlar zaten doğru duruyor.
+-->
+
+<link rel="canonical" href="https://aylininci.com/">
+
+<!-- Open Graph (Facebook, LinkedIn, WhatsApp paylaşım önizlemesi için) -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Aylin İnci | SEO, GEO ve Web Geliştirme Uzmanı">
+<meta property="og:description" content="Aylin İnci'nin teknik SEO, GEO, içerik stratejisi, Shopify, WordPress ve front-end geliştirme alanlarındaki uzmanlıklarını, çalışma yaklaşımını ve profesyonel deneyimini inceleyin.">
+<meta property="og:url" content="https://aylininci.com/">
+<meta property="og:site_name" content="Aylin İnci">
+<meta property="og:locale" content="tr_TR">
+<!-- NOT: og:image ekleyin — 1200x630px boyutunda bir görsel hazırlayıp
+     aşağıdaki satırı aktif edin. Görsel olmadan paylaşım kartları eksik görünür. -->
+<!-- <meta property="og:image" content="https://aylininci.com/og-image.png"> -->
+
+<!-- Twitter / X Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Aylin İnci | SEO, GEO ve Web Geliştirme Uzmanı">
+<meta name="twitter:description" content="Teknik SEO, GEO, içerik stratejisi, Shopify ve WordPress uzmanlığı.">
+<!-- <meta name="twitter:image" content="https://aylininci.com/og-image.png"> -->
+
+<!-- Yapılandırılmış veri: kişi + web sitesi -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Aylin İnci",
+  "url": "https://aylininci.com",
+  "jobTitle": "SEO, GEO ve Web Geliştirme Uzmanı",
+  "knowsAbout": ["Teknik SEO", "Generative Engine Optimization", "Shopify", "WordPress", "İçerik Stratejisi", "Web Performansı"],
+  "sameAs": []
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Aylin İnci",
+  "url": "https://aylininci.com",
+  "inLanguage": "tr",
+  "description": "Aylin İnci'nin teknik SEO, GEO, içerik stratejisi, Shopify, WordPress ve front-end geliştirme alanlarındaki uzmanlıklarını, çalışma yaklaşımını ve profesyonel deneyimini içeren kişisel site."
+}
+</script>
+
+<!--
+  NOT (sameAs): LinkedIn ve varsa diğer profesyonel profil linklerinizi
+  yukarıdaki "sameAs" dizisine ekleyin, ör: ["https://www.linkedin.com/in/kullanici-adi/"]
+  Bu, arama motorlarına ve AI sistemlerine "bu kişi ile bu profiller aynı kişi"
+  sinyalini verir ve E-E-A-T (uzmanlık/otorite) açısından faydalıdır.
+-->
+
+<!--
+  NOT (hreflang): Sitenizde TR/EN dil değiştirici olduğu ama URL'nin değişmediği
+  tespit edildi (JS ile içerik değişiyor, /en/ gibi ayrı bir adres yok). Bu yüzden
+  hreflang eklenmedi — önce İngilizce içeriğin kendi URL'sinde (örn. aylininci.com/en/)
+  yayınlanması gerekir, aksi halde hreflang etiketi yanlış/eksik bir sinyal verir.
+-->
+
 </head>
 <body>
 
@@ -402,6 +464,14 @@
   </div>
 </div>
 
+<!--
+  Bu blok, mevcut index.html içindeki <section id="icerikler"> ... </section>
+  bölümünün YERİNE geçecek. Tek fark: 4 "guide-card" öğesindeki <span class="guide-meta"
+  data-i18n="ic.soon">Yakında</span> satırı kaldırıldı, kart bir <a> linkine dönüştürüldü
+  ve gerçek blog sayfasına yönlendiriliyor. data-i18n öznitelikleri korundu; EN çevirisi
+  için mevcut i18n JS sözlüğünüzdeki "ic.1.h" vb. anahtarların İngilizce karşılıklarını
+  girmeyi unutmayın (bu anahtarlar zaten sizde tanımlı olmalı).
+-->
 <section id="icerikler">
   <div class="wrap">
     <div class="section-head">
@@ -410,34 +480,42 @@
       <p data-i18n="ic.sub">Teknik SEO, GEO, Shopify, WordPress, içerik stratejisi ve web performansı alanlarında karşılaşılan sorunlara yönelik yöntemler, uygulama süreçleri ve çözüm notları.</p>
     </div>
     <div class="guide-list">
-      <article class="guide-card"><div class="guide-top"></div><div class="guide-body">
+      <a class="guide-card" href="blog/core-web-vitals-performans-optimizasyonu.html"><div class="guide-top"></div><div class="guide-body">
         <div class="guide-tag" data-i18n="ic.1.tag">Teknik SEO</div>
         <h3 data-i18n="ic.1.h">Core Web Vitals performansının geliştirilmesi</h3>
         <p data-i18n="ic.1.p">Yalnızca PageSpeed skorunu değil, gerçek kullanıcı deneyimini etkileyen yükleme, etkileşim ve görsel kararlılık metriklerini geliştirmeye yönelik teknik çalışmalar.</p>
-        <span class="guide-meta" data-i18n="ic.soon">Yakında</span>
-      </div></article>
-      <article class="guide-card"><div class="guide-top"></div><div class="guide-body">
+        <span class="guide-meta">Yazıyı oku →</span>
+      </div></a>
+      <a class="guide-card" href="blog/shopify-liquid-performans-optimizasyonu.html"><div class="guide-top"></div><div class="guide-body">
         <div class="guide-tag" data-i18n="ic.2.tag">Shopify</div>
         <h3 data-i18n="ic.2.h">Liquid geliştirmelerinde performansın korunması</h3>
         <p data-i18n="ic.2.p">Shopify temalarına özel bölüm ve işlevler eklenirken gereksiz JavaScript kullanımının, render gecikmelerinin ve tema performansı sorunlarının önlenmesi.</p>
-        <span class="guide-meta" data-i18n="ic.soon">Yakında</span>
-      </div></article>
-      <article class="guide-card"><div class="guide-top"></div><div class="guide-body">
+        <span class="guide-meta">Yazıyı oku →</span>
+      </div></a>
+      <a class="guide-card" href="blog/anahtar-kelime-kanibalizasyonu-analizi.html"><div class="guide-top"></div><div class="guide-body">
         <div class="guide-tag" data-i18n="ic.3.tag">İçerik Stratejisi</div>
         <h3 data-i18n="ic.3.h">Anahtar kelime kanibalizasyonunun analizi</h3>
         <p data-i18n="ic.3.p">Benzer sorgular için rekabet eden sayfaların tespit edilmesi, içerik amaçlarının ayrıştırılması ve gerekli durumlarda sayfaların birleştirilmesi.</p>
-        <span class="guide-meta" data-i18n="ic.soon">Yakında</span>
-      </div></article>
-      <article class="guide-card"><div class="guide-top"></div><div class="guide-body">
+        <span class="guide-meta">Yazıyı oku →</span>
+      </div></a>
+      <a class="guide-card" href="blog/yapay-zeka-arama-icin-icerik-yapisi.html"><div class="guide-top"></div><div class="guide-body">
         <div class="guide-tag" data-i18n="ic.4.tag">GEO</div>
-        <h3 data-i18n="ic.4.h">Yapay zekâ destekli arama sistemleri için içerik yapısı</h3>
+        <h3 data-i18n="ic.4.h">Yapay zeka destekli arama sistemleri için içerik yapısı</h3>
         <p data-i18n="ic.4.p">İçeriklerin konu bütünlüğü, açıklık, kaynaklandırma ve yapılandırılmış veri açısından değerlendirilmesi.</p>
-        <span class="guide-meta" data-i18n="ic.soon">Yakında</span>
-      </div></article>
+        <span class="guide-meta">Yazıyı oku →</span>
+      </div></a>
     </div>
     <p class="guide-note" data-i18n="ic.note">Bu bölüm, yeni içerikler ve uygulama notları yayınlandıkça güncellenecektir.</p>
   </div>
 </section>
+
+<!--
+  CSS notu: .guide-card şu an muhtemelen <article> için stillenmiş; <a> öğesine
+  dönüştüğü için mevcut CSS'inize şu satırları eklemeniz gerekebilir:
+
+  a.guide-card { display:block; text-decoration:none; color:inherit; }
+-->
+
 
 <section id="araclar" style="padding-top:0;">
   <div class="wrap">
