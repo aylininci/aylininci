@@ -23,10 +23,16 @@
 <meta name="twitter:description" content="Sahada ve laboratuvarda ölçümden gerçek düzeltmelere: uygulamalı Core Web Vitals rehberi.">
 <meta name="twitter:image" content="https://aylininci.com/blog/images/core-web-vitals-performans-optimizasyonu-hero.webp">
 
-<link rel="icon" type="image/png" href="../favicon.png">
+<meta name="theme-color" content="#F6F4FB" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#150F26" media="(prefers-color-scheme: dark)">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap"></noscript>
 
 <script type="application/ld+json">
 {
@@ -35,8 +41,8 @@
   "image": "https://aylininci.com/blog/images/core-web-vitals-performans-optimizasyonu-hero.webp",
   "headline": "Core Web Vitals Nasıl İyileştirilir? LCP, INP, CLS Rehberi",
   "description": "LCP, INP ve CLS'i sahada (CrUX) ve laboratuvarda ölçmekten gerçek düzeltmelere: uygulamalı bir Core Web Vitals rehberi.",
-  "author": {"@type": "Person", "name": "Aylin İnci", "url": "https://aylininci.com"},
-  "publisher": {"@type": "Person", "name": "Aylin İnci", "url": "https://aylininci.com"},
+  "author": {"@type": "Person", "@id": "https://aylininci.com/#person", "name": "Aylin İnci", "url": "https://aylininci.com/", "sameAs": ["https://www.linkedin.com/in/aylin-inci/"]},
+  "publisher": {"@id": "https://aylininci.com/#person"},
   "datePublished": "2026-08-28",
   "dateModified": "2026-08-28",
   "inLanguage": "tr",
@@ -49,7 +55,7 @@
   "@type": "BreadcrumbList",
   "itemListElement": [
     {"@type": "ListItem", "position": 1, "name": "Anasayfa", "item": "https://aylininci.com/"},
-    {"@type": "ListItem", "position": 2, "name": "İçerikler", "item": "https://aylininci.com/#icerikler"},
+    {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://aylininci.com/blog/"},
     {"@type": "ListItem", "position": 3, "name": "Core Web Vitals performansının geliştirilmesi", "item": "https://aylininci.com/blog/core-web-vitals-performans-optimizasyonu.html"}
   ]
 }
@@ -145,8 +151,8 @@
 
 <nav class="nav">
   <div class="wrap">
-    <a href="../index.html" class="brand">Aylin İnci</a>
-    <a href="../index.html#icerikler" class="back">← Tüm içerikler</a>
+    <a href="/" class="brand">Aylin İnci</a>
+    <a href="/blog/" class="back">← Tüm yazılar</a>
   </div>
 </nav>
 
@@ -265,7 +271,7 @@ onCLS(gonder);</code></pre>
     </ul>
 
     <h2>9. Raporlamayı sürdürülebilir hale getirmek</h2>
-    <p>Tek seferlik bir optimizasyon turu, birkaç ay sonra yeni bir özellik, yeni bir üçüncü parti script ya da fark edilmeden büyüyen bir görsel yüzünden kolayca geri gidebilir. Bu yüzden Core Web Vitals'ı bir proje değil, sürekli izlenen bir metrik seti olarak ele almak gerekiyor. Pratikte işe yarayan yapı şöyle:</p>
+    <p>Tek seferlik bir optimizasyon turu, birkaç ay sonra yeni bir özellik, yeni bir <a href="/blog/shopify-liquid-performans-optimizasyonu.html">üçüncü parti script</a> ya da fark edilmeden büyüyen bir görsel yüzünden kolayca geri gidebilir. Bu yüzden Core Web Vitals'ı bir proje değil, sürekli izlenen bir metrik seti olarak ele almak gerekiyor. Pratikte işe yarayan yapı şöyle:</p>
     <ul>
       <li>Search Console'daki Önemli Web Verileri raporunu aylık olarak gözden geçirin ve yeni "Zayıf" gruplara erken müdahale edin.</li>
       <li>Büyük bir yayın öncesi (yeni tema, yeni bir üçüncü parti entegrasyon, büyük bir tasarım güncellemesi) mutlaka bir Lighthouse karşılaştırması yapın; regresyonları canlıya çıkmadan yakalamak, sonradan düzeltmekten çok daha ucuz.</li>
@@ -296,8 +302,8 @@ onCLS(gonder);</code></pre>
 
     <div class="author-box">
       <div>
-        <strong>Aylin İnci</strong>
-        <span>Teknik SEO, GEO ve web geliştirme üzerine çalışıyor; Shopify ve WordPress projelerinde performans ve arama görünürlüğü odaklı danışmanlık veriyor.</span>
+        <strong><a href="/" style="color:inherit;text-decoration:none;">Aylin İnci</a></strong>
+        <span>Teknik SEO, GEO ve web geliştirme üzerine çalışıyor; Shopify ve WordPress projelerinde performans ve arama görünürlüğü odaklı danışmanlık veriyor. <a href="https://www.linkedin.com/in/aylin-inci/" target="_blank" rel="noopener" style="color:var(--primary);">LinkedIn</a></span>
       </div>
     </div>
   </div>
@@ -313,7 +319,7 @@ onCLS(gonder);</code></pre>
 </article>
 
 <footer class="site-footer">
-  <div class="wrap"><a href="../index.html">aylininci.com</a> — SEO, GEO ve Web Geliştirme</div>
+  <div class="wrap"><a href="/">aylininci.com</a> — SEO, GEO ve Web Geliştirme</div>
 </footer>
 
 </body>

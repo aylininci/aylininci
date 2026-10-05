@@ -23,10 +23,16 @@
 <meta name="twitter:description" content="Varlık netliği, yapılandırılmış veri ve alıntılanabilirlik için pratik bir rehber.">
 <meta name="twitter:image" content="https://aylininci.com/blog/images/yapay-zeka-arama-icin-icerik-yapisi-hero.webp">
 
-<link rel="icon" type="image/png" href="../favicon.png">
+<meta name="theme-color" content="#F6F4FB" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#150F26" media="(prefers-color-scheme: dark)">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap"></noscript>
 
 <script type="application/ld+json">
 {
@@ -35,8 +41,8 @@
   "image": "https://aylininci.com/blog/images/yapay-zeka-arama-icin-icerik-yapisi-hero.webp",
   "headline": "GEO: Yapay Zeka Destekli Arama İçin İçerik Yapısı Nasıl Kurulur?",
   "description": "ChatGPT, Perplexity ve Google AI Overviews gibi üretken arama sistemleri içeriğinizi nasıl okuyor? Varlık netliği, yapılandırılmış veri ve alıntılanabilirlik için pratik bir GEO rehberi.",
-  "author": {"@type": "Person", "name": "Aylin İnci", "url": "https://aylininci.com"},
-  "publisher": {"@type": "Person", "name": "Aylin İnci", "url": "https://aylininci.com"},
+  "author": {"@type": "Person", "@id": "https://aylininci.com/#person", "name": "Aylin İnci", "url": "https://aylininci.com/", "sameAs": ["https://www.linkedin.com/in/aylin-inci/"]},
+  "publisher": {"@id": "https://aylininci.com/#person"},
   "datePublished": "2026-08-28",
   "dateModified": "2026-08-28",
   "inLanguage": "tr",
@@ -49,7 +55,7 @@
   "@type": "BreadcrumbList",
   "itemListElement": [
     {"@type": "ListItem", "position": 1, "name": "Anasayfa", "item": "https://aylininci.com/"},
-    {"@type": "ListItem", "position": 2, "name": "İçerikler", "item": "https://aylininci.com/#icerikler"},
+    {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://aylininci.com/blog/"},
     {"@type": "ListItem", "position": 3, "name": "Yapay zeka destekli arama sistemleri için içerik yapısı", "item": "https://aylininci.com/blog/yapay-zeka-arama-icin-icerik-yapisi.html"}
   ]
 }
@@ -142,8 +148,8 @@
 
 <nav class="nav">
   <div class="wrap">
-    <a href="../index.html" class="brand">Aylin İnci</a>
-    <a href="../index.html#icerikler" class="back">← Tüm içerikler</a>
+    <a href="/" class="brand">Aylin İnci</a>
+    <a href="/blog/" class="back">← Tüm yazılar</a>
   </div>
 </nav>
 
@@ -223,7 +229,7 @@ Allow: /</code></pre>
     <p>Bu bir "hepsine izin ver ya da hepsini engelle" kararı olmak zorunda değil. İçeriğinizin bir kısmını (ör. genel bilgi makaleleri) açık tutup, doğrudan gelir getiren ya da rakiplerin kopyalamasını istemediğiniz kısımları (ör. özel araştırma raporları, ücretli içerik) engellemek gibi karma bir strateji de mümkün. Kararı verirken sorulması gereken soru: bu platformlarda görünür olmak markanız için bir fırsat mı, yoksa içeriğinizin izinsiz kullanılması bir risk mi? Kişisel bir portföy ya da hizmet sitesinde genelde görünürlük tarafı ağır basar, çünkü amaç zaten mümkün olduğunca çok kanaldan bulunabilir olmaktır.</p>
 
     <h2>7. Sayfa hızının ve crawl edilebilirliğin GEO'daki rolü</h2>
-    <p>Üretken arama sistemlerinin çoğu, yanıt oluşturma sürecinde canlı olarak birden fazla sayfayı hızlıca tarayıp özetliyor. Yavaş açılan, render için JavaScript'e bağımlı (yani sunucu tarafında boş bir HTML döndüren) sayfalar, bu tarama sürecinde tam olarak okunamama riskiyle karşı karşıya. Bu, ilk yazımızda ele aldığımız Core Web Vitals ve temel crawl edilebilirlik pratiklerinin GEO için de neden hala ön koşul olduğunu gösteriyor: içeriğiniz ne kadar iyi yapılandırılmış olursa olsun, crawler onu okuyamıyorsa hiçbir GEO tekniği işe yaramaz.</p>
+    <p>Üretken arama sistemlerinin çoğu, yanıt oluşturma sürecinde canlı olarak birden fazla sayfayı hızlıca tarayıp özetliyor. <a href="/blog/core-web-vitals-performans-optimizasyonu.html">Yavaş açılan</a>, render için JavaScript'e bağımlı (yani sunucu tarafında boş bir HTML döndüren) sayfalar, bu tarama sürecinde tam olarak okunamama riskiyle karşı karşıya. Bu, ilk yazımızda ele aldığımız Core Web Vitals ve temel crawl edilebilirlik pratiklerinin GEO için de neden hala ön koşul olduğunu gösteriyor: içeriğiniz ne kadar iyi yapılandırılmış olursa olsun, crawler onu okuyamıyorsa hiçbir GEO tekniği işe yaramaz.</p>
 
     <h2>8. Ölçüm: GEO'nun etkisini nasıl takip edersiniz?</h2>
     <p>GEO henüz Search Console kadar standartlaşmış bir ölçüm altyapısına sahip değil, ama takip edilebilecek birkaç sinyal var:</p>
@@ -274,8 +280,8 @@ Allow: /</code></pre>
 
     <div class="author-box">
       <div>
-        <strong>Aylin İnci</strong>
-        <span>Teknik SEO, GEO ve web geliştirme üzerine çalışıyor; içerik yapısı ve arama görünürlüğü odaklı danışmanlık veriyor.</span>
+        <strong><a href="/" style="color:inherit;text-decoration:none;">Aylin İnci</a></strong>
+        <span>Teknik SEO, GEO ve web geliştirme üzerine çalışıyor; içerik yapısı ve arama görünürlüğü odaklı danışmanlık veriyor. <a href="https://www.linkedin.com/in/aylin-inci/" target="_blank" rel="noopener" style="color:var(--primary);">LinkedIn</a></span>
       </div>
     </div>
   </div>
@@ -291,7 +297,7 @@ Allow: /</code></pre>
 </article>
 
 <footer class="site-footer">
-  <div class="wrap"><a href="../index.html">aylininci.com</a> — SEO, GEO ve Web Geliştirme</div>
+  <div class="wrap"><a href="/">aylininci.com</a> — SEO, GEO ve Web Geliştirme</div>
 </footer>
 
 </body>
