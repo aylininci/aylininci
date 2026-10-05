@@ -10,13 +10,13 @@
 - [LinkedIn](https://www.linkedin.com/in/aylin-inci/)
 
 ## Blog
-- [Core Web Vitals Performansının Geliştirilmesi: LCP, INP ve CLS için Sahadan Notlar](https://aylininci.com/blog/core-web-vitals-performans-optimizasyonu.html): LCP, INP ve CLS'i sahada (CrUX) ve laboratuvarda ölçmekten gerçek düzeltmelere: render-blocking kaynaklar, uzun görevler, layout kaymaları ve önceliklendirme üzerine uygulamalı bir Core Web Vitals rehberi.
-- [Shopify Liquid Geliştirmelerinde Performansın Korunması](https://aylininci.com/blog/shopify-liquid-performans-optimizasyonu.html): Shopify temalarına özel section ve blok eklerken performansı korumak: gereksiz JavaScript, render gecikmeleri, Liquid döngü maliyetleri ve tema puanını düşürmeden özellik geliştirme rehberi.
-- [Anahtar Kelime Kanibalizasyonunun Analizi: Sayfalarınız Birbirinizle mi Yarışıyor?](https://aylininci.com/blog/anahtar-kelime-kanibalizasyonu-analizi.html): Aynı sorgu için birden fazla sayfanın rekabet etmesi neden trafiği düşürür? Search Console verisiyle kanibalizasyon tespiti, niyet ayrıştırma, birleştirme ve canonical/301 karar süreci.
-- [Yapay Zeka Destekli Arama Sistemleri İçin İçerik Yapısı](https://aylininci.com/blog/yapay-zeka-arama-icin-icerik-yapisi.html): ChatGPT, Perplexity ve Google AI Overviews gibi üretken arama sistemleri içeriğinizi nasıl okuyor? Varlık netliği, yapılandırılmış veri, alıntılanabilirlik ve GEO için pratik bir içerik mimarisi rehberi.
+- [Core Web Vitals Performansının Geliştirilmesi: LCP, INP ve CLS için Sahadan Notlar](https://aylininci.com/blog/core-web-vitals-performans-optimizasyonu): LCP, INP ve CLS'i sahada (CrUX) ve laboratuvarda ölçmekten gerçek düzeltmelere: render-blocking kaynaklar, uzun görevler, layout kaymaları ve önceliklendirme üzerine uygulamalı bir Core Web Vitals rehberi.
+- [Shopify Liquid Geliştirmelerinde Performansın Korunması](https://aylininci.com/blog/shopify-liquid-performans-optimizasyonu): Shopify temalarına özel section ve blok eklerken performansı korumak: gereksiz JavaScript, render gecikmeleri, Liquid döngü maliyetleri ve tema puanını düşürmeden özellik geliştirme rehberi.
+- [Anahtar Kelime Kanibalizasyonunun Analizi: Sayfalarınız Birbirinizle mi Yarışıyor?](https://aylininci.com/blog/anahtar-kelime-kanibalizasyonu-analizi): Aynı sorgu için birden fazla sayfanın rekabet etmesi neden trafiği düşürür? Search Console verisiyle kanibalizasyon tespiti, niyet ayrıştırma, birleştirme ve canonical/301 karar süreci.
+- [Yapay Zeka Destekli Arama Sistemleri İçin İçerik Yapısı](https://aylininci.com/blog/yapay-zeka-arama-icin-icerik-yapisi): ChatGPT, Perplexity ve Google AI Overviews gibi üretken arama sistemleri içeriğinizi nasıl okuyor? Varlık netliği, yapılandırılmış veri, alıntılanabilirlik ve GEO için pratik bir içerik mimarisi rehberi.
 
 ## Optional
 - [Blog dizini](https://aylininci.com/blog/)
-- [Gizlilik Politikası](https://aylininci.com/gizlilik-politikasi.html)
-- [Çerez Politikası](https://aylininci.com/cerez-politikasi.html)
-- [KVKK Aydınlatma Metni](https://aylininci.com/kvkk-aydinlatma-metni.html)
+- [Gizlilik Politikası](https://aylininci.com/gizlilik-politikasi)
+- [Çerez Politikası](https://aylininci.com/cerez-politikasi)
+- [KVKK Aydınlatma Metni](https://aylininci.com/kvkk-aydinlatma-metni)
