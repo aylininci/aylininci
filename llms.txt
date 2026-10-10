@@ -10,6 +10,8 @@
 - [LinkedIn](https://www.linkedin.com/in/aylin-inci/)
 
 ## Blog
+- [Google AI Modu ve SEO: Tıklamalar Azalırken Görünürlüğü Korumak](https://aylininci.com/blog/google-ai-modu-seo): Google AI Modu Türkiye'de: query fan-out nasıl çalışır, tıklamalar neden düşüyor ve Search Console'un Üretken AI raporuyla etki nasıl ölçülür? Uygulanabilir rehber.
+- [Shopify Agentic Storefronts: Ürünlerinizi ChatGPT, Copilot ve Google AI Modu'nda Satmak](https://aylininci.com/blog/shopify-agentic-storefronts-chatgpt): Shopify Agentic Storefronts nedir, ChatGPT, Copilot ve Google AI Modu'nda kimler satış yapabilir? Türkiye'deki mağazalar için durum ve AI asistanları için ürün verisi hazırlığı.
 - [Core Web Vitals Performansının Geliştirilmesi: LCP, INP ve CLS için Sahadan Notlar](https://aylininci.com/blog/core-web-vitals-performans-optimizasyonu): LCP, INP ve CLS'i sahada (CrUX) ve laboratuvarda ölçmekten gerçek düzeltmelere: render-blocking kaynaklar, uzun görevler, layout kaymaları ve önceliklendirme üzerine uygulamalı bir Core Web Vitals rehberi.
 - [Shopify Liquid Geliştirmelerinde Performansın Korunması](https://aylininci.com/blog/shopify-liquid-performans-optimizasyonu): Shopify temalarına özel section ve blok eklerken performansı korumak: gereksiz JavaScript, render gecikmeleri, Liquid döngü maliyetleri ve tema puanını düşürmeden özellik geliştirme rehberi.
 - [Anahtar Kelime Kanibalizasyonunun Analizi: Sayfalarınız Birbirinizle mi Yarışıyor?](https://aylininci.com/blog/anahtar-kelime-kanibalizasyonu-analizi): Aynı sorgu için birden fazla sayfanın rekabet etmesi neden trafiği düşürür? Search Console verisiyle kanibalizasyon tespiti, niyet ayrıştırma, birleştirme ve canonical/301 karar süreci.
