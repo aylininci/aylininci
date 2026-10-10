@@ -5,7 +5,8 @@ SEO, GEO ve web geliştirme uzmanlıklarının, çalışma yaklaşımının ve i
 ## Klasör içeriği
 - `index.html` — Türkçe ana sayfa
 - `en/index.html` — İngilizce ana sayfa (`/en/`)
-- `blog/` — blog yazıları; `blog/index.html` tüm yazıların listesi (`/blog/`)
+- `assets/site.css`, `assets/site.js` — tüm sayfalarda ortak header, footer, renkler ve açık/koyu tema. Menüyü ya da footer'ı değiştirirken bunları ve her sayfadaki header/footer HTML'ini birlikte güncelle.
+- `blog/` — blog yazıları; `blog/index.html` kategori filtreli blog arşivi (`/blog/`)
 - `cerez-politikasi.html`, `gizlilik-politikasi.html`, `kvkk-aydinlatma-metni.html` — yasal metinler
 - `aylin-inci-logo.webp` — header ve footer logosu (`aylin-inci-logo.png` yapılandırılmış veride kullanılıyor)
 - `favicon-32.png`, `favicon-192.png`, `apple-touch-icon.png` — sekme ve ana ekran ikonları

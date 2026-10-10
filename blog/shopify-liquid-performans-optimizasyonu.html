@@ -28,6 +28,9 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/site.css">
+<script>(function(){try{var t=localStorage.getItem('aylin-theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme: dark)').matches))document.documentElement.setAttribute('data-theme','dark');}catch(e){}})();</script>
+<script src="/assets/site.js" defer></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap">
@@ -73,37 +76,9 @@
 </script>
 
 <style>
-  :root{
-    --canvas:#F6F4FB; --canvas-soft:#FBFAFF; --canvas-deep:#150F26;
-    --surface-card:#FFFFFF; --surface-strong:#EFEAFA;
-    --ink:#241A3D; --ink-active:#150F26;
-    --body:#4B4459; --body-strong:#241A3D;
-    --muted:#7A7189; --muted-soft:#A79CC4;
-    --hairline:#E3DEF2; --hairline-strong:#CFC5EA;
-    --primary:#6C4BD6; --primary-active:#5636B8; --on-primary:#FFFFFF;
-    --lime:#B8E01A; --lime-ink:#2A1F4D;
-    --shadow-soft:0 4px 16px rgba(36,26,61,0.06);
-    --font-display:'Fraunces', 'Times New Roman', serif;
-    --font-body:'Inter', sans-serif;
-  }
-  @media (prefers-color-scheme: dark){
-    :root{
-      --canvas:#150F26; --canvas-soft:#1B1330;
-      --surface-card:#1F1636; --surface-strong:#241A3D;
-      --ink:#F3F0FB; --ink-active:#FFFFFF;
-      --body:#C9C0DE; --body-strong:#F3F0FB;
-      --muted:#9A8FBA; --muted-soft:#7A7189;
-      --hairline:rgba(255,255,255,0.08); --hairline-strong:rgba(255,255,255,0.16);
-      --primary:#8C74E8; --primary-active:#A290F0; --on-primary:#150F26;
-    }
-  }
   *{box-sizing:border-box;}
   body{margin:0;background:var(--canvas);color:var(--body);font-family:var(--font-body);line-height:1.7;}
   .wrap{max-width:760px;margin:0 auto;padding:0 24px;}
-  nav.nav{border-bottom:1px solid var(--hairline);padding:18px 0;position:sticky;top:0;background:var(--canvas);z-index:10;}
-  nav .wrap{display:flex;align-items:center;justify-content:space-between;max-width:920px;}
-  nav a.brand{color:var(--ink-active);font-family:var(--font-display);font-weight:600;text-decoration:none;font-size:1.1rem;}
-  nav a.back{color:var(--primary);text-decoration:none;font-size:0.9rem;font-weight:500;}
   article header.article-head{padding:56px 0 32px;}
   .eyebrow{display:inline-block;background:var(--surface-strong);color:var(--primary-active);font-size:0.78rem;font-weight:600;letter-spacing:0.02em;padding:5px 12px;border-radius:100px;margin-bottom:18px;}
   h1{font-family:var(--font-display);font-weight:600;font-size:2.1rem;line-height:1.25;color:var(--ink-active);margin:0 0 16px;}
@@ -139,24 +114,36 @@
   .related-list a{display:block;background:var(--surface-card);border:1px solid var(--hairline);border-radius:14px;padding:16px 18px;color:var(--ink-active);text-decoration:none;font-weight:500;}
   .related-list a:hover{border-color:var(--primary);}
   .related-list span{display:block;color:var(--muted);font-size:0.85rem;font-weight:400;margin-top:4px;}
-  footer.site-footer{border-top:1px solid var(--hairline);padding:28px 0;text-align:center;color:var(--muted);font-size:0.85rem;}
-  footer.site-footer a{color:var(--primary);text-decoration:none;}
   .hero-image{width:100%;height:auto;display:block;border-radius:16px;margin:8px 0 0;}
   .hero-wrap{padding:0 0 8px;}
 </style>
 </head>
 <body>
 
-<nav class="nav">
-  <div class="wrap">
-    <a href="/" class="brand">Aylin İnci</a>
-    <a href="/blog/" class="back">← Tüm yazılar</a>
+<nav class="site-nav">
+  <div class="shell">
+    <a href="/" class="brand" aria-label="Aylin İnci"><img src="/aylin-inci-logo.webp" alt="Aylin İnci" width="110" height="38"></a>
+    <div class="nav-links" id="navLinks">
+      <a href="/#hakkimda">Hakkımda</a>
+      <a href="/#uzmanlik">Uzmanlık Alanları</a>
+      <a href="/#yaklasim">Çalışma Yaklaşımı</a>
+      <a href="/blog/" aria-current="page">Blog</a>
+      <a href="/#araclar">Araçlar</a>
+      <a href="/#iletisim">İletişim</a>
+    </div>
+    <div class="nav-actions">
+      <a class="pill-btn" id="langToggle" href="/en/" hreflang="en" lang="en" aria-label="English version">EN</a>
+      <button class="pill-btn icon-only" id="themeToggle" type="button" aria-label="Tema değiştir">◐</button>
+      <a href="/Aylin_Inci_CV_TR.pdf" target="_blank" rel="noopener" class="btn btn-primary nav-cta-desktop">Özgeçmiş</a>
+      <button class="hamburger" id="hamburger" type="button" aria-label="Menü" aria-expanded="false">☰</button>
+    </div>
   </div>
 </nav>
 
 <article>
   <header class="article-head">
     <div class="wrap">
+      <nav class="crumbs" aria-label="Sayfa yolu"><a href="/">Anasayfa</a><span>/</span><a href="/blog/">Blog</a></nav>
       <span class="eyebrow">Shopify</span>
       <h1>Shopify Liquid Geliştirmelerinde Performansın Korunması</h1>
       <div class="meta-row">
@@ -317,8 +304,25 @@
   </div>
 </article>
 
-<footer class="site-footer">
-  <div class="wrap"><a href="/">aylininci.com</a> — SEO, GEO ve Web Geliştirme</div>
+<footer class="site-foot">
+  <div class="shell footer-grid">
+    <div class="footer-brand">
+      <img src="/aylin-inci-logo.webp" alt="Aylin İnci" width="92" height="32" loading="lazy">
+      <p>SEO, GEO ve Web Geliştirme Uzmanı · İzmir, Türkiye</p>
+    </div>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/aylin-inci/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="/Aylin_Inci_CV_TR.pdf" target="_blank" rel="noopener">Özgeçmiş</a>
+      <a href="/blog/">Blog</a>
+      <a href="/#iletisim">İletişim</a>
+    </div>
+  </div>
+  <div class="shell footer-legal">
+    <a href="/kvkk-aydinlatma-metni">KVKK Aydınlatma Metni</a>
+    <a href="/cerez-politikasi">Çerez Politikası</a>
+    <a href="/gizlilik-politikasi">Gizlilik Politikası</a>
+    <span>© 2026 Aylin İnci</span>
+  </div>
 </footer>
 
 </body>
