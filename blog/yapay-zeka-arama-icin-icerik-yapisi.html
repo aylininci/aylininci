@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GEO: Yapay Zeka Destekli Arama İçin İçerik Yapısı Nasıl Kurulur? | Aylin İnci</title>
-<meta name="description" content="ChatGPT, Perplexity ve Google AI Overviews gibi üretken arama sistemleri içeriğinizi nasıl okuyor? Varlık netliği, yapılandırılmış veri, alıntılanabilirlik ve GEO için pratik bir içerik mimarisi rehberi.">
+<title>GEO: Yapay Zeka Araması İçin İçerik Yapısı | Aylin İnci</title>
+<meta name="description" content="ChatGPT, Perplexity ve Google AI Overviews içeriğinizi nasıl okuyor? Varlık netliği, yapılandırılmış veri ve alıntılanabilirlik için GEO rehberi.">
 <link rel="canonical" href="https://aylininci.com/blog/yapay-zeka-arama-icin-icerik-yapisi">
 <meta name="robots" content="index, follow">
 <meta name="author" content="Aylin İnci">
@@ -15,13 +15,13 @@
 <meta property="og:url" content="https://aylininci.com/blog/yapay-zeka-arama-icin-icerik-yapisi">
 <meta property="og:site_name" content="Aylin İnci">
 <meta property="og:locale" content="tr_TR">
-<meta property="og:image" content="https://aylininci.com/blog/images/yapay-zeka-arama-icin-icerik-yapisi-hero.webp">
-<meta property="og:image:width" content="1800">
-<meta property="og:image:height" content="1200">
+<meta property="og:image" content="https://aylininci.com/blog/images/yapay-zeka-arama-icin-icerik-yapisi-og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="GEO: Yapay Zeka Destekli Arama İçin İçerik Yapısı">
 <meta name="twitter:description" content="Varlık netliği, yapılandırılmış veri ve alıntılanabilirlik için pratik bir rehber.">
-<meta name="twitter:image" content="https://aylininci.com/blog/images/yapay-zeka-arama-icin-icerik-yapisi-hero.webp">
+<meta name="twitter:image" content="https://aylininci.com/blog/images/yapay-zeka-arama-icin-icerik-yapisi-og.jpg">
 
 <meta name="theme-color" content="#F6F4FB" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#150F26" media="(prefers-color-scheme: dark)">
@@ -33,9 +33,9 @@
 <script src="/assets/site.js" defer></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap"></noscript>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600&family=Inter:wght@400;500;600&display=optional">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600&family=Inter:wght@400;500;600&display=optional" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600&family=Inter:wght@400;500;600&display=optional"></noscript>
 
 <script type="application/ld+json">
 {
@@ -132,7 +132,7 @@
       <a href="/#iletisim">İletişim</a>
     </div>
     <div class="nav-actions">
-      <a class="pill-btn" id="langToggle" href="/en/" hreflang="en" lang="en" aria-label="English version">EN</a>
+      <a class="pill-btn" id="langToggle" href="/en/" hreflang="en" lang="en" aria-label="EN – English version">EN</a>
       <button class="pill-btn icon-only" id="themeToggle" type="button" aria-label="Tema değiştir">◐</button>
       <a href="/Aylin_Inci_CV_TR.pdf" target="_blank" rel="noopener" class="btn btn-primary nav-cta-desktop">Özgeçmiş</a>
       <button class="hamburger" id="hamburger" type="button" aria-label="Menü" aria-expanded="false">☰</button>
@@ -140,6 +140,7 @@
   </div>
 </nav>
 
+<main id="main">
 <article>
   <header class="article-head">
     <div class="wrap">
@@ -158,7 +159,7 @@
   </header>
 
   <div class="wrap hero-wrap">
-    <img class="hero-image" src="images/yapay-zeka-arama-icin-icerik-yapisi-hero.webp" alt="Birden fazla kaynağın bir yapay zeka küresinde birleşip tek bir yanıta dönüşmesini simgeleyen soyut 3D illüstrasyon" width="1800" height="1200" fetchpriority="high">
+    <img class="hero-image" src="/blog/images/yapay-zeka-arama-icin-icerik-yapisi-hero-1200.webp" srcset="/blog/images/yapay-zeka-arama-icin-icerik-yapisi-hero-800.webp 800w, /blog/images/yapay-zeka-arama-icin-icerik-yapisi-hero-1200.webp 1200w, /blog/images/yapay-zeka-arama-icin-icerik-yapisi-hero.webp 1800w" sizes="(max-width: 808px) calc(100vw - 48px), 760px" alt="Birden fazla kaynağın bir yapay zeka küresinde birleşip tek bir yanıta dönüşmesini simgeleyen soyut 3D illüstrasyon" width="1800" height="1200" fetchpriority="high">
   </div>
 
   <div class="content wrap">
@@ -285,6 +286,7 @@ Allow: /</code></pre>
     </div>
   </div>
 </article>
+</main>
 
 <footer class="site-foot">
   <div class="shell footer-grid">

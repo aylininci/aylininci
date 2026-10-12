@@ -15,9 +15,9 @@
 <script src="/assets/site.js" defer></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400&amp;family=Inter:wght@400;500;600&amp;display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400&amp;family=Inter:wght@400;500;600&amp;display=swap" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400&amp;family=Inter:wght@400;500;600&amp;display=swap"></noscript>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400&amp;family=Inter:wght@400;500;600&amp;display=optional">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400&amp;family=Inter:wght@400;500;600&amp;display=optional" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400&amp;family=Inter:wght@400;500;600&amp;display=optional"></noscript>
 <style>
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
@@ -93,7 +93,7 @@
   @media (max-width:720px){ .astep{grid-template-columns:1fr; gap:14px;} }
 
   /* ARTICLES */
-  .guide-list{display:grid; grid-auto-flow:column; grid-auto-columns:calc((100% - 40px) / 3); gap:20px; overflow-x:auto; overscroll-behavior-x:contain; scroll-snap-type:x mandatory; scroll-behavior:smooth; scrollbar-width:none; padding:4px 2px 12px;}
+  .guide-list{display:grid; grid-auto-flow:column; grid-auto-columns:calc((100% - 40px) / 3); gap:20px; overflow-x:auto; overscroll-behavior-x:contain; scroll-snap-type:x mandatory; scroll-behavior:smooth; scrollbar-width:none; padding:4px 2px 12px; scroll-padding-inline:2px;}
   .guide-list::-webkit-scrollbar{display:none;}
   .guide-list .guide-card{scroll-snap-align:start; display:flex; flex-direction:column;}
   .guide-list .guide-body{display:flex; flex-direction:column; flex:1;}
@@ -256,13 +256,15 @@
       <a href="#iletisim">Contact</a>
     </div>
     <div class="nav-actions">
-      <a class="pill-btn" id="langToggle" href="/" hreflang="tr" lang="tr" aria-label="Türkçe sürüm">TR</a>
+      <a class="pill-btn" id="langToggle" href="/" hreflang="tr" lang="tr" aria-label="TR – Türkçe sürüm">TR</a>
       <button class="pill-btn icon-only" id="themeToggle" type="button" aria-label="Toggle theme">◐</button>
       <a href="/Aylin_Inci_CV_EN.pdf" target="_blank" rel="noopener" class="btn btn-primary nav-cta-desktop">Résumé</a>
       <button class="hamburger" id="hamburger" type="button" aria-label="Menu" aria-expanded="false">☰</button>
     </div>
   </div>
 </nav>
+
+<main id="main">
 
 <header class="hero" id="top">
   <div class="orb orb-1" aria-hidden="true"></div>
@@ -299,7 +301,7 @@
       </div>
       <div class="about-side">
         <div class="about-photo">
-          <img src="/aylin-inci.webp" alt="Aylin İnci" width="400" height="400" loading="lazy">
+          <img src="/aylin-inci-240.webp" srcset="/aylin-inci-240.webp 240w, /aylin-inci.webp 400w" sizes="112px" alt="Aylin İnci" width="400" height="400" loading="lazy">
           <div><strong>Aylin İnci</strong><span>SEO, GEO &amp; Web Development Specialist</span></div>
         </div>
         <div class="side-card">
@@ -540,6 +542,8 @@
     </form>
   </div>
 </div>
+
+</main>
 
 <footer class="site-foot">
   <div class="shell footer-grid">
