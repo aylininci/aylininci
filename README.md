@@ -6,6 +6,7 @@ SEO, GEO ve web geliştirme uzmanlıklarının, çalışma yaklaşımının ve i
 - `index.html` — Türkçe ana sayfa
 - `en/index.html` — İngilizce ana sayfa (`/en/`)
 - `assets/site.css`, `assets/site.js` — tüm sayfalarda ortak header, footer, renkler ve açık/koyu tema. Menüyü ya da footer'ı değiştirirken bunları ve her sayfadaki header/footer HTML'ini birlikte güncelle.
+- `assets/fonts/` — Inter ve Fraunces fontları; Google Fonts yerine siteden sunuluyor ve yalnızca sitede kullanılan karakterleri içeriyor (Türkçe karakterler dahil). Metinlere alışılmadık bir karakter (ör. farklı bir dilin harfi) eklenirse font dosyalarının yeniden oluşturulması gerekir.
 - `blog/` — blog yazıları; `blog/index.html` kategori filtreli blog arşivi (`/blog/`)
 - `cerez-politikasi.html`, `gizlilik-politikasi.html`, `kvkk-aydinlatma-metni.html` — yasal metinler
 - `aylin-inci-logo.webp` — header ve footer logosu (`aylin-inci-logo.png` yapılandırılmış veride kullanılıyor)
