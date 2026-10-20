@@ -96,7 +96,7 @@
   .guide-list .guide-body{display:flex; flex-direction:column; flex:1;}
   .guide-list .guide-meta{margin-top:auto;}
   @media (max-width:960px){ .guide-list{grid-auto-columns:calc((100% - 20px) / 2);} }
-  @media (max-width:640px){ .guide-list{grid-auto-columns:86%;} }
+  @media (max-width:640px){ .guide-list{grid-auto-columns:calc(100% - 64px); gap:12px; margin-inline:-24px; padding-inline:32px; scroll-padding-inline:0;} .guide-list .guide-card{scroll-snap-align:center;} }
   @media (prefers-reduced-motion: reduce){ .guide-list{scroll-behavior:auto;} }
   .guide-foot{display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap; margin-top:24px;}
   .guide-foot .guide-note{margin-top:0;}
@@ -182,7 +182,6 @@
       "email": "mailto:aylinvinci@gmail.com",
       "address": {
         "@type": "PostalAddress",
-        "addressLocality": "İzmir",
         "addressCountry": "TR"
       },
       "knowsAbout": [
@@ -546,7 +545,7 @@
   <div class="shell footer-grid">
     <div class="footer-brand">
       <img src="/aylin-inci-logo.webp" alt="Aylin İnci" width="92" height="32" loading="lazy">
-      <p>SEO, GEO and Web Development Specialist · İzmir, Türkiye</p>
+      <p>SEO, GEO and Web Development Specialist · Türkiye</p>
     </div>
     <div class="footer-links">
       <a href="https://www.linkedin.com/in/aylin-inci/" target="_blank" rel="noopener">LinkedIn</a>

@@ -1,6 +1,6 @@
 # Aylin İnci
 
-> İzmir merkezli SEO, GEO (Generative Engine Optimization) ve web geliştirme uzmanı. Teknik SEO, içerik stratejisi, Shopify/Liquid ve WordPress geliştirme, web performansı (Core Web Vitals) ve ölçümleme alanlarında çalışır. Site Türkçe ve İngilizce yayınlanır.
+> Türkiye merkezli SEO, GEO (Generative Engine Optimization) ve web geliştirme uzmanı. Teknik SEO, içerik stratejisi, Shopify/Liquid ve WordPress geliştirme, web performansı (Core Web Vitals) ve ölçümleme alanlarında çalışır. Site Türkçe ve İngilizce yayınlanır.
 
 ## Profil
 - [Ana sayfa (TR)](https://aylininci.com/): Uzmanlık alanları, çalışma yaklaşımı, kullanılan araçlar ve iletişim
