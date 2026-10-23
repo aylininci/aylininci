@@ -10,6 +10,10 @@
 - [LinkedIn](https://www.linkedin.com/in/aylin-inci/)
 
 ## Blog
+- [Yapay Zeka ile İçerik Üretimi ve Google: 2026'da Ne Değişti?](https://aylininci.com/blog/yapay-zeka-icerik-google-seo): Google Ekim 2026'da içerik rehberini güncelledi: denetimsiz AI metni düşük emek sayılıyor. Yapay zekayı SEO'ya zarar vermeden kullanmanın yolları.
+- [ChatGPT Trafiği GA4'te Neden Direct Görünüyor? Yapay Zeka Trafiğini Ölçmek](https://aylininci.com/blog/chatgpt-trafigi-ga4-olcumu): Ekim 2026'da ChatGPT ziyaretleri GA4'te Direct göründü. Ne oldu, verinizi nasıl kontrol edersiniz ve yapay zeka trafiği için ayrı kanal nasıl kurulur?
+- [Google Eylül 2026 Spam Güncellemesi: Siteniz Etkilendi mi?](https://aylininci.com/blog/google-eylul-2026-spam-guncellemesi): Google'ın Eylül 2026 spam güncellemesi 13 gün sürdü. Sitenizin etkilenip etkilenmediğini anlama adımları, sık görülen ihlaller ve toparlanma süreci.
+- [Shopify'a Geçişte SEO: Trafiği Kaybetmeden Site Taşıma Rehberi](https://aylininci.com/blog/shopify-gecisi-seo-rehberi): WooCommerce, İdeaSoft veya Ticimax'ten Shopify'a geçerken SEO'yu koruyun: URL envanteri, 301 yönlendirme, Shopify kısıtları ve yayın günü kontrol listesi.
 - [Google AI Modu ve SEO: Tıklamalar Azalırken Görünürlüğü Korumak](https://aylininci.com/blog/google-ai-modu-seo): Google AI Modu Türkiye'de: query fan-out nasıl çalışır, tıklamalar neden düşer ve Search Console Üretken AI raporuyla etki nasıl ölçülür?
 - [Shopify Agentic Storefronts: Ürünlerinizi ChatGPT, Copilot ve Google AI Modu'nda Satmak](https://aylininci.com/blog/shopify-agentic-storefronts-chatgpt): Shopify Agentic Storefronts ile ChatGPT, Copilot ve Google AI Modu'nda kim satış yapabilir? Türkiye'deki mağazalar için durum ve ürün verisi rehberi.
 - [Core Web Vitals Performansının Geliştirilmesi: LCP, INP ve CLS için Sahadan Notlar](https://aylininci.com/blog/core-web-vitals-performans-optimizasyonu): LCP, INP ve CLS'i sahada ve laboratuvarda ölçün; render-blocking kaynaklar, uzun görevler ve layout kaymaları için uygulamalı Core Web Vitals rehberi.

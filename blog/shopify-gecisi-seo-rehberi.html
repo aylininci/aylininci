@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shopify'a Geçişte SEO Kontrol Listesi | Aylin İnci</title>
+<meta name="description" content="WooCommerce, İdeaSoft veya Ticimax'ten Shopify'a geçerken SEO'yu koruyun: URL envanteri, 301 yönlendirme, Shopify kısıtları ve yayın günü kontrol listesi.">
+<link rel="canonical" href="https://aylininci.com/blog/shopify-gecisi-seo-rehberi">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Aylin İnci">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Shopify'a Geçişte SEO: Trafiği Kaybetmeden Site Taşıma">
+<meta property="og:description" content="Shopify'a geçişte URL eşleştirme, 301 yönlendirme kısıtları, teknik kontroller ve yayın günü kontrol listesi.">
+<meta property="og:url" content="https://aylininci.com/blog/shopify-gecisi-seo-rehberi">
+<meta property="og:site_name" content="Aylin İnci">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:image" content="https://aylininci.com/blog/images/shopify-gecisi-seo-rehberi-og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="article:published_time" content="2026-10-23">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Shopify'a Geçişte SEO: Trafiği Kaybetmeden Site Taşıma">
+<meta name="twitter:description" content="Shopify'a geçişte URL eşleştirme, 301 yönlendirme kısıtları, teknik kontroller ve yayın günü kontrol listesi.">
+<meta name="twitter:image" content="https://aylininci.com/blog/images/shopify-gecisi-seo-rehberi-og.jpg">
+
+<meta name="theme-color" content="#F6F4FB" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#150F26" media="(prefers-color-scheme: dark)">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/site.css">
+<script>(function(){try{var t=localStorage.getItem('aylin-theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme: dark)').matches))document.documentElement.setAttribute('data-theme','dark');}catch(e){}})();</script>
+<script src="/assets/site.js" defer></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "image": "https://aylininci.com/blog/images/shopify-gecisi-seo-rehberi-hero.webp",
+  "headline": "Shopify'a Geçişte SEO: Trafiği Kaybetmeden Site Taşıma",
+  "description": "WooCommerce, İdeaSoft veya Ticimax'ten Shopify'a geçerken SEO'yu koruyun: URL envanteri, 301 yönlendirme, Shopify kısıtları ve yayın günü kontrol listesi.",
+  "author": {
+    "@type": "Person",
+    "@id": "https://aylininci.com/#person",
+    "name": "Aylin İnci",
+    "url": "https://aylininci.com/",
+    "image": "https://aylininci.com/aylin-inci.jpg",
+    "sameAs": [
+      "https://www.linkedin.com/in/aylin-inci/"
+    ]
+  },
+  "publisher": {
+    "@id": "https://aylininci.com/#person"
+  },
+  "datePublished": "2026-10-23",
+  "dateModified": "2026-10-23",
+  "inLanguage": "tr",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://aylininci.com/blog/shopify-gecisi-seo-rehberi"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Anasayfa",
+      "item": "https://aylininci.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://aylininci.com/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Shopify'a geçişte SEO",
+      "item": "https://aylininci.com/blog/shopify-gecisi-seo-rehberi"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Shopify'a geçince Google sıralamalarım düşer mi?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "URL'ler doğru şekilde 301 ile yönlendirilirse kalıcı bir düşüş beklenmez. Google'a göre yeniden tarama ve dizine ekleme sırasında geçici dalgalanmalar normal; orta büyüklükteki sitelerde yeni URL'lerin görünmesi birkaç hafta ya da daha uzun sürebilir."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Shopify'da en fazla kaç URL yönlendirmesi oluşturabilirim?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Shopify'ın yardım sayfasına göre Plus dışındaki planlarda en fazla 100.000, Plus planında en fazla 20 milyon URL yönlendirmesi oluşturulabilir. Yönlendirmeler İçerik > Menüler > URL yönlendirmeleri bölümünden tek tek ya da CSV ile toplu olarak eklenebilir."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Eski URL'lerimdeki .html uzantısı sorun olur mu?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Hayır, farklı bir yola yönlendirme yapılabilir; örneğin /urun/canta.html adresi /products/canta adresine yönlendirilebilir. Shopify'ın kısıtı yalnızca .html ile biten bir URL'nin aynı adresin .html'siz haline yönlendirilmesiyle ilgili."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Yönlendirmeleri ne kadar süre tutmalıyım?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Google, yönlendirmelerin mümkün olduğunca uzun, genel olarak en az bir yıl korunmasını öneriyor. Dış sitelerdeki eski bağlantılar yıllarca trafik getirmeye devam edebileceği için yönlendirmeleri silmemek en güvenlisi."
+      }
+    }
+  ]
+}
+</script>
+
+<style>
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--canvas);color:var(--body);font-family:var(--font-body);line-height:1.7;}
+  .wrap{max-width:760px;margin:0 auto;padding:0 24px;}
+  article header.article-head{padding:56px 0 32px;}
+  .eyebrow{display:inline-block;background:var(--surface-strong);color:var(--primary-active);font-size:0.78rem;font-weight:600;letter-spacing:0.02em;padding:5px 12px;border-radius:100px;margin-bottom:18px;}
+  h1{font-family:var(--font-display);font-weight:600;font-size:2.1rem;line-height:1.25;color:var(--ink-active);margin:0 0 16px;}
+  .meta-row{display:flex;gap:16px;flex-wrap:wrap;color:var(--muted);font-size:0.9rem;margin-bottom:8px;}
+  .lead{font-size:1.15rem;color:var(--body-strong);}
+  article .content{padding-bottom:64px;}
+  h2{font-family:var(--font-display);font-weight:600;font-size:1.5rem;color:var(--ink-active);margin:44px 0 14px;}
+  h3{font-family:var(--font-display);font-weight:600;font-size:1.2rem;color:var(--ink-active);margin:32px 0 10px;}
+  p{margin:0 0 18px;}
+  ul,ol{margin:0 0 18px;padding-left:1.3em;}
+  li{margin-bottom:8px;}
+  strong{color:var(--body-strong);}
+  code{background:var(--surface-strong);color:var(--ink-active);padding:2px 6px;border-radius:5px;font-size:0.9em;}
+  pre{background:var(--canvas-deep);color:#EFEAFA;padding:18px 20px;border-radius:12px;overflow-x:auto;font-size:0.88rem;line-height:1.6;margin:0 0 22px;}
+  pre code{background:none;color:inherit;padding:0;}
+  blockquote{margin:28px 0;padding:4px 0 4px 20px;border-left:3px solid var(--primary);color:var(--body-strong);font-style:italic;}
+  table{width:100%;border-collapse:collapse;margin:0 0 24px;font-size:0.92rem;}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--hairline);}
+  th{color:var(--ink-active);font-weight:600;}
+  .callout{background:var(--surface-strong);border-radius:14px;padding:20px 22px;margin:0 0 24px;}
+  .callout p:last-child{margin-bottom:0;}
+  .faq-item{border-top:1px solid var(--hairline);padding:20px 0;}
+  .faq-item h3{margin-top:0;}
+  .checklist{list-style:none;padding-left:0;}
+  .checklist li{padding-left:28px;position:relative;}
+  .checklist li::before{content:"✓";position:absolute;left:0;color:var(--primary);font-weight:700;}
+  .author-box{display:flex;gap:14px;align-items:flex-start;background:var(--surface-card);border:1px solid var(--hairline);border-radius:16px;padding:20px;margin-top:48px;}
+  .author-box img{width:56px;height:56px;border-radius:50%;object-fit:cover;flex-shrink:0;}
+  .author-box strong{display:block;color:var(--ink-active);}
+  .related{padding:32px 0 72px;border-top:1px solid var(--hairline);}
+  .related h2{margin-top:0;}
+  .related-list{display:grid;gap:14px;}
+  .related-list a{display:block;background:var(--surface-card);border:1px solid var(--hairline);border-radius:14px;padding:16px 18px;color:var(--ink-active);text-decoration:none;font-weight:500;}
+  .related-list a:hover{border-color:var(--primary);}
+  .related-list span{display:block;color:var(--muted);font-size:0.85rem;font-weight:400;margin-top:4px;}
+  .hero-image{width:100%;height:auto;display:block;border-radius:16px;margin:8px 0 0;}
+  .hero-wrap{padding:0 0 8px;}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="shell">
+    <a href="/" class="brand" aria-label="Aylin İnci"><img src="/aylin-inci-logo.webp" alt="Aylin İnci" width="110" height="38"></a>
+    <div class="nav-links" id="navLinks">
+      <a href="/#hakkimda">Hakkımda</a>
+      <a href="/#uzmanlik">Uzmanlık Alanları</a>
+      <a href="/#yaklasim">Çalışma Yaklaşımı</a>
+      <a href="/blog/" aria-current="page">Blog</a>
+      <a href="/#araclar">Araçlar</a>
+      <a href="/#iletisim">İletişim</a>
+    </div>
+    <div class="nav-actions">
+      <a class="pill-btn" id="langToggle" href="/en/" hreflang="en" lang="en" aria-label="EN – English version">EN</a>
+      <button class="pill-btn icon-only" id="themeToggle" type="button" aria-label="Tema değiştir">◐</button>
+      <a href="/Aylin_Inci_CV_TR.pdf" target="_blank" rel="noopener" class="btn btn-primary nav-cta-desktop">Özgeçmiş</a>
+      <button class="hamburger" id="hamburger" type="button" aria-label="Menü" aria-expanded="false">☰</button>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+<article>
+  <header class="article-head">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Sayfa yolu"><a href="/">Anasayfa</a><span>/</span><a href="/blog/">Blog</a></nav>
+      <span class="eyebrow" lang="en">Shopify</span>
+      <h1>Shopify'a Geçişte SEO: Trafiği Kaybetmeden Site Taşıma Rehberi</h1>
+      <div class="meta-row">
+        <span>Aylin İnci</span>
+        <span>·</span>
+        <span>23 Ekim 2026</span>
+        <span>·</span>
+        <span>Yaklaşık 5 dakika okuma</span>
+      </div>
+      <p class="lead">Shopify'a geçmek daha hızlı bir mağaza ve daha kolay yönetim demek; ama yanlış planlanan bir geçiş yıllar içinde biriken organik trafiği birkaç haftada kaybettirebilir. Bu rehberde URL envanterinden 301 yönlendirmelere, Shopify'ın kendi kısıtlarından yayın günü kontrol listesine kadar geçişte SEO'yu korumak için yapılması gerekenleri anlatıyorum.</p>
+    </div>
+  </header>
+
+  <div class="wrap hero-wrap">
+    <img class="hero-image" src="/blog/images/shopify-gecisi-seo-rehberi-hero-1200.webp" srcset="/blog/images/shopify-gecisi-seo-rehberi-hero-800.webp 800w, /blog/images/shopify-gecisi-seo-rehberi-hero-1200.webp 1200w, /blog/images/shopify-gecisi-seo-rehberi-hero.webp 1800w" sizes="(max-width: 808px) calc(100vw - 48px), 760px" alt="Eski e-ticaret sitesinden Shopify mağazasına yönlendirme oklarıyla taşınan sayfaları simgeleyen illüstrasyon" width="1800" height="1200" fetchpriority="high">
+  </div>
+
+  <div class="content wrap">
+
+    <p>WooCommerce, İdeaSoft, Ticimax, T-Soft ya da özel yazılım bir altyapıdan Shopify'a geçmek; daha hızlı bir mağaza, daha kolay yönetim ve geniş bir uygulama ekosistemi demek. Ama yanlış planlanan bir geçiş, yıllar içinde biriken organik trafiği birkaç hafta içinde kaybettirebilir. Sebep neredeyse her zaman aynı: Değişen URL'ler ve kurulmayan yönlendirmeler.</p>
+    <p>Bu rehberde Shopify'a geçişte SEO'yu korumak için yapılması gerekenleri, Shopify'ın kendi kısıtlarıyla birlikte, adım adım anlatıyorum. Sonda yayın günü için bir kontrol listesi var.</p>
+
+    <h2>1. Trafik neden düşer?</h2>
+    <p>Google, sayfalarınızı URL'leri üzerinden tanır. Shopify'ın sabit bir URL yapısı vardır ve eski altyapınızın adresleri neredeyse hiçbir zaman bu yapıya uymaz:</p>
+    <table>
+      <tr><th>İçerik türü</th><th>Eski altyapıda örnek</th><th>Shopify'da</th></tr>
+      <tr><td>Ürün</td><td><code>/urun/deri-canta-siyah-1234.html</code></td><td><code>/products/deri-canta-siyah</code></td></tr>
+      <tr><td>Kategori</td><td><code>/kategori/kadin-canta</code></td><td><code>/collections/kadin-canta</code></td></tr>
+      <tr><td>Sayfa</td><td><code>/hakkimizda.html</code></td><td><code>/pages/hakkimizda</code></td></tr>
+      <tr><td>Blog yazısı</td><td><code>/blog/kombin-onerileri</code></td><td><code>/blogs/news/kombin-onerileri</code></td></tr>
+    </table>
+    <p>Eski adresler yönlendirilmezse, Google'ın dizinindeki ve diğer sitelerdeki bağlantılardaki tüm URL'ler 404 hatası verir. Sayfaların biriktirdiği sıralama sinyalleri yeni adreslere taşınmaz.</p>
+
+    <h2>2. Eski sitenin URL envanterini çıkarın</h2>
+    <p>Yönlendirme planı, eksiksiz bir URL listesiyle başlar. Tek bir kaynağa güvenmeyin; şunları birleştirin:</p>
+    <ul class="checklist">
+      <li><strong>Site taraması:</strong> Screaming Frog gibi bir tarayıcıyla eski sitenin tüm erişilebilir URL'lerini çıkarın.</li>
+      <li><strong>Search Console:</strong> Performans raporundan son 16 ayda gösterim alan sayfaları dışa aktarın. Taramada görünmeyen eski ama trafik alan sayfalar burada çıkar.</li>
+      <li><strong>Analitik:</strong> GA4'ten son bir yılın açılış sayfalarını alın.</li>
+      <li><strong>Geri bağlantılar:</strong> Ahrefs ya da Semrush ile dış bağlantı alan sayfaları listeleyin. Bu sayfalar yönlendirilmezse bağlantı değeri kaybolur.</li>
+      <li><strong>Eski sitemap:</strong> Eski altyapının <code>sitemap.xml</code> dosyasını yedekleyin.</li>
+    </ul>
+
+    <h2>3. Eski ve yeni URL'leri eşleştirin</h2>
+    <p>Her eski URL için en yakın karşılığı belirleyin. Google'ın <a href="https://developers.google.com/search/docs/crawling-indexing/site-move-with-url-changes" target="_blank" rel="noopener">site taşıma rehberinin</a> temel kuralları:</p>
+    <ul>
+      <li><strong>Birebir eşleştirin:</strong> Her eski ürün, yeni ürün sayfasına; her eski kategori, yeni koleksiyona gitsin.</li>
+      <li><strong>Toplu ana sayfa yönlendirmesinden kaçının:</strong> Çok sayıda eski URL'yi tek bir ilgisiz sayfaya (ör. ana sayfaya) göndermek, Google'ın bunları "soft 404" olarak değerlendirmesine yol açabilir.</li>
+      <li><strong>Zincirden kaçının:</strong> A → B → C yerine doğrudan A → C yönlendirin.</li>
+      <li><strong>Kaldırılan ürünler:</strong> Satıştan kalkmış bir ürünü en yakın benzer ürüne ya da ait olduğu koleksiyona yönlendirin.</li>
+    </ul>
+    <div class="callout">
+      <p><strong>Türkçe karakterlere dikkat:</strong> Shopify ürün başlığından otomatik olarak bir "handle" (URL'nin son kısmı) oluşturur. İçe aktarmadan sonra handle'ları kontrol edin ve eski URL'lerdeki yazımla tutarlı, Türkçe karakter içermeyen (<code>canta</code>, <code>gomlek</code>) bir yapıda olduklarından emin olun. Eşleştirme tablosunu handle'lar kesinleştikten sonra hazırlayın.</p>
+    </div>
+
+    <h2>4. Yönlendirmeleri Shopify'da kurun</h2>
+    <p>Shopify'da 301 yönlendirmeleri <strong>Yönetici &gt; İçerik &gt; Menüler &gt; URL yönlendirmeleri</strong> bölümünden yönetilir. Çok sayıda yönlendirme için <strong>İçe aktar</strong> seçeneğiyle CSV dosyası yükleyebilirsiniz. Shopify'ın <a href="https://help.shopify.com/en/manual/online-store/menus-and-links/url-redirect" target="_blank" rel="noopener">yardım sayfasına</a> göre bilmeniz gereken kısıtlar:</p>
+    <table>
+      <tr><th>Kısıt</th><th>Pratikte anlamı</th></tr>
+      <tr><td>Plus dışındaki planlarda en fazla 100.000 yönlendirme (Plus'ta 20 milyon)</td><td>Büyük kataloglarda varyant ve filtre URL'lerini tek tek yönlendirmek yerine önemli sayfalara odaklanın.</td></tr>
+      <tr><td>Yalnızca bozuk URL'lerden yönlendirme yapılabilir</td><td>Eski adres Shopify'da hâlâ bir sayfa açıyorsa yönlendirme çalışmaz.</td></tr>
+      <tr><td><code>/products</code>, <code>/collections</code> ve <code>/collections/all</code> sabit yolları yönlendirilemez</td><td>Bu yolları kullanan eski adresleriniz varsa eşleştirmeyi buna göre planlayın.</td></tr>
+      <tr><td>Koleksiyon etiket URL'leri yönlendirilemez</td><td>Eski filtre sayfaları için koleksiyon yapınızı önceden tasarlayın.</td></tr>
+      <tr><td><code>.html</code> ile biten bir URL, aynı adresin <code>.html</code>'siz haline yönlendirilemez</td><td>Bu kısıt yalnızca aynı adres için geçerli; farklı bir yola (<code>/urun/x.html</code> → <code>/products/x</code>) yönlendirme yapılabilir.</td></tr>
+      <tr><td>Sorgu parametreli URL'ler beklendiği gibi çalışmayabilir</td><td><code>?id=123</code> gibi eski adresleri yayından önce mutlaka test edin.</td></tr>
+    </table>
+    <p>Google, yönlendirmelerin <strong>mümkün olduğunca uzun, genel olarak en az bir yıl</strong> korunmasını öneriyor. Geçişten birkaç ay sonra "artık gerek yok" diye yönlendirmeleri silmeyin.</p>
+
+    <h2>5. Shopify'da teknik SEO kontrolleri</h2>
+    <ul class="checklist">
+      <li><strong>Sitemap:</strong> Shopify <code>sitemap.xml</code> dosyasını otomatik oluşturur ve ürün, koleksiyon, sayfa ve blog yazılarını içerir. Mağaza şifre korumalı (yayın öncesi) moddayken Google bu dosyaya erişemez.</li>
+      <li><strong>Meta başlık ve açıklamalar:</strong> Eski sitedeki başlık ve açıklamaları içe aktarın; Shopify'ın varsayılan ürün başlığı formatına bırakmayın.</li>
+      <li><strong>Kopya ürün URL'leri:</strong> Ürünler hem <code>/products/...</code> hem de <code>/collections/.../products/...</code> adresinden açılabilir. Temanızın canonical etiketinin <code>/products/...</code> adresini gösterdiğini kontrol edin.</li>
+      <li><strong>Yapılandırılmış veri:</strong> Temanın ürün sayfalarında <code>Product</code> ve <code>Offer</code> işaretlemesini fiyat ve stokla uyumlu şekilde ürettiğini doğrulayın. Bu, yapay zeka asistanlarının ürünlerinizi doğru okuması için de önemli; ayrıntılar <a href="/blog/shopify-agentic-storefronts-chatgpt">Shopify Agentic Storefronts</a> yazımda.</li>
+      <li><strong>Performans:</strong> Yeni temanın Core Web Vitals değerlerini yayından önce ölçün. Uygulama eklerken performansı korumak için <a href="/blog/shopify-liquid-performans-optimizasyonu">Shopify Liquid performansı</a> yazımdaki adımlara bakabilirsiniz.</li>
+      <li><strong>Dil ve pazar:</strong> Shopify Markets ile birden fazla dil ya da ülke kullanıyorsanız <code>hreflang</code> etiketlerinin doğru üretildiğini kontrol edin.</li>
+    </ul>
+
+    <h2>6. Yayın günü ve sonrası</h2>
+    <ol>
+      <li><strong>Yönlendirmeleri test edin:</strong> Eşleştirme tablosundaki URL'lerden bir örneklemi (en çok trafik alanlar dahil) tek tek açın; 301 ile doğru sayfaya gittiğini doğrulayın.</li>
+      <li><strong>Search Console'u hazırlayın:</strong> Yeni sitemap'i gönderin. Alan adı da değiştiyse Adres Değişikliği aracını kullanın; aynı alan adında kalıyorsanız bu araç gerekmez.</li>
+      <li><strong>Önemli sayfaları dizine ekletin:</strong> URL Denetimi aracıyla ana sayfa ve en önemli koleksiyonlar için dizine ekleme isteyin.</li>
+      <li><strong>404'leri izleyin:</strong> İlk haftalarda Search Console'un Sayfalar raporunda "Bulunamadı (404)" satırını her gün kontrol edin ve eksik yönlendirmeleri ekleyin.</li>
+      <li><strong>Beklentiyi doğru kurun:</strong> Google'a göre orta büyüklükteki sitelerde yeni URL'lerin görünmeye başlaması birkaç hafta ya da daha uzun sürebilir, büyük sitelerde daha da uzun. Bu sürede sıralamalarda geçici dalgalanma normal.</li>
+    </ol>
+
+    <h2>Yayın günü kontrol listesi</h2>
+    <ul class="checklist">
+      <li>Eski sitenin tam URL envanteri ve sitemap yedeği alındı.</li>
+      <li>Tüm önemli URL'ler için birebir eşleştirme tablosu hazır.</li>
+      <li>Yönlendirmeler CSV ile içe aktarıldı ve örneklem test edildi.</li>
+      <li>Meta başlıklar, açıklamalar ve görsel alt metinleri taşındı.</li>
+      <li>Canonical, yapılandırılmış veri ve hreflang kontrol edildi.</li>
+      <li>Mağaza şifresi kaldırıldı, yeni sitemap Search Console'a gönderildi.</li>
+      <li>Analitik ve dönüşüm takibi yeni mağazada test edildi.</li>
+      <li>İlk 8 hafta için haftalık izleme takvimi oluşturuldu.</li>
+    </ul>
+
+    <h2>Sonuç</h2>
+    <p>Shopify'a geçişte organik trafiği korumak teknik olarak zor değil, ama dikkat ve sabır istiyor. İşin büyük kısmı yayından önce yapılıyor: eksiksiz URL envanteri, doğru eşleştirme ve test edilmiş yönlendirmeler. Bunlar doğru kurulduğunda geçici dalgalanmalar birkaç hafta içinde oturur; kurulmadığında ise kaybedilen sıralamaları geri kazanmak aylar sürebilir.</p>
+
+    <h2>Sık sorulan sorular</h2>
+    <div class="faq-item">
+      <h3>Shopify'a geçince Google sıralamalarım düşer mi?</h3>
+      <p>URL'ler doğru şekilde 301 ile yönlendirilirse kalıcı bir düşüş beklenmez. Google'a göre yeniden tarama ve dizine ekleme sırasında geçici dalgalanmalar normal; orta büyüklükteki sitelerde yeni URL'lerin görünmesi birkaç hafta ya da daha uzun sürebilir.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Shopify'da en fazla kaç URL yönlendirmesi oluşturabilirim?</h3>
+      <p>Shopify'ın yardım sayfasına göre Plus dışındaki planlarda en fazla 100.000, Plus planında en fazla 20 milyon URL yönlendirmesi oluşturulabilir. Yönlendirmeler İçerik > Menüler > URL yönlendirmeleri bölümünden tek tek ya da CSV ile toplu olarak eklenebilir.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Eski URL'lerimdeki .html uzantısı sorun olur mu?</h3>
+      <p>Hayır, farklı bir yola yönlendirme yapılabilir; örneğin /urun/canta.html adresi /products/canta adresine yönlendirilebilir. Shopify'ın kısıtı yalnızca .html ile biten bir URL'nin aynı adresin .html'siz haline yönlendirilmesiyle ilgili.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Yönlendirmeleri ne kadar süre tutmalıyım?</h3>
+      <p>Google, yönlendirmelerin mümkün olduğunca uzun, genel olarak en az bir yıl korunmasını öneriyor. Dış sitelerdeki eski bağlantılar yıllarca trafik getirmeye devam edebileceği için yönlendirmeleri silmemek en güvenlisi.</p>
+    </div>
+
+    <div class="author-box">
+      <img src="/aylin-inci-120.webp" alt="Aylin İnci" width="56" height="56" loading="lazy">
+      <div>
+        <strong><a href="/" style="color:inherit;text-decoration:none;">Aylin İnci</a></strong>
+        <span>Teknik SEO, GEO ve web geliştirme üzerine çalışıyor; içerik yapısı ve arama görünürlüğü odaklı danışmanlık veriyor. <a href="https://www.linkedin.com/in/aylin-inci/" target="_blank" rel="noopener" style="color:var(--primary);">LinkedIn</a></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="related wrap">
+    <h2>İlgili içerikler</h2>
+    <div class="related-list">
+      <a href="/blog/shopify-agentic-storefronts-chatgpt">Shopify Agentic Storefronts<span>ChatGPT, Copilot ve AI Modu'nda satış için veri hazırlığı</span></a>
+      <a href="/blog/shopify-liquid-performans-optimizasyonu">Shopify Liquid Geliştirmelerinde Performansın Korunması<span>Tema geliştirirken render gecikmelerini önlemek</span></a>
+      <a href="/blog/core-web-vitals-performans-optimizasyonu">Core Web Vitals Performansının Geliştirilmesi<span>LCP, INP ve CLS için uygulamalı rehber</span></a>
+    </div>
+  </div>
+</article>
+</main>
+
+<footer class="site-foot">
+  <div class="shell footer-grid">
+    <div class="footer-brand">
+      <img src="/aylin-inci-logo.webp" alt="Aylin İnci" width="92" height="32" loading="lazy">
+      <p>SEO, GEO ve Web Geliştirme Uzmanı · Türkiye</p>
+    </div>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/aylin-inci/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="/Aylin_Inci_CV_TR.pdf" target="_blank" rel="noopener">Özgeçmiş</a>
+      <a href="/blog/">Blog</a>
+      <a href="/#iletisim">İletişim</a>
+    </div>
+  </div>
+  <div class="shell footer-legal">
+    <a href="/kvkk-aydinlatma-metni">KVKK Aydınlatma Metni</a>
+    <a href="/cerez-politikasi">Çerez Politikası</a>
+    <a href="/gizlilik-politikasi">Gizlilik Politikası</a>
+    <span>© 2026 Aylin İnci</span>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -6,7 +6,7 @@
     <xhtml:link rel="alternate" hreflang="tr" href="https://aylininci.com/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://aylininci.com/en/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://aylininci.com/"/>
-    <lastmod>2026-10-12</lastmod>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -15,13 +15,13 @@
     <xhtml:link rel="alternate" hreflang="tr" href="https://aylininci.com/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://aylininci.com/en/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://aylininci.com/"/>
-    <lastmod>2026-10-12</lastmod>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://aylininci.com/blog/</loc>
-    <lastmod>2026-10-12</lastmod>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -64,6 +64,34 @@
     <loc>https://aylininci.com/blog/shopify-agentic-storefronts-chatgpt</loc>
     <image:image><image:loc>https://aylininci.com/blog/images/shopify-agentic-storefronts-chatgpt-hero.webp</image:loc></image:image>
     <lastmod>2026-10-10</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://aylininci.com/blog/yapay-zeka-icerik-google-seo</loc>
+    <image:image><image:loc>https://aylininci.com/blog/images/yapay-zeka-icerik-google-seo-hero.webp</image:loc></image:image>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://aylininci.com/blog/chatgpt-trafigi-ga4-olcumu</loc>
+    <image:image><image:loc>https://aylininci.com/blog/images/chatgpt-trafigi-ga4-olcumu-hero.webp</image:loc></image:image>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://aylininci.com/blog/google-eylul-2026-spam-guncellemesi</loc>
+    <image:image><image:loc>https://aylininci.com/blog/images/google-eylul-2026-spam-guncellemesi-hero.webp</image:loc></image:image>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://aylininci.com/blog/shopify-gecisi-seo-rehberi</loc>
+    <image:image><image:loc>https://aylininci.com/blog/images/shopify-gecisi-seo-rehberi-hero.webp</image:loc></image:image>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.8</priority>
   </url>
