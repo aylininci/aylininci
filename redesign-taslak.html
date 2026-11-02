@@ -29,8 +29,8 @@ a{color:inherit}
 .hero{position:relative;z-index:3;display:grid;grid-template-columns:clamp(110px,12vw,172px) minmax(230px,280px) minmax(0,1fr);gap:10px;padding:10px max(16px,env(safe-area-inset-right,0px)) 10px max(16px,env(safe-area-inset-left,0px));min-height:calc(100vh - var(--head));min-height:calc(100dvh - var(--head))}
 .word{position:relative;overflow:hidden;min-height:620px}
 .word span{position:absolute;left:0;bottom:0;writing-mode:vertical-rl;transform:rotate(180deg);font-weight:500;font-size:clamp(96px,10.8vw,156px);line-height:1;letter-spacing:-.04em;white-space:nowrap}
-.stack{display:grid;gap:10px;align-content:start;min-width:0}
-.tile{border:1px solid var(--line);padding:12px;font:300 13px/1.45 var(--mono);background:var(--panel)}
+.stack{display:grid;grid-template-columns:minmax(0,1fr);gap:10px;align-content:start;min-width:0}
+.tile{min-width:0;border:1px solid var(--line);padding:12px;font:300 13px/1.45 var(--mono);background:var(--panel)}
 .tile h1{font:500 22px/1.15 var(--sans);margin:0 0 6px}
 .tile p{margin:0}
 .tile-img img{display:block;width:calc(100% + 24px);max-width:none;height:auto;aspect-ratio:2/1;object-fit:cover;margin:-12px -12px 10px}
@@ -67,15 +67,33 @@ body.at-top .rail,body.at-top .notes{opacity:0;visibility:hidden}
 h2{font-weight:500;font-size:clamp(52px,8.2vw,118px);line-height:1;letter-spacing:-.025em;margin:0;text-wrap:balance}
 .card{background:var(--panel);border:1px solid var(--line);padding:24px;min-width:0}
 .card-wide{display:grid;grid-template-columns:minmax(0,1fr);gap:24px}
-.shot{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;border-radius:16px}
+.card-wide.split{grid-template-columns:minmax(0,.72fr) minmax(0,1fr);align-items:start}
+.stage{position:relative;min-width:0;aspect-ratio:3/2;border-radius:16px;overflow:hidden}
+.float{position:absolute;inset:0}
+.shot{display:block;width:100%;height:100%;object-fit:cover}
+.spot{position:absolute;width:8px;height:8px;margin:-4px 0 0 -4px;border-radius:50%;background:var(--mint);animation:spot 2.4s ease-in-out infinite}
+.spot::after{content:"";position:absolute;inset:-1px;border-radius:50%;border:1px solid var(--mint);animation:spot-ring 2.4s ease-out infinite;animation-delay:inherit}
+@keyframes spot{0%,100%{opacity:.25}50%{opacity:1}}
+@keyframes spot-ring{0%{transform:scale(1);opacity:.9}100%{transform:scale(4.5);opacity:0}}
+.ask{position:absolute;bottom:5%;width:min(46%,330px);background:#fff;color:#0B1030;border-radius:14px;padding:10px 12px;box-shadow:0 10px 30px rgba(0,0,0,.28);font:400 14px/1.3 var(--sans);opacity:0;transform:translateY(14px) scale(.97);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.8,.2,1)}
+.stage.in .ask{opacity:1;transform:none}
+.ask span{display:inline-block;background:#EEF0F6;border-radius:7px;padding:2px 8px;font-size:12px}
+.ask p{margin:8px 0 0;padding-right:30px;min-height:2.6em;color:#0B1030}
+.ask p::after{content:"";display:inline-block;width:1px;height:1em;background:#0B1030;vertical-align:-2px;margin-left:1px;animation:caret 1s steps(2) infinite}
+.send{position:absolute;right:11px;bottom:11px;width:24px;height:24px;border-radius:50%;background:#5A31F4;transition:transform .2s ease}
+.send::before{content:"";position:absolute;left:8px;top:9px;width:6px;height:6px;border-left:2px solid #fff;border-top:2px solid #fff;transform:rotate(45deg)}
+.ask.go .send{transform:scale(.82)}
+.send b{position:absolute;left:50%;top:50%;width:76px;height:76px;margin:-38px 0 0 -38px;border-radius:50%;border:1px solid #7C5CFF;animation:halo 3.2s ease-in-out infinite}
+.send b+b{width:150px;height:150px;margin:-75px 0 0 -75px;animation-delay:-1.6s}
+@keyframes halo{0%,100%{transform:scale(.86);opacity:.35}50%{transform:scale(1.06);opacity:1}}
 .card-text{display:grid;gap:14px;justify-items:start;min-width:0}
 h3{font-weight:500;font-size:19px;line-height:1.2;margin:0;display:flex;align-items:baseline;gap:10px}
 .mark{flex:none;display:inline-block;width:6px;height:6px;border:1px solid currentColor;transform:translateY(-2px)}
 .lede{font-size:clamp(19px,1.9vw,23px);line-height:1.22;letter-spacing:-.01em;color:var(--fg-2);margin:0;max-width:30ch}
 .pill{display:inline-block;background:var(--ink);color:#fff;border-radius:999px;padding:6px 12px;font:300 13px var(--mono);text-decoration:none}
 .pill:hover{background:#fff;color:var(--ink)}
-.points{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px 28px;font-weight:500;line-height:1.25;letter-spacing:-.005em}
-.points li{display:flex;gap:9px;align-items:baseline;min-width:0}
+.points{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0 24px;font-weight:500;line-height:1.25;letter-spacing:-.005em}
+.points li{display:flex;gap:9px;align-items:baseline;min-width:0;padding:14px 0;border-top:1px solid var(--line)}
 .about p{margin:0 0 14px;font-size:clamp(18px,1.7vw,21px);line-height:1.3;color:var(--fg-2)}
 .about p:last-child{margin-bottom:0}
 .grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
@@ -95,7 +113,7 @@ h3{font-weight:500;font-size:19px;line-height:1.2;margin:0;display:flex;align-it
 .row{display:flex;flex-wrap:wrap;gap:10px}
 footer{position:relative;z-index:3;border-top:1px solid var(--line);padding-block:24px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));font:300 13px var(--mono);color:var(--fg-2);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 @media (max-width:1320px){.notes{display:none}}
-@media (max-width:1120px){.rail{display:none}#links{display:none}}
+@media (max-width:1120px){.rail{display:none}#links{display:none}.points{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:860px){
   .top-links a:not(.cta){display:none}
   .hero{grid-template-columns:minmax(0,1fr);min-height:0}
@@ -103,10 +121,12 @@ footer{position:relative;z-index:3;border-top:1px solid var(--line);padding-bloc
   .word span{position:static;transform:none;writing-mode:horizontal-tb;display:block;font-size:clamp(58px,17.5vw,150px);line-height:1}
   .mapbox{order:-1;min-height:0;aspect-ratio:1/1}
   .points{grid-template-columns:minmax(0,1fr);gap:0}
+  .card-wide.split{grid-template-columns:minmax(0,1fr)}
+  .ask{width:62%;padding:8px 10px;font-size:12px}.ask span{font-size:11px}.ask p{margin-top:5px}
   .points li{padding:12px 0;border-top:1px solid var(--line)}
   .grid2,.grid3{grid-template-columns:minmax(0,1fr)}
 }
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.spot,.spot::after,.send b,.ask p::after{animation:none}.spot{opacity:1}.spot::after{opacity:0}.ask{transition:none}}
 /* Opening scene: the hero stays pinned while its panels leave and the camera moves in */
 .scene{position:relative;height:calc(100vh + 1500px);height:calc(100dvh + 1500px)}
 .hero{position:sticky;top:calc(env(safe-area-inset-top,0px) + var(--head));height:calc(100vh - var(--head));height:calc(100dvh - var(--head));min-height:0;overflow:hidden;--out:0}
@@ -216,7 +236,10 @@ body.at-top .notes{opacity:0;pointer-events:none}
         <p class="lede">Web sitelerinin arama motorları tarafından daha doğru taranması, anlaşılması ve indekslenmesi için teknik yapıların analiz edilmesi ve geliştirilmesi.</p>
         <a class="pill" href="https://aylininci.com/blog/core-web-vitals-performans-optimizasyonu" target="_blank" rel="noopener">Core Web Vitals rehberi</a>
       </div>
-      <img class="shot" src="img/bolum-teknik-seo.webp" alt="Teknik SEO çalışmalarını anlatan arayüz görseli" width="1400" height="933" loading="lazy">
+      <div class="stage" data-id="teknik-seo">
+        <div class="float"><img class="shot" src="img/bolum-teknik-seo.webp" alt="Teknik SEO çalışmalarını anlatan arayüz görseli" width="1400" height="933" loading="lazy"><i class="spot" style="left:32.6%;top:40%;animation-delay:0s" aria-hidden="true"></i><i class="spot" style="left:25.3%;top:69%;animation-delay:0.6s" aria-hidden="true"></i><i class="spot" style="left:63%;top:38.6%;animation-delay:1.2s" aria-hidden="true"></i></div>
+        <div class="ask" style="left:50%" aria-hidden="true"><span>Teknik SEO</span><p></p><i class="send"><b></b><b></b></i></div>
+      </div>
     </article>
     <ul class="points"><li><i class="mark" aria-hidden="true"></i>Tarama ve indeksleme sorunları</li><li><i class="mark" aria-hidden="true"></i>Canonical ve hreflang yapıları</li><li><i class="mark" aria-hidden="true"></i>Yönlendirme zincirleri ve 404 kontrolleri</li><li><i class="mark" aria-hidden="true"></i>Robots.txt ve sitemap incelemeleri</li><li><i class="mark" aria-hidden="true"></i>Site mimarisi ve URL yapıları</li><li><i class="mark" aria-hidden="true"></i>JavaScript kaynaklı SEO sorunları</li><li><i class="mark" aria-hidden="true"></i>Core Web Vitals ve sayfa performansı</li><li><i class="mark" aria-hidden="true"></i>Yapılandırılmış veri kontrolleri</li><li><i class="mark" aria-hidden="true"></i>Site taşıma ve migration planlaması</li></ul>
   </div>
@@ -225,13 +248,16 @@ body.at-top .notes{opacity:0;pointer-events:none}
 <section class="band" id="geo" data-bg="#2A0FA8" data-note="Araçlar: Google Search Console, Ahrefs, Schema">
   <div class="band-in">
     <h2>GEO</h2>
-    <article class="card card-wide">
+    <article class="card card-wide split">
       <div class="card-text">
         <h3><i class="mark" aria-hidden="true"></i>GEO ve Arama Görünürlüğü</h3>
         <p class="lede">Markaların yalnızca geleneksel arama sonuçlarında değil, yapay zekâ destekli arama ve yanıt sistemlerinde de doğru şekilde anlaşılmasını destekleyen içerik ve teknik yapı çalışmaları.</p>
         <a class="pill" href="https://aylininci.com/blog/google-ai-modu-seo" target="_blank" rel="noopener">Google AI Modu yazısı</a>
       </div>
-      <img class="shot" src="img/bolum-geo.webp" alt="GEO çalışmalarını anlatan arayüz görseli" width="1400" height="933" loading="lazy">
+      <div class="stage" data-id="geo">
+        <div class="float"><img class="shot" src="img/bolum-geo.webp" alt="GEO çalışmalarını anlatan arayüz görseli" width="1400" height="933" loading="lazy"><i class="spot" style="left:49.7%;top:22%;animation-delay:0s" aria-hidden="true"></i><i class="spot" style="left:59%;top:46%;animation-delay:0.6s" aria-hidden="true"></i></div>
+        <div class="ask" style="left:4%" aria-hidden="true"><span>GEO</span><p></p><i class="send"><b></b><b></b></i></div>
+      </div>
     </article>
     <ul class="points"><li><i class="mark" aria-hidden="true"></i>Entity ve konu bütünlüğü</li><li><i class="mark" aria-hidden="true"></i>Açık ve doğrulanabilir içerik yapısı</li><li><i class="mark" aria-hidden="true"></i>Semantik içerik mimarisi</li><li><i class="mark" aria-hidden="true"></i>Soru ve yanıt odaklı içerik yapıları</li><li><i class="mark" aria-hidden="true"></i>Kaynaklandırma ve uzmanlık sinyalleri</li><li><i class="mark" aria-hidden="true"></i>Schema ve yapılandırılmış veri</li><li><i class="mark" aria-hidden="true"></i>Marka ve konu otoritesinin desteklenmesi</li><li><i class="mark" aria-hidden="true"></i>AI Overview ve üretken arama analizleri</li></ul>
   </div>
@@ -246,7 +272,10 @@ body.at-top .notes{opacity:0;pointer-events:none}
         <p class="lede">Arama niyetine, kullanıcı ihtiyacına ve web sitesinin ticari hedeflerine uygun içerik yapılarının planlanması.</p>
         <a class="pill" href="https://aylininci.com/blog/yapay-zeka-icerik-google-seo" target="_blank" rel="noopener">Yapay zeka içeriği yazısı</a>
       </div>
-      <img class="shot" src="img/bolum-icerik.webp" alt="İçerik çalışmalarını anlatan arayüz görseli" width="1400" height="933" loading="lazy">
+      <div class="stage" data-id="icerik">
+        <div class="float"><img class="shot" src="img/bolum-icerik.webp" alt="İçerik çalışmalarını anlatan arayüz görseli" width="1400" height="933" loading="lazy"><i class="spot" style="left:80.8%;top:50%;animation-delay:0s" aria-hidden="true"></i><i class="spot" style="left:36%;top:42%;animation-delay:0.6s" aria-hidden="true"></i></div>
+        <div class="ask" style="left:52%" aria-hidden="true"><span>İçerik</span><p></p><i class="send"><b></b><b></b></i></div>
+      </div>
     </article>
     <ul class="points"><li><i class="mark" aria-hidden="true"></i>Anahtar kelime ve rakip analizi</li><li><i class="mark" aria-hidden="true"></i>Arama niyeti sınıflandırması</li><li><i class="mark" aria-hidden="true"></i>İçerik planı ve konu kümeleri</li><li><i class="mark" aria-hidden="true"></i>Kategori ve ürün sayfası optimizasyonları</li><li><i class="mark" aria-hidden="true"></i>İç bağlantı stratejisi</li><li><i class="mark" aria-hidden="true"></i>İçerik briefleri</li><li><i class="mark" aria-hidden="true"></i>Kanibalizasyon analizi</li><li><i class="mark" aria-hidden="true"></i>Meta başlık ve açıklama optimizasyonları</li><li><i class="mark" aria-hidden="true"></i>Türkçe ve İngilizce içerik çalışmaları</li></ul>
   </div>
@@ -255,13 +284,16 @@ body.at-top .notes{opacity:0;pointer-events:none}
 <section class="band" id="shopify" data-bg="#0A5A3C" data-note="Araçlar: Shopify, Liquid, JSON, HTML, CSS, JavaScript, GitHub">
   <div class="band-in">
     <h2 lang="en">Shopify</h2>
-    <article class="card card-wide">
+    <article class="card card-wide split">
       <div class="card-text">
         <h3><i class="mark" aria-hidden="true"></i>Shopify ve Liquid Geliştirme</h3>
         <p class="lede">Shopify mağazalarının teknik altyapı, tema yapısı, kullanıcı deneyimi ve SEO ihtiyaçları doğrultusunda geliştirilmesi.</p>
         <a class="pill" href="https://aylininci.com/blog/shopify-gecisi-seo-rehberi" target="_blank" rel="noopener">Shopify’a geçiş rehberi</a>
       </div>
-      <img class="shot" src="img/bolum-shopify.webp" alt="Shopify çalışmalarını anlatan arayüz görseli" width="1400" height="933" loading="lazy">
+      <div class="stage" data-id="shopify">
+        <div class="float"><img class="shot" src="img/bolum-shopify.webp" alt="Shopify çalışmalarını anlatan arayüz görseli" width="1400" height="933" loading="lazy"><i class="spot" style="left:24.8%;top:72.6%;animation-delay:0s" aria-hidden="true"></i><i class="spot" style="left:32%;top:85.7%;animation-delay:0.6s" aria-hidden="true"></i></div>
+        <div class="ask" style="left:52%" aria-hidden="true"><span>Shopify</span><p></p><i class="send"><b></b><b></b></i></div>
+      </div>
     </article>
     <ul class="points"><li><i class="mark" aria-hidden="true"></i>Tema özelleştirmeleri</li><li><i class="mark" aria-hidden="true"></i>Liquid kod düzenlemeleri</li><li><i class="mark" aria-hidden="true"></i>Özel section ve block geliştirmeleri</li><li><i class="mark" aria-hidden="true"></i>Ürün ve koleksiyon sayfası düzenlemeleri</li><li><i class="mark" aria-hidden="true"></i>JSON template yapıları</li><li><i class="mark" aria-hidden="true"></i>Mobil uyumluluk geliştirmeleri</li><li><i class="mark" aria-hidden="true"></i>Site hızı ve görsel optimizasyonları</li><li><i class="mark" aria-hidden="true"></i>Çok dilli mağaza yapıları</li><li><i class="mark" aria-hidden="true"></i>Canonical ve indeksleme kontrolleri</li><li><i class="mark" aria-hidden="true"></i>GitHub üzerinden tema yönetimi</li><li><i class="mark" aria-hidden="true"></i>Teknik hata analizi ve çözümü</li></ul>
   </div>
@@ -276,7 +308,10 @@ body.at-top .notes{opacity:0;pointer-events:none}
         <p class="lede">Kurumsal web siteleri, landing page yapıları ve içerik odaklı projeler için kullanıcı deneyimi ve performans odaklı arayüz geliştirmeleri.</p>
         <a class="pill" href="#iletisim">İletişime geç</a>
       </div>
-      <img class="shot" src="img/bolum-wordpress.webp" alt="WordPress çalışmalarını anlatan arayüz görseli" width="1400" height="933" loading="lazy">
+      <div class="stage" data-id="wordpress">
+        <div class="float"><img class="shot" src="img/bolum-wordpress.webp" alt="WordPress çalışmalarını anlatan arayüz görseli" width="1400" height="933" loading="lazy"><i class="spot" style="left:27.8%;top:22%;animation-delay:0s" aria-hidden="true"></i><i class="spot" style="left:70.6%;top:50.4%;animation-delay:0.6s" aria-hidden="true"></i></div>
+        <div class="ask" style="left:4%" aria-hidden="true"><span>WordPress</span><p></p><i class="send"><b></b><b></b></i></div>
+      </div>
     </article>
     <ul class="points"><li><i class="mark" aria-hidden="true"></i>WordPress site düzenlemeleri</li><li><i class="mark" aria-hidden="true"></i>Elementor arayüz geliştirmeleri</li><li><i class="mark" aria-hidden="true"></i>Özel HTML ve CSS uygulamaları</li><li><i class="mark" aria-hidden="true"></i>JavaScript tabanlı etkileşimler</li><li><i class="mark" aria-hidden="true"></i>Mobil uyumluluk</li><li><i class="mark" aria-hidden="true"></i>Sayfa hızı optimizasyonları</li><li><i class="mark" aria-hidden="true"></i>Form ve yönlendirme yapıları</li><li><i class="mark" aria-hidden="true"></i>Tek sayfa ve kurumsal site tasarımları</li><li><i class="mark" aria-hidden="true"></i>SEO uyumlu sayfa yapıları</li><li><i class="mark" aria-hidden="true"></i>Tema ve eklenti kaynaklı hata çözümleri</li></ul>
   </div>
@@ -285,13 +320,16 @@ body.at-top .notes{opacity:0;pointer-events:none}
 <section class="band" id="veri" data-bg="#6A1045" data-note="Araçlar: GA4, GSC, GTM, Looker Studio, Excel">
   <div class="band-in">
     <h2>Veri</h2>
-    <article class="card card-wide">
+    <article class="card card-wide split">
       <div class="card-text">
         <h3><i class="mark" aria-hidden="true"></i>Veri Analizi ve Ölçümleme</h3>
         <p class="lede">SEO ve web performansının yalnızca sıralamalarla değil, kullanıcı davranışı ve dönüşüm verileriyle birlikte değerlendirilmesi.</p>
         <a class="pill" href="https://aylininci.com/blog/chatgpt-trafigi-ga4-olcumu" target="_blank" rel="noopener">ChatGPT trafiğini ölçmek</a>
       </div>
-      <img class="shot" src="img/bolum-veri.webp" alt="Veri çalışmalarını anlatan arayüz görseli" width="1400" height="933" loading="lazy">
+      <div class="stage" data-id="veri">
+        <div class="float"><img class="shot" src="img/bolum-veri.webp" alt="Veri çalışmalarını anlatan arayüz görseli" width="1400" height="933" loading="lazy"><i class="spot" style="left:78.9%;top:43.3%;animation-delay:0s" aria-hidden="true"></i><i class="spot" style="left:66%;top:22%;animation-delay:0.6s" aria-hidden="true"></i></div>
+        <div class="ask" style="left:6%" aria-hidden="true"><span>Veri</span><p></p><i class="send"><b></b><b></b></i></div>
+      </div>
     </article>
     <ul class="points"><li><i class="mark" aria-hidden="true"></i>GA4 performans analizleri</li><li><i class="mark" aria-hidden="true"></i>Google Search Console raporları</li><li><i class="mark" aria-hidden="true"></i>Organik trafik ve görünürlük değerlendirmeleri</li><li><i class="mark" aria-hidden="true"></i>Dönüşüm takibi</li><li><i class="mark" aria-hidden="true"></i>Google Tag Manager kontrolleri</li><li><i class="mark" aria-hidden="true"></i>Landing page performansları</li><li><i class="mark" aria-hidden="true"></i>Kanal ve yönlendiren analizleri</li><li><i class="mark" aria-hidden="true"></i>Yönetim ve müşteri raporları</li><li><i class="mark" aria-hidden="true"></i>Verilerin anlaşılır çıktılara dönüştürülmesi</li></ul>
   </div>
@@ -306,7 +344,10 @@ body.at-top .notes{opacity:0;pointer-events:none}
         <p class="lede">Tekrarlayan veri işleme, raporlama ve içerik operasyonlarının daha kontrollü ve verimli hâle getirilmesi.</p>
         <a class="pill" href="#araclar">Araçları gör</a>
       </div>
-      <img class="shot" src="img/bolum-otomasyon.webp" alt="Otomasyon çalışmalarını anlatan arayüz görseli" width="1400" height="933" loading="lazy">
+      <div class="stage" data-id="otomasyon">
+        <div class="float"><img class="shot" src="img/bolum-otomasyon.webp" alt="Otomasyon çalışmalarını anlatan arayüz görseli" width="1400" height="933" loading="lazy"><i class="spot" style="left:73.4%;top:25.3%;animation-delay:0s" aria-hidden="true"></i><i class="spot" style="left:73.4%;top:35.8%;animation-delay:0.6s" aria-hidden="true"></i><i class="spot" style="left:85.9%;top:62.5%;animation-delay:1.2s" aria-hidden="true"></i></div>
+        <div class="ask" style="left:52%" aria-hidden="true"><span>Otomasyon</span><p></p><i class="send"><b></b><b></b></i></div>
+      </div>
     </article>
     <ul class="points"><li><i class="mark" aria-hidden="true"></i>CSV ve Excel verilerinin işlenmesi</li><li><i class="mark" aria-hidden="true"></i>SEO verilerinin sınıflandırılması</li><li><i class="mark" aria-hidden="true"></i>Toplu yönlendirme kontrolleri</li><li><i class="mark" aria-hidden="true"></i>Görsel boyut ve dosya optimizasyonları</li><li><i class="mark" aria-hidden="true"></i>Raporlama otomasyonları</li><li><i class="mark" aria-hidden="true"></i>Veri temizleme ve düzenleme</li><li><i class="mark" aria-hidden="true"></i>Tekrarlayan iş akışlarının sadeleştirilmesi</li></ul>
   </div>
@@ -758,9 +799,21 @@ body.at-top .notes{opacity:0;pointer-events:none}
     if (!card || !dot) return;
     var a = card.getBoundingClientRect(), d = dot.getBoundingClientRect();
     if (a.bottom < 0 || a.top > H) return;
-    lc.strokeStyle = 'rgba(255,255,255,.4)'; lc.lineWidth = 1; lc.beginPath(); lc.moveTo(d.right, d.top + d.height / 2); lc.lineTo(a.left, a.top + 18);
-    if (getComputedStyle(n).display !== 'none') { var s = n.getBoundingClientRect(); lc.moveTo(a.right, a.top + 18); lc.lineTo(s.left, s.top + 14); }
-    lc.stroke(); lc.fillStyle = '#fff'; lc.fillRect(a.left - 2, a.top + 16, 4, 4); lc.fillRect(a.right - 2, a.top + 16, 4, 4);
+    var wires = [[d.right, d.top + d.height / 2, a.left, a.top + 18]];
+    if (getComputedStyle(n).display !== 'none') { var s = n.getBoundingClientRect(); wires.push([a.right, a.top + 18, s.left, s.top + 14]); }
+    lc.strokeStyle = 'rgba(255,255,255,.4)'; lc.lineWidth = 1; lc.beginPath();
+    wires.forEach(function (w) { lc.moveTo(w[0], w[1]); lc.lineTo(w[2], w[3]); });
+    lc.stroke();
+    if (!reduce) {
+      var run = (performance.now() % 4000) / 4000 * 1.5 - .15;
+      lc.strokeStyle = '#fff'; lc.lineWidth = 1.5; lc.beginPath();
+      wires.forEach(function (w) {
+        var p0 = clamp(run), p1 = clamp(run + .15);
+        if (p1 > p0) { lc.moveTo(lerp(w[0], w[2], p0), lerp(w[1], w[3], p0)); lc.lineTo(lerp(w[0], w[2], p1), lerp(w[1], w[3], p1)); }
+      });
+      lc.stroke();
+    }
+    lc.fillStyle = '#fff'; lc.fillRect(a.left - 2, a.top + 16, 4, 4); lc.fillRect(a.right - 2, a.top + 16, 4, 4);
   }
 
   function hit(e) {
@@ -915,6 +968,23 @@ body.at-top .notes{opacity:0;pointer-events:none}
       tick();
     }
   }
+
+  var ASK = {"teknik-seo":["Tarama ve indeksleme sorunları","Canonical ve hreflang yapıları","Yönlendirme zincirleri ve 404 kontrolleri","Robots.txt ve sitemap incelemeleri","Site mimarisi ve URL yapıları","JavaScript kaynaklı SEO sorunları","Core Web Vitals ve sayfa performansı","Yapılandırılmış veri kontrolleri","Site taşıma ve migration planlaması"],"geo":["Entity ve konu bütünlüğü","Açık ve doğrulanabilir içerik yapısı","Semantik içerik mimarisi","Soru ve yanıt odaklı içerik yapıları","Kaynaklandırma ve uzmanlık sinyalleri","Schema ve yapılandırılmış veri","Marka ve konu otoritesinin desteklenmesi","AI Overview ve üretken arama analizleri"],"icerik":["Anahtar kelime ve rakip analizi","Arama niyeti sınıflandırması","İçerik planı ve konu kümeleri","Kategori ve ürün sayfası optimizasyonları","İç bağlantı stratejisi","İçerik briefleri","Kanibalizasyon analizi","Meta başlık ve açıklama optimizasyonları","Türkçe ve İngilizce içerik çalışmaları"],"shopify":["Tema özelleştirmeleri","Liquid kod düzenlemeleri","Özel section ve block geliştirmeleri","Ürün ve koleksiyon sayfası düzenlemeleri","JSON template yapıları","Mobil uyumluluk geliştirmeleri","Site hızı ve görsel optimizasyonları","Çok dilli mağaza yapıları","Canonical ve indeksleme kontrolleri","GitHub üzerinden tema yönetimi","Teknik hata analizi ve çözümü"],"wordpress":["WordPress site düzenlemeleri","Elementor arayüz geliştirmeleri","Özel HTML ve CSS uygulamaları","JavaScript tabanlı etkileşimler","Mobil uyumluluk","Sayfa hızı optimizasyonları","Form ve yönlendirme yapıları","Tek sayfa ve kurumsal site tasarımları","SEO uyumlu sayfa yapıları","Tema ve eklenti kaynaklı hata çözümleri"],"veri":["GA4 performans analizleri","Google Search Console raporları","Organik trafik ve görünürlük değerlendirmeleri","Dönüşüm takibi","Google Tag Manager kontrolleri","Landing page performansları","Kanal ve yönlendiren analizleri","Yönetim ve müşteri raporları","Verilerin anlaşılır çıktılara dönüştürülmesi"],"otomasyon":["CSV ve Excel verilerinin işlenmesi","SEO verilerinin sınıflandırılması","Toplu yönlendirme kontrolleri","Görsel boyut ve dosya optimizasyonları","Raporlama otomasyonları","Veri temizleme ve düzenleme","Tekrarlayan iş akışlarının sadeleştirilmesi"]};
+  [].forEach.call(document.querySelectorAll('.stage'), function (st) {
+    var card = st.querySelector('.ask'), p = card.querySelector('p'), list = ASK[st.getAttribute('data-id')], k = 0, n = 0, on = false, timer = 0;
+    if (reduce) p.textContent = list[0];
+    var run = function () {
+      timer = 0; if (!on) return;
+      var s = list[k];
+      if (n < s.length) { n++; p.textContent = s.slice(0, n); timer = setTimeout(run, 42); return; }
+      card.classList.add('go');
+      timer = setTimeout(function () { card.classList.remove('go'); k = (k + 1) % list.length; n = 0; p.textContent = ''; timer = setTimeout(run, 320); }, 2300);
+    };
+    new IntersectionObserver(function (es) {
+      on = es[0].isIntersecting; st.classList.toggle('in', on);
+      if (on && !reduce && !timer) timer = setTimeout(run, 500);
+    }, { threshold: .3 }).observe(st);
+  });
 })();
 
 </script>
