@@ -409,7 +409,7 @@ kirik.to_excel("kontrol.xlsx", index=False)</code></pre>
   var note = document.getElementById('noteText');
   var W = 0, H = 0, dpr = 1, mobile = false, hover = -1, start = performance.now(), active = null;
   var REACH = .19, FOCAL = 2.4, INK = [1, 4, 25], MINT = [124, 242, 198], BLUE = [64, 124, 255], GREEN = [52, 214, 160];
-  var mx = -9999, my = -9999, hoverSat = null, hoverLay = null, hoverP = 0, hoverLayer = document.getElementById('mapHover');
+  var tiltX = 0, tiltY = 0, lagX = -9999, lagY = -9999, mx = -9999, my = -9999, hoverSat = null, hoverLay = null, hoverP = 0, hoverLayer = document.getElementById('mapHover');
   var sel = null, selP = 0, selGoal = 0, layP = 0, layout = null, chipLayer = document.getElementById('mapChips'), repaint = function () {};
   var yaw = 0, pitch = 0, labelIn = 1, slide = 1;
 
@@ -502,6 +502,14 @@ kirik.to_excel("kontrol.xlsx", index=False)</code></pre>
     var t = reduce ? 9 : (now - start - 700) / 1000;
     yaw = reduce ? 0 : Math.sin(now * .00011) * .3 + Math.sin(y * .00035) * .5;
     pitch = reduce ? .06 : .06 + Math.sin(now * .00017) * .1;
+    if (!reduce && !mobile) {
+      var bb = box.getBoundingClientRect(), inside = mx > -9000;
+      var gx = inside ? clamp((mx - bb.left) / bb.width) * 2 - 1 : 0, gy = inside ? clamp((my - bb.top) / bb.height) * 2 - 1 : 0;
+      tiltX += (gx - tiltX) * .035; tiltY += (gy - tiltY) * .035;
+      yaw += tiltX * .17; pitch += tiltY * .13;
+      if (inside) { if (lagX < -9000) { lagX = mx; lagY = my; } lagX += (mx - lagX) * .1; lagY += (my - lagY) * .1; }
+      else { lagX = lagY = -9999; }
+    }
     labelIn = smooth((t - 1.6) / .6); slide = (mobile || reduce) ? 1 : smooth((t - 1.75) / .75);
     nodes.forEach(function (n) {
       var tn = t - n.delay, g = spring(tn), x = n.x * g, yy = n.y * g, z = n.z * g, s = spin(x, yy, z);
@@ -576,10 +584,15 @@ kirik.to_excel("kontrol.xlsx", index=False)</code></pre>
           c.fillStyle = 'rgba(255,255,255,' + sa + ')'; c.fillRect(px - cw * .7, py - ch * .55, cw * .85, ch * 1.1);
           c.fillRect(px + cw * .25, py - ch * .55, cw * .45, ch * .45);
         } else if (rings <= .05) {
-          var gl = (mobile || sel || hoverSat) ? 0 : clamp(1.15 - Math.sqrt((px - mx) * (px - mx) + (py - my) * (py - my)) / 150);
-          var size = (1.7 + near * 2.2) * p.p + gl * .9;
-          c.fillStyle = on || gl > .2 ? 'rgba(255,255,255,' + Math.max(sa, gl * n.sIn) + ')' : rgb(mix(BLUE, [150, 180, 255], .4), sa);
-          c.beginPath(); c.arc(px, py, size, 0, 6.283); c.fill();
+          var dm = (mobile || sel || hoverSat || lagX < -9000) ? 9999 : Math.sqrt((px - lagX) * (px - lagX) + (py - lagY) * (py - lagY));
+          var lit = clamp(1.25 - dm / 190);
+          s.w = Math.max(lit, (s.w || 0) * .978);
+          var gl = s.w > .08 ? s.w : 0, size = (1.7 + near * 2.2) * p.p + gl * .8;
+          if (dm < 62) { c.strokeStyle = 'rgba(255,255,255,' + Math.max(sa, .9) + ')'; c.lineWidth = 1; c.beginPath(); c.arc(px, py, size + 1.5, 0, 6.283); c.stroke(); }
+          else {
+            c.fillStyle = on || gl > .12 ? 'rgba(255,255,255,' + Math.max(sa, Math.min(1, gl * 1.6) * n.sIn) + ')' : rgb(mix(BLUE, [150, 180, 255], .4), sa);
+            c.beginPath(); c.arc(px, py, size, 0, 6.283); c.fill();
+          }
         }
       });
       if (i === 0) {
