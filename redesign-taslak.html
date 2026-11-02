@@ -647,7 +647,7 @@ kirik.to_excel("kontrol.xlsx", index=False)</code></pre>
     relList.forEach(function (r) { pts.push({ idx: r.j, hub: r.i, it: HUBS[r.i].items[r.j] }); });
     pts.forEach(function (p, q) {
       var th = (q + .5) / pts.length * 6.283 - 1.2, r = .7 + .3 * frac(q * .618);
-      p.dx = Math.cos(th) * rx * r; p.dy = Math.sin(th) * ry * r;
+      p.dx = Math.cos(th) * rx * r; p.dy = Math.sin(th) * ry * r; p.z = (frac(q * .37 + .13) * 2 - 1) * ry * .95; p.a = 0; p.v = 0; p.f = .6 + frac(q * .61 + .2) * .8;
     });
     [pts.filter(function (p) { return p.dx < 0; }), pts.filter(function (p) { return p.dx >= 0; })].forEach(function (side) {
       side.sort(function (a, c) { return a.dy - c.dy; });
@@ -717,8 +717,27 @@ kirik.to_excel("kontrol.xlsx", index=False)</code></pre>
     var ox = layout.ox === null ? cx : lerp(layout.ox, cx, t), oy = layout.oy === null ? cy : lerp(layout.oy, cy, t);
     layout.ring += ((layout.onCentre || mobile ? 1 : 0) - layout.ring) * (reduce ? 1 : .16);
     var edge = mix(BLUE, GREEN, layout.tint), show = smooth((layP - .45) * 2), dim = lerp(1, .32, mobile ? 0 : layout.ring), a = smooth(layP * 1.6) * dim;
+    var ta = tiltX * .16, tb = tiltY * .13, ca1 = Math.cos(ta), sa1 = Math.sin(ta), cb1 = Math.cos(tb), sb1 = Math.sin(tb);
+    var on = !reduce && !mobile && lagX > -9000, rc = on ? Math.sqrt((lagX - cx) * (lagX - cx) + (lagY - cy) * (lagY - cy)) : 0;
+    var ang = on ? Math.atan2(lagY - cy, lagX - cx) : 0, dA = 0;
+    if (on && rc > 30) {
+      if (layout.ang !== undefined) { dA = ang - layout.ang; if (dA > Math.PI) dA -= 6.283; if (dA < -Math.PI) dA += 6.283; dA = Math.max(-.14, Math.min(.14, dA)); }
+      layout.ang = ang;
+    } else { layout.ang = undefined; }
+    var reach = clamp(rc / 90);
     layout.items.forEach(function (p, q) {
-      var w = reduce ? 0 : Math.sin(now * .00045 + q * 1.7) * 7, tx = cx + p.dx + w, ty = cy + p.dy + Math.cos(now * .00038 + q) * 5 * (reduce ? 0 : 1);
+      var w = reduce ? 0 : Math.sin(now * .00045 + q * 1.7) * 7, h0 = reduce ? 0 : Math.cos(now * .00038 + q) * 5;
+      if (!reduce && !mobile) {
+        var R = Math.sqrt(p.dx * p.dx + p.dy * p.dy), ad = Math.atan2(p.dy, p.dx) + p.a - ang;
+        ad = Math.atan2(Math.sin(ad), Math.cos(ad));
+        var wt = (.12 + .6 * Math.exp(-ad * ad) * Math.exp(-(R - rc) * (R - rc) / 48000)) * p.f * reach;
+        p.v = (p.v + dA * wt * .075 - p.a * .0026) * .95;
+        p.a = Math.max(-.62, Math.min(.62, p.a + p.v));
+      }
+      var sn = Math.sin(p.a), cs = Math.cos(p.a), rx0 = p.dx * cs - p.dy * sn, ry0 = p.dx * sn + p.dy * cs;
+      var x0 = rx0 + w, y0 = ry0 + h0, z0 = mobile ? 0 : p.z;
+      var x1 = x0 * ca1 + z0 * sa1, z1 = -x0 * sa1 + z0 * ca1, y1 = y0 * cb1 - z1 * sb1;
+      var tx = cx + x1, ty = cy + y1;
       var px = lerp(p.ox === null ? cx : p.ox, tx, t), py = lerp(p.oy === null ? cy : p.oy, ty, t);
       var grad = c.createLinearGradient(ox, oy, px, py);
       var lit = layout.over === p; p.sx = px; p.sy = py;
@@ -728,7 +747,13 @@ kirik.to_excel("kontrol.xlsx", index=False)</code></pre>
         c.fillStyle = rgb(INK, a); c.fillRect(px - 8, py - 6, 16, 12);
         c.strokeStyle = 'rgba(255,255,255,' + a * .55 + ')'; c.lineWidth = .7; c.strokeRect(px - 8, py - 6, 16, 12);
         c.fillStyle = 'rgba(255,255,255,' + a + ')'; c.fillRect(px - 5, py - 3, 7, 6); c.fillRect(px + 3, py - 3, 3, 3);
-      } else { c.fillStyle = lit ? 'rgba(255,255,255,' + a + ')' : rgb(mix(BLUE, [150, 180, 255], .4), a); c.beginPath(); c.arc(px, py, lit ? 3.6 : 2.6, 0, 6.283); c.fill(); }
+      } else {
+        var dm = (mobile || lagX < -9000) ? 9999 : Math.sqrt((px - lagX) * (px - lagX) + (py - lagY) * (py - lagY));
+        p.gl = Math.max(clamp(1.2 - dm / 170), (p.gl || 0) * .978);
+        var white = lit || p.gl > .14;
+        c.fillStyle = white ? 'rgba(255,255,255,' + (lit ? a : Math.min(1, p.gl * 1.6) * a) + ')' : rgb(mix(BLUE, [150, 180, 255], .4), a);
+        c.beginPath(); c.arc(px, py, lit ? 3.6 : 2.6 + p.gl * .8, 0, 6.283); c.fill();
+      }
       var ew = p.w || (p.w = p.el.offsetWidth), eh = p.h || (p.h = p.el.offsetHeight), lx = px - b.left, ly = py - b.top;
       var left = mobile ? lx + 9 : p.dx >= 0 ? lx + 12 : lx - 12 - ew;
       if (!mobile && left + ew > b.width - 4) left = lx - 12 - ew;
