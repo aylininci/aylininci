@@ -160,6 +160,9 @@ body.at-top .notes{opacity:0;pointer-events:none}
 @media (max-width:860px){
   .word span,.tile{animation-delay:.2s}
 }
+#mapHover{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.tip{position:absolute;left:0;top:0;opacity:0;padding:1px 4px;background:var(--ink);color:#fff;font:300 11px/1.3 var(--mono);max-width:190px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;will-change:transform}
+.tip.me{background:var(--blue);padding:3px 6px;max-width:230px;white-space:normal;font-size:11.5px}
 </style>
 
 <script>document.body.classList.add("at-top")</script>
@@ -184,7 +187,7 @@ body.at-top .notes{opacity:0;pointer-events:none}
     <div class="tile"><strong>21</strong><p>araç ve teknoloji</p></div>
   </div>
   <div class="mapbox" role="group" aria-label="Uzmanlık alanlarını ve çalışma başlıklarını gösteren bağlantı haritası">
-    <div id="mapChips"></div><p class="maphint">Bir noktaya tıklayın</p>
+    <div id="mapHover"></div><div id="mapChips"></div><p class="maphint">Bir noktaya tıklayın</p>
   </div>
 </div></div>
 
@@ -406,6 +409,7 @@ kirik.to_excel("kontrol.xlsx", index=False)</code></pre>
   var note = document.getElementById('noteText');
   var W = 0, H = 0, dpr = 1, mobile = false, hover = -1, start = performance.now(), active = null;
   var REACH = .19, FOCAL = 2.4, INK = [1, 4, 25], MINT = [124, 242, 198], BLUE = [64, 124, 255], GREEN = [52, 214, 160];
+  var mx = -9999, my = -9999, hoverSat = null, hoverLay = null, hoverP = 0, hoverLayer = document.getElementById('mapHover');
   var sel = null, selP = 0, selGoal = 0, layP = 0, layout = null, chipLayer = document.getElementById('mapChips'), repaint = function () {};
   var yaw = 0, pitch = 0, labelIn = 1, slide = 1;
 
@@ -430,6 +434,22 @@ kirik.to_excel("kontrol.xlsx", index=False)</code></pre>
   for (var i = 0; i < 120; i++) dots.push({ x: r0(), y: r0(), s: 1 + r0() * 1.4, v: .2 + r0() * .8 });
   var hubIndex = {}; HUBS.forEach(function (h, i) { hubIndex[h.id] = i; });
   var stops = bands.map(function (b) { return { el: b, hub: hubIndex[b.id] === undefined ? -1 : hubIndex[b.id], bg: hex(b.dataset.bg) }; });
+
+  var STOP = { 'veri': 1, 'yapil': 1, 'kontr': 1, 'analiz': 1, 'analı': 1, 'calis': 1, 'çalış': 1, 'düzen': 1, 'geliş': 1, 'optim': 1, 'sorun': 1, 'içeri': 0, 'uygul': 1, 'sayfa': 0, 'yapıl': 1, 'yapıs': 1, 'yapıl': 1, 'yönel': 1 };
+  var tokens = HUBS.map(function (h) { return h.items.map(function (it) {
+    return it.t.toLocaleLowerCase('tr').split(/[^a-zçğıöşü0-9]+/).filter(function (w) { return w.length >= 3 && w !== 've' && w !== 'için'; }).map(function (w) { return w.slice(0, 5); }).filter(function (w) { return !STOP[w]; });
+  }); });
+  function related(i, j) {
+    var mine = tokens[i][j], list = [];
+    HUBS.forEach(function (h, a) { h.items.forEach(function (it, b) {
+      if (a === i && b === j) return;
+      var s = 0; tokens[a][b].forEach(function (w) { if (mine.indexOf(w) >= 0) s += 3; });
+      if (a === i) s += 1;
+      if (s) list.push({ i: a, j: b, s: s + (a !== i ? 1 : 0) });
+    }); });
+    list.sort(function (x, y) { return y.s - x.s || x.i - y.i || x.j - y.j; });
+    return list.slice(0, 8);
+  }
 
   function spin(x, y, z) {
     var ca = Math.cos(yaw), sa = Math.sin(yaw), cb = Math.cos(pitch), sb = Math.sin(pitch);
@@ -498,6 +518,9 @@ kirik.to_excel("kontrol.xlsx", index=False)</code></pre>
     if (!selGoal && selP < .004) { selP = 0; layP = 0; if (layout) clearLayout(); }
     if (sel && y > 80) closeSel();
     var fade = 1 - selP;
+    hoverP += ((hoverSat ? 1 : 0) - hoverP) * .18;
+    if (!hoverSat && hoverP < .01 && hoverLay) { hoverLay = null; hoverP = 0; hoverLayer.textContent = ''; }
+    var hd = lerp(1, .36, hoverP);
     var out = (mobile || reduce) ? 0 : smooth(k.q / .22);
     hero.style.setProperty('--out', out.toFixed(4));
     root.style.setProperty('--page', 'rgb(' + (k.page[0] | 0) + ',' + (k.page[1] | 0) + ',' + (k.page[2] | 0) + ')');
@@ -523,13 +546,13 @@ kirik.to_excel("kontrol.xlsx", index=False)</code></pre>
 
     /* spokes from the centre ring, drawn first so they sit behind everything */
     c.lineWidth = .8;
-    nodes.forEach(function (n, i) { if (!i) return; c.strokeStyle = rgb(BLUE, .24 * alphaOf(i) * n.hIn * hoverFade); c.beginPath(); c.moveTo(centre.sx, centre.sy); c.lineTo(n.sx, n.sy); c.stroke(); });
+    nodes.forEach(function (n, i) { if (!i) return; c.strokeStyle = rgb(BLUE, .24 * alphaOf(i) * n.hIn * hoverFade * hd); c.beginPath(); c.moveTo(centre.sx, centre.sy); c.lineTo(n.sx, n.sy); c.stroke(); });
 
     /* far hubs first so nearer ones paint over them */
     var order = nodes.map(function (n, i) { return i; }).sort(function (a, b) { return nodes[a].depth - nodes[b].depth; });
     order.forEach(function (i) {
       var n = nodes[i], h = HUBS[i], on = hover === i;
-      var a = alphaOf(i) * (on || hover < 0 ? 1 : .45), m = i === k.focus ? k.mint * (1 - k.e) : i === k.next ? k.mint * k.e : 0;
+      var a0 = alphaOf(i) * (on || hover < 0 ? 1 : .45), a = a0 * hd, m = i === k.focus ? k.mint * (1 - k.e) : i === k.next ? k.mint * k.e : 0;
       var reach = REACH * 1.6 * k.z * n.scale, hx = n.sx, hy = n.sy;
       if (a < .01 || hx < -reach || hx > W + reach || hy < -reach || hy > H + reach) return;
       var edge = mix(mix(BLUE, GREEN, n.tint), MINT, m), far = nodes[(i + 1) % nodes.length];
@@ -553,8 +576,9 @@ kirik.to_excel("kontrol.xlsx", index=False)</code></pre>
           c.fillStyle = 'rgba(255,255,255,' + sa + ')'; c.fillRect(px - cw * .7, py - ch * .55, cw * .85, ch * 1.1);
           c.fillRect(px + cw * .25, py - ch * .55, cw * .45, ch * .45);
         } else if (rings <= .05) {
-          var size = (1.7 + near * 2.2) * p.p;
-          c.fillStyle = on ? 'rgba(255,255,255,' + sa + ')' : rgb(mix(BLUE, [150, 180, 255], .4), sa);
+          var gl = (mobile || sel || hoverSat) ? 0 : clamp(1.15 - Math.sqrt((px - mx) * (px - mx) + (py - my) * (py - my)) / 150);
+          var size = (1.7 + near * 2.2) * p.p + gl * .9;
+          c.fillStyle = on || gl > .2 ? 'rgba(255,255,255,' + Math.max(sa, gl * n.sIn) + ')' : rgb(mix(BLUE, [150, 180, 255], .4), sa);
           c.beginPath(); c.arc(px, py, size, 0, 6.283); c.fill();
         }
       });
@@ -564,7 +588,7 @@ kirik.to_excel("kontrol.xlsx", index=False)</code></pre>
         var hs = n.size * n.scale * .5;
         c.fillStyle = rgb(mix([96, 132, 255], MINT, on ? 1 : m), a * n.hIn); c.fillRect(hx - hs, hy - hs, hs * 2, hs * 2);
       }
-      var la = Math.min(a, k.labels) * labelIn;
+      var la = Math.min(a0, k.labels) * labelIn;
       if (la > .02) {
         c.font = '300 ' + (mobile ? 11 : 13) + 'px "Geist Mono", monospace';
         var w = c.measureText(h.name).width, lx = hx + 11 + w + 16 > k.R.x + k.R.w ? hx - 9 - w : hx + 11;
@@ -574,6 +598,7 @@ kirik.to_excel("kontrol.xlsx", index=False)</code></pre>
     });
 
     if (layout) drawSelection(now);
+    if (hoverLay) drawHover();
 
     /* Section titles arrive as an outline and fill in as they rise */
     if (!reduce) titles.forEach(function (t) {
@@ -599,13 +624,14 @@ kirik.to_excel("kontrol.xlsx", index=False)</code></pre>
   function goTo(hub) { return function () { closeSel(); document.getElementById(HUBS[hub].id).scrollIntoView(); }; }
   function select(s, from) {
     var h = HUBS[s.i], n = nodes[s.i], isSat = s.j !== undefined;
-    var count = h.items.length - (isSat ? 1 : 0), rows = Math.ceil(count / 2);
+    var relList = isSat ? related(s.i, s.j) : h.items.map(function (it, idx) { return { i: s.i, j: idx }; });
+    var rows = Math.ceil(relList.length / 2);
     if (mobile) { box.style.aspectRatio = 'auto'; box.style.height = (170 + rows * 46) + 'px'; }
     var b = box.getBoundingClientRect();
     var rx = b.width * (mobile ? .34 : .36), ry = b.height * (mobile ? .4 : .39), gap = mobile ? 25 : 30;
     chipLayer.textContent = ''; sel = s; selGoal = 1; layP = 0;
     var first = !layout, pts = [];
-    h.items.forEach(function (it, idx) { if (isSat && idx === s.j) return; pts.push({ idx: idx, it: it }); });
+    relList.forEach(function (r) { pts.push({ idx: r.j, hub: r.i, it: HUBS[r.i].items[r.j] }); });
     pts.forEach(function (p, q) {
       var th = (q + .5) / pts.length * 6.283 - 1.2, r = .7 + .3 * frac(q * .618);
       p.dx = Math.cos(th) * rx * r; p.dy = Math.sin(th) * ry * r;
@@ -620,10 +646,10 @@ kirik.to_excel("kontrol.xlsx", index=False)</code></pre>
       p.dx = (q % 2 ? .03 : -.46) * b.width; p.dy = 74 + Math.floor(q / 2) * 46;
     });
     pts.forEach(function (p) {
-      var o = first && n.pts[p.idx] ? n.pts[p.idx] : null;
-      p.ox = o ? o.x : null; p.oy = o ? o.y : null; p.card = n.sats[p.idx].card;
+      var o = first && nodes[p.hub].pts[p.idx] ? nodes[p.hub].pts[p.idx] : null;
+      p.ox = o ? o.x : null; p.oy = o ? o.y : null; p.card = nodes[p.hub].sats[p.idx].card;
       p.el = chip('sat', p.it.t);
-      p.el.addEventListener('click', function (e) { e.stopPropagation(); select({ i: s.i, j: p.idx }); });
+      p.el.addEventListener('click', function (e) { e.stopPropagation(); select({ i: p.hub, j: p.idx }); });
       p.el.addEventListener('mouseenter', function () { if (layout) layout.over = p; });
       p.el.addEventListener('mouseleave', function () { if (layout && layout.over === p) layout.over = null; });
     });
@@ -642,6 +668,36 @@ kirik.to_excel("kontrol.xlsx", index=False)</code></pre>
     go.addEventListener('blur', function () { if (layout) layout.onCentre = false; });
     chipLayer.classList.add('live'); repaint();
   }
+  function setHover(h) {
+    if (hoverSat && h && hoverSat.i === h.i && hoverSat.j === h.j) return;
+    hoverSat = h; if (!h) return;
+    hoverLayer.textContent = '';
+    var rel = related(h.i, h.j).map(function (r) {
+      var e = document.createElement('span'); e.className = 'tip'; e.textContent = HUBS[r.i].items[r.j].t; hoverLayer.appendChild(e);
+      return { i: r.i, j: r.j, el: e };
+    });
+    var me = document.createElement('span'); me.className = 'tip me'; me.textContent = HUBS[h.i].items[h.j].t; hoverLayer.appendChild(me);
+    hoverLay = { i: h.i, j: h.j, rel: rel, me: me };
+  }
+  function drawHover() {
+    var b = box.getBoundingClientRect(), a = nodes[hoverLay.i].pts[hoverLay.j]; if (!a) return;
+    c.lineWidth = .9;
+    hoverLay.rel.forEach(function (r) {
+      var p = nodes[r.i].pts[r.j]; if (!p) { r.el.style.opacity = 0; return; }
+      c.strokeStyle = 'rgba(255,255,255,' + .6 * hoverP + ')'; c.beginPath(); c.moveTo(a.x, a.y); c.lineTo(p.x, p.y); c.stroke();
+      c.strokeStyle = rgb(MINT, hoverP); c.strokeRect(p.x - 7, p.y - 6, 14, 12);
+      c.fillStyle = 'rgba(255,255,255,' + hoverP + ')'; c.fillRect(p.x - 3, p.y - 2, 6, 4);
+      var w = r.w || (r.w = r.el.offsetWidth), lx = p.x - b.left + 11;
+      if (lx + w > b.width - 4) lx = p.x - b.left - 11 - w;
+      place(r.el, lx, p.y - b.top - 8, hoverP);
+    });
+    c.strokeStyle = rgb(MINT, hoverP); c.lineWidth = 1.2; c.beginPath(); c.arc(a.x, a.y, 5, 0, 6.283); c.stroke();
+    var mw = hoverLay.mw || (hoverLay.mw = hoverLay.me.offsetWidth), mh = hoverLay.mh || (hoverLay.mh = hoverLay.me.offsetHeight), left = a.x - b.left + 9;
+    if (left + mw > b.width - 4) left = a.x - b.left - 9 - mw;
+    var top = a.y - b.top - mh - 8; if (top < 4) top = a.y - b.top + 9;
+    place(hoverLay.me, left, top, hoverP);
+  }
+
   function place(el, x, y, o) { el.style.transform = 'translate(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px)'; el.style.opacity = o; }
   function drawSelection(now) {
     var b = box.getBoundingClientRect(), t = smooth(layP), cx = b.left + b.width / 2, cy = mobile ? b.top + 92 : b.top + b.height * .54;
@@ -716,7 +772,9 @@ kirik.to_excel("kontrol.xlsx", index=False)</code></pre>
     return best;
   }
   box.addEventListener('mousemove', function (e) {
+    mx = e.clientX; my = e.clientY;
     if (sel) {
+      setHover(null);
       hover = -1; if (!layout) return;
       if (!e.target.closest('.chip')) {
         var best = null, lim = 400;
@@ -725,17 +783,19 @@ kirik.to_excel("kontrol.xlsx", index=False)</code></pre>
       }
       return;
     }
-    var h = hit(e); hover = h ? h.i : -1; box.style.cursor = h ? 'pointer' : '';
+    var h = window.scrollY > 40 ? null : hit(e);
+    hover = h && h.j === undefined ? h.i : -1; box.style.cursor = h ? 'pointer' : '';
+    setHover(h && h.j !== undefined ? h : null);
   });
-  box.addEventListener('mouseleave', function () { hover = -1; });
+  box.addEventListener('mouseleave', function () { hover = -1; mx = my = -9999; setHover(null); });
   box.addEventListener('click', function (e) {
     if (e.target.closest('.chip, .chip-center')) return;
     if (sel) {
-      if (layout && layout.over) { select({ i: sel.i, j: layout.over.idx }); return; }
+      if (layout && layout.over) { select({ i: layout.over.hub, j: layout.over.idx }); return; }
       closeSel(); return;
     }
     var h = hit(e); if (!h) return;
-    hover = -1; box.style.cursor = '';
+    hover = -1; box.style.cursor = ''; setHover(null);
     select(h, h.j === undefined ? { x: nodes[h.i].sx, y: nodes[h.i].sy } : nodes[h.i].pts[h.j]);
   });
   addEventListener('keydown', function (e) { if (e.key === 'Escape' && sel) closeSel(); });
