@@ -13,13 +13,13 @@
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:calc(var(--head) + 16px)}
-body{margin:0;background:var(--page);color:var(--fg);font:400 16px/1.5 var(--sans);transition:background .7s ease;overflow-x:clip}
+body{margin:0;background:var(--page);color:var(--fg);font:400 16px/1.5 var(--sans);overflow-x:clip}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--page)}
 a{color:inherit}
 :focus-visible{outline:2px solid var(--mint);outline-offset:3px}
-#field,#links{position:fixed;inset:0;width:100%;height:100%;pointer-events:none}
-#field{z-index:0}#links{z-index:2}
-.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;height:var(--head);display:flex;align-items:center;justify-content:space-between;gap:16px;background:var(--page);transition:background .7s ease;border-bottom:1px solid var(--line);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+#links{position:fixed;inset:0;width:100%;height:100%;pointer-events:none}
+#links{z-index:2}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;height:var(--head);display:flex;align-items:center;justify-content:space-between;gap:16px;background:var(--page);border-bottom:1px solid var(--line);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 .brand{font-weight:500;font-size:17px;text-decoration:none;white-space:nowrap}
 .brand small{font:300 12px var(--mono);color:var(--fg-2);margin-left:10px}
 .top-links{display:flex;align-items:center;gap:24px;font-weight:500;font-size:15px}
@@ -106,11 +106,44 @@ footer{position:relative;z-index:3;border-top:1px solid var(--line);padding-bloc
   .points li{padding:12px 0;border-top:1px solid var(--line)}
   .grid2,.grid3{grid-template-columns:minmax(0,1fr)}
 }
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}body,.top,.notes{transition:none}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+/* Opening scene: the hero stays pinned while its panels leave and the camera moves in */
+.scene{position:relative;height:calc(100vh + 1500px);height:calc(100dvh + 1500px)}
+.hero{position:sticky;top:calc(env(safe-area-inset-top,0px) + var(--head));height:calc(100vh - var(--head));height:calc(100dvh - var(--head));min-height:0;overflow:hidden;--out:0}
+.word{transform:translate3d(calc(var(--out) * -125%),0,0);will-change:transform}
+.stack{transform:translate3d(calc(var(--out) * -190%),0,0);will-change:transform}
+.mapbox{background:none;min-height:0}
+#map{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;display:block}
+.maphint{opacity:calc(1 - var(--out) * 4)}
+@keyframes come-in{from{translate:-135% 0}}
+@media (prefers-reduced-motion:no-preference){
+  .word span{animation:come-in 1.1s cubic-bezier(.16,.84,.24,1) .55s backwards}
+  .tile{animation:come-in .95s cubic-bezier(.16,.84,.24,1) backwards}
+  .tile:nth-child(1){animation-delay:.7s}.tile:nth-child(2){animation-delay:.78s}.tile:nth-child(3){animation-delay:.86s}.tile:nth-child(4){animation-delay:.94s}.tile:nth-child(5){animation-delay:1.02s}
+}
+.rail li{transition:opacity .35s ease;transition-delay:calc(var(--i,0) * 35ms)}
+body.at-top .rail li{opacity:0}
+body.at-top .rail{pointer-events:none}
+.notes{transition:opacity .3s ease}
+body.at-top .notes{opacity:0;pointer-events:none}
+.band{padding-block:clamp(150px,34vh,340px)}
+#hakkimda{padding-top:clamp(60px,14vh,140px)}
+.card{background:color-mix(in srgb,var(--page) 62%,rgba(255,255,255,.2));backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+@media (max-width:860px){
+  .scene{height:auto}
+  .hero{position:relative;top:auto;height:auto;overflow:visible}
+  .word,.stack{transform:none;will-change:auto}
+  .mapbox{aspect-ratio:1/1}
+}
+@media (prefers-reduced-motion:reduce){
+  .scene{height:auto}
+  .hero{position:relative;top:auto;height:auto;min-height:calc(100vh - var(--head))}
+  .word,.stack{transform:none}
+}
 </style>
 
 <script>document.body.classList.add("at-top")</script>
-<canvas id="field" aria-hidden="true"></canvas>
+<canvas id="map" aria-hidden="true"></canvas>
 <canvas id="links" aria-hidden="true"></canvas>
 
 <header class="top">
@@ -121,7 +154,7 @@ footer{position:relative;z-index:3;border-top:1px solid var(--line);padding-bloc
   </nav>
 </header>
 
-<div class="hero" id="ust">
+<div class="scene" id="ust"><div class="hero">
   <div class="word" aria-hidden="true"><span>Görünürlük</span></div>
   <div class="stack">
     <div class="tile"><h1>Aylin İnci</h1><p>SEO, GEO ve Web Geliştirme Uzmanı</p></div>
@@ -130,13 +163,12 @@ footer{position:relative;z-index:3;border-top:1px solid var(--line);padding-bloc
     <div class="tile"><strong>10</strong><p>blog yazısı: SEO, GEO, Shopify ve analitik</p></div>
     <div class="tile"><strong>21</strong><p>araç ve teknoloji</p></div>
   </div>
-  <div class="mapbox">
-    <canvas id="map" role="img" aria-label="Yedi uzmanlık alanını ve çalışma başlıklarını gösteren bağlantı haritası"></canvas>
+  <div class="mapbox" role="img" aria-label="Uzmanlık alanlarını ve çalışma başlıklarını gösteren bağlantı haritası">
     <p class="maphint">Bir alana tıklayın</p>
   </div>
-</div>
+</div></div>
 
-<ul class="rail" id="rail" aria-label="Bölümler"><li><a href="#hakkimda">Hakkımda</a></li><li><a href="#teknik-seo">Teknik SEO</a></li><li><a href="#geo">GEO</a></li><li><a href="#icerik">İçerik</a></li><li><a href="#shopify">Shopify</a></li><li><a href="#wordpress">WordPress</a></li><li><a href="#veri">Veri</a></li><li><a href="#otomasyon">Otomasyon</a></li><li><a href="#yaklasim">Yaklaşım</a></li><li><a href="#yazilar">Yazılar</a></li><li><a href="#araclar">Araçlar</a></li><li><a href="#iletisim">İletişim</a></li></ul>
+<ul class="rail" id="rail" aria-label="Bölümler"><li style="--i:0"><a href="#hakkimda">Hakkımda</a></li><li style="--i:1"><a href="#teknik-seo">Teknik SEO</a></li><li style="--i:2"><a href="#geo">GEO</a></li><li style="--i:3"><a href="#icerik">İçerik</a></li><li style="--i:4"><a href="#shopify">Shopify</a></li><li style="--i:5"><a href="#wordpress">WordPress</a></li><li style="--i:6"><a href="#veri">Veri</a></li><li style="--i:7"><a href="#otomasyon">Otomasyon</a></li><li style="--i:8"><a href="#yaklasim">Yaklaşım</a></li><li style="--i:9"><a href="#yazilar">Yazılar</a></li><li style="--i:10"><a href="#araclar">Araçlar</a></li><li style="--i:11"><a href="#iletisim">İletişim</a></li></ul>
 <aside class="notes" id="notes" aria-label="Notlar"><b>Notlar</b><p id="noteText">Türkçe ve İngilizce projeler; farklı sektör ve iş modelleri.</p></aside>
 
 <main>
@@ -341,77 +373,170 @@ kirik.to_excel("kontrol.xlsx", index=False)</code></pre>
 
 <script>
 (function () {
-  var HUBS = [{"id":"teknik-seo","name":"Teknik SEO","n":9,"x":0.2,"y":0.2},{"id":"geo","name":"GEO","n":8,"x":0.5,"y":0.17},{"id":"icerik","name":"İçerik","n":9,"x":0.8,"y":0.24},{"id":"shopify","name":"Shopify","n":11,"x":0.24,"y":0.54},{"id":"wordpress","name":"WordPress","n":10,"x":0.55,"y":0.48},{"id":"veri","name":"Veri","n":9,"x":0.8,"y":0.62},{"id":"otomasyon","name":"Otomasyon","n":7,"x":0.36,"y":0.78}];
+  /* Every section has a hub on one shared map; satellites are real items, so the map stays honest. */
+  var HUBS = [{"id":"hakkimda","name":"Aylin İnci","n":3,"x":0.7,"y":0.5},{"id":"teknik-seo","name":"Teknik SEO","n":9,"x":0.24,"y":0.2},{"id":"geo","name":"GEO","n":8,"x":0.62,"y":0.13},{"id":"icerik","name":"İçerik","n":9,"x":1.03,"y":0.2},{"id":"shopify","name":"Shopify","n":11,"x":0.17,"y":0.6},{"id":"wordpress","name":"WordPress","n":10,"x":1.22,"y":0.55},{"id":"veri","name":"Veri","n":9,"x":0.94,"y":0.84},{"id":"otomasyon","name":"Otomasyon","n":7,"x":0.5,"y":0.86},{"id":"yaklasim","name":"Yaklaşım","n":4,"x":0.42,"y":0.42},{"id":"yazilar","name":"Yazılar","n":10,"x":1,"y":0.62},{"id":"araclar","name":"Araçlar","n":21,"x":1.28,"y":0.86}];
+  var root = document.documentElement, body = document.body;
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function seeded(s) { return function () { s = (s * 1664525 + 1013904223) % 4294967296; return s / 4294967296; }; }
-
-  /* Expertise map: one satellite per real work item */
-  var map = document.getElementById('map'), mc = map.getContext('2d'), mw = 0, mh = 0, hover = -1, dpr = 1;
-  var sats = HUBS.map(function (h, i) { var r = seeded(i * 97 + 11), a = []; for (var k = 0; k < h.n; k++) a.push({ t: k / h.n * 6.283 + r() * .5, d: .55 + r() * .75, p: r() }); return a; });
-  function sizeMap() { var b = map.getBoundingClientRect(); dpr = Math.min(devicePixelRatio || 1, 2); mw = b.width; mh = b.height; map.width = mw * dpr; map.height = mh * dpr; }
-  function hubPos(h) { return { x: h.x * mw, y: h.y * mh }; }
-  function drawMap(now) {
-    mc.setTransform(dpr, 0, 0, dpr, 0, 0); mc.clearRect(0, 0, mw, mh);
-    var reach = Math.min(mw, mh) * .15;
-    HUBS.forEach(function (h, i) {
-      var c = hubPos(h), on = hover === i;
-      sats[i].forEach(function (s) {
-        var wob = reduce ? 0 : Math.sin(now / 1800 + s.p * 6) * .05;
-        var x = c.x + Math.cos(s.t + wob) * reach * s.d, y = c.y + Math.sin(s.t + wob) * reach * s.d;
-        mc.strokeStyle = on ? '#7CF2C6' : 'rgba(110,150,255,.5)'; mc.lineWidth = on ? 1.2 : .8;
-        mc.beginPath(); mc.moveTo(c.x, c.y); mc.lineTo(x, y); mc.stroke();
-        mc.fillStyle = on ? '#FFFFFF' : '#7FA2FF'; mc.fillRect(x - 1.5, y - 1.5, 3, 3);
-      });
-      mc.fillStyle = on ? '#7CF2C6' : '#5C7CFF'; mc.fillRect(c.x - 4, c.y - 4, 8, 8);
-      mc.font = '300 13px "Geist Mono", monospace'; mc.fillStyle = '#FFFFFF'; mc.fillText(h.name, c.x + 11, c.y - 7);
-      var w = mc.measureText(h.name).width; mc.font = '300 10px "Geist Mono", monospace'; mc.fillStyle = 'rgba(255,255,255,.65)'; mc.fillText(h.n, c.x + 15 + w, c.y - 13);
-    });
-    mc.strokeStyle = 'rgba(255,255,255,.14)'; mc.lineWidth = .8; mc.beginPath();
-    HUBS.forEach(function (h, i) { var a = hubPos(h), b = hubPos(HUBS[(i + 1) % HUBS.length]); mc.moveTo(a.x, a.y); mc.lineTo(b.x, b.y); }); mc.stroke();
-  }
-  function pick(e) { var b = map.getBoundingClientRect(), x = e.clientX - b.left, y = e.clientY - b.top, best = -1, lim = 60 * 60; HUBS.forEach(function (h, i) { var c = hubPos(h), d = (c.x - x) * (c.x - x) + (c.y - y) * (c.y - y); if (d < lim) { lim = d; best = i; } }); return best; }
-  map.addEventListener('mousemove', function (e) { hover = pick(e); });
-  map.addEventListener('mouseleave', function () { hover = -1; });
-  map.addEventListener('click', function (e) { var i = pick(e); if (i >= 0) document.getElementById(HUBS[i].id).scrollIntoView(); });
-
-  /* Slow particle field behind the page */
-  var field = document.getElementById('field'), fc = field.getContext('2d'), dots = [], r = seeded(7);
-  for (var i = 0; i < 110; i++) dots.push({ x: r(), y: r(), s: 1 + r() * 1.4, v: .004 + r() * .01 });
+  var cv = document.getElementById('map'), c = cv.getContext('2d');
   var links = document.getElementById('links'), lc = links.getContext('2d');
-  function sizeFixed() { [field, links].forEach(function (c) { c.width = innerWidth; c.height = innerHeight; }); }
-  function drawField(now) {
-    fc.clearRect(0, 0, field.width, field.height); fc.fillStyle = 'rgba(255,255,255,.34)';
-    dots.forEach(function (d) { var y = (d.y + (reduce ? 0 : now / 1e6 * d.v * 40)) % 1; fc.fillRect(d.x * field.width, y * field.height, d.s, d.s); });
+  var scene = document.getElementById('ust'), hero = document.querySelector('.hero'), box = document.querySelector('.mapbox');
+  var bands = [].slice.call(document.querySelectorAll('.band'));
+  var titles = bands.map(function (b) { return b.querySelector('h2'); });
+  var railLinks = [].slice.call(document.querySelectorAll('#rail a'));
+  var note = document.getElementById('noteText');
+  var W = 0, H = 0, dpr = 1, mobile = false, hover = -1, start = performance.now(), active = null;
+  var WORLD_W = 1.4, REACH = .13, INK = [1, 4, 25], MINT = [124, 242, 198], LINE = [176, 198, 255];
+
+  function seeded(s) { return function () { s = (s * 1664525 + 1013904223) % 4294967296; return s / 4294967296; }; }
+  function clamp(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
+  function smooth(v) { v = clamp(v); return v * v * (3 - 2 * v); }
+  function lerp(a, b, t) { return a + (b - a) * t; }
+  function hex(h) { return [parseInt(h.slice(1, 3), 16), parseInt(h.slice(3, 5), 16), parseInt(h.slice(5, 7), 16)]; }
+  function mix(a, b, t) { return [lerp(a[0], b[0], t), lerp(a[1], b[1], t), lerp(a[2], b[2], t)]; }
+  function rgb(a, o) { return 'rgba(' + (a[0] | 0) + ',' + (a[1] | 0) + ',' + (a[2] | 0) + ',' + o + ')'; }
+
+  var sats = HUBS.map(function (h, i) {
+    var r = seeded(i * 97 + 11), a = [];
+    for (var k = 0; k < h.n; k++) a.push({ t: k / h.n * 6.283 + r() * .5, d: .6 + r() * .75, p: r() });
+    return a;
+  });
+  var r0 = seeded(7), dots = [];
+  for (var i = 0; i < 120; i++) dots.push({ x: r0(), y: r0(), s: 1 + r0() * 1.4, v: .2 + r0() * .8 });
+  var hubIndex = {}; HUBS.forEach(function (h, i) { hubIndex[h.id] = i; });
+  var stops = bands.map(function (b) { return { el: b, hub: hubIndex[b.id] === undefined ? -1 : hubIndex[b.id], bg: hex(b.dataset.bg) }; });
+
+  function resize() {
+    dpr = Math.min(devicePixelRatio || 1, 1.5); W = innerWidth; H = innerHeight; mobile = W <= 860;
+    cv.width = W * dpr; cv.height = H * dpr; links.width = W; links.height = H;
   }
 
-  /* Active section: page colour, rail, notes, connector lines */
-  var bands = [].slice.call(document.querySelectorAll('.band')), railLinks = [].slice.call(document.querySelectorAll('#rail a'));
-  var note = document.getElementById('noteText'), active = null;
+  /* Where the camera is for this scroll position */
+  function camera(y) {
+    var sceneEnd = scene.offsetHeight - H, q = mobile ? clamp(y / 900) : (sceneEnd > 0 ? clamp(y / sceneEnd) : 0);
+    if (reduce) q = 0;
+    var b = box.getBoundingClientRect();
+    var e1 = smooth(q / .24), e2 = smooth((q - .16) / .62), e3 = smooth((q - .7) / .3);
+    var R = { x: lerp(b.left, 0, e1), y: lerp(b.top, 0, e1), w: lerp(b.width, W, e1), h: lerp(b.height, H, e1) };
+    var z0 = Math.min(R.w / WORLD_W, R.h), zF = Math.min(W, H) * 2.1;
+    var ax = R.x + R.w / 2, ay = R.y + R.h / 2, fx = W / 2, fy = H * .46;
+    var cur = 0, next = 0, e = 0, H0 = H * .55;
+    var tops = stops.map(function (s) { return s.el.getBoundingClientRect().top + y - H0; });
+    for (var i = 0; i < stops.length; i++) if (y >= tops[i]) cur = i;
+    next = Math.min(cur + 1, stops.length - 1);
+    if (next !== cur) e = smooth((y - (tops[next] - H * 1.15)) / (H * 1.15));
+    function view(s) {
+      if (s.hub < 0) return { x: WORLD_W / 2, y: .5, z: Math.min(W / WORLD_W, H), a: 1, sx: W / 2, sy: H / 2 };
+      var h = HUBS[s.hub]; return { x: h.x, y: h.y, z: zF, a: 0, sx: fx, sy: fy };
+    }
+    var A = view(stops[cur]), B = view(stops[next]);
+    var fly = { x: lerp(A.x, B.x, e), y: lerp(A.y, B.y, e), z: lerp(A.z, B.z, e) * (1 - .5 * Math.sin(e * Math.PI)), sx: lerp(A.sx, B.sx, e), sy: lerp(A.sy, B.sy, e), a: lerp(A.a, B.a, e) };
+    var page = mix(stops[cur].bg, stops[next].bg, e);
+    if (reduce) {
+      var inHero = y < scene.offsetHeight;
+      return { x: WORLD_W / 2, y: .5, z: z0, sx: ax, sy: ay, ink: inHero ? 1 : 0, mint: 0, focus: -1, next: -1, e: 0, labels: inHero ? 1 : 0, others: inHero ? 1 : .25, R: R, q: inHero ? 0 : 1, page: page };
+    }
+    var lz = Math.log(z0), lf = Math.log(fly.z);
+    return {
+      x: lerp(WORLD_W / 2, fly.x, e2), y: lerp(.5, fly.y, e2), z: Math.exp(lerp(lz, lf, e2)), sx: lerp(ax, fly.sx, e2), sy: lerp(ay, fly.sy, e2),
+      ink: 1 - smooth(q / .12), mint: e3 * (1 - Math.sin(e * Math.PI) * .75), focus: stops[cur].hub, next: stops[next].hub, e: e,
+      labels: Math.max(1 - smooth((q - .1) / .3), fly.a), others: Math.max(lerp(1, .1, e2), lerp(.1, .85, Math.sin(e * Math.PI)), fly.a), R: R, q: q, page: page
+    };
+  }
+
+  function draw(now) {
+    var y = window.scrollY, k = camera(y), intro = reduce ? 1 : smooth((now - start - 250) / 1300);
+    var out = (mobile || reduce) ? 0 : smooth(k.q / .22);
+    hero.style.setProperty('--out', out.toFixed(4));
+    root.style.setProperty('--page', 'rgb(' + (k.page[0] | 0) + ',' + (k.page[1] | 0) + ',' + (k.page[2] | 0) + ')');
+    body.classList.toggle('at-top', y < scene.offsetHeight - H * 1.05);
+
+    c.setTransform(dpr, 0, 0, dpr, 0, 0); c.clearRect(0, 0, W, H);
+    if (k.ink > .002) { c.fillStyle = rgb(INK, k.ink); c.fillRect(k.R.x, k.R.y, k.R.w, k.R.h); }
+
+    c.fillStyle = 'rgba(255,255,255,.32)';
+    var drift = reduce ? 0 : now / 90000;
+    dots.forEach(function (d) { var py = (d.y + drift * d.v - y / 60000 * d.v) % 1; if (py < 0) py += 1; c.fillRect(d.x * W, py * H, d.s, d.s); });
+
+    function sx(wx) { return (wx - k.x) * k.z + k.sx; }
+    function sy(wy) { return (wy - k.y) * k.z + k.sy; }
+    var rot = reduce ? 0 : y * .00022;
+    function alphaOf(i) {
+      if (i === k.focus) return Math.max(k.others, 1 - k.e);
+      if (i === k.next) return Math.max(k.others, k.e);
+      return k.others;
+    }
+    /* spokes from the centre to every hub */
+    var cx = sx(HUBS[0].x), cy = sy(HUBS[0].y);
+    c.lineWidth = .8;
+    HUBS.forEach(function (h, i) { if (!i) return; c.strokeStyle = rgb(LINE, .16 * alphaOf(i) * intro); c.beginPath(); c.moveTo(cx, cy); c.lineTo(sx(h.x), sy(h.y)); c.stroke(); });
+
+    HUBS.forEach(function (h, i) {
+      var a = alphaOf(i) * intro, on = hover === i, m = (i === k.focus ? k.mint * (1 - k.e) : i === k.next ? k.mint * k.e : 0);
+      if (on) m = 1;
+      var hx = sx(h.x), hy = sy(h.y), reach = REACH * k.z;
+      if (a < .01 || hx < -reach * 2 || hx > W + reach * 2 || hy < -reach * 2 || hy > H + reach * 2) return;
+      var col = mix(LINE, MINT, m), rings = clamp((k.z - 700) / 500);
+      sats[i].forEach(function (s, n) {
+        var wob = reduce ? 0 : Math.sin(now / 2200 + s.p * 6) * .04;
+        var ang = s.t + wob + rot * (1 + s.p * .6), dist = reach * s.d * intro;
+        var px = hx + Math.cos(ang) * dist, py = hy + Math.sin(ang) * dist * (.74 + .26 * Math.cos(rot * .8));
+        var pulse = !reduce && m < .5 && a > .5 && n === Math.floor(now / 1400) % sats[i].length;
+        c.strokeStyle = pulse ? rgb(MINT, a) : rgb(col, (.32 + .5 * m) * a); c.lineWidth = .8 + m * .5;
+        c.beginPath(); c.moveTo(hx, hy); c.lineTo(px, py); c.stroke();
+        if (rings > .05) { c.strokeStyle = rgb([255, 255, 255], a * rings * .9); c.beginPath(); c.arc(px, py, 4, 0, 6.283); c.stroke(); }
+        else { c.fillStyle = rgb([190, 208, 255], a); c.fillRect(px - 1.5, py - 1.5, 3, 3); }
+      });
+      c.fillStyle = rgb(mix([110, 140, 255], MINT, m), a); c.fillRect(hx - 4, hy - 4, 8, 8);
+      var la = Math.min(a, k.labels);
+      if (la > .02) {
+        c.font = '300 ' + (mobile ? 11 : 13) + 'px "Geist Mono", monospace';
+        var w = c.measureText(h.name).width, lx = hx + 11 + w + 16 > k.R.x + k.R.w ? hx - 9 - w : hx + 11;
+        c.fillStyle = 'rgba(255,255,255,' + la + ')'; c.fillText(h.name, lx, hy - 7);
+        if (!mobile) { c.font = '300 10px "Geist Mono", monospace'; c.fillStyle = 'rgba(255,255,255,' + la * .65 + ')'; c.fillText(h.n, lx + w + 4, hy - 13); }
+      }
+    });
+
+    /* Section titles arrive as an outline and fill in as they rise */
+    if (!reduce) titles.forEach(function (t) {
+      var top = t.getBoundingClientRect().top; if (top > H * 1.1 || top < -200) return;
+      var f = clamp((H * .92 - top) / (H * .3));
+      t.style.color = 'rgba(255,255,255,' + f.toFixed(3) + ')';
+      t.style.webkitTextStroke = (1 - f) > .01 ? '1px rgba(255,255,255,' + ((1 - f) * .8).toFixed(3) + ')' : '0';
+    });
+    drawLinks();
+  }
+
   function setActive(b) {
-    active = b; document.body.classList.toggle('at-top', !b); document.documentElement.style.setProperty('--page', b ? b.dataset.bg : '#051DAA');
+    active = b;
     railLinks.forEach(function (a) { var on = b && a.getAttribute('href') === '#' + b.id; if (on) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current'); });
     if (b) note.textContent = b.dataset.note;
   }
   var io = new IntersectionObserver(function (es) {
-    es.forEach(function (e) {
-      if (e.isIntersecting) setActive(e.target);
-      else if (e.target === active && scrollY < bands[0].offsetTop) setActive(null);
-    });
+    es.forEach(function (e) { if (e.isIntersecting) setActive(e.target); else if (e.target === active && window.scrollY < bands[0].offsetTop) setActive(null); });
   }, { rootMargin: '-45% 0px -50% 0px' });
   bands.forEach(function (b) { io.observe(b); });
+
   function drawLinks() {
-    lc.clearRect(0, 0, links.width, links.height);
-    if (!active || innerWidth <= 1120) return;
+    lc.clearRect(0, 0, W, H);
+    if (!active || W <= 1120 || body.classList.contains('at-top')) return;
     var card = active.querySelector('.card'), dot = document.querySelector('#rail a[aria-current]'), n = document.getElementById('notes');
     if (!card || !dot) return;
-    var c = card.getBoundingClientRect(), d = dot.getBoundingClientRect();
-    lc.strokeStyle = 'rgba(255,255,255,.4)'; lc.lineWidth = 1; lc.beginPath(); lc.moveTo(d.right, d.top + d.height / 2); lc.lineTo(c.left, c.top + 18);
-    if (getComputedStyle(n).display !== 'none') { var k = n.getBoundingClientRect(); lc.moveTo(c.right, c.top + 18); lc.lineTo(k.left, k.top + 14); }
-    lc.stroke();
-    lc.fillStyle = '#fff'; lc.fillRect(c.left - 2, c.top + 16, 4, 4);
+    var a = card.getBoundingClientRect(), d = dot.getBoundingClientRect();
+    if (a.bottom < 0 || a.top > H) return;
+    lc.strokeStyle = 'rgba(255,255,255,.4)'; lc.lineWidth = 1; lc.beginPath(); lc.moveTo(d.right, d.top + d.height / 2); lc.lineTo(a.left, a.top + 18);
+    if (getComputedStyle(n).display !== 'none') { var s = n.getBoundingClientRect(); lc.moveTo(a.right, a.top + 18); lc.lineTo(s.left, s.top + 14); }
+    lc.stroke(); lc.fillStyle = '#fff'; lc.fillRect(a.left - 2, a.top + 16, 4, 4); lc.fillRect(a.right - 2, a.top + 16, 4, 4);
   }
 
-  /* Copy buttons */
+  function hubAt(e) {
+    var k = camera(window.scrollY), best = -1, lim = 3600;
+    HUBS.forEach(function (h, i) { var x = (h.x - k.x) * k.z + k.sx - e.clientX, y = (h.y - k.y) * k.z + k.sy - e.clientY, d = x * x + y * y; if (d < lim) { lim = d; best = i; } });
+    return best;
+  }
+  box.addEventListener('mousemove', function (e) { hover = hubAt(e); box.style.cursor = hover >= 0 ? 'pointer' : ''; });
+  box.addEventListener('mouseleave', function () { hover = -1; });
+  box.addEventListener('click', function (e) { var i = hubAt(e); if (i >= 0) document.getElementById(HUBS[i].id).scrollIntoView(); });
+
   document.querySelectorAll('.copy').forEach(function (b) {
     b.addEventListener('click', function () {
       var code = b.closest('.term').querySelector('code');
@@ -421,12 +546,14 @@ kirik.to_excel("kontrol.xlsx", index=False)</code></pre>
     });
   });
 
-  function resize() { sizeMap(); sizeFixed(); paint(performance.now()); }
-  function paint(now) { drawMap(now); drawField(now); drawLinks(); }
   addEventListener('resize', resize);
-  addEventListener('scroll', function () { if (reduce) drawLinks(); }, { passive: true });
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { paint(performance.now()); });
   resize();
-  if (!reduce) (function loop(t) { paint(t); requestAnimationFrame(loop); })(performance.now());
+  if (reduce) {
+    var paint = function () { draw(performance.now()); };
+    addEventListener('scroll', paint, { passive: true }); addEventListener('resize', paint);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(paint);
+    paint();
+  } else (function loop(t) { draw(t); requestAnimationFrame(loop); })(performance.now());
 })();
+
 </script>
