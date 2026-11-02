@@ -1,0 +1,432 @@
+<title>Aylin İnci Taslak</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500&family=Geist+Mono:wght@300;400&display=swap">
+<style>
+/* Layout: a fixed left rail and right notes column around one content column; the page colour changes per discipline. */
+:root{
+  --ink:#010419; --blue:#051DAA; --fg:#FFFFFF; --fg-2:rgba(255,255,255,.78); --fg-3:rgba(255,255,255,.62);
+  --line:rgba(255,255,255,.18); --panel:rgba(255,255,255,.08); --mint:#7CF2C6;
+  --sans:'Instrument Sans','Helvetica Neue',Arial,sans-serif; --mono:'Geist Mono',ui-monospace,Menlo,Consolas,monospace;
+  --page:var(--blue); --head:64px; color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--head) + 16px)}
+body{margin:0;background:var(--page);color:var(--fg);font:400 16px/1.5 var(--sans);transition:background .7s ease;overflow-x:clip}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--page)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--mint);outline-offset:3px}
+#field,#links{position:fixed;inset:0;width:100%;height:100%;pointer-events:none}
+#field{z-index:0}#links{z-index:2}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;height:var(--head);display:flex;align-items:center;justify-content:space-between;gap:16px;background:var(--page);transition:background .7s ease;border-bottom:1px solid var(--line);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.brand{font-weight:500;font-size:17px;text-decoration:none;white-space:nowrap}
+.brand small{font:300 12px var(--mono);color:var(--fg-2);margin-left:10px}
+.top-links{display:flex;align-items:center;gap:24px;font-weight:500;font-size:15px}
+.top-links a{text-decoration:none}.top-links a:hover{text-decoration:underline}
+.cta{background:#fff;color:#0B1030;border-radius:999px;padding:9px 18px;text-decoration:none;font-weight:500;font-size:15px;white-space:nowrap}
+.cta:hover{background:var(--mint)}
+.hero{position:relative;z-index:3;display:grid;grid-template-columns:clamp(110px,12vw,172px) minmax(230px,280px) minmax(0,1fr);gap:10px;padding:10px max(16px,env(safe-area-inset-right,0px)) 10px max(16px,env(safe-area-inset-left,0px));min-height:calc(100vh - var(--head));min-height:calc(100dvh - var(--head))}
+.word{position:relative;overflow:hidden;min-height:620px}
+.word span{position:absolute;left:0;bottom:0;writing-mode:vertical-rl;transform:rotate(180deg);font-weight:500;font-size:clamp(96px,10.8vw,156px);line-height:1;letter-spacing:-.04em;white-space:nowrap}
+.stack{display:grid;gap:10px;align-content:start;min-width:0}
+.tile{border:1px solid var(--line);padding:12px;font:300 13px/1.45 var(--mono);background:var(--panel)}
+.tile h1{font:500 22px/1.15 var(--sans);margin:0 0 6px}
+.tile p{margin:0}
+.tile strong{display:block;font:500 40px/1.05 var(--sans);margin-bottom:4px}
+.index{list-style:none;margin:0;padding:0}
+.index a{display:flex;justify-content:space-between;gap:8px;text-decoration:none;padding:1px 0}
+.index a:hover{color:var(--mint)}
+.index span{color:var(--fg-3);font-variant-numeric:tabular-nums}
+.mapbox{position:relative;background:var(--ink);min-height:560px;min-width:0;overflow:hidden}
+#map{position:absolute;inset:0;width:100%;height:100%;cursor:pointer;display:block}
+.maphint{position:absolute;left:12px;bottom:10px;font:300 12px var(--mono);color:var(--fg-3)}
+main{position:relative;z-index:3}
+.rail{position:fixed;left:16px;top:50%;transform:translateY(-50%);z-index:4;width:150px;list-style:none;margin:0;padding:0;font:300 13px/1 var(--mono)}
+.rail a{display:flex;justify-content:space-between;align-items:center;padding:6px 0;text-decoration:none;color:var(--fg-2)}
+.rail a::after{content:"";width:6px;height:6px;border-radius:50%;border:1px solid var(--fg-2)}
+.rail a[aria-current="true"]{color:#fff;font-weight:400}
+.rail a[aria-current="true"]::after{background:#fff;border-color:#fff}
+.notes{position:fixed;right:16px;top:calc(var(--head) + 120px);z-index:4;width:176px;border:1px solid var(--line);font:300 12px/1.45 var(--mono);background:var(--page);transition:background .7s ease}
+.notes b{display:block;font-weight:300;color:var(--fg-2);padding:6px 8px;border-bottom:1px solid var(--line)}
+.notes p{margin:0;padding:8px}
+.rail,.notes{transition:opacity .3s ease,background .7s ease}
+body.at-top .rail,body.at-top .notes{opacity:0;visibility:hidden}
+.band{padding-block:clamp(72px,12vh,140px)}
+.band-in{max-width:1040px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:clamp(28px,5vh,56px)}
+h2{font-weight:500;font-size:clamp(52px,8.2vw,118px);line-height:1;letter-spacing:-.025em;margin:0;text-wrap:balance}
+.card{background:var(--panel);border:1px solid var(--line);padding:24px;min-width:0}
+.card-wide{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:28px;align-items:start}
+.card-text{display:grid;gap:14px;justify-items:start;min-width:0}
+h3{font-weight:500;font-size:19px;line-height:1.2;margin:0;display:flex;align-items:baseline;gap:10px}
+.mark{flex:none;display:inline-block;width:6px;height:6px;border:1px solid currentColor;transform:translateY(-2px)}
+.lede{font-size:clamp(19px,1.9vw,23px);line-height:1.22;letter-spacing:-.01em;color:var(--fg-2);margin:0;max-width:30ch}
+.pill{display:inline-block;background:var(--ink);color:#fff;border-radius:999px;padding:6px 12px;font:300 13px var(--mono);text-decoration:none}
+.pill:hover{background:#fff;color:var(--ink)}
+.term{margin:0;background:var(--ink);border-radius:10px;min-width:0;overflow:hidden}
+.term figcaption{display:flex;align-items:center;gap:6px;padding:9px 12px;font:300 12px var(--mono);color:var(--fg-2)}
+.term figcaption span{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.3)}
+.term figcaption b{font-weight:300;margin-left:8px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.copy{margin-left:auto;background:none;border:1px solid var(--line);color:var(--fg);border-radius:999px;padding:3px 10px;font:300 12px var(--mono);cursor:pointer}
+.copy:hover{background:#fff;color:var(--ink)}
+.term pre{margin:0;padding:6px 14px 16px;overflow-x:auto;font:300 13.5px/1.6 var(--mono);color:#DDE6FF}
+.points{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px 28px;font-weight:500;line-height:1.25;letter-spacing:-.005em}
+.points li{display:flex;gap:9px;align-items:baseline;min-width:0}
+.about{display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:28px;align-items:start}
+.about p{margin:0 0 14px;font-size:clamp(18px,1.7vw,21px);line-height:1.3;color:var(--fg-2)}
+.about p:last-child{margin-bottom:0}
+.about img{width:100%;height:auto;display:block;aspect-ratio:1;object-fit:cover}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.step{display:grid;gap:10px;align-content:start}
+.step p{margin:0;color:var(--fg-2)}
+.post{padding:0;text-decoration:none;display:grid;grid-template-rows:auto 1fr;overflow:hidden}
+.post:hover{border-color:#fff}
+.post img{width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;display:block}
+.post div{padding:14px;display:grid;gap:6px;align-content:start}
+.post small{font:300 12px var(--mono);color:var(--fg-2)}
+.post strong{font-weight:500;font-size:18px;line-height:1.2}
+.chips{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px;font:300 14px var(--mono)}
+.chips li{border:1px solid var(--line);padding:6px 11px;border-radius:999px}
+.contact p{margin:0;color:var(--fg-2)}
+.contact .mail{font:300 15px var(--mono);color:#fff;user-select:all}
+.row{display:flex;flex-wrap:wrap;gap:10px}
+footer{position:relative;z-index:3;border-top:1px solid var(--line);padding-block:24px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));font:300 13px var(--mono);color:var(--fg-2);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+@media (max-width:1320px){.notes{display:none}}
+@media (max-width:1120px){.rail{display:none}#links{display:none}}
+@media (max-width:860px){
+  .top-links a:not(.cta){display:none}
+  .hero{grid-template-columns:minmax(0,1fr);min-height:0}
+  .word{min-height:0}
+  .word span{position:static;transform:none;writing-mode:horizontal-tb;display:block;font-size:clamp(58px,17.5vw,150px);line-height:1}
+  .mapbox{order:-1;min-height:0;aspect-ratio:1/1}
+  .card-wide,.about{grid-template-columns:minmax(0,1fr)}
+  .about img{max-width:220px}
+  .points{grid-template-columns:minmax(0,1fr);gap:0}
+  .points li{padding:12px 0;border-top:1px solid var(--line)}
+  .grid2,.grid3{grid-template-columns:minmax(0,1fr)}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}body,.top,.notes{transition:none}}
+</style>
+
+<script>document.body.classList.add("at-top")</script>
+<canvas id="field" aria-hidden="true"></canvas>
+<canvas id="links" aria-hidden="true"></canvas>
+
+<header class="top">
+  <a class="brand" href="#ust">Aylin İnci<small>Taslak</small></a>
+  <nav class="top-links" aria-label="Ana menü">
+    <a href="#hakkimda">Hakkımda</a><a href="#yazilar">Yazılar</a><a href="#iletisim">İletişim</a>
+    <a class="cta" href="https://aylininci.com/Aylin_Inci_CV_TR.pdf" target="_blank" rel="noopener">Özgeçmiş</a>
+  </nav>
+</header>
+
+<div class="hero" id="ust">
+  <div class="word" aria-hidden="true"><span>Görünürlük</span></div>
+  <div class="stack">
+    <div class="tile"><h1>Aylin İnci</h1><p>SEO, GEO ve Web Geliştirme Uzmanı</p></div>
+    <nav class="tile" aria-label="Uzmanlık alanları"><ul class="index"><li><a href="#teknik-seo">Teknik SEO<span>9</span></a></li><li><a href="#geo">GEO<span>8</span></a></li><li><a href="#icerik">İçerik<span>9</span></a></li><li><a href="#shopify">Shopify<span>11</span></a></li><li><a href="#wordpress">WordPress<span>10</span></a></li><li><a href="#veri">Veri<span>9</span></a></li><li><a href="#otomasyon">Otomasyon<span>7</span></a></li></ul></nav>
+    <div class="tile"><strong>7</strong><p>uzmanlık alanı, 63 çalışma başlığı</p></div>
+    <div class="tile"><strong>10</strong><p>blog yazısı: SEO, GEO, Shopify ve analitik</p></div>
+    <div class="tile"><strong>21</strong><p>araç ve teknoloji</p></div>
+  </div>
+  <div class="mapbox">
+    <canvas id="map" role="img" aria-label="Yedi uzmanlık alanını ve çalışma başlıklarını gösteren bağlantı haritası"></canvas>
+    <p class="maphint">Bir alana tıklayın</p>
+  </div>
+</div>
+
+<ul class="rail" id="rail" aria-label="Bölümler"><li><a href="#hakkimda">Hakkımda</a></li><li><a href="#teknik-seo">Teknik SEO</a></li><li><a href="#geo">GEO</a></li><li><a href="#icerik">İçerik</a></li><li><a href="#shopify">Shopify</a></li><li><a href="#wordpress">WordPress</a></li><li><a href="#veri">Veri</a></li><li><a href="#otomasyon">Otomasyon</a></li><li><a href="#yaklasim">Yaklaşım</a></li><li><a href="#yazilar">Yazılar</a></li><li><a href="#araclar">Araçlar</a></li><li><a href="#iletisim">İletişim</a></li></ul>
+<aside class="notes" id="notes" aria-label="Notlar"><b>Notlar</b><p id="noteText">Türkçe ve İngilizce projeler; farklı sektör ve iş modelleri.</p></aside>
+
+<main>
+<section class="band" id="hakkimda" data-bg="#051DAA" data-note="Türkçe ve İngilizce projeler; farklı sektör ve iş modelleri.">
+  <div class="band-in">
+    <h2>SEO stratejisinden teknik uygulamaya</h2>
+    <article class="card about">
+      <div>
+        <p>SEO, içerik ve web geliştirme süreçlerini ayrı disiplinler olarak değil, sürdürülebilir dijital büyümenin birbirini tamamlayan bileşenleri olarak ele alıyorum.</p>
+        <p>Shopify ve WordPress projelerinde teknik SEO, içerik optimizasyonu, tema geliştirme, site geçişleri, yönlendirme planları, performans iyileştirmeleri ve ölçümleme altyapıları üzerine çalışıyorum.</p>
+        <p>Analiz sonuçlarını yalnızca raporlamakla kalmıyor; gerekli düzenlemeleri kod, içerik ve kullanıcı deneyimi düzeyinde uyguluyorum.</p>
+      </div>
+      <img src="img/aylin-inci.webp" alt="Aylin İnci" width="400" height="400">
+    </article>
+  </div>
+</section>
+
+<section class="band" id="teknik-seo" data-bg="#051DAA" data-note="Araçlar: Screaming Frog, Google Search Console, Ahrefs, PageSpeed Insights">
+  <div class="band-in">
+    <h2>Teknik SEO</h2>
+    <article class="card card-wide">
+      <div class="card-text">
+        <h3><i class="mark" aria-hidden="true"></i>Teknik SEO</h3>
+        <p class="lede">Web sitelerinin arama motorları tarafından daha doğru taranması, anlaşılması ve indekslenmesi için teknik yapıların analiz edilmesi ve geliştirilmesi.</p>
+        <a class="pill" href="https://aylininci.com/blog/core-web-vitals-performans-optimizasyonu" target="_blank" rel="noopener">Core Web Vitals rehberi</a>
+      </div>
+      <figure class="term">
+        <figcaption><span></span><span></span><span></span><b>robots.txt</b><button type="button" class="copy" aria-label="robots.txt içeriğini kopyala">Kopyala</button></figcaption>
+        <pre><code>User-agent: *
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+Sitemap: https://aylininci.com/sitemap.xml</code></pre>
+      </figure>
+    </article>
+    <ul class="points"><li><i class="mark" aria-hidden="true"></i>Tarama ve indeksleme sorunları</li><li><i class="mark" aria-hidden="true"></i>Canonical ve hreflang yapıları</li><li><i class="mark" aria-hidden="true"></i>Yönlendirme zincirleri ve 404 kontrolleri</li><li><i class="mark" aria-hidden="true"></i>Robots.txt ve sitemap incelemeleri</li><li><i class="mark" aria-hidden="true"></i>Site mimarisi ve URL yapıları</li><li><i class="mark" aria-hidden="true"></i>JavaScript kaynaklı SEO sorunları</li><li><i class="mark" aria-hidden="true"></i>Core Web Vitals ve sayfa performansı</li><li><i class="mark" aria-hidden="true"></i>Yapılandırılmış veri kontrolleri</li><li><i class="mark" aria-hidden="true"></i>Site taşıma ve migration planlaması</li></ul>
+  </div>
+</section>
+
+<section class="band" id="geo" data-bg="#2A0FA8" data-note="Araçlar: Google Search Console, Ahrefs, Schema">
+  <div class="band-in">
+    <h2>GEO</h2>
+    <article class="card card-wide">
+      <div class="card-text">
+        <h3><i class="mark" aria-hidden="true"></i>GEO ve Arama Görünürlüğü</h3>
+        <p class="lede">Markaların yalnızca geleneksel arama sonuçlarında değil, yapay zekâ destekli arama ve yanıt sistemlerinde de doğru şekilde anlaşılmasını destekleyen içerik ve teknik yapı çalışmaları.</p>
+        <a class="pill" href="https://aylininci.com/blog/google-ai-modu-seo" target="_blank" rel="noopener">Google AI Modu yazısı</a>
+      </div>
+      <figure class="term">
+        <figcaption><span></span><span></span><span></span><b>query-fan-out.txt</b><button type="button" class="copy" aria-label="query-fan-out.txt içeriğini kopyala">Kopyala</button></figcaption>
+        <pre><code>soru: "küçük e-ticaret için hangi altyapı?"
+ ├─ shopify maliyeti
+ ├─ woocommerce karşılaştırma
+ ├─ türkiye ödeme altyapısı
+ └─ kaynak: en net cevabı veren sayfa</code></pre>
+      </figure>
+    </article>
+    <ul class="points"><li><i class="mark" aria-hidden="true"></i>Entity ve konu bütünlüğü</li><li><i class="mark" aria-hidden="true"></i>Açık ve doğrulanabilir içerik yapısı</li><li><i class="mark" aria-hidden="true"></i>Semantik içerik mimarisi</li><li><i class="mark" aria-hidden="true"></i>Soru ve yanıt odaklı içerik yapıları</li><li><i class="mark" aria-hidden="true"></i>Kaynaklandırma ve uzmanlık sinyalleri</li><li><i class="mark" aria-hidden="true"></i>Schema ve yapılandırılmış veri</li><li><i class="mark" aria-hidden="true"></i>Marka ve konu otoritesinin desteklenmesi</li><li><i class="mark" aria-hidden="true"></i>AI Overview ve üretken arama analizleri</li></ul>
+  </div>
+</section>
+
+<section class="band" id="icerik" data-bg="#4A0B7A" data-note="Araçlar: Ahrefs, SEMrush, Google Search Console, Screaming Frog">
+  <div class="band-in">
+    <h2>İçerik</h2>
+    <article class="card card-wide">
+      <div class="card-text">
+        <h3><i class="mark" aria-hidden="true"></i>İçerik SEO ve Strateji</h3>
+        <p class="lede">Arama niyetine, kullanıcı ihtiyacına ve web sitesinin ticari hedeflerine uygun içerik yapılarının planlanması.</p>
+        <a class="pill" href="https://aylininci.com/blog/yapay-zeka-icerik-google-seo" target="_blank" rel="noopener">Yapay zeka içeriği yazısı</a>
+      </div>
+      <figure class="term">
+        <figcaption><span></span><span></span><span></span><b>icerik-brief.md</b><button type="button" class="copy" aria-label="icerik-brief.md içeriğini kopyala">Kopyala</button></figcaption>
+        <pre><code>sorgu:   anahtar kelime kanibalizasyonu
+niyet:   bilgi
+sayfa:   tek ana rehber
+bağlantı: 3 ilgili yazıdan iç link
+kontrol: Search Console, 28 gün</code></pre>
+      </figure>
+    </article>
+    <ul class="points"><li><i class="mark" aria-hidden="true"></i>Anahtar kelime ve rakip analizi</li><li><i class="mark" aria-hidden="true"></i>Arama niyeti sınıflandırması</li><li><i class="mark" aria-hidden="true"></i>İçerik planı ve konu kümeleri</li><li><i class="mark" aria-hidden="true"></i>Kategori ve ürün sayfası optimizasyonları</li><li><i class="mark" aria-hidden="true"></i>İç bağlantı stratejisi</li><li><i class="mark" aria-hidden="true"></i>İçerik briefleri</li><li><i class="mark" aria-hidden="true"></i>Kanibalizasyon analizi</li><li><i class="mark" aria-hidden="true"></i>Meta başlık ve açıklama optimizasyonları</li><li><i class="mark" aria-hidden="true"></i>Türkçe ve İngilizce içerik çalışmaları</li></ul>
+  </div>
+</section>
+
+<section class="band" id="shopify" data-bg="#0A5A3C" data-note="Araçlar: Shopify, Liquid, JSON, HTML, CSS, JavaScript, GitHub">
+  <div class="band-in">
+    <h2 lang="en">Shopify</h2>
+    <article class="card card-wide">
+      <div class="card-text">
+        <h3><i class="mark" aria-hidden="true"></i>Shopify ve Liquid Geliştirme</h3>
+        <p class="lede">Shopify mağazalarının teknik altyapı, tema yapısı, kullanıcı deneyimi ve SEO ihtiyaçları doğrultusunda geliştirilmesi.</p>
+        <a class="pill" href="https://aylininci.com/blog/shopify-gecisi-seo-rehberi" target="_blank" rel="noopener">Shopify’a geçiş rehberi</a>
+      </div>
+      <figure class="term">
+        <figcaption><span></span><span></span><span></span><b>sections/urun-kartlari.liquid</b><button type="button" class="copy" aria-label="sections/urun-kartlari.liquid içeriğini kopyala">Kopyala</button></figcaption>
+        <pre><code>{% for product in collection.products limit: 4 %}
+  {{ product.featured_image
+     | image_url: width: 800
+     | image_tag: loading: 'lazy' }}
+{% endfor %}</code></pre>
+      </figure>
+    </article>
+    <ul class="points"><li><i class="mark" aria-hidden="true"></i>Tema özelleştirmeleri</li><li><i class="mark" aria-hidden="true"></i>Liquid kod düzenlemeleri</li><li><i class="mark" aria-hidden="true"></i>Özel section ve block geliştirmeleri</li><li><i class="mark" aria-hidden="true"></i>Ürün ve koleksiyon sayfası düzenlemeleri</li><li><i class="mark" aria-hidden="true"></i>JSON template yapıları</li><li><i class="mark" aria-hidden="true"></i>Mobil uyumluluk geliştirmeleri</li><li><i class="mark" aria-hidden="true"></i>Site hızı ve görsel optimizasyonları</li><li><i class="mark" aria-hidden="true"></i>Çok dilli mağaza yapıları</li><li><i class="mark" aria-hidden="true"></i>Canonical ve indeksleme kontrolleri</li><li><i class="mark" aria-hidden="true"></i>GitHub üzerinden tema yönetimi</li><li><i class="mark" aria-hidden="true"></i>Teknik hata analizi ve çözümü</li></ul>
+  </div>
+</section>
+
+<section class="band" id="wordpress" data-bg="#074B66" data-note="Araçlar: WordPress, Elementor, HTML, CSS, JavaScript, PHP">
+  <div class="band-in">
+    <h2 lang="en">WordPress</h2>
+    <article class="card card-wide">
+      <div class="card-text">
+        <h3><i class="mark" aria-hidden="true"></i>WordPress ve Front-End Geliştirme</h3>
+        <p class="lede">Kurumsal web siteleri, landing page yapıları ve içerik odaklı projeler için kullanıcı deneyimi ve performans odaklı arayüz geliştirmeleri.</p>
+        <a class="pill" href="#iletisim">İletişime geç</a>
+      </div>
+      <figure class="term">
+        <figcaption><span></span><span></span><span></span><b>style.css</b><button type="button" class="copy" aria-label="style.css içeriğini kopyala">Kopyala</button></figcaption>
+        <pre><code>img {
+  max-width: 100%;
+  height: auto;
+}
+.hero-image { aspect-ratio: 3 / 2; }</code></pre>
+      </figure>
+    </article>
+    <ul class="points"><li><i class="mark" aria-hidden="true"></i>WordPress site düzenlemeleri</li><li><i class="mark" aria-hidden="true"></i>Elementor arayüz geliştirmeleri</li><li><i class="mark" aria-hidden="true"></i>Özel HTML ve CSS uygulamaları</li><li><i class="mark" aria-hidden="true"></i>JavaScript tabanlı etkileşimler</li><li><i class="mark" aria-hidden="true"></i>Mobil uyumluluk</li><li><i class="mark" aria-hidden="true"></i>Sayfa hızı optimizasyonları</li><li><i class="mark" aria-hidden="true"></i>Form ve yönlendirme yapıları</li><li><i class="mark" aria-hidden="true"></i>Tek sayfa ve kurumsal site tasarımları</li><li><i class="mark" aria-hidden="true"></i>SEO uyumlu sayfa yapıları</li><li><i class="mark" aria-hidden="true"></i>Tema ve eklenti kaynaklı hata çözümleri</li></ul>
+  </div>
+</section>
+
+<section class="band" id="veri" data-bg="#6A1045" data-note="Araçlar: GA4, GSC, GTM, Looker Studio, Excel">
+  <div class="band-in">
+    <h2>Veri</h2>
+    <article class="card card-wide">
+      <div class="card-text">
+        <h3><i class="mark" aria-hidden="true"></i>Veri Analizi ve Ölçümleme</h3>
+        <p class="lede">SEO ve web performansının yalnızca sıralamalarla değil, kullanıcı davranışı ve dönüşüm verileriyle birlikte değerlendirilmesi.</p>
+        <a class="pill" href="https://aylininci.com/blog/chatgpt-trafigi-ga4-olcumu" target="_blank" rel="noopener">ChatGPT trafiğini ölçmek</a>
+      </div>
+      <figure class="term">
+        <figcaption><span></span><span></span><span></span><b>ga4-kanal-grubu.regex</b><button type="button" class="copy" aria-label="ga4-kanal-grubu.regex içeriğini kopyala">Kopyala</button></figcaption>
+        <pre><code>chatgpt\.com|chat\.openai\.com|
+perplexity\.ai|gemini\.google\.com|
+copilot\.microsoft\.com|claude\.ai</code></pre>
+      </figure>
+    </article>
+    <ul class="points"><li><i class="mark" aria-hidden="true"></i>GA4 performans analizleri</li><li><i class="mark" aria-hidden="true"></i>Google Search Console raporları</li><li><i class="mark" aria-hidden="true"></i>Organik trafik ve görünürlük değerlendirmeleri</li><li><i class="mark" aria-hidden="true"></i>Dönüşüm takibi</li><li><i class="mark" aria-hidden="true"></i>Google Tag Manager kontrolleri</li><li><i class="mark" aria-hidden="true"></i>Landing page performansları</li><li><i class="mark" aria-hidden="true"></i>Kanal ve yönlendiren analizleri</li><li><i class="mark" aria-hidden="true"></i>Yönetim ve müşteri raporları</li><li><i class="mark" aria-hidden="true"></i>Verilerin anlaşılır çıktılara dönüştürülmesi</li></ul>
+  </div>
+</section>
+
+<section class="band" id="otomasyon" data-bg="#6B3A08" data-note="Araçlar: Python, Pandas, OpenPyXL, ImageMagick, Pillow">
+  <div class="band-in">
+    <h2>Otomasyon</h2>
+    <article class="card card-wide">
+      <div class="card-text">
+        <h3><i class="mark" aria-hidden="true"></i>Otomasyon ve Teknik Optimizasyon</h3>
+        <p class="lede">Tekrarlayan veri işleme, raporlama ve içerik operasyonlarının daha kontrollü ve verimli hâle getirilmesi.</p>
+        <a class="pill" href="#araclar">Araçları gör</a>
+      </div>
+      <figure class="term">
+        <figcaption><span></span><span></span><span></span><b>yonlendirme_kontrol.py</b><button type="button" class="copy" aria-label="yonlendirme_kontrol.py içeriğini kopyala">Kopyala</button></figcaption>
+        <pre><code>import pandas as pd
+
+urls = pd.read_csv("yonlendirmeler.csv")
+kirik = urls[urls["durum"] != 301]
+kirik.to_excel("kontrol.xlsx", index=False)</code></pre>
+      </figure>
+    </article>
+    <ul class="points"><li><i class="mark" aria-hidden="true"></i>CSV ve Excel verilerinin işlenmesi</li><li><i class="mark" aria-hidden="true"></i>SEO verilerinin sınıflandırılması</li><li><i class="mark" aria-hidden="true"></i>Toplu yönlendirme kontrolleri</li><li><i class="mark" aria-hidden="true"></i>Görsel boyut ve dosya optimizasyonları</li><li><i class="mark" aria-hidden="true"></i>Raporlama otomasyonları</li><li><i class="mark" aria-hidden="true"></i>Veri temizleme ve düzenleme</li><li><i class="mark" aria-hidden="true"></i>Tekrarlayan iş akışlarının sadeleştirilmesi</li></ul>
+  </div>
+</section>
+<section class="band" id="yaklasim" data-bg="#3A0A2E" data-note="Analiz, önceliklendirme, uygulama, ölçümleme.">
+  <div class="band-in">
+    <h2>Analizden ölçümlemeye</h2>
+    <div class="grid2"><article class="card step"><h3><i class="mark" aria-hidden="true"></i>Analiz</h3><p>Web sitesinin teknik altyapısı, içerik yapısı, organik performansı ve kullanıcı deneyimi birlikte incelenir. Karar süreci varsayımlardan çok mevcut veriler, tarama sonuçları ve gerçek kullanıcı davranışları üzerinden şekillenir.</p></article><article class="card step"><h3><i class="mark" aria-hidden="true"></i>Önceliklendirme</h3><p>Tespit edilen bulgular; potansiyel etkileri, uygulama gereksinimleri ve iş hedefleri doğrultusunda sınıflandırılır. Kritik teknik sorunlar öncelikli olarak ele alınır.</p></article><article class="card step"><h3><i class="mark" aria-hidden="true"></i>Uygulama</h3><p>Teknik düzenlemeler, içerik iyileştirmeleri ve gerekli kod değişiklikleri uygulanabilir görevlere dönüştürülür ve doğrudan uygulanır ya da ilgili ekiplerle yürütülür.</p></article><article class="card step"><h3><i class="mark" aria-hidden="true"></i>Ölçümleme</h3><p>Çalışmaların organik trafik, gösterim, tıklama, sıralama ve dönüşüm performansı üzerindeki etkileri takip edilir. Sonuçlara göre yeni öncelikler belirlenir.</p></article></div>
+  </div>
+</section>
+<section class="band" id="yazilar" data-bg="#0B1B5E" data-note="10 yazı. Kaynaklar yazıların içinde.">
+  <div class="band-in">
+    <h2>Yazılar</h2>
+    <div class="grid3"><a class="card post" href="https://aylininci.com/blog/yapay-zeka-icerik-google-seo" target="_blank" rel="noopener"><img src="img/yapay-zeka-icerik-google-seo.webp" alt="" width="800" height="533" loading="lazy"><div><small>İçerik Stratejisi</small><strong>Yapay Zeka ile İçerik Üretimi ve Google</strong></div></a><a class="card post" href="https://aylininci.com/blog/chatgpt-trafigi-ga4-olcumu" target="_blank" rel="noopener"><img src="img/chatgpt-trafigi-ga4-olcumu.webp" alt="" width="800" height="533" loading="lazy"><div><small>Analitik</small><strong>ChatGPT Trafiği GA4’te Neden Direct Görünüyor?</strong></div></a><a class="card post" href="https://aylininci.com/blog/google-eylul-2026-spam-guncellemesi" target="_blank" rel="noopener"><img src="img/google-eylul-2026-spam-guncellemesi.webp" alt="" width="800" height="533" loading="lazy"><div><small>Teknik SEO</small><strong>Google Eylül 2026 Spam Güncellemesi</strong></div></a><a class="card post" href="https://aylininci.com/blog/shopify-gecisi-seo-rehberi" target="_blank" rel="noopener"><img src="img/shopify-gecisi-seo-rehberi.webp" alt="" width="800" height="533" loading="lazy"><div><small>Shopify</small><strong>Shopify’a Geçişte SEO</strong></div></a><a class="card post" href="https://aylininci.com/blog/google-ai-modu-seo" target="_blank" rel="noopener"><img src="img/google-ai-modu-seo.webp" alt="" width="800" height="533" loading="lazy"><div><small>GEO</small><strong>Google AI Modu ve SEO</strong></div></a><a class="card post" href="https://aylininci.com/blog/shopify-agentic-storefronts-chatgpt" target="_blank" rel="noopener"><img src="img/shopify-agentic-storefronts-chatgpt.webp" alt="" width="800" height="533" loading="lazy"><div><small>Shopify</small><strong>Shopify Agentic Storefronts</strong></div></a></div>
+    <div><a class="pill" href="https://aylininci.com/blog/" target="_blank" rel="noopener">Tüm yazılar</a></div>
+  </div>
+</section>
+<section class="band" id="araclar" data-bg="#141821" data-note="21 araç ve teknoloji.">
+  <div class="band-in">
+    <h2>Araçlar</h2>
+    <ul class="chips"><li>Screaming Frog</li><li>Google Search Console</li><li>Google Analytics 4</li><li>Google Tag Manager</li><li>PageSpeed Insights</li><li>Ahrefs</li><li>SEMrush</li><li>Looker Studio</li><li>Shopify</li><li>Liquid</li><li>WordPress</li><li>Elementor</li><li>GitHub</li><li>HTML</li><li>CSS</li><li>JavaScript</li><li>Python</li><li>PHP</li><li>Pandas</li><li>OpenPyXL</li><li>ImageMagick</li></ul>
+  </div>
+</section>
+<section class="band" id="iletisim" data-bg="#010419" data-note="LinkedIn ya da e-posta.">
+  <div class="band-in">
+    <h2>Benimle bağlantı kurun</h2>
+    <article class="card contact" style="display:grid;gap:14px;justify-items:start">
+      <p>Profesyonel deneyimlerim, uzmanlık alanlarım veya yazılarım hakkında iletişime geçebilirsiniz.</p>
+      <p class="mail">aylinvinci@gmail.com</p>
+      <div class="row"><a class="pill" href="https://www.linkedin.com/in/aylin-inci/" target="_blank" rel="noopener">LinkedIn</a><a class="pill" href="https://aylininci.com/Aylin_Inci_CV_TR.pdf" target="_blank" rel="noopener">Özgeçmiş</a></div>
+    </article>
+  </div>
+</section>
+</main>
+<footer><span>© 2026 Aylin İnci</span><span>Yayında değil, önizleme taslağı</span></footer>
+
+<script>
+(function () {
+  var HUBS = [{"id":"teknik-seo","name":"Teknik SEO","n":9,"x":0.2,"y":0.2},{"id":"geo","name":"GEO","n":8,"x":0.5,"y":0.17},{"id":"icerik","name":"İçerik","n":9,"x":0.8,"y":0.24},{"id":"shopify","name":"Shopify","n":11,"x":0.24,"y":0.54},{"id":"wordpress","name":"WordPress","n":10,"x":0.55,"y":0.48},{"id":"veri","name":"Veri","n":9,"x":0.8,"y":0.62},{"id":"otomasyon","name":"Otomasyon","n":7,"x":0.36,"y":0.78}];
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function seeded(s) { return function () { s = (s * 1664525 + 1013904223) % 4294967296; return s / 4294967296; }; }
+
+  /* Expertise map: one satellite per real work item */
+  var map = document.getElementById('map'), mc = map.getContext('2d'), mw = 0, mh = 0, hover = -1, dpr = 1;
+  var sats = HUBS.map(function (h, i) { var r = seeded(i * 97 + 11), a = []; for (var k = 0; k < h.n; k++) a.push({ t: k / h.n * 6.283 + r() * .5, d: .55 + r() * .75, p: r() }); return a; });
+  function sizeMap() { var b = map.getBoundingClientRect(); dpr = Math.min(devicePixelRatio || 1, 2); mw = b.width; mh = b.height; map.width = mw * dpr; map.height = mh * dpr; }
+  function hubPos(h) { return { x: h.x * mw, y: h.y * mh }; }
+  function drawMap(now) {
+    mc.setTransform(dpr, 0, 0, dpr, 0, 0); mc.clearRect(0, 0, mw, mh);
+    var reach = Math.min(mw, mh) * .15;
+    HUBS.forEach(function (h, i) {
+      var c = hubPos(h), on = hover === i;
+      sats[i].forEach(function (s) {
+        var wob = reduce ? 0 : Math.sin(now / 1800 + s.p * 6) * .05;
+        var x = c.x + Math.cos(s.t + wob) * reach * s.d, y = c.y + Math.sin(s.t + wob) * reach * s.d;
+        mc.strokeStyle = on ? '#7CF2C6' : 'rgba(110,150,255,.5)'; mc.lineWidth = on ? 1.2 : .8;
+        mc.beginPath(); mc.moveTo(c.x, c.y); mc.lineTo(x, y); mc.stroke();
+        mc.fillStyle = on ? '#FFFFFF' : '#7FA2FF'; mc.fillRect(x - 1.5, y - 1.5, 3, 3);
+      });
+      mc.fillStyle = on ? '#7CF2C6' : '#5C7CFF'; mc.fillRect(c.x - 4, c.y - 4, 8, 8);
+      mc.font = '300 13px "Geist Mono", monospace'; mc.fillStyle = '#FFFFFF'; mc.fillText(h.name, c.x + 11, c.y - 7);
+      var w = mc.measureText(h.name).width; mc.font = '300 10px "Geist Mono", monospace'; mc.fillStyle = 'rgba(255,255,255,.65)'; mc.fillText(h.n, c.x + 15 + w, c.y - 13);
+    });
+    mc.strokeStyle = 'rgba(255,255,255,.14)'; mc.lineWidth = .8; mc.beginPath();
+    HUBS.forEach(function (h, i) { var a = hubPos(h), b = hubPos(HUBS[(i + 1) % HUBS.length]); mc.moveTo(a.x, a.y); mc.lineTo(b.x, b.y); }); mc.stroke();
+  }
+  function pick(e) { var b = map.getBoundingClientRect(), x = e.clientX - b.left, y = e.clientY - b.top, best = -1, lim = 60 * 60; HUBS.forEach(function (h, i) { var c = hubPos(h), d = (c.x - x) * (c.x - x) + (c.y - y) * (c.y - y); if (d < lim) { lim = d; best = i; } }); return best; }
+  map.addEventListener('mousemove', function (e) { hover = pick(e); });
+  map.addEventListener('mouseleave', function () { hover = -1; });
+  map.addEventListener('click', function (e) { var i = pick(e); if (i >= 0) document.getElementById(HUBS[i].id).scrollIntoView(); });
+
+  /* Slow particle field behind the page */
+  var field = document.getElementById('field'), fc = field.getContext('2d'), dots = [], r = seeded(7);
+  for (var i = 0; i < 110; i++) dots.push({ x: r(), y: r(), s: 1 + r() * 1.4, v: .004 + r() * .01 });
+  var links = document.getElementById('links'), lc = links.getContext('2d');
+  function sizeFixed() { [field, links].forEach(function (c) { c.width = innerWidth; c.height = innerHeight; }); }
+  function drawField(now) {
+    fc.clearRect(0, 0, field.width, field.height); fc.fillStyle = 'rgba(255,255,255,.34)';
+    dots.forEach(function (d) { var y = (d.y + (reduce ? 0 : now / 1e6 * d.v * 40)) % 1; fc.fillRect(d.x * field.width, y * field.height, d.s, d.s); });
+  }
+
+  /* Active section: page colour, rail, notes, connector lines */
+  var bands = [].slice.call(document.querySelectorAll('.band')), railLinks = [].slice.call(document.querySelectorAll('#rail a'));
+  var note = document.getElementById('noteText'), active = null;
+  function setActive(b) {
+    active = b; document.body.classList.toggle('at-top', !b); document.documentElement.style.setProperty('--page', b ? b.dataset.bg : '#051DAA');
+    railLinks.forEach(function (a) { var on = b && a.getAttribute('href') === '#' + b.id; if (on) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current'); });
+    if (b) note.textContent = b.dataset.note;
+  }
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
+      if (e.isIntersecting) setActive(e.target);
+      else if (e.target === active && scrollY < bands[0].offsetTop) setActive(null);
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  bands.forEach(function (b) { io.observe(b); });
+  function drawLinks() {
+    lc.clearRect(0, 0, links.width, links.height);
+    if (!active || innerWidth <= 1120) return;
+    var card = active.querySelector('.card'), dot = document.querySelector('#rail a[aria-current]'), n = document.getElementById('notes');
+    if (!card || !dot) return;
+    var c = card.getBoundingClientRect(), d = dot.getBoundingClientRect();
+    lc.strokeStyle = 'rgba(255,255,255,.4)'; lc.lineWidth = 1; lc.beginPath(); lc.moveTo(d.right, d.top + d.height / 2); lc.lineTo(c.left, c.top + 18);
+    if (getComputedStyle(n).display !== 'none') { var k = n.getBoundingClientRect(); lc.moveTo(c.right, c.top + 18); lc.lineTo(k.left, k.top + 14); }
+    lc.stroke();
+    lc.fillStyle = '#fff'; lc.fillRect(c.left - 2, c.top + 16, 4, 4);
+  }
+
+  /* Copy buttons */
+  document.querySelectorAll('.copy').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var code = b.closest('.term').querySelector('code');
+      function done(t) { b.textContent = t; setTimeout(function () { b.textContent = 'Kopyala'; }, 1600); }
+      function sel() { var s = getSelection(), g = document.createRange(); g.selectNodeContents(code); s.removeAllRanges(); s.addRange(g); done('Seçildi'); }
+      if (navigator.clipboard) navigator.clipboard.writeText(code.textContent).then(function () { done('Kopyalandı'); }, sel); else sel();
+    });
+  });
+
+  function resize() { sizeMap(); sizeFixed(); paint(performance.now()); }
+  function paint(now) { drawMap(now); drawField(now); drawLinks(); }
+  addEventListener('resize', resize);
+  addEventListener('scroll', function () { if (reduce) drawLinks(); }, { passive: true });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { paint(performance.now()); });
+  resize();
+  if (!reduce) (function loop(t) { paint(t); requestAnimationFrame(loop); })(performance.now());
+})();
+</script>
