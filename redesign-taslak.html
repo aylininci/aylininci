@@ -33,6 +33,7 @@ a{color:inherit}
 .tile{border:1px solid var(--line);padding:12px;font:300 13px/1.45 var(--mono);background:var(--panel)}
 .tile h1{font:500 22px/1.15 var(--sans);margin:0 0 6px}
 .tile p{margin:0}
+.tile-img img{display:block;width:calc(100% + 24px);max-width:none;height:auto;aspect-ratio:3/2;object-fit:cover;margin:-12px -12px 10px}
 .tile strong{display:block;font:500 40px/1.05 var(--sans);margin-bottom:4px}
 .index{list-style:none;margin:0;padding:0}
 .index a{display:flex;justify-content:space-between;gap:8px;text-decoration:none;padding:1px 0}
@@ -159,7 +160,7 @@ body.at-top .notes{opacity:0;pointer-events:none}
   <div class="stack">
     <div class="tile"><h1>Aylin İnci</h1><p>SEO, GEO ve Web Geliştirme Uzmanı</p></div>
     <nav class="tile" aria-label="Uzmanlık alanları"><ul class="index"><li><a href="#teknik-seo">Teknik SEO<span>9</span></a></li><li><a href="#geo">GEO<span>8</span></a></li><li><a href="#icerik">İçerik<span>9</span></a></li><li><a href="#shopify">Shopify<span>11</span></a></li><li><a href="#wordpress">WordPress<span>10</span></a></li><li><a href="#veri">Veri<span>9</span></a></li><li><a href="#otomasyon">Otomasyon<span>7</span></a></li></ul></nav>
-    <div class="tile"><strong>7</strong><p>uzmanlık alanı, 63 çalışma başlığı</p></div>
+    <div class="tile tile-img"><img src="img/kart-uzmanlik.webp" alt="" width="800" height="533"><strong>7</strong><p>uzmanlık alanı, 63 çalışma başlığı</p></div>
     <div class="tile"><strong>10</strong><p>blog yazısı: SEO, GEO, Shopify ve analitik</p></div>
     <div class="tile"><strong>21</strong><p>araç ve teknoloji</p></div>
   </div>
@@ -373,8 +374,8 @@ kirik.to_excel("kontrol.xlsx", index=False)</code></pre>
 
 <script>
 (function () {
-  /* Every section has a hub on one shared map; satellites are real items, so the map stays honest. */
-  var HUBS = [{"id":"hakkimda","name":"Aylin İnci","n":3,"x":0.7,"y":0.5},{"id":"teknik-seo","name":"Teknik SEO","n":9,"x":0.24,"y":0.2},{"id":"geo","name":"GEO","n":8,"x":0.62,"y":0.13},{"id":"icerik","name":"İçerik","n":9,"x":1.03,"y":0.2},{"id":"shopify","name":"Shopify","n":11,"x":0.17,"y":0.6},{"id":"wordpress","name":"WordPress","n":10,"x":1.22,"y":0.55},{"id":"veri","name":"Veri","n":9,"x":0.94,"y":0.84},{"id":"otomasyon","name":"Otomasyon","n":7,"x":0.5,"y":0.86},{"id":"yaklasim","name":"Yaklaşım","n":4,"x":0.42,"y":0.42},{"id":"yazilar","name":"Yazılar","n":10,"x":1,"y":0.62},{"id":"araclar","name":"Araçlar","n":21,"x":1.28,"y":0.86}];
+  /* A true 3D graph around one centre ring: every section has a hub, every satellite is a real work item. */
+  var HUBS = [{"id":"hakkimda","name":"Aylin İnci","n":3,"x":0.7,"y":0.5},{"id":"teknik-seo","name":"Teknik SEO","n":9,"x":0.24,"y":0.2},{"id":"geo","name":"GEO","n":8,"x":0.62,"y":0.13},{"id":"icerik","name":"İçerik","n":9,"x":1.03,"y":0.2},{"id":"shopify","name":"Shopify","n":11,"x":0.14,"y":0.64},{"id":"wordpress","name":"WordPress","n":10,"x":1.26,"y":0.46},{"id":"veri","name":"Veri","n":9,"x":0.92,"y":0.88},{"id":"otomasyon","name":"Otomasyon","n":7,"x":0.5,"y":0.9},{"id":"yaklasim","name":"Yaklaşım","n":4,"x":0.42,"y":0.42},{"id":"yazilar","name":"Yazılar","n":10,"x":1.02,"y":0.6},{"id":"araclar","name":"Araçlar","n":21,"x":1.3,"y":0.84}];
   var root = document.documentElement, body = document.body;
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   var cv = document.getElementById('map'), c = cv.getContext('2d');
@@ -385,7 +386,8 @@ kirik.to_excel("kontrol.xlsx", index=False)</code></pre>
   var railLinks = [].slice.call(document.querySelectorAll('#rail a'));
   var note = document.getElementById('noteText');
   var W = 0, H = 0, dpr = 1, mobile = false, hover = -1, start = performance.now(), active = null;
-  var WORLD_W = 1.4, REACH = .13, INK = [1, 4, 25], MINT = [124, 242, 198], LINE = [176, 198, 255];
+  var REACH = .19, FOCAL = 2.4, INK = [1, 4, 25], MINT = [124, 242, 198], BLUE = [64, 124, 255], GREEN = [52, 214, 160];
+  var yaw = 0, pitch = 0, settle = 1, satIn = 1, hubSize = 8, hubIn = 1, labelIn = 1;
 
   function seeded(s) { return function () { s = (s * 1664525 + 1013904223) % 4294967296; return s / 4294967296; }; }
   function clamp(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
@@ -395,15 +397,26 @@ kirik.to_excel("kontrol.xlsx", index=False)</code></pre>
   function mix(a, b, t) { return [lerp(a[0], b[0], t), lerp(a[1], b[1], t), lerp(a[2], b[2], t)]; }
   function rgb(a, o) { return 'rgba(' + (a[0] | 0) + ',' + (a[1] | 0) + ',' + (a[2] | 0) + ',' + o + ')'; }
 
-  var sats = HUBS.map(function (h, i) {
-    var r = seeded(i * 97 + 11), a = [];
-    for (var k = 0; k < h.n; k++) a.push({ t: k / h.n * 6.283 + r() * .5, d: .6 + r() * .75, p: r() });
-    return a;
+  /* World: centre at the origin, hubs around it at different depths, satellites on a shell around each hub */
+  var nodes = HUBS.map(function (h, i) {
+    var r = seeded(i * 97 + 11), sats = [];
+    for (var k = 0; k < h.n; k++) {
+      var th = k / h.n * 6.283 + r() * .6, ph = (r() - .5) * 1.5, d = .62 + r() * .8;
+      sats.push({ x: Math.cos(th) * Math.cos(ph) * d * REACH, y: Math.sin(th) * Math.cos(ph) * d * REACH, z: Math.sin(ph) * d * REACH, p: r(), card: k % 4 === 0 });
+    }
+    return { x: h.x - .7, y: h.y - .5, z: i ? (r() - .5) * .7 : 0, sats: sats, tint: h.n >= 10 ? .75 : .12, delay: r() * .28, sx: 0, sy: 0, scale: 1, cx: 0, cy: 0 };
   });
+  var SEED = { x: .2, y: -.2, z: 0 };
   var r0 = seeded(7), dots = [];
   for (var i = 0; i < 120; i++) dots.push({ x: r0(), y: r0(), s: 1 + r0() * 1.4, v: .2 + r0() * .8 });
   var hubIndex = {}; HUBS.forEach(function (h, i) { hubIndex[h.id] = i; });
   var stops = bands.map(function (b) { return { el: b, hub: hubIndex[b.id] === undefined ? -1 : hubIndex[b.id], bg: hex(b.dataset.bg) }; });
+
+  function spin(x, y, z) {
+    var ca = Math.cos(yaw), sa = Math.sin(yaw), cb = Math.cos(pitch), sb = Math.sin(pitch);
+    var x1 = x * ca + z * sa, z1 = -x * sa + z * ca, y1 = y * cb - z1 * sb, z2 = y * sb + z1 * cb, p = FOCAL / (FOCAL - z2);
+    return { x: x1 * p, y: y1 * p, z: z2, p: p };
+  }
 
   function resize() {
     dpr = Math.min(devicePixelRatio || 1, 1.5); W = innerWidth; H = innerHeight; mobile = W <= 860;
@@ -417,7 +430,7 @@ kirik.to_excel("kontrol.xlsx", index=False)</code></pre>
     var b = box.getBoundingClientRect();
     var e1 = smooth(q / .24), e2 = smooth((q - .16) / .62), e3 = smooth((q - .7) / .3);
     var R = { x: lerp(b.left, 0, e1), y: lerp(b.top, 0, e1), w: lerp(b.width, W, e1), h: lerp(b.height, H, e1) };
-    var z0 = Math.min(R.w / WORLD_W, R.h), zF = Math.min(W, H) * 2.1;
+    var z0 = Math.min(R.w / 1.62, R.h / 1.2), zF = Math.min(W, H) * 1.75;
     var ax = R.x + R.w / 2, ay = R.y + R.h / 2, fx = W / 2, fy = H * .46;
     var cur = 0, next = 0, e = 0, H0 = H * .55;
     var tops = stops.map(function (s) { return s.el.getBoundingClientRect().top + y - H0; });
@@ -425,26 +438,40 @@ kirik.to_excel("kontrol.xlsx", index=False)</code></pre>
     next = Math.min(cur + 1, stops.length - 1);
     if (next !== cur) e = smooth((y - (tops[next] - H * 1.15)) / (H * 1.15));
     function view(s) {
-      if (s.hub < 0) return { x: WORLD_W / 2, y: .5, z: Math.min(W / WORLD_W, H), a: 1, sx: W / 2, sy: H / 2 };
-      var h = HUBS[s.hub]; return { x: h.x, y: h.y, z: zF, a: 0, sx: fx, sy: fy };
+      if (s.hub < 0) return { x: 0, y: 0, z: Math.min(W / 1.62, H / 1.2), a: 1, sx: W / 2, sy: H / 2 };
+      var n = nodes[s.hub]; return { x: n.cx, y: n.cy, z: zF, a: 0, sx: fx, sy: fy };
     }
     var A = view(stops[cur]), B = view(stops[next]);
     var fly = { x: lerp(A.x, B.x, e), y: lerp(A.y, B.y, e), z: lerp(A.z, B.z, e) * (1 - .5 * Math.sin(e * Math.PI)), sx: lerp(A.sx, B.sx, e), sy: lerp(A.sy, B.sy, e), a: lerp(A.a, B.a, e) };
     var page = mix(stops[cur].bg, stops[next].bg, e);
     if (reduce) {
       var inHero = y < scene.offsetHeight;
-      return { x: WORLD_W / 2, y: .5, z: z0, sx: ax, sy: ay, ink: inHero ? 1 : 0, mint: 0, focus: -1, next: -1, e: 0, labels: inHero ? 1 : 0, others: inHero ? 1 : .25, R: R, q: inHero ? 0 : 1, page: page };
+      return { x: 0, y: 0, z: z0, sx: ax, sy: ay, ink: inHero ? 1 : 0, mint: 0, focus: -1, next: -1, e: 0, labels: inHero ? 1 : 0, others: inHero ? 1 : .25, R: R, q: inHero ? 0 : 1, page: page };
     }
     var lz = Math.log(z0), lf = Math.log(fly.z);
     return {
-      x: lerp(WORLD_W / 2, fly.x, e2), y: lerp(.5, fly.y, e2), z: Math.exp(lerp(lz, lf, e2)), sx: lerp(ax, fly.sx, e2), sy: lerp(ay, fly.sy, e2),
+      x: lerp(0, fly.x, e2), y: lerp(0, fly.y, e2), z: Math.exp(lerp(lz, lf, e2)), sx: lerp(ax, fly.sx, e2), sy: lerp(ay, fly.sy, e2),
       ink: 1 - smooth(q / .12), mint: e3 * (1 - Math.sin(e * Math.PI) * .75), focus: stops[cur].hub, next: stops[next].hub, e: e,
       labels: Math.max(1 - smooth((q - .1) / .3), fly.a), others: Math.max(lerp(1, .1, e2), lerp(.1, .85, Math.sin(e * Math.PI)), fly.a), R: R, q: q, page: page
     };
   }
 
+  /* Opening: a tight cluster springs out into place while the hubs shrink */
+  function spring(t) { return t <= 0 ? 0 : 1 - Math.exp(-3 * t) * Math.cos(5 * t); }
+  function placeNodes(now, y) {
+    var t = reduce ? 9 : (now - start - 300) / 1000;
+    yaw = reduce ? 0 : Math.sin(now * .00011) * .3 + Math.sin(y * .00035) * .5;
+    pitch = reduce ? .06 : .06 + Math.sin(now * .00017) * .1;
+    hubSize = lerp(20, 8, smooth(t / 1.8)); hubIn = smooth(t / .4); satIn = smooth((t - .5) / .8); labelIn = smooth((t - 1) / .7);
+    nodes.forEach(function (n) {
+      var g = spring(t - n.delay), x = lerp(SEED.x, n.x, g), yy = lerp(SEED.y, n.y, g), z = lerp(SEED.z, n.z, g), s = spin(x, yy, z);
+      n.wx = x; n.wy = yy; n.wz = z; n.cx = s.x; n.cy = s.y; n.depth = s.z; n.scale = s.p; n.grow = spring(t - .45 - n.delay);
+    });
+  }
+
   function draw(now) {
-    var y = window.scrollY, k = camera(y), intro = reduce ? 1 : smooth((now - start - 250) / 1300);
+    var y = window.scrollY; placeNodes(now, y);
+    var k = camera(y);
     var out = (mobile || reduce) ? 0 : smooth(k.q / .22);
     hero.style.setProperty('--out', out.toFixed(4));
     root.style.setProperty('--page', 'rgb(' + (k.page[0] | 0) + ',' + (k.page[1] | 0) + ',' + (k.page[2] | 0) + ')');
@@ -453,41 +480,64 @@ kirik.to_excel("kontrol.xlsx", index=False)</code></pre>
     c.setTransform(dpr, 0, 0, dpr, 0, 0); c.clearRect(0, 0, W, H);
     if (k.ink > .002) { c.fillStyle = rgb(INK, k.ink); c.fillRect(k.R.x, k.R.y, k.R.w, k.R.h); }
 
-    c.fillStyle = 'rgba(255,255,255,.32)';
+    c.fillStyle = 'rgba(255,255,255,.3)';
     var drift = reduce ? 0 : now / 90000;
     dots.forEach(function (d) { var py = (d.y + drift * d.v - y / 60000 * d.v) % 1; if (py < 0) py += 1; c.fillRect(d.x * W, py * H, d.s, d.s); });
 
-    function sx(wx) { return (wx - k.x) * k.z + k.sx; }
-    function sy(wy) { return (wy - k.y) * k.z + k.sy; }
-    var rot = reduce ? 0 : y * .00022;
+    function sx(v) { return (v - k.x) * k.z + k.sx; }
+    function sy(v) { return (v - k.y) * k.z + k.sy; }
     function alphaOf(i) {
       if (i === k.focus) return Math.max(k.others, 1 - k.e);
       if (i === k.next) return Math.max(k.others, k.e);
       return k.others;
     }
-    /* spokes from the centre to every hub */
-    var cx = sx(HUBS[0].x), cy = sy(HUBS[0].y);
-    c.lineWidth = .8;
-    HUBS.forEach(function (h, i) { if (!i) return; c.strokeStyle = rgb(LINE, .16 * alphaOf(i) * intro); c.beginPath(); c.moveTo(cx, cy); c.lineTo(sx(h.x), sy(h.y)); c.stroke(); });
+    var rings = clamp((k.z - 720) / 420), hoverFade = hover >= 0 ? .4 : 1;
+    nodes.forEach(function (n) { n.sx = sx(n.cx); n.sy = sy(n.cy); });
+    var centre = nodes[0];
 
-    HUBS.forEach(function (h, i) {
-      var a = alphaOf(i) * intro, on = hover === i, m = (i === k.focus ? k.mint * (1 - k.e) : i === k.next ? k.mint * k.e : 0);
-      if (on) m = 1;
-      var hx = sx(h.x), hy = sy(h.y), reach = REACH * k.z;
-      if (a < .01 || hx < -reach * 2 || hx > W + reach * 2 || hy < -reach * 2 || hy > H + reach * 2) return;
-      var col = mix(LINE, MINT, m), rings = clamp((k.z - 700) / 500);
-      sats[i].forEach(function (s, n) {
-        var wob = reduce ? 0 : Math.sin(now / 2200 + s.p * 6) * .04;
-        var ang = s.t + wob + rot * (1 + s.p * .6), dist = reach * s.d * intro;
-        var px = hx + Math.cos(ang) * dist, py = hy + Math.sin(ang) * dist * (.74 + .26 * Math.cos(rot * .8));
-        var pulse = !reduce && m < .5 && a > .5 && n === Math.floor(now / 1400) % sats[i].length;
-        c.strokeStyle = pulse ? rgb(MINT, a) : rgb(col, (.32 + .5 * m) * a); c.lineWidth = .8 + m * .5;
-        c.beginPath(); c.moveTo(hx, hy); c.lineTo(px, py); c.stroke();
-        if (rings > .05) { c.strokeStyle = rgb([255, 255, 255], a * rings * .9); c.beginPath(); c.arc(px, py, 4, 0, 6.283); c.stroke(); }
-        else { c.fillStyle = rgb([190, 208, 255], a); c.fillRect(px - 1.5, py - 1.5, 3, 3); }
+    /* spokes from the centre ring, drawn first so they sit behind everything */
+    c.lineWidth = .8;
+    nodes.forEach(function (n, i) { if (!i) return; c.strokeStyle = rgb(BLUE, .24 * alphaOf(i) * hubIn * hoverFade); c.beginPath(); c.moveTo(centre.sx, centre.sy); c.lineTo(n.sx, n.sy); c.stroke(); });
+
+    /* far hubs first so nearer ones paint over them */
+    var order = nodes.map(function (n, i) { return i; }).sort(function (a, b) { return nodes[a].depth - nodes[b].depth; });
+    order.forEach(function (i) {
+      var n = nodes[i], h = HUBS[i], on = hover === i;
+      var a = alphaOf(i) * (on || hover < 0 ? 1 : .45), m = i === k.focus ? k.mint * (1 - k.e) : i === k.next ? k.mint * k.e : 0;
+      var reach = REACH * 1.6 * k.z * n.scale, hx = n.sx, hy = n.sy;
+      if (a < .01 || hx < -reach || hx > W + reach || hy < -reach || hy > H + reach) return;
+      var edge = mix(mix(BLUE, GREEN, n.tint), MINT, m), far = nodes[(i + 1) % nodes.length];
+      n.sats.forEach(function (s, j) {
+        var wob = reduce ? 0 : Math.sin(now * .0006 + s.p * 6) * .006;
+        var g = Math.max(0, n.grow), p = spin(n.wx + s.x * g + wob, n.wy + s.y * g, n.wz + s.z * g);
+        var px = sx(p.x), py = sy(p.y), near = clamp((p.z + .5));
+        var sa = a * satIn * (.45 + near * .55);
+        if (sa < .01) return;
+        if (j % 4 === 1 && far) { c.strokeStyle = rgb(BLUE, .07 * sa); c.lineWidth = .7; c.beginPath(); c.moveTo(px, py); c.lineTo(far.sx, far.sy); c.stroke(); }
+        var grad = c.createLinearGradient(hx, hy, px, py);
+        grad.addColorStop(0, rgb(edge, Math.min(1, (.95 + m) * sa)));
+        grad.addColorStop(1, rgb(edge, (.14 + .7 * m) * sa));
+        c.strokeStyle = grad; c.lineWidth = .9 + m * .5; c.beginPath(); c.moveTo(hx, hy); c.lineTo(px, py); c.stroke();
+        if (rings > .05) { c.strokeStyle = rgb([255, 255, 255], sa * rings * .9); c.beginPath(); c.arc(px, py, 4, 0, 6.283); c.stroke(); }
+        if (s.card) {
+          var cw = (mobile ? 6 : 8) * p.p * (1 + rings * .6), ch = cw * .72;
+          c.fillStyle = rgb(INK, sa); c.fillRect(px - cw - 1, py - ch - 1, cw * 2 + 2, ch * 2 + 2);
+          c.strokeStyle = 'rgba(255,255,255,' + sa * .55 + ')'; c.lineWidth = .7; c.strokeRect(px - cw - 1, py - ch - 1, cw * 2 + 2, ch * 2 + 2);
+          c.fillStyle = 'rgba(255,255,255,' + sa + ')'; c.fillRect(px - cw * .7, py - ch * .55, cw * .85, ch * 1.1);
+          c.fillRect(px + cw * .25, py - ch * .55, cw * .45, ch * .45);
+        } else if (rings <= .05) {
+          var size = (1.7 + near * 2.2) * p.p;
+          c.fillStyle = on ? 'rgba(255,255,255,' + sa + ')' : rgb(mix(BLUE, [150, 180, 255], .4), sa);
+          c.beginPath(); c.arc(px, py, size, 0, 6.283); c.fill();
+        }
       });
-      c.fillStyle = rgb(mix([110, 140, 255], MINT, m), a); c.fillRect(hx - 4, hy - 4, 8, 8);
-      var la = Math.min(a, k.labels);
+      if (i === 0) {
+        c.strokeStyle = rgb(mix(BLUE, MINT, m), a * hubIn); c.lineWidth = 1; c.beginPath(); c.arc(hx, hy, 5 * n.scale + m * 2, 0, 6.283); c.stroke();
+      } else {
+        var hs = hubSize * n.scale * .5;
+        c.fillStyle = rgb(mix([96, 132, 255], MINT, on ? 1 : m), a * hubIn); c.fillRect(hx - hs, hy - hs, hs * 2, hs * 2);
+      }
+      var la = Math.min(a, k.labels) * labelIn;
       if (la > .02) {
         c.font = '300 ' + (mobile ? 11 : 13) + 'px "Geist Mono", monospace';
         var w = c.measureText(h.name).width, lx = hx + 11 + w + 16 > k.R.x + k.R.w ? hx - 9 - w : hx + 11;
@@ -529,8 +579,8 @@ kirik.to_excel("kontrol.xlsx", index=False)</code></pre>
   }
 
   function hubAt(e) {
-    var k = camera(window.scrollY), best = -1, lim = 3600;
-    HUBS.forEach(function (h, i) { var x = (h.x - k.x) * k.z + k.sx - e.clientX, y = (h.y - k.y) * k.z + k.sy - e.clientY, d = x * x + y * y; if (d < lim) { lim = d; best = i; } });
+    var best = -1, lim = 3600;
+    nodes.forEach(function (n, i) { var x = n.sx - e.clientX, y = n.sy - e.clientY, d = x * x + y * y; if (d < lim) { lim = d; best = i; } });
     return best;
   }
   box.addEventListener('mousemove', function (e) { hover = hubAt(e); box.style.cursor = hover >= 0 ? 'pointer' : ''; });
