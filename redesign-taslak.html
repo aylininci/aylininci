@@ -182,6 +182,31 @@ body.at-top .notes{opacity:0;pointer-events:none}
 #mapHover{position:absolute;inset:0;overflow:hidden;pointer-events:none}
 .tip{position:absolute;left:0;top:0;opacity:0;padding:1px 4px;background:var(--ink);color:#fff;font:300 11px/1.3 var(--mono);max-width:190px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;will-change:transform}
 .tip.me{background:var(--blue);padding:3px 6px;max-width:230px;white-space:normal;font-size:11.5px}
+
+/* The hero word always fits the screen height */
+@media (min-width:861px){
+  .word{min-height:0}
+  .word span{font-size:min(clamp(96px,10.8vw,156px),calc((100vh - var(--head) - 24px) / 5));font-size:min(clamp(96px,10.8vw,156px),calc((100dvh - var(--head) - 24px) / 5))}
+  .band:nth-of-type(3n+2){padding-top:clamp(240px,62vh,620px);padding-bottom:clamp(90px,16vh,170px)}
+  .band:nth-of-type(3n){padding-top:clamp(120px,24vh,240px);padding-bottom:clamp(180px,44vh,440px)}
+  .band:nth-of-type(3n+1){padding-top:clamp(320px,84vh,840px);padding-bottom:clamp(120px,26vh,260px)}
+  #hakkimda{padding-top:clamp(60px,14vh,140px)}
+}
+/* Lists and grids arrive differently per section */
+@media (prefers-reduced-motion:no-preference){
+  .fx .points li,.fx .grid2>*,.fx .grid3>*{opacity:0;transition:opacity .7s ease,transform .8s cubic-bezier(.2,.8,.2,1),clip-path .8s ease;transition-delay:calc(var(--n,0) * 55ms)}
+  .fx .band:nth-of-type(4n+1) .points li{transform:translate3d(0,26px,0)}
+  .fx .band:nth-of-type(4n+2) .points li{transform:translate3d(-34px,0,0)}
+  .fx .band:nth-of-type(4n+3) .points li{clip-path:inset(0 100% 0 0)}
+  .fx .band:nth-of-type(4n) .points li{transform:scale(.94);transform-origin:0 50%}
+  .fx .grid2>:nth-child(odd){transform:translate3d(-60px,0,0)}
+  .fx .grid2>:nth-child(even){transform:translate3d(60px,0,0)}
+  .fx .grid3>*{transform:translate3d(0,48px,0) rotate(1.2deg)}
+  .fx .seen li,.fx .seen>*{opacity:1;transform:none;clip-path:inset(0 0 0 0)}
+}
+
+/* entrances may start outside the page width */
+.band{overflow-x:clip}
 </style>
 
 <script>document.body.classList.add("at-top")</script>
@@ -241,7 +266,7 @@ body.at-top .notes{opacity:0;pointer-events:none}
         <div class="ask" style="left:50%" aria-hidden="true"><span>Teknik SEO</span><p></p><i class="send"><b></b><b></b></i></div>
       </div>
     </article>
-    <ul class="points"><li><i class="mark" aria-hidden="true"></i>Tarama ve indeksleme sorunları</li><li><i class="mark" aria-hidden="true"></i>Canonical ve hreflang yapıları</li><li><i class="mark" aria-hidden="true"></i>Yönlendirme zincirleri ve 404 kontrolleri</li><li><i class="mark" aria-hidden="true"></i>Robots.txt ve sitemap incelemeleri</li><li><i class="mark" aria-hidden="true"></i>Site mimarisi ve URL yapıları</li><li><i class="mark" aria-hidden="true"></i>JavaScript kaynaklı SEO sorunları</li><li><i class="mark" aria-hidden="true"></i>Core Web Vitals ve sayfa performansı</li><li><i class="mark" aria-hidden="true"></i>Yapılandırılmış veri kontrolleri</li><li><i class="mark" aria-hidden="true"></i>Site taşıma ve migration planlaması</li></ul>
+    <ul class="points"><li style="--n:0"><i class="mark" aria-hidden="true"></i>Tarama ve indeksleme sorunları</li><li style="--n:1"><i class="mark" aria-hidden="true"></i>Canonical ve hreflang yapıları</li><li style="--n:2"><i class="mark" aria-hidden="true"></i>Yönlendirme zincirleri ve 404 kontrolleri</li><li style="--n:3"><i class="mark" aria-hidden="true"></i>Robots.txt ve sitemap incelemeleri</li><li style="--n:4"><i class="mark" aria-hidden="true"></i>Site mimarisi ve URL yapıları</li><li style="--n:5"><i class="mark" aria-hidden="true"></i>JavaScript kaynaklı SEO sorunları</li><li style="--n:6"><i class="mark" aria-hidden="true"></i>Core Web Vitals ve sayfa performansı</li><li style="--n:7"><i class="mark" aria-hidden="true"></i>Yapılandırılmış veri kontrolleri</li><li style="--n:8"><i class="mark" aria-hidden="true"></i>Site taşıma ve migration planlaması</li></ul>
   </div>
 </section>
 
@@ -259,7 +284,7 @@ body.at-top .notes{opacity:0;pointer-events:none}
         <div class="ask" style="left:4%" aria-hidden="true"><span>GEO</span><p></p><i class="send"><b></b><b></b></i></div>
       </div>
     </article>
-    <ul class="points"><li><i class="mark" aria-hidden="true"></i>Entity ve konu bütünlüğü</li><li><i class="mark" aria-hidden="true"></i>Açık ve doğrulanabilir içerik yapısı</li><li><i class="mark" aria-hidden="true"></i>Semantik içerik mimarisi</li><li><i class="mark" aria-hidden="true"></i>Soru ve yanıt odaklı içerik yapıları</li><li><i class="mark" aria-hidden="true"></i>Kaynaklandırma ve uzmanlık sinyalleri</li><li><i class="mark" aria-hidden="true"></i>Schema ve yapılandırılmış veri</li><li><i class="mark" aria-hidden="true"></i>Marka ve konu otoritesinin desteklenmesi</li><li><i class="mark" aria-hidden="true"></i>AI Overview ve üretken arama analizleri</li></ul>
+    <ul class="points"><li style="--n:0"><i class="mark" aria-hidden="true"></i>Entity ve konu bütünlüğü</li><li style="--n:1"><i class="mark" aria-hidden="true"></i>Açık ve doğrulanabilir içerik yapısı</li><li style="--n:2"><i class="mark" aria-hidden="true"></i>Semantik içerik mimarisi</li><li style="--n:3"><i class="mark" aria-hidden="true"></i>Soru ve yanıt odaklı içerik yapıları</li><li style="--n:4"><i class="mark" aria-hidden="true"></i>Kaynaklandırma ve uzmanlık sinyalleri</li><li style="--n:5"><i class="mark" aria-hidden="true"></i>Schema ve yapılandırılmış veri</li><li style="--n:6"><i class="mark" aria-hidden="true"></i>Marka ve konu otoritesinin desteklenmesi</li><li style="--n:7"><i class="mark" aria-hidden="true"></i>AI Overview ve üretken arama analizleri</li></ul>
   </div>
 </section>
 
@@ -277,7 +302,7 @@ body.at-top .notes{opacity:0;pointer-events:none}
         <div class="ask" style="left:52%" aria-hidden="true"><span>İçerik</span><p></p><i class="send"><b></b><b></b></i></div>
       </div>
     </article>
-    <ul class="points"><li><i class="mark" aria-hidden="true"></i>Anahtar kelime ve rakip analizi</li><li><i class="mark" aria-hidden="true"></i>Arama niyeti sınıflandırması</li><li><i class="mark" aria-hidden="true"></i>İçerik planı ve konu kümeleri</li><li><i class="mark" aria-hidden="true"></i>Kategori ve ürün sayfası optimizasyonları</li><li><i class="mark" aria-hidden="true"></i>İç bağlantı stratejisi</li><li><i class="mark" aria-hidden="true"></i>İçerik briefleri</li><li><i class="mark" aria-hidden="true"></i>Kanibalizasyon analizi</li><li><i class="mark" aria-hidden="true"></i>Meta başlık ve açıklama optimizasyonları</li><li><i class="mark" aria-hidden="true"></i>Türkçe ve İngilizce içerik çalışmaları</li></ul>
+    <ul class="points"><li style="--n:0"><i class="mark" aria-hidden="true"></i>Anahtar kelime ve rakip analizi</li><li style="--n:1"><i class="mark" aria-hidden="true"></i>Arama niyeti sınıflandırması</li><li style="--n:2"><i class="mark" aria-hidden="true"></i>İçerik planı ve konu kümeleri</li><li style="--n:3"><i class="mark" aria-hidden="true"></i>Kategori ve ürün sayfası optimizasyonları</li><li style="--n:4"><i class="mark" aria-hidden="true"></i>İç bağlantı stratejisi</li><li style="--n:5"><i class="mark" aria-hidden="true"></i>İçerik briefleri</li><li style="--n:6"><i class="mark" aria-hidden="true"></i>Kanibalizasyon analizi</li><li style="--n:7"><i class="mark" aria-hidden="true"></i>Meta başlık ve açıklama optimizasyonları</li><li style="--n:8"><i class="mark" aria-hidden="true"></i>Türkçe ve İngilizce içerik çalışmaları</li></ul>
   </div>
 </section>
 
@@ -295,7 +320,7 @@ body.at-top .notes{opacity:0;pointer-events:none}
         <div class="ask" style="left:52%" aria-hidden="true"><span>Shopify</span><p></p><i class="send"><b></b><b></b></i></div>
       </div>
     </article>
-    <ul class="points"><li><i class="mark" aria-hidden="true"></i>Tema özelleştirmeleri</li><li><i class="mark" aria-hidden="true"></i>Liquid kod düzenlemeleri</li><li><i class="mark" aria-hidden="true"></i>Özel section ve block geliştirmeleri</li><li><i class="mark" aria-hidden="true"></i>Ürün ve koleksiyon sayfası düzenlemeleri</li><li><i class="mark" aria-hidden="true"></i>JSON template yapıları</li><li><i class="mark" aria-hidden="true"></i>Mobil uyumluluk geliştirmeleri</li><li><i class="mark" aria-hidden="true"></i>Site hızı ve görsel optimizasyonları</li><li><i class="mark" aria-hidden="true"></i>Çok dilli mağaza yapıları</li><li><i class="mark" aria-hidden="true"></i>Canonical ve indeksleme kontrolleri</li><li><i class="mark" aria-hidden="true"></i>GitHub üzerinden tema yönetimi</li><li><i class="mark" aria-hidden="true"></i>Teknik hata analizi ve çözümü</li></ul>
+    <ul class="points"><li style="--n:0"><i class="mark" aria-hidden="true"></i>Tema özelleştirmeleri</li><li style="--n:1"><i class="mark" aria-hidden="true"></i>Liquid kod düzenlemeleri</li><li style="--n:2"><i class="mark" aria-hidden="true"></i>Özel section ve block geliştirmeleri</li><li style="--n:3"><i class="mark" aria-hidden="true"></i>Ürün ve koleksiyon sayfası düzenlemeleri</li><li style="--n:4"><i class="mark" aria-hidden="true"></i>JSON template yapıları</li><li style="--n:5"><i class="mark" aria-hidden="true"></i>Mobil uyumluluk geliştirmeleri</li><li style="--n:6"><i class="mark" aria-hidden="true"></i>Site hızı ve görsel optimizasyonları</li><li style="--n:7"><i class="mark" aria-hidden="true"></i>Çok dilli mağaza yapıları</li><li style="--n:8"><i class="mark" aria-hidden="true"></i>Canonical ve indeksleme kontrolleri</li><li style="--n:9"><i class="mark" aria-hidden="true"></i>GitHub üzerinden tema yönetimi</li><li style="--n:10"><i class="mark" aria-hidden="true"></i>Teknik hata analizi ve çözümü</li></ul>
   </div>
 </section>
 
@@ -313,7 +338,7 @@ body.at-top .notes{opacity:0;pointer-events:none}
         <div class="ask" style="left:4%" aria-hidden="true"><span>WordPress</span><p></p><i class="send"><b></b><b></b></i></div>
       </div>
     </article>
-    <ul class="points"><li><i class="mark" aria-hidden="true"></i>WordPress site düzenlemeleri</li><li><i class="mark" aria-hidden="true"></i>Elementor arayüz geliştirmeleri</li><li><i class="mark" aria-hidden="true"></i>Özel HTML ve CSS uygulamaları</li><li><i class="mark" aria-hidden="true"></i>JavaScript tabanlı etkileşimler</li><li><i class="mark" aria-hidden="true"></i>Mobil uyumluluk</li><li><i class="mark" aria-hidden="true"></i>Sayfa hızı optimizasyonları</li><li><i class="mark" aria-hidden="true"></i>Form ve yönlendirme yapıları</li><li><i class="mark" aria-hidden="true"></i>Tek sayfa ve kurumsal site tasarımları</li><li><i class="mark" aria-hidden="true"></i>SEO uyumlu sayfa yapıları</li><li><i class="mark" aria-hidden="true"></i>Tema ve eklenti kaynaklı hata çözümleri</li></ul>
+    <ul class="points"><li style="--n:0"><i class="mark" aria-hidden="true"></i>WordPress site düzenlemeleri</li><li style="--n:1"><i class="mark" aria-hidden="true"></i>Elementor arayüz geliştirmeleri</li><li style="--n:2"><i class="mark" aria-hidden="true"></i>Özel HTML ve CSS uygulamaları</li><li style="--n:3"><i class="mark" aria-hidden="true"></i>JavaScript tabanlı etkileşimler</li><li style="--n:4"><i class="mark" aria-hidden="true"></i>Mobil uyumluluk</li><li style="--n:5"><i class="mark" aria-hidden="true"></i>Sayfa hızı optimizasyonları</li><li style="--n:6"><i class="mark" aria-hidden="true"></i>Form ve yönlendirme yapıları</li><li style="--n:7"><i class="mark" aria-hidden="true"></i>Tek sayfa ve kurumsal site tasarımları</li><li style="--n:8"><i class="mark" aria-hidden="true"></i>SEO uyumlu sayfa yapıları</li><li style="--n:9"><i class="mark" aria-hidden="true"></i>Tema ve eklenti kaynaklı hata çözümleri</li></ul>
   </div>
 </section>
 
@@ -331,7 +356,7 @@ body.at-top .notes{opacity:0;pointer-events:none}
         <div class="ask" style="left:6%" aria-hidden="true"><span>Veri</span><p></p><i class="send"><b></b><b></b></i></div>
       </div>
     </article>
-    <ul class="points"><li><i class="mark" aria-hidden="true"></i>GA4 performans analizleri</li><li><i class="mark" aria-hidden="true"></i>Google Search Console raporları</li><li><i class="mark" aria-hidden="true"></i>Organik trafik ve görünürlük değerlendirmeleri</li><li><i class="mark" aria-hidden="true"></i>Dönüşüm takibi</li><li><i class="mark" aria-hidden="true"></i>Google Tag Manager kontrolleri</li><li><i class="mark" aria-hidden="true"></i>Landing page performansları</li><li><i class="mark" aria-hidden="true"></i>Kanal ve yönlendiren analizleri</li><li><i class="mark" aria-hidden="true"></i>Yönetim ve müşteri raporları</li><li><i class="mark" aria-hidden="true"></i>Verilerin anlaşılır çıktılara dönüştürülmesi</li></ul>
+    <ul class="points"><li style="--n:0"><i class="mark" aria-hidden="true"></i>GA4 performans analizleri</li><li style="--n:1"><i class="mark" aria-hidden="true"></i>Google Search Console raporları</li><li style="--n:2"><i class="mark" aria-hidden="true"></i>Organik trafik ve görünürlük değerlendirmeleri</li><li style="--n:3"><i class="mark" aria-hidden="true"></i>Dönüşüm takibi</li><li style="--n:4"><i class="mark" aria-hidden="true"></i>Google Tag Manager kontrolleri</li><li style="--n:5"><i class="mark" aria-hidden="true"></i>Landing page performansları</li><li style="--n:6"><i class="mark" aria-hidden="true"></i>Kanal ve yönlendiren analizleri</li><li style="--n:7"><i class="mark" aria-hidden="true"></i>Yönetim ve müşteri raporları</li><li style="--n:8"><i class="mark" aria-hidden="true"></i>Verilerin anlaşılır çıktılara dönüştürülmesi</li></ul>
   </div>
 </section>
 
@@ -349,7 +374,7 @@ body.at-top .notes{opacity:0;pointer-events:none}
         <div class="ask" style="left:52%" aria-hidden="true"><span>Otomasyon</span><p></p><i class="send"><b></b><b></b></i></div>
       </div>
     </article>
-    <ul class="points"><li><i class="mark" aria-hidden="true"></i>CSV ve Excel verilerinin işlenmesi</li><li><i class="mark" aria-hidden="true"></i>SEO verilerinin sınıflandırılması</li><li><i class="mark" aria-hidden="true"></i>Toplu yönlendirme kontrolleri</li><li><i class="mark" aria-hidden="true"></i>Görsel boyut ve dosya optimizasyonları</li><li><i class="mark" aria-hidden="true"></i>Raporlama otomasyonları</li><li><i class="mark" aria-hidden="true"></i>Veri temizleme ve düzenleme</li><li><i class="mark" aria-hidden="true"></i>Tekrarlayan iş akışlarının sadeleştirilmesi</li></ul>
+    <ul class="points"><li style="--n:0"><i class="mark" aria-hidden="true"></i>CSV ve Excel verilerinin işlenmesi</li><li style="--n:1"><i class="mark" aria-hidden="true"></i>SEO verilerinin sınıflandırılması</li><li style="--n:2"><i class="mark" aria-hidden="true"></i>Toplu yönlendirme kontrolleri</li><li style="--n:3"><i class="mark" aria-hidden="true"></i>Görsel boyut ve dosya optimizasyonları</li><li style="--n:4"><i class="mark" aria-hidden="true"></i>Raporlama otomasyonları</li><li style="--n:5"><i class="mark" aria-hidden="true"></i>Veri temizleme ve düzenleme</li><li style="--n:6"><i class="mark" aria-hidden="true"></i>Tekrarlayan iş akışlarının sadeleştirilmesi</li></ul>
   </div>
 </section>
 <section class="band" id="yaklasim" data-bg="#3A0A2E" data-note="Analiz, önceliklendirme, uygulama, ölçümleme.">
@@ -408,6 +433,22 @@ body.at-top .notes{opacity:0;pointer-events:none}
   var scene = document.getElementById('ust'), hero = document.querySelector('.hero'), box = document.querySelector('.mapbox');
   var bands = [].slice.call(document.querySelectorAll('.band'));
   var titles = bands.map(function (b) { return b.querySelector('h2'); });
+  var cards = [].slice.call(document.querySelectorAll('.card-wide'));
+  titles.forEach(function (t, i) {
+    if (i % 5 !== 1 || reduce) return;
+    var text = t.textContent; t.setAttribute('aria-label', text); t.textContent = ''; t._ch = [];
+    text.split(' ').forEach(function (word, w) {
+      if (w) t.appendChild(document.createTextNode(' '));
+      var box = document.createElement('span'); box.setAttribute('aria-hidden', 'true'); box.style.display = 'inline-block';
+      word.split('').forEach(function (l) { var s = document.createElement('span'); s.textContent = l; s.style.display = 'inline-block'; box.appendChild(s); t._ch.push(s); });
+      t.appendChild(box);
+    });
+  });
+  if (!reduce) {
+    root.classList.add('fx');
+    var seen = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('seen'); seen.unobserve(e.target); } }); }, { rootMargin: '0px 0px -12% 0px' });
+    [].forEach.call(document.querySelectorAll('.points,.grid2,.grid3'), function (e) { seen.observe(e); });
+  }
   var railLinks = [].slice.call(document.querySelectorAll('#rail a'));
   var note = document.getElementById('noteText');
   var W = 0, H = 0, dpr = 1, mobile = false, hover = -1, start = performance.now(), active = null;
@@ -436,7 +477,9 @@ body.at-top .notes{opacity:0;pointer-events:none}
   var r0 = seeded(7), dots = [];
   for (var i = 0; i < 120; i++) dots.push({ x: r0(), y: r0(), s: 1 + r0() * 1.4, v: .2 + r0() * .8 });
   var hubIndex = {}; HUBS.forEach(function (h, i) { hubIndex[h.id] = i; });
-  var stops = bands.map(function (b) { return { el: b, hub: hubIndex[b.id] === undefined ? -1 : hubIndex[b.id], bg: hex(b.dataset.bg) }; });
+  /* screen x, screen y, closeness, how far the flight pulls back, sideways swing */
+  var ROUTE = [[.62, .42, 1, .5, 0], [.72, .3, 1.15, .32, 1], [.34, .62, .85, .62, -1], [.78, .7, 1.3, .25, 1], [.5, .36, .95, .56, -.6], [.26, .3, 1.2, .3, 1], [.68, .56, .8, .64, -1], [.4, .74, 1.25, .28, .7], [.8, .42, 1, .5, -1], [.3, .56, 1.1, .36, 1], [.6, .7, .85, .6, -.7], [.5, .46, 1, .45, 0]];
+  var stops = bands.map(function (b, i) { return { el: b, hub: hubIndex[b.id] === undefined ? -1 : hubIndex[b.id], bg: hex(b.dataset.bg), r: ROUTE[i % ROUTE.length] }; });
 
   var STOP = { 'veri': 1, 'yapil': 1, 'kontr': 1, 'analiz': 1, 'analı': 1, 'calis': 1, 'çalış': 1, 'düzen': 1, 'geliş': 1, 'optim': 1, 'sorun': 1, 'içeri': 0, 'uygul': 1, 'sayfa': 0, 'yapıl': 1, 'yapıs': 1, 'yapıl': 1, 'yönel': 1 };
   var tokens = HUBS.map(function (h) { return h.items.map(function (it) {
@@ -482,11 +525,12 @@ body.at-top .notes{opacity:0;pointer-events:none}
     if (next !== cur) e = smooth((y - (tops[next] - H * 1.15)) / (H * 1.15));
     function view(s) {
       if (s.hub < 0) return { x: 0, y: 0, z: Math.min(W / 1.62, H / 1.2), a: 1, sx: W / 2, sy: H / 2 };
-      var n = nodes[s.hub]; return { x: n.cx, y: n.cy, z: zF, a: 0, sx: fx, sy: fy };
+      var n = nodes[s.hub]; return { x: n.cx, y: n.cy, z: zF * (mobile ? 1 : s.r[2]), a: 0, sx: mobile ? fx : W * s.r[0], sy: mobile ? fy : H * s.r[1] };
     }
     var A = view(stops[cur]), B = view(stops[next]);
-    var fly = { x: lerp(A.x, B.x, e), y: lerp(A.y, B.y, e), z: lerp(A.z, B.z, e) * (1 - .5 * Math.sin(e * Math.PI)), sx: lerp(A.sx, B.sx, e), sy: lerp(A.sy, B.sy, e), a: lerp(A.a, B.a, e) };
-    var page = mix(stops[cur].bg, stops[next].bg, e);
+    var arc = Math.sin(e * Math.PI), to = stops[next].r;
+    var fly = { x: lerp(A.x, B.x, e), y: lerp(A.y, B.y, e), z: lerp(A.z, B.z, e) * (1 - to[3] * arc), sx: lerp(A.sx, B.sx, e) + (mobile ? 0 : to[4] * W * .1 * arc), sy: lerp(A.sy, B.sy, e), a: lerp(A.a, B.a, e) };
+    var page = mix(stops[cur].bg, stops[next].bg, smooth((e - .45) / .4));
     if (reduce) {
       var inHero = y < scene.offsetHeight;
       return { x: 0, y: 0, z: z0, sx: ax, sy: ay, ink: inHero ? 1 : 0, mint: 0, focus: -1, next: -1, e: 0, labels: inHero ? 1 : 0, others: inHero ? 1 : .25, R: R, q: inHero ? 0 : 1, page: page };
@@ -494,7 +538,7 @@ body.at-top .notes{opacity:0;pointer-events:none}
     var lz = Math.log(z0), lf = Math.log(fly.z);
     return {
       x: lerp(0, fly.x, e2), y: lerp(0, fly.y, e2), z: Math.exp(lerp(lz, lf, e2)), sx: lerp(ax, fly.sx, e2), sy: lerp(ay, fly.sy, e2),
-      ink: 1 - smooth(q / .12), mint: e3 * (1 - Math.sin(e * Math.PI) * .75), focus: stops[cur].hub, next: stops[next].hub, e: e,
+      ink: 1 - smooth(q / .12), mint: e3 * (1 - Math.sin(e * Math.PI) * .75), focus: stops[cur].hub, next: stops[next].hub, e: e, wave: { x: B.sx, y: B.sy, c: stops[next].bg },
       labels: Math.max(1 - smooth((q - .1) / .3), fly.a), others: Math.max(lerp(1, .1, e2), lerp(.1, .85, Math.sin(e * Math.PI)), fly.a), R: R, q: q, page: page
     };
   }
@@ -539,6 +583,11 @@ body.at-top .notes{opacity:0;pointer-events:none}
 
     c.setTransform(dpr, 0, 0, dpr, 0, 0); c.clearRect(0, 0, W, H);
     if (k.ink > .002) { c.fillStyle = rgb(INK, k.ink); c.fillRect(k.R.x, k.R.y, k.R.w, k.R.h); }
+    if (k.wave && k.e > .004 && k.e < .996) {
+      var wr = Math.max(1, Math.sqrt(W * W + H * H) * 1.25 * smooth(k.e / .82)), wg = c.createRadialGradient(k.wave.x, k.wave.y, 0, k.wave.x, k.wave.y, wr);
+      wg.addColorStop(0, rgb(k.wave.c, 1)); wg.addColorStop(.62, rgb(k.wave.c, 1)); wg.addColorStop(1, rgb(k.wave.c, 0));
+      c.fillStyle = wg; c.fillRect(0, 0, W, H);
+    }
 
     c.fillStyle = 'rgba(255,255,255,.3)';
     var drift = reduce ? 0 : now / 90000;
@@ -616,12 +665,35 @@ body.at-top .notes{opacity:0;pointer-events:none}
     if (layout) drawSelection(now);
     if (hoverLay) drawHover();
 
-    /* Section titles arrive as an outline and fill in as they rise */
-    if (!reduce) titles.forEach(function (t) {
+    /* Section titles and cards do not all arrive the same way */
+    if (!reduce) titles.forEach(function (t, i) {
       var top = t.getBoundingClientRect().top; if (top > H * 1.1 || top < -200) return;
-      var f = clamp((H * .92 - top) / (H * .3));
-      t.style.color = 'rgba(255,255,255,' + f.toFixed(3) + ')';
-      t.style.webkitTextStroke = (1 - f) > .01 ? '1px rgba(255,255,255,' + ((1 - f) * .8).toFixed(3) + ')' : '0';
+      var f = clamp((H * .92 - top) / (H * .3)), v = i % 5, g = 1 - f;
+      if (v === 0) {
+        t.style.color = 'rgba(255,255,255,' + f.toFixed(3) + ')';
+        t.style.webkitTextStroke = g > .01 ? '1px rgba(255,255,255,' + (g * .8).toFixed(3) + ')' : '0';
+      } else if (v === 1) {
+        t._ch.forEach(function (ch, q) {
+          var p = clamp(f * (1 + t._ch.length * .09) - q * .09);
+          ch.style.opacity = p.toFixed(3); ch.style.transform = p < 1 ? 'translate3d(0,' + ((1 - p) * .7).toFixed(3) + 'em,0)' : 'none';
+        });
+      } else if (v === 2) {
+        t.style.clipPath = g > .002 ? 'inset(-20% ' + (g * 100).toFixed(2) + '% -25% -2%)' : 'none';
+      } else if (v === 3) {
+        t.style.transformOrigin = '0 100%'; t.style.opacity = f.toFixed(3); t.style.transform = g > .002 ? 'scale(' + (1 + g * .34).toFixed(4) + ')' : 'none';
+      } else {
+        t.style.opacity = f.toFixed(3); t.style.transform = g > .002 ? 'translate3d(' + (-g * 14).toFixed(2) + 'vw,0,0)' : 'none';
+      }
+    });
+    if (!reduce && !mobile) cards.forEach(function (e, i) {
+      var r = e.getBoundingClientRect(); if (r.top > H * 1.15 || r.bottom < -H * .4) return;
+      var p = smooth((H * 1.02 - r.top) / (H * .62)), g = 1 - p, v = i % 4;
+      e.style.opacity = v === 3 ? '' : Math.min(1, p * 1.6).toFixed(3);
+      e.style.transform = g < .002 ? 'none' : v === 0 ? 'translate3d(0,' + (g * 90).toFixed(1) + 'px,0)' : v === 1 ? 'translate3d(' + (g * 110).toFixed(1) + 'px,0,0)' : v === 2 ? 'scale(' + (1 - g * .08).toFixed(4) + ')' : 'none';
+      if (v === 3) e.style.clipPath = g > .002 ? 'inset(0 0 ' + (g * 72).toFixed(2) + '% 0)' : 'none';
+      var fl = e.querySelector('.float'); if (!fl) return;
+      var mid = clamp((r.top + r.height / 2) / H);
+      fl.style.transform = i % 2 ? 'scale(' + (1 + g * .16).toFixed(4) + ')' : 'translate3d(0,' + ((mid - .5) * -30).toFixed(1) + 'px,0) scale(1.07)';
     });
     drawLinks();
   }
