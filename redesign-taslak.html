@@ -33,7 +33,16 @@ a{color:inherit}
 .tile{border:1px solid var(--line);padding:12px;font:300 13px/1.45 var(--mono);background:var(--panel)}
 .tile h1{font:500 22px/1.15 var(--sans);margin:0 0 6px}
 .tile p{margin:0}
-.tile-img img{display:block;width:calc(100% + 24px);max-width:none;height:auto;aspect-ratio:3/2;object-fit:cover;margin:-12px -12px 10px}
+.tile-img img{display:block;width:calc(100% + 24px);max-width:none;height:auto;aspect-ratio:2/1;object-fit:cover;margin:-12px -12px 10px}
+.tile-row{display:flex;align-items:baseline;gap:8px}
+.tile .tile-row strong{font-size:24px;margin:0}
+#dino{display:block;width:calc(100% + 24px);max-width:none;height:auto;aspect-ratio:186/48;margin:-12px -12px 10px;image-rendering:pixelated}
+.codeloop{margin:-12px -12px 10px;background:var(--ink);padding:7px 10px;font:300 11px/1.4 var(--mono);color:#DDE6FF;overflow:hidden}
+.codeloop small{display:block;font:inherit;color:var(--mint);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.codeloop pre{margin:0;height:4.2em;font:inherit;white-space:pre;overflow:hidden}
+.codeloop pre::after{content:"";display:inline-block;width:.55em;height:1em;background:#fff;vertical-align:-2px;margin-left:1px;animation:caret 1s steps(2) infinite}
+@keyframes caret{50%{opacity:0}}
+@media (min-width:861px) and (max-height:840px){.tile-img img{display:none}}
 .tile strong{display:block;font:500 40px/1.05 var(--sans);margin-bottom:4px}
 .index{list-style:none;margin:0;padding:0}
 .index a{display:flex;justify-content:space-between;gap:8px;text-decoration:none;padding:1px 0}
@@ -57,20 +66,14 @@ body.at-top .rail,body.at-top .notes{opacity:0;visibility:hidden}
 .band-in{max-width:1040px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:clamp(28px,5vh,56px)}
 h2{font-weight:500;font-size:clamp(52px,8.2vw,118px);line-height:1;letter-spacing:-.025em;margin:0;text-wrap:balance}
 .card{background:var(--panel);border:1px solid var(--line);padding:24px;min-width:0}
-.card-wide{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:28px;align-items:start}
+.card-wide{display:grid;grid-template-columns:minmax(0,1fr);gap:24px}
+.shot{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;border-radius:16px}
 .card-text{display:grid;gap:14px;justify-items:start;min-width:0}
 h3{font-weight:500;font-size:19px;line-height:1.2;margin:0;display:flex;align-items:baseline;gap:10px}
 .mark{flex:none;display:inline-block;width:6px;height:6px;border:1px solid currentColor;transform:translateY(-2px)}
 .lede{font-size:clamp(19px,1.9vw,23px);line-height:1.22;letter-spacing:-.01em;color:var(--fg-2);margin:0;max-width:30ch}
 .pill{display:inline-block;background:var(--ink);color:#fff;border-radius:999px;padding:6px 12px;font:300 13px var(--mono);text-decoration:none}
 .pill:hover{background:#fff;color:var(--ink)}
-.term{margin:0;background:var(--ink);border-radius:10px;min-width:0;overflow:hidden}
-.term figcaption{display:flex;align-items:center;gap:6px;padding:9px 12px;font:300 12px var(--mono);color:var(--fg-2)}
-.term figcaption span{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.3)}
-.term figcaption b{font-weight:300;margin-left:8px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.copy{margin-left:auto;background:none;border:1px solid var(--line);color:var(--fg);border-radius:999px;padding:3px 10px;font:300 12px var(--mono);cursor:pointer}
-.copy:hover{background:#fff;color:var(--ink)}
-.term pre{margin:0;padding:6px 14px 16px;overflow-x:auto;font:300 13.5px/1.6 var(--mono);color:#DDE6FF}
 .points{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px 28px;font-weight:500;line-height:1.25;letter-spacing:-.005em}
 .points li{display:flex;gap:9px;align-items:baseline;min-width:0}
 .about p{margin:0 0 14px;font-size:clamp(18px,1.7vw,21px);line-height:1.3;color:var(--fg-2)}
@@ -99,7 +102,6 @@ footer{position:relative;z-index:3;border-top:1px solid var(--line);padding-bloc
   .word{min-height:0}
   .word span{position:static;transform:none;writing-mode:horizontal-tb;display:block;font-size:clamp(58px,17.5vw,150px);line-height:1}
   .mapbox{order:-1;min-height:0;aspect-ratio:1/1}
-  .card-wide{grid-template-columns:minmax(0,1fr)}
   .points{grid-template-columns:minmax(0,1fr);gap:0}
   .points li{padding:12px 0;border-top:1px solid var(--line)}
   .grid2,.grid3{grid-template-columns:minmax(0,1fr)}
@@ -179,9 +181,9 @@ body.at-top .notes{opacity:0;pointer-events:none}
   <div class="stack">
     <div class="tile"><h1>Aylin İnci</h1><p>SEO, GEO ve Web Geliştirme Uzmanı</p></div>
     <nav class="tile" aria-label="Uzmanlık alanları"><ul class="index"><li><a href="#teknik-seo">Teknik SEO<span>9</span></a></li><li><a href="#geo">GEO<span>8</span></a></li><li><a href="#icerik">İçerik<span>9</span></a></li><li><a href="#shopify">Shopify<span>11</span></a></li><li><a href="#wordpress">WordPress<span>10</span></a></li><li><a href="#veri">Veri<span>9</span></a></li><li><a href="#otomasyon">Otomasyon<span>7</span></a></li></ul></nav>
-    <div class="tile tile-img"><img src="img/kart-uzmanlik.webp" alt="" width="800" height="533"><strong>7</strong><p>uzmanlık alanı, 63 çalışma başlığı</p></div>
-    <div class="tile"><strong>10</strong><p>blog yazısı: SEO, GEO, Shopify ve analitik</p></div>
-    <div class="tile"><strong>21</strong><p>araç ve teknoloji</p></div>
+    <div class="tile tile-img"><img src="img/kart-uzmanlik.webp" alt="" width="800" height="533"><div class="tile-row"><strong>7</strong><p>alan, 63 çalışma başlığı</p></div></div>
+    <div class="tile"><canvas id="dino" width="186" height="48" aria-hidden="true"></canvas><div class="tile-row"><strong>10</strong><p>blog yazısı</p></div></div>
+    <div class="tile"><div class="codeloop" aria-hidden="true"><small id="codeFile"></small><pre id="codeLoop"></pre></div><div class="tile-row"><strong>21</strong><p>araç ve teknoloji</p></div></div>
   </div>
   <div class="mapbox" role="group" aria-label="Uzmanlık alanlarını ve çalışma başlıklarını gösteren bağlantı haritası">
     <div id="mapHover"></div><div id="mapChips"></div><p class="maphint">Bir noktaya tıklayın</p>
@@ -214,16 +216,7 @@ body.at-top .notes{opacity:0;pointer-events:none}
         <p class="lede">Web sitelerinin arama motorları tarafından daha doğru taranması, anlaşılması ve indekslenmesi için teknik yapıların analiz edilmesi ve geliştirilmesi.</p>
         <a class="pill" href="https://aylininci.com/blog/core-web-vitals-performans-optimizasyonu" target="_blank" rel="noopener">Core Web Vitals rehberi</a>
       </div>
-      <figure class="term">
-        <figcaption><span></span><span></span><span></span><b>robots.txt</b><button type="button" class="copy" aria-label="robots.txt içeriğini kopyala">Kopyala</button></figcaption>
-        <pre><code>User-agent: *
-Allow: /
-
-User-agent: GPTBot
-Allow: /
-
-Sitemap: https://aylininci.com/sitemap.xml</code></pre>
-      </figure>
+      <img class="shot" src="img/bolum-teknik-seo.webp" alt="Teknik SEO çalışmalarını anlatan arayüz görseli" width="1400" height="933" loading="lazy">
     </article>
     <ul class="points"><li><i class="mark" aria-hidden="true"></i>Tarama ve indeksleme sorunları</li><li><i class="mark" aria-hidden="true"></i>Canonical ve hreflang yapıları</li><li><i class="mark" aria-hidden="true"></i>Yönlendirme zincirleri ve 404 kontrolleri</li><li><i class="mark" aria-hidden="true"></i>Robots.txt ve sitemap incelemeleri</li><li><i class="mark" aria-hidden="true"></i>Site mimarisi ve URL yapıları</li><li><i class="mark" aria-hidden="true"></i>JavaScript kaynaklı SEO sorunları</li><li><i class="mark" aria-hidden="true"></i>Core Web Vitals ve sayfa performansı</li><li><i class="mark" aria-hidden="true"></i>Yapılandırılmış veri kontrolleri</li><li><i class="mark" aria-hidden="true"></i>Site taşıma ve migration planlaması</li></ul>
   </div>
@@ -238,14 +231,7 @@ Sitemap: https://aylininci.com/sitemap.xml</code></pre>
         <p class="lede">Markaların yalnızca geleneksel arama sonuçlarında değil, yapay zekâ destekli arama ve yanıt sistemlerinde de doğru şekilde anlaşılmasını destekleyen içerik ve teknik yapı çalışmaları.</p>
         <a class="pill" href="https://aylininci.com/blog/google-ai-modu-seo" target="_blank" rel="noopener">Google AI Modu yazısı</a>
       </div>
-      <figure class="term">
-        <figcaption><span></span><span></span><span></span><b>query-fan-out.txt</b><button type="button" class="copy" aria-label="query-fan-out.txt içeriğini kopyala">Kopyala</button></figcaption>
-        <pre><code>soru: "küçük e-ticaret için hangi altyapı?"
- ├─ shopify maliyeti
- ├─ woocommerce karşılaştırma
- ├─ türkiye ödeme altyapısı
- └─ kaynak: en net cevabı veren sayfa</code></pre>
-      </figure>
+      <img class="shot" src="img/bolum-geo.webp" alt="GEO çalışmalarını anlatan arayüz görseli" width="1400" height="933" loading="lazy">
     </article>
     <ul class="points"><li><i class="mark" aria-hidden="true"></i>Entity ve konu bütünlüğü</li><li><i class="mark" aria-hidden="true"></i>Açık ve doğrulanabilir içerik yapısı</li><li><i class="mark" aria-hidden="true"></i>Semantik içerik mimarisi</li><li><i class="mark" aria-hidden="true"></i>Soru ve yanıt odaklı içerik yapıları</li><li><i class="mark" aria-hidden="true"></i>Kaynaklandırma ve uzmanlık sinyalleri</li><li><i class="mark" aria-hidden="true"></i>Schema ve yapılandırılmış veri</li><li><i class="mark" aria-hidden="true"></i>Marka ve konu otoritesinin desteklenmesi</li><li><i class="mark" aria-hidden="true"></i>AI Overview ve üretken arama analizleri</li></ul>
   </div>
@@ -260,14 +246,7 @@ Sitemap: https://aylininci.com/sitemap.xml</code></pre>
         <p class="lede">Arama niyetine, kullanıcı ihtiyacına ve web sitesinin ticari hedeflerine uygun içerik yapılarının planlanması.</p>
         <a class="pill" href="https://aylininci.com/blog/yapay-zeka-icerik-google-seo" target="_blank" rel="noopener">Yapay zeka içeriği yazısı</a>
       </div>
-      <figure class="term">
-        <figcaption><span></span><span></span><span></span><b>icerik-brief.md</b><button type="button" class="copy" aria-label="icerik-brief.md içeriğini kopyala">Kopyala</button></figcaption>
-        <pre><code>sorgu:   anahtar kelime kanibalizasyonu
-niyet:   bilgi
-sayfa:   tek ana rehber
-bağlantı: 3 ilgili yazıdan iç link
-kontrol: Search Console, 28 gün</code></pre>
-      </figure>
+      <img class="shot" src="img/bolum-icerik.webp" alt="İçerik çalışmalarını anlatan arayüz görseli" width="1400" height="933" loading="lazy">
     </article>
     <ul class="points"><li><i class="mark" aria-hidden="true"></i>Anahtar kelime ve rakip analizi</li><li><i class="mark" aria-hidden="true"></i>Arama niyeti sınıflandırması</li><li><i class="mark" aria-hidden="true"></i>İçerik planı ve konu kümeleri</li><li><i class="mark" aria-hidden="true"></i>Kategori ve ürün sayfası optimizasyonları</li><li><i class="mark" aria-hidden="true"></i>İç bağlantı stratejisi</li><li><i class="mark" aria-hidden="true"></i>İçerik briefleri</li><li><i class="mark" aria-hidden="true"></i>Kanibalizasyon analizi</li><li><i class="mark" aria-hidden="true"></i>Meta başlık ve açıklama optimizasyonları</li><li><i class="mark" aria-hidden="true"></i>Türkçe ve İngilizce içerik çalışmaları</li></ul>
   </div>
@@ -282,14 +261,7 @@ kontrol: Search Console, 28 gün</code></pre>
         <p class="lede">Shopify mağazalarının teknik altyapı, tema yapısı, kullanıcı deneyimi ve SEO ihtiyaçları doğrultusunda geliştirilmesi.</p>
         <a class="pill" href="https://aylininci.com/blog/shopify-gecisi-seo-rehberi" target="_blank" rel="noopener">Shopify’a geçiş rehberi</a>
       </div>
-      <figure class="term">
-        <figcaption><span></span><span></span><span></span><b>sections/urun-kartlari.liquid</b><button type="button" class="copy" aria-label="sections/urun-kartlari.liquid içeriğini kopyala">Kopyala</button></figcaption>
-        <pre><code>{% for product in collection.products limit: 4 %}
-  {{ product.featured_image
-     | image_url: width: 800
-     | image_tag: loading: 'lazy' }}
-{% endfor %}</code></pre>
-      </figure>
+      <img class="shot" src="img/bolum-shopify.webp" alt="Shopify çalışmalarını anlatan arayüz görseli" width="1400" height="933" loading="lazy">
     </article>
     <ul class="points"><li><i class="mark" aria-hidden="true"></i>Tema özelleştirmeleri</li><li><i class="mark" aria-hidden="true"></i>Liquid kod düzenlemeleri</li><li><i class="mark" aria-hidden="true"></i>Özel section ve block geliştirmeleri</li><li><i class="mark" aria-hidden="true"></i>Ürün ve koleksiyon sayfası düzenlemeleri</li><li><i class="mark" aria-hidden="true"></i>JSON template yapıları</li><li><i class="mark" aria-hidden="true"></i>Mobil uyumluluk geliştirmeleri</li><li><i class="mark" aria-hidden="true"></i>Site hızı ve görsel optimizasyonları</li><li><i class="mark" aria-hidden="true"></i>Çok dilli mağaza yapıları</li><li><i class="mark" aria-hidden="true"></i>Canonical ve indeksleme kontrolleri</li><li><i class="mark" aria-hidden="true"></i>GitHub üzerinden tema yönetimi</li><li><i class="mark" aria-hidden="true"></i>Teknik hata analizi ve çözümü</li></ul>
   </div>
@@ -304,14 +276,7 @@ kontrol: Search Console, 28 gün</code></pre>
         <p class="lede">Kurumsal web siteleri, landing page yapıları ve içerik odaklı projeler için kullanıcı deneyimi ve performans odaklı arayüz geliştirmeleri.</p>
         <a class="pill" href="#iletisim">İletişime geç</a>
       </div>
-      <figure class="term">
-        <figcaption><span></span><span></span><span></span><b>style.css</b><button type="button" class="copy" aria-label="style.css içeriğini kopyala">Kopyala</button></figcaption>
-        <pre><code>img {
-  max-width: 100%;
-  height: auto;
-}
-.hero-image { aspect-ratio: 3 / 2; }</code></pre>
-      </figure>
+      <img class="shot" src="img/bolum-wordpress.webp" alt="WordPress çalışmalarını anlatan arayüz görseli" width="1400" height="933" loading="lazy">
     </article>
     <ul class="points"><li><i class="mark" aria-hidden="true"></i>WordPress site düzenlemeleri</li><li><i class="mark" aria-hidden="true"></i>Elementor arayüz geliştirmeleri</li><li><i class="mark" aria-hidden="true"></i>Özel HTML ve CSS uygulamaları</li><li><i class="mark" aria-hidden="true"></i>JavaScript tabanlı etkileşimler</li><li><i class="mark" aria-hidden="true"></i>Mobil uyumluluk</li><li><i class="mark" aria-hidden="true"></i>Sayfa hızı optimizasyonları</li><li><i class="mark" aria-hidden="true"></i>Form ve yönlendirme yapıları</li><li><i class="mark" aria-hidden="true"></i>Tek sayfa ve kurumsal site tasarımları</li><li><i class="mark" aria-hidden="true"></i>SEO uyumlu sayfa yapıları</li><li><i class="mark" aria-hidden="true"></i>Tema ve eklenti kaynaklı hata çözümleri</li></ul>
   </div>
@@ -326,12 +291,7 @@ kontrol: Search Console, 28 gün</code></pre>
         <p class="lede">SEO ve web performansının yalnızca sıralamalarla değil, kullanıcı davranışı ve dönüşüm verileriyle birlikte değerlendirilmesi.</p>
         <a class="pill" href="https://aylininci.com/blog/chatgpt-trafigi-ga4-olcumu" target="_blank" rel="noopener">ChatGPT trafiğini ölçmek</a>
       </div>
-      <figure class="term">
-        <figcaption><span></span><span></span><span></span><b>ga4-kanal-grubu.regex</b><button type="button" class="copy" aria-label="ga4-kanal-grubu.regex içeriğini kopyala">Kopyala</button></figcaption>
-        <pre><code>chatgpt\.com|chat\.openai\.com|
-perplexity\.ai|gemini\.google\.com|
-copilot\.microsoft\.com|claude\.ai</code></pre>
-      </figure>
+      <img class="shot" src="img/bolum-veri.webp" alt="Veri çalışmalarını anlatan arayüz görseli" width="1400" height="933" loading="lazy">
     </article>
     <ul class="points"><li><i class="mark" aria-hidden="true"></i>GA4 performans analizleri</li><li><i class="mark" aria-hidden="true"></i>Google Search Console raporları</li><li><i class="mark" aria-hidden="true"></i>Organik trafik ve görünürlük değerlendirmeleri</li><li><i class="mark" aria-hidden="true"></i>Dönüşüm takibi</li><li><i class="mark" aria-hidden="true"></i>Google Tag Manager kontrolleri</li><li><i class="mark" aria-hidden="true"></i>Landing page performansları</li><li><i class="mark" aria-hidden="true"></i>Kanal ve yönlendiren analizleri</li><li><i class="mark" aria-hidden="true"></i>Yönetim ve müşteri raporları</li><li><i class="mark" aria-hidden="true"></i>Verilerin anlaşılır çıktılara dönüştürülmesi</li></ul>
   </div>
@@ -346,14 +306,7 @@ copilot\.microsoft\.com|claude\.ai</code></pre>
         <p class="lede">Tekrarlayan veri işleme, raporlama ve içerik operasyonlarının daha kontrollü ve verimli hâle getirilmesi.</p>
         <a class="pill" href="#araclar">Araçları gör</a>
       </div>
-      <figure class="term">
-        <figcaption><span></span><span></span><span></span><b>yonlendirme_kontrol.py</b><button type="button" class="copy" aria-label="yonlendirme_kontrol.py içeriğini kopyala">Kopyala</button></figcaption>
-        <pre><code>import pandas as pd
-
-urls = pd.read_csv("yonlendirmeler.csv")
-kirik = urls[urls["durum"] != 301]
-kirik.to_excel("kontrol.xlsx", index=False)</code></pre>
-      </figure>
+      <img class="shot" src="img/bolum-otomasyon.webp" alt="Otomasyon çalışmalarını anlatan arayüz görseli" width="1400" height="933" loading="lazy">
     </article>
     <ul class="points"><li><i class="mark" aria-hidden="true"></i>CSV ve Excel verilerinin işlenmesi</li><li><i class="mark" aria-hidden="true"></i>SEO verilerinin sınıflandırılması</li><li><i class="mark" aria-hidden="true"></i>Toplu yönlendirme kontrolleri</li><li><i class="mark" aria-hidden="true"></i>Görsel boyut ve dosya optimizasyonları</li><li><i class="mark" aria-hidden="true"></i>Raporlama otomasyonları</li><li><i class="mark" aria-hidden="true"></i>Veri temizleme ve düzenleme</li><li><i class="mark" aria-hidden="true"></i>Tekrarlayan iş akışlarının sadeleştirilmesi</li></ul>
   </div>
@@ -847,15 +800,6 @@ kirik.to_excel("kontrol.xlsx", index=False)</code></pre>
   });
   addEventListener('keydown', function (e) { if (e.key === 'Escape' && sel) closeSel(); });
 
-  document.querySelectorAll('.copy').forEach(function (b) {
-    b.addEventListener('click', function () {
-      var code = b.closest('.term').querySelector('code');
-      function done(t) { b.textContent = t; setTimeout(function () { b.textContent = 'Kopyala'; }, 1600); }
-      function sel() { var s = getSelection(), g = document.createRange(); g.selectNodeContents(code); s.removeAllRanges(); s.addRange(g); done('Seçildi'); }
-      if (navigator.clipboard) navigator.clipboard.writeText(code.textContent).then(function () { done('Kopyalandı'); }, sel); else sel();
-    });
-  });
-
   addEventListener('resize', resize);
   resize();
   if (reduce) {
@@ -865,6 +809,112 @@ kirik.to_excel("kontrol.xlsx", index=False)</code></pre>
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(paint);
     paint();
   } else (function loop(t) { draw(t); requestAnimationFrame(loop); })(performance.now());
+})();
+
+(function () {
+  /* Hero tiles: a self-running pixel runner game and a typing code loop. Both pause off screen. */
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function visible(el) { var r = el.getBoundingClientRect(); return r.bottom > 0 && r.top < innerHeight && !document.hidden; }
+
+  var cv = document.getElementById('dino');
+  if (cv) {
+    var c = cv.getContext('2d'), W = cv.width, H = cv.height, FLOOR = 42;
+    var BODY = ['           xxxxxxxx ', '          xxxxxxxxxx', '          xx xxxxxxx', '          xxxxxxxxxx', '          xxxxxxxxxx', '          xxxxxxxxxx', '          xxxxx     ', '          xxxxxxxx  ', 'x        xxxxx      ', 'x       xxxxxx      ', 'xx     xxxxxxxxxx   ', 'xxx  xxxxxxxxx  x   ', 'xxxxxxxxxxxxxx      ', 'xxxxxxxxxxxxxx      ', ' xxxxxxxxxxxx       ', '  xxxxxxxxxxx       ', '   xxxxxxxxx        ', '    xxxxxxx         '];
+    var LEGS = [
+      ['     xxx  xx        ', '     xx    x        ', '     x     x        ', '     xx    xx       '],
+      ['     xxx  xx        ', '     xx    xxx      ', '     x              ', '     xx             '],
+      ['     xxx  xx        ', '    xxx   x         ', '          x         ', '          xx        ']
+    ];
+    var CACTI = [
+      ['  x  ', '  x  ', 'x x  ', 'x x x', 'x x x', 'xxxxx', '  xx ', '  x  ', '  x  ', '  x  ', '  x  '],
+      ['   x   ', '   x x ', 'x  x x ', 'x  x x ', 'x  xxx ', 'x  x   ', 'xxxx   ', '   x   ', '   x   ', '   x   ', '   x   ', '   x   ', '   x   '],
+      ['  x    x  ', '  x    x  ', 'x x x  x x', 'x x x  x x', 'xxxxx  xxx', '  x    x  ', '  x    x  ', '  x    x  ', '  x    x  ', '  x    x  ']
+    ];
+    var BIRD = [
+      ['    x        ', '    xx       ', '    xxx      ', '  x xxxx     ', ' xxxxxxxxxxx ', 'xxxxxxxxxx   ', '     xxxxxxx ', '     xxx     '],
+      ['             ', '             ', '             ', '  x          ', ' xxxxxxxxxxx ', 'xxxxxxxxxx   ', '     xxxxxxx ', '     xxx     ', '     xx      ', '     x       ', '     x       ']
+    ];
+    var DIGITS = ['111101101101111', '010110010010111', '111001111100111', '111001111001111', '101101111001001', '111100111001111', '111100111101111', '111001001001001', '111101111101111', '111101111001111'];
+    var sprite = function (rows, x, y) {
+      for (var r = 0; r < rows.length; r++) for (var i = 0; i < rows[r].length; i++) if (rows[r][i] !== ' ') c.fillRect(Math.round(x) + i, Math.round(y) + r, 1, 1);
+    };
+    var num = function (n, x, y) {
+      var s = String(n); while (s.length < 5) s = '0' + s;
+      for (var q = 0; q < 5; q++) { var d = DIGITS[+s[q]]; for (var p = 0; p < 15; p++) if (d[p] === '1') c.fillRect(x + q * 4 + p % 3, y + Math.floor(p / 3), 1, 1); }
+    };
+    var jumpY = 0, vy = 0, frame = 0, score = 0, best = 1204, speed = 1.5, night = 0, nightGoal = 0, gap = 90, obstacles = [];
+    var clouds = [{ x: 60, y: 8 }, { x: 150, y: 14 }], bumps = [];
+    for (var b = 0; b < 26; b++) bumps.push({ x: Math.random() * W, y: FLOOR + 2 + Math.floor(Math.random() * 3), w: 1 + Math.floor(Math.random() * 3) });
+    var spawn = function () {
+      var bird = score > 300 && Math.random() < .22;
+      obstacles.push(bird ? { x: W + 8, y: 18, bird: true, w: 13 } : (function () { var s = CACTI[Math.floor(Math.random() * 3)]; return { x: W + 8, y: FLOOR + 1 - s.length, s: s, w: s[0].length }; })());
+    };
+    var step = function () {
+      frame++; score += .1; speed = Math.min(2.4, 1.5 + score / 1600);
+      if (Math.floor(score) >= 99999) score = 0;
+      best = Math.max(best, Math.floor(score));
+      if (Math.floor(score) % 700 === 0 && Math.floor(score) > 0 && Math.floor(score) !== step.at) { step.at = Math.floor(score); nightGoal = nightGoal ? 0 : 1; }
+      night += (nightGoal - night) * .03;
+      gap -= speed; if (gap <= 0) { spawn(); gap = 70 + Math.random() * 90; }
+      for (var i = obstacles.length - 1; i >= 0; i--) {
+        var o = obstacles[i]; o.x -= o.bird ? speed * 1.08 : speed;
+        if (o.x < -16) obstacles.splice(i, 1);
+        else if (!jumpY && !vy && o.x > 22 && o.x - 22 < speed * 13) vy = -2.55;
+      }
+      if (vy || jumpY) { jumpY += vy; vy += .14; if (jumpY >= 0) { jumpY = 0; vy = 0; } }
+      clouds.forEach(function (k) { k.x -= .25; if (k.x < -24) { k.x = W + Math.random() * 60; k.y = 5 + Math.random() * 14; } });
+      bumps.forEach(function (k) { k.x -= speed; if (k.x < -4) k.x = W + Math.random() * 20; });
+    };
+    var paint = function () {
+      var v = Math.round(lerp(247, 18, night)), fg = Math.round(lerp(83, 214, night));
+      c.fillStyle = 'rgb(' + v + ',' + v + ',' + v + ')'; c.fillRect(0, 0, W, H);
+      var cl = Math.round(lerp(218, 90, night)); c.fillStyle = 'rgb(' + cl + ',' + cl + ',' + cl + ')';
+      clouds.forEach(function (k) { c.fillRect(k.x + 4, k.y, 10, 1); c.fillRect(k.x + 2, k.y + 1, 3, 1); c.fillRect(k.x + 13, k.y + 1, 3, 1); c.fillRect(k.x, k.y + 2, 20, 1); });
+      c.fillStyle = 'rgb(' + fg + ',' + fg + ',' + fg + ')';
+      c.fillRect(0, FLOOR, W, 1);
+      bumps.forEach(function (k) { c.fillRect(Math.round(k.x), k.y, k.w, 1); });
+      obstacles.forEach(function (o) { sprite(o.bird ? BIRD[Math.floor(frame / 12) % 2] : o.s, o.x, o.y); });
+      var y = FLOOR - 21 + jumpY, leg = jumpY ? 0 : 1 + Math.floor(frame / 6) % 2;
+      sprite(BODY, 8, y); sprite(LEGS[leg], 8, y + 18);
+      var hi = Math.round(lerp(150, 140, night)); c.fillStyle = 'rgb(' + hi + ',' + hi + ',' + hi + ')'; num(best, W - 46, 3);
+      c.fillStyle = 'rgb(' + fg + ',' + fg + ',' + fg + ')'; num(Math.floor(score), W - 23, 3);
+    };
+    var lerp = function (a, d, t) { return a + (d - a) * t; };
+    if (reduce) { obstacles.push({ x: 110, y: FLOOR + 1 - CACTI[1].length, s: CACTI[1], w: 7 }); paint(); }
+    else {
+      var last = 0, acc = 0;
+      (function loop(t) {
+        requestAnimationFrame(loop);
+        if (!visible(cv)) { last = t; return; }
+        acc += Math.min(100, t - (last || t)); last = t;
+        while (acc >= 16.67) { step(); acc -= 16.67; }
+        paint();
+      })(0);
+    }
+  }
+
+  var code = document.getElementById('codeLoop'), file = document.getElementById('codeFile');
+  if (code) {
+    var SNIPPETS = [["robots.txt","User-agent: *\nAllow: /\n\nUser-agent: GPTBot\nAllow: /\n\nSitemap: https://aylininci.com/sitemap.xml"],["query-fan-out.txt","soru: \"küçük e-ticaret için hangi altyapı?\"\n ├─ shopify maliyeti\n ├─ woocommerce karşılaştırma\n ├─ türkiye ödeme altyapısı\n └─ kaynak: en net cevabı veren sayfa"],["icerik-brief.md","sorgu:   anahtar kelime kanibalizasyonu\nniyet:   bilgi\nsayfa:   tek ana rehber\nbağlantı: 3 ilgili yazıdan iç link\nkontrol: Search Console, 28 gün"],["sections/urun-kartlari.liquid","{% for product in collection.products limit: 4 %}\n  {{ product.featured_image\n     | image_url: width: 800\n     | image_tag: loading: 'lazy' }}\n{% endfor %}"],["style.css","img {\n  max-width: 100%;\n  height: auto;\n}\n.hero-image { aspect-ratio: 3 / 2; }"],["ga4-kanal-grubu.regex","chatgpt\\.com|chat\\.openai\\.com|\nperplexity\\.ai|gemini\\.google\\.com|\ncopilot\\.microsoft\\.com|claude\\.ai"],["yonlendirme_kontrol.py","import pandas as pd\n\nurls = pd.read_csv(\"yonlendirmeler.csv\")\nkirik = urls[urls[\"durum\"] != 301]\nkirik.to_excel(\"kontrol.xlsx\", index=False)"]];
+    var at = 0, typed = 0, show = function () {
+      var s = SNIPPETS[at]; file.textContent = s[0];
+      var lines = s[1].slice(0, typed).split('\n');
+      code.textContent = lines.slice(-3).join('\n');
+    };
+    if (reduce) { typed = SNIPPETS[0][1].length; show(); }
+    else {
+      var tick = function () {
+        var wait = 26;
+        if (visible(code)) {
+          var s = SNIPPETS[at];
+          if (typed < s[1].length) { typed += 1; if (s[1][typed - 1] === '\n') wait = 170; show(); if (typed === s[1].length) wait = 1900; }
+          else { at = (at + 1) % SNIPPETS.length; typed = 0; show(); wait = 240; }
+        } else { wait = 400; }
+        setTimeout(tick, wait);
+      };
+      tick();
+    }
+  }
 })();
 
 </script>
