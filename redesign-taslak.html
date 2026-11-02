@@ -141,6 +141,18 @@ body.at-top .notes{opacity:0;pointer-events:none}
   .hero{position:relative;top:auto;height:auto;min-height:calc(100vh - var(--head))}
   .word,.stack{transform:none}
 }
+
+/* Selected state on the map */
+#mapChips{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.chip{position:absolute;left:0;top:0;opacity:0;margin:0;border:0;padding:3px 5px;background:var(--ink);color:#fff;font:300 11px/1.3 var(--mono);text-align:left;text-decoration:none;max-width:210px;cursor:pointer;will-change:transform}
+#mapChips.live .chip{pointer-events:auto}
+.chip:hover{color:var(--mint)}
+.chip.main{background:var(--blue);padding:4px 7px;font-size:12px;max-width:250px;text-align:center}
+.chip.main sup{font-size:9px;margin-left:4px;color:var(--fg-2)}
+.chip.go{background:#fff;color:var(--ink);border-radius:999px;padding:3px 10px;white-space:nowrap}
+.chip.go:hover{background:var(--mint);color:var(--ink)}
+@media (max-width:860px){.chip{font-size:10.5px;max-width:calc(50vw - 44px);background:none;padding:1px 2px}.chip.main{background:var(--blue);font-size:11px;max-width:220px;padding:3px 6px}.chip.go{background:#fff}#map{z-index:0}}
+#mapChips.live ~ .maphint{opacity:0}
 </style>
 
 <script>document.body.classList.add("at-top")</script>
@@ -164,8 +176,8 @@ body.at-top .notes{opacity:0;pointer-events:none}
     <div class="tile"><strong>10</strong><p>blog yazısı: SEO, GEO, Shopify ve analitik</p></div>
     <div class="tile"><strong>21</strong><p>araç ve teknoloji</p></div>
   </div>
-  <div class="mapbox" role="img" aria-label="Uzmanlık alanlarını ve çalışma başlıklarını gösteren bağlantı haritası">
-    <p class="maphint">Bir alana tıklayın</p>
+  <div class="mapbox" role="group" aria-label="Uzmanlık alanlarını ve çalışma başlıklarını gösteren bağlantı haritası">
+    <div id="mapChips"></div><p class="maphint">Bir noktaya tıklayın</p>
   </div>
 </div></div>
 
@@ -375,7 +387,7 @@ kirik.to_excel("kontrol.xlsx", index=False)</code></pre>
 <script>
 (function () {
   /* A true 3D graph around one centre ring: every section has a hub, every satellite is a real work item. */
-  var HUBS = [{"id":"hakkimda","name":"Aylin İnci","n":3,"x":0.7,"y":0.5},{"id":"teknik-seo","name":"Teknik SEO","n":9,"x":0.24,"y":0.2},{"id":"geo","name":"GEO","n":8,"x":0.62,"y":0.13},{"id":"icerik","name":"İçerik","n":9,"x":1.03,"y":0.2},{"id":"shopify","name":"Shopify","n":11,"x":0.14,"y":0.64},{"id":"wordpress","name":"WordPress","n":10,"x":1.26,"y":0.46},{"id":"veri","name":"Veri","n":9,"x":0.92,"y":0.88},{"id":"otomasyon","name":"Otomasyon","n":7,"x":0.5,"y":0.9},{"id":"yaklasim","name":"Yaklaşım","n":4,"x":0.42,"y":0.42},{"id":"yazilar","name":"Yazılar","n":10,"x":1.02,"y":0.6},{"id":"araclar","name":"Araçlar","n":21,"x":1.3,"y":0.84}];
+  var HUBS = [{"id":"hakkimda","name":"Aylin İnci","n":3,"x":0.7,"y":0.5,"items":[{"t":"Strateji ve Teknik Uygulama"},{"t":"Veri Odaklı Karar Süreci"},{"t":"Uygulanabilir Çözümler"}]},{"id":"teknik-seo","name":"Teknik SEO","n":9,"x":0.24,"y":0.2,"items":[{"t":"Tarama ve indeksleme sorunları"},{"t":"Canonical ve hreflang yapıları"},{"t":"Yönlendirme zincirleri ve 404 kontrolleri"},{"t":"Robots.txt ve sitemap incelemeleri"},{"t":"Site mimarisi ve URL yapıları"},{"t":"JavaScript kaynaklı SEO sorunları"},{"t":"Core Web Vitals ve sayfa performansı"},{"t":"Yapılandırılmış veri kontrolleri"},{"t":"Site taşıma ve migration planlaması"}]},{"id":"geo","name":"GEO","n":8,"x":0.62,"y":0.13,"items":[{"t":"Entity ve konu bütünlüğü"},{"t":"Açık ve doğrulanabilir içerik yapısı"},{"t":"Semantik içerik mimarisi"},{"t":"Soru ve yanıt odaklı içerik yapıları"},{"t":"Kaynaklandırma ve uzmanlık sinyalleri"},{"t":"Schema ve yapılandırılmış veri"},{"t":"Marka ve konu otoritesinin desteklenmesi"},{"t":"AI Overview ve üretken arama analizleri"}]},{"id":"icerik","name":"İçerik","n":9,"x":1.03,"y":0.2,"items":[{"t":"Anahtar kelime ve rakip analizi"},{"t":"Arama niyeti sınıflandırması"},{"t":"İçerik planı ve konu kümeleri"},{"t":"Kategori ve ürün sayfası optimizasyonları"},{"t":"İç bağlantı stratejisi"},{"t":"İçerik briefleri"},{"t":"Kanibalizasyon analizi"},{"t":"Meta başlık ve açıklama optimizasyonları"},{"t":"Türkçe ve İngilizce içerik çalışmaları"}]},{"id":"shopify","name":"Shopify","n":11,"x":0.14,"y":0.64,"items":[{"t":"Tema özelleştirmeleri"},{"t":"Liquid kod düzenlemeleri"},{"t":"Özel section ve block geliştirmeleri"},{"t":"Ürün ve koleksiyon sayfası düzenlemeleri"},{"t":"JSON template yapıları"},{"t":"Mobil uyumluluk geliştirmeleri"},{"t":"Site hızı ve görsel optimizasyonları"},{"t":"Çok dilli mağaza yapıları"},{"t":"Canonical ve indeksleme kontrolleri"},{"t":"GitHub üzerinden tema yönetimi"},{"t":"Teknik hata analizi ve çözümü"}]},{"id":"wordpress","name":"WordPress","n":10,"x":1.26,"y":0.46,"items":[{"t":"WordPress site düzenlemeleri"},{"t":"Elementor arayüz geliştirmeleri"},{"t":"Özel HTML ve CSS uygulamaları"},{"t":"JavaScript tabanlı etkileşimler"},{"t":"Mobil uyumluluk"},{"t":"Sayfa hızı optimizasyonları"},{"t":"Form ve yönlendirme yapıları"},{"t":"Tek sayfa ve kurumsal site tasarımları"},{"t":"SEO uyumlu sayfa yapıları"},{"t":"Tema ve eklenti kaynaklı hata çözümleri"}]},{"id":"veri","name":"Veri","n":9,"x":0.92,"y":0.88,"items":[{"t":"GA4 performans analizleri"},{"t":"Google Search Console raporları"},{"t":"Organik trafik ve görünürlük değerlendirmeleri"},{"t":"Dönüşüm takibi"},{"t":"Google Tag Manager kontrolleri"},{"t":"Landing page performansları"},{"t":"Kanal ve yönlendiren analizleri"},{"t":"Yönetim ve müşteri raporları"},{"t":"Verilerin anlaşılır çıktılara dönüştürülmesi"}]},{"id":"otomasyon","name":"Otomasyon","n":7,"x":0.5,"y":0.9,"items":[{"t":"CSV ve Excel verilerinin işlenmesi"},{"t":"SEO verilerinin sınıflandırılması"},{"t":"Toplu yönlendirme kontrolleri"},{"t":"Görsel boyut ve dosya optimizasyonları"},{"t":"Raporlama otomasyonları"},{"t":"Veri temizleme ve düzenleme"},{"t":"Tekrarlayan iş akışlarının sadeleştirilmesi"}]},{"id":"yaklasim","name":"Yaklaşım","n":4,"x":0.42,"y":0.42,"items":[{"t":"Analiz"},{"t":"Önceliklendirme"},{"t":"Uygulama"},{"t":"Ölçümleme"}]},{"id":"yazilar","name":"Yazılar","n":10,"x":1.02,"y":0.6,"items":[{"t":"Yapay Zeka ile İçerik Üretimi ve Google","u":"https://aylininci.com/blog/yapay-zeka-icerik-google-seo"},{"t":"ChatGPT Trafiği GA4’te Neden Direct Görünüyor?","u":"https://aylininci.com/blog/chatgpt-trafigi-ga4-olcumu"},{"t":"Google Eylül 2026 Spam Güncellemesi","u":"https://aylininci.com/blog/google-eylul-2026-spam-guncellemesi"},{"t":"Shopify’a Geçişte SEO","u":"https://aylininci.com/blog/shopify-gecisi-seo-rehberi"},{"t":"Google AI Modu ve SEO","u":"https://aylininci.com/blog/google-ai-modu-seo"},{"t":"Shopify Agentic Storefronts","u":"https://aylininci.com/blog/shopify-agentic-storefronts-chatgpt"},{"t":"Core Web Vitals Performansının Geliştirilmesi","u":"https://aylininci.com/blog/core-web-vitals-performans-optimizasyonu"},{"t":"Shopify Liquid Geliştirmelerinde Performans","u":"https://aylininci.com/blog/shopify-liquid-performans-optimizasyonu"},{"t":"Anahtar Kelime Kanibalizasyonunun Analizi","u":"https://aylininci.com/blog/anahtar-kelime-kanibalizasyonu-analizi"},{"t":"Yapay Zeka Araması İçin İçerik Yapısı","u":"https://aylininci.com/blog/yapay-zeka-arama-icin-icerik-yapisi"}]},{"id":"araclar","name":"Araçlar","n":21,"x":1.3,"y":0.84,"items":[{"t":"Screaming Frog"},{"t":"Google Search Console"},{"t":"Google Analytics 4"},{"t":"Google Tag Manager"},{"t":"PageSpeed Insights"},{"t":"Ahrefs"},{"t":"SEMrush"},{"t":"Looker Studio"},{"t":"Shopify"},{"t":"Liquid"},{"t":"WordPress"},{"t":"Elementor"},{"t":"GitHub"},{"t":"HTML"},{"t":"CSS"},{"t":"JavaScript"},{"t":"Python"},{"t":"PHP"},{"t":"Pandas"},{"t":"OpenPyXL"},{"t":"ImageMagick"}]}];
   var root = document.documentElement, body = document.body;
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   var cv = document.getElementById('map'), c = cv.getContext('2d');
@@ -387,6 +399,7 @@ kirik.to_excel("kontrol.xlsx", index=False)</code></pre>
   var note = document.getElementById('noteText');
   var W = 0, H = 0, dpr = 1, mobile = false, hover = -1, start = performance.now(), active = null;
   var REACH = .19, FOCAL = 2.4, INK = [1, 4, 25], MINT = [124, 242, 198], BLUE = [64, 124, 255], GREEN = [52, 214, 160];
+  var sel = null, selP = 0, selGoal = 0, layP = 0, layout = null, chipLayer = document.getElementById('mapChips'), repaint = function () {};
   var yaw = 0, pitch = 0, settle = 1, satIn = 1, hubSize = 8, hubIn = 1, labelIn = 1;
 
   function seeded(s) { return function () { s = (s * 1664525 + 1013904223) % 4294967296; return s / 4294967296; }; }
@@ -404,7 +417,7 @@ kirik.to_excel("kontrol.xlsx", index=False)</code></pre>
       var th = k / h.n * 6.283 + r() * .6, ph = (r() - .5) * 1.5, d = .62 + r() * .8;
       sats.push({ x: Math.cos(th) * Math.cos(ph) * d * REACH, y: Math.sin(th) * Math.cos(ph) * d * REACH, z: Math.sin(ph) * d * REACH, p: r(), card: k % 4 === 0 });
     }
-    return { x: h.x - .7, y: h.y - .5, z: i ? (r() - .5) * .7 : 0, sats: sats, tint: h.n >= 10 ? .75 : .12, delay: r() * .28, sx: 0, sy: 0, scale: 1, cx: 0, cy: 0 };
+    return { x: h.x - .7, y: h.y - .5, z: i ? (r() - .5) * .7 : 0, sats: sats, tint: h.n >= 10 ? .75 : .12, delay: r() * .28, sx: 0, sy: 0, scale: 1, cx: 0, cy: 0, pts: [] };
   });
   var SEED = { x: .2, y: -.2, z: 0 };
   var r0 = seeded(7), dots = [];
@@ -472,6 +485,10 @@ kirik.to_excel("kontrol.xlsx", index=False)</code></pre>
   function draw(now) {
     var y = window.scrollY; placeNodes(now, y);
     var k = camera(y);
+    selP += (selGoal - selP) * (reduce ? 1 : .1); layP += (selGoal - layP) * (reduce ? 1 : .085);
+    if (!selGoal && selP < .004) { selP = 0; layP = 0; if (layout) clearLayout(); }
+    if (sel && y > 80) closeSel();
+    var fade = 1 - selP;
     var out = (mobile || reduce) ? 0 : smooth(k.q / .22);
     hero.style.setProperty('--out', out.toFixed(4));
     root.style.setProperty('--page', 'rgb(' + (k.page[0] | 0) + ',' + (k.page[1] | 0) + ',' + (k.page[2] | 0) + ')');
@@ -487,9 +504,9 @@ kirik.to_excel("kontrol.xlsx", index=False)</code></pre>
     function sx(v) { return (v - k.x) * k.z + k.sx; }
     function sy(v) { return (v - k.y) * k.z + k.sy; }
     function alphaOf(i) {
-      if (i === k.focus) return Math.max(k.others, 1 - k.e);
-      if (i === k.next) return Math.max(k.others, k.e);
-      return k.others;
+      if (i === k.focus) return Math.max(k.others, 1 - k.e) * fade;
+      if (i === k.next) return Math.max(k.others, k.e) * fade;
+      return k.others * fade;
     }
     var rings = clamp((k.z - 720) / 420), hoverFade = hover >= 0 ? .4 : 1;
     nodes.forEach(function (n) { n.sx = sx(n.cx); n.sy = sy(n.cy); });
@@ -512,6 +529,7 @@ kirik.to_excel("kontrol.xlsx", index=False)</code></pre>
         var g = Math.max(0, n.grow), p = spin(n.wx + s.x * g + wob, n.wy + s.y * g, n.wz + s.z * g);
         var px = sx(p.x), py = sy(p.y), near = clamp((p.z + .5));
         var sa = a * satIn * (.45 + near * .55);
+        n.pts[j] = { x: px, y: py };
         if (sa < .01) return;
         if (j % 4 === 1 && far) { c.strokeStyle = rgb(BLUE, .07 * sa); c.lineWidth = .7; c.beginPath(); c.moveTo(px, py); c.lineTo(far.sx, far.sy); c.stroke(); }
         var grad = c.createLinearGradient(hx, hy, px, py);
@@ -546,6 +564,8 @@ kirik.to_excel("kontrol.xlsx", index=False)</code></pre>
       }
     });
 
+    if (layout) drawSelection(now);
+
     /* Section titles arrive as an outline and fill in as they rise */
     if (!reduce) titles.forEach(function (t) {
       var top = t.getBoundingClientRect().top; if (top > H * 1.1 || top < -200) return;
@@ -554,6 +574,91 @@ kirik.to_excel("kontrol.xlsx", index=False)</code></pre>
       t.style.webkitTextStroke = (1 - f) > .01 ? '1px rgba(255,255,255,' + ((1 - f) * .8).toFixed(3) + ')' : '0';
     });
     drawLinks();
+  }
+
+  /* Selecting a hub or an item: it flies to the centre and its related items open around it with labels */
+  function frac(v) { return v - Math.floor(v); }
+  function clearLayout() { layout = null; chipLayer.textContent = ''; chipLayer.classList.remove('live'); box.style.height = ''; box.style.aspectRatio = ''; }
+  function closeSel() { sel = null; selGoal = 0; chipLayer.classList.remove('live'); repaint(); }
+  function chip(cls, text, sup) {
+    var e = document.createElement(cls === 'go' ? 'a' : 'button');
+    if (cls !== 'go') e.type = 'button';
+    e.className = 'chip ' + cls; e.textContent = text;
+    if (sup) { var s = document.createElement('sup'); s.textContent = sup; e.appendChild(s); }
+    chipLayer.appendChild(e); return e;
+  }
+  function goTo(hub) { return function () { closeSel(); document.getElementById(HUBS[hub].id).scrollIntoView(); }; }
+  function select(s, from) {
+    var h = HUBS[s.i], n = nodes[s.i], isSat = s.j !== undefined;
+    var count = h.items.length - (isSat ? 1 : 0), rows = Math.ceil(count / 2);
+    if (mobile) { box.style.aspectRatio = 'auto'; box.style.height = (170 + rows * 46) + 'px'; }
+    var b = box.getBoundingClientRect();
+    var rx = b.width * (mobile ? .34 : .36), ry = b.height * (mobile ? .4 : .39), gap = mobile ? 25 : 30;
+    chipLayer.textContent = ''; sel = s; selGoal = 1; layP = 0;
+    var first = !layout, pts = [];
+    h.items.forEach(function (it, idx) { if (isSat && idx === s.j) return; pts.push({ idx: idx, it: it }); });
+    pts.forEach(function (p, q) {
+      var th = (q + .5) / pts.length * 6.283 - 1.2, r = .7 + .3 * frac(q * .618);
+      p.dx = Math.cos(th) * rx * r; p.dy = Math.sin(th) * ry * r;
+    });
+    [pts.filter(function (p) { return p.dx < 0; }), pts.filter(function (p) { return p.dx >= 0; })].forEach(function (side) {
+      side.sort(function (a, c) { return a.dy - c.dy; });
+      for (var q = 1; q < side.length; q++) if (side[q].dy < side[q - 1].dy + gap) side[q].dy = side[q - 1].dy + gap;
+      var over = side.length ? side[side.length - 1].dy - ry : 0;
+      if (over > 0) side.forEach(function (p) { p.dy -= over; });
+    });
+    if (mobile) pts.forEach(function (p, q) {
+      p.dx = (q % 2 ? .03 : -.46) * b.width; p.dy = 74 + Math.floor(q / 2) * 46;
+    });
+    pts.forEach(function (p) {
+      var o = first && n.pts[p.idx] ? n.pts[p.idx] : null;
+      p.ox = o ? o.x : null; p.oy = o ? o.y : null; p.card = n.sats[p.idx].card;
+      p.el = chip('sat', p.it.t);
+      p.el.addEventListener('click', function (e) { e.stopPropagation(); select({ i: s.i, j: p.idx }); });
+    });
+    var main = chip('main', isSat ? h.items[s.j].t : h.name, isSat ? '' : String(h.n));
+    var target = isSat ? h.items[s.j] : null, go;
+    if (target && target.u) { go = chip('go', 'Yazıyı oku'); go.href = target.u; go.target = '_blank'; go.rel = 'noopener'; }
+    else { go = chip('go', 'Bölüme git'); go.href = '#' + h.id; go.addEventListener('click', function (e) { e.preventDefault(); goTo(s.i)(); }); }
+    var parent = null;
+    if (isSat) { parent = chip('main', h.name, String(h.n)); parent.addEventListener('click', function (e) { e.stopPropagation(); select({ i: s.i }); }); }
+    layout = { items: pts, tint: n.tint, main: main, go: go, parent: parent, ox: from ? from.x : null, oy: from ? from.y : null, near: nodes[(s.i % (nodes.length - 1)) + 1] };
+    chipLayer.classList.add('live'); repaint();
+  }
+  function place(el, x, y, o) { el.style.transform = 'translate(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px)'; el.style.opacity = o; }
+  function drawSelection(now) {
+    var b = box.getBoundingClientRect(), t = smooth(layP), cx = b.left + b.width / 2, cy = mobile ? b.top + 92 : b.top + b.height * .54;
+    var ox = layout.ox === null ? cx : lerp(layout.ox, cx, t), oy = layout.oy === null ? cy : lerp(layout.oy, cy, t);
+    var edge = mix(BLUE, GREEN, layout.tint), show = smooth((layP - .45) * 2), a = smooth(layP * 1.6);
+    layout.items.forEach(function (p, q) {
+      var w = reduce ? 0 : Math.sin(now * .0005 + q) * 4, tx = cx + p.dx + w, ty = cy + p.dy + w * .6;
+      var px = lerp(p.ox === null ? cx : p.ox, tx, t), py = lerp(p.oy === null ? cy : p.oy, ty, t);
+      var grad = c.createLinearGradient(ox, oy, px, py);
+      grad.addColorStop(0, rgb(edge, a)); grad.addColorStop(1, rgb(edge, .3 * a));
+      c.strokeStyle = grad; c.lineWidth = 1; c.beginPath(); c.moveTo(ox, oy); c.lineTo(px, py); c.stroke();
+      if (p.card) {
+        c.fillStyle = rgb(INK, a); c.fillRect(px - 8, py - 6, 16, 12);
+        c.strokeStyle = 'rgba(255,255,255,' + a * .55 + ')'; c.lineWidth = .7; c.strokeRect(px - 8, py - 6, 16, 12);
+        c.fillStyle = 'rgba(255,255,255,' + a + ')'; c.fillRect(px - 5, py - 3, 7, 6); c.fillRect(px + 3, py - 3, 3, 3);
+      } else { c.fillStyle = rgb(mix(BLUE, [150, 180, 255], .4), a); c.beginPath(); c.arc(px, py, 2.6, 0, 6.283); c.fill(); }
+      var ew = p.w || (p.w = p.el.offsetWidth), eh = p.h || (p.h = p.el.offsetHeight), lx = px - b.left, ly = py - b.top;
+      var left = mobile ? lx + 9 : p.dx >= 0 ? lx + 12 : lx - 12 - ew;
+      if (!mobile && left + ew > b.width - 4) left = lx - 12 - ew;
+      if (!mobile && left < 4) left = lx + 12;
+      place(p.el, left, ly - eh / 2, show);
+    });
+    c.strokeStyle = rgb(mix(BLUE, MINT, .3), a); c.lineWidth = 1.2; c.beginPath(); c.arc(ox, oy, 5, 0, 6.283); c.stroke();
+    var mw = layout.mw || (layout.mw = layout.main.offsetWidth), mh = layout.mh || (layout.mh = layout.main.offsetHeight);
+    var gw = layout.gw || (layout.gw = layout.go.offsetWidth);
+    place(layout.main, ox - b.left - mw / 2, oy - b.top - mh - 9, show);
+    place(layout.go, ox - b.left - gw / 2, oy - b.top + 11, show);
+    if (layout.parent) {
+      var tx = cx + b.width * .03, ty = mobile ? b.top + 26 : b.top + b.height * .09, ppx = lerp(ox, tx, t), ppy = lerp(oy, ty, t);
+      c.strokeStyle = rgb(GREEN, .7 * a); c.lineWidth = 1; c.beginPath(); c.moveTo(ox, oy); c.lineTo(ppx, ppy); c.stroke();
+      c.fillStyle = rgb(MINT, a); c.fillRect(ppx - 4, ppy - 4, 8, 8);
+      var pw = layout.pw || (layout.pw = layout.parent.offsetWidth), ph = layout.ph || (layout.ph = layout.parent.offsetHeight);
+      place(layout.parent, ppx - b.left + 10, ppy - b.top - ph - 2, show);
+    }
   }
 
   function setActive(b) {
@@ -578,14 +683,27 @@ kirik.to_excel("kontrol.xlsx", index=False)</code></pre>
     lc.stroke(); lc.fillStyle = '#fff'; lc.fillRect(a.left - 2, a.top + 16, 4, 4); lc.fillRect(a.right - 2, a.top + 16, 4, 4);
   }
 
-  function hubAt(e) {
-    var best = -1, lim = 3600;
-    nodes.forEach(function (n, i) { var x = n.sx - e.clientX, y = n.sy - e.clientY, d = x * x + y * y; if (d < lim) { lim = d; best = i; } });
+  function hit(e) {
+    var best = null, lim = 900;
+    nodes.forEach(function (n, i) { var x = n.sx - e.clientX, y = n.sy - e.clientY, d = x * x + y * y; if (d < lim) { lim = d; best = { i: i }; } });
+    if (best) return best;
+    lim = mobile ? 400 : 256;
+    nodes.forEach(function (n, i) { n.pts.forEach(function (p, j) { if (!p) return; var x = p.x - e.clientX, y = p.y - e.clientY, d = x * x + y * y; if (d < lim) { lim = d; best = { i: i, j: j }; } }); });
     return best;
   }
-  box.addEventListener('mousemove', function (e) { hover = hubAt(e); box.style.cursor = hover >= 0 ? 'pointer' : ''; });
+  box.addEventListener('mousemove', function (e) {
+    if (sel) { hover = -1; box.style.cursor = ''; return; }
+    var h = hit(e); hover = h ? h.i : -1; box.style.cursor = h ? 'pointer' : '';
+  });
   box.addEventListener('mouseleave', function () { hover = -1; });
-  box.addEventListener('click', function (e) { var i = hubAt(e); if (i >= 0) document.getElementById(HUBS[i].id).scrollIntoView(); });
+  box.addEventListener('click', function (e) {
+    if (e.target.closest('.chip')) return;
+    if (sel) { closeSel(); return; }
+    var h = hit(e); if (!h) return;
+    hover = -1; box.style.cursor = '';
+    select(h, h.j === undefined ? { x: nodes[h.i].sx, y: nodes[h.i].sy } : nodes[h.i].pts[h.j]);
+  });
+  addEventListener('keydown', function (e) { if (e.key === 'Escape' && sel) closeSel(); });
 
   document.querySelectorAll('.copy').forEach(function (b) {
     b.addEventListener('click', function () {
@@ -600,6 +718,7 @@ kirik.to_excel("kontrol.xlsx", index=False)</code></pre>
   resize();
   if (reduce) {
     var paint = function () { draw(performance.now()); };
+    repaint = paint;
     addEventListener('scroll', paint, { passive: true }); addEventListener('resize', paint);
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(paint);
     paint();
