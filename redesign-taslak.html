@@ -73,10 +73,8 @@ h3{font-weight:500;font-size:19px;line-height:1.2;margin:0;display:flex;align-it
 .term pre{margin:0;padding:6px 14px 16px;overflow-x:auto;font:300 13.5px/1.6 var(--mono);color:#DDE6FF}
 .points{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px 28px;font-weight:500;line-height:1.25;letter-spacing:-.005em}
 .points li{display:flex;gap:9px;align-items:baseline;min-width:0}
-.about{display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:28px;align-items:start}
 .about p{margin:0 0 14px;font-size:clamp(18px,1.7vw,21px);line-height:1.3;color:var(--fg-2)}
 .about p:last-child{margin-bottom:0}
-.about img{width:100%;height:auto;display:block;aspect-ratio:1;object-fit:cover}
 .grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
 .grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
 .step{display:grid;gap:10px;align-content:start}
@@ -101,8 +99,7 @@ footer{position:relative;z-index:3;border-top:1px solid var(--line);padding-bloc
   .word{min-height:0}
   .word span{position:static;transform:none;writing-mode:horizontal-tb;display:block;font-size:clamp(58px,17.5vw,150px);line-height:1}
   .mapbox{order:-1;min-height:0;aspect-ratio:1/1}
-  .card-wide,.about{grid-template-columns:minmax(0,1fr)}
-  .about img{max-width:220px}
+  .card-wide{grid-template-columns:minmax(0,1fr)}
   .points{grid-template-columns:minmax(0,1fr);gap:0}
   .points li{padding:12px 0;border-top:1px solid var(--line)}
   .grid2,.grid3{grid-template-columns:minmax(0,1fr)}
@@ -204,7 +201,6 @@ body.at-top .notes{opacity:0;pointer-events:none}
         <p>Shopify ve WordPress projelerinde teknik SEO, içerik optimizasyonu, tema geliştirme, site geçişleri, yönlendirme planları, performans iyileştirmeleri ve ölçümleme altyapıları üzerine çalışıyorum.</p>
         <p>Analiz sonuçlarını yalnızca raporlamakla kalmıyor; gerekli düzenlemeleri kod, içerik ve kullanıcı deneyimi düzeyinde uyguluyorum.</p>
       </div>
-      <img src="img/aylin-inci.webp" alt="Aylin İnci" width="400" height="400">
     </article>
   </div>
 </section>
@@ -398,9 +394,19 @@ kirik.to_excel("kontrol.xlsx", index=False)</code></pre>
 (function () {
   /* A true 3D graph around one centre ring: every section has a hub, every satellite is a real work item. */
   var HUBS = [{"id":"hakkimda","name":"Aylin İnci","n":3,"x":0.7,"y":0.5,"items":[{"t":"Strateji ve Teknik Uygulama"},{"t":"Veri Odaklı Karar Süreci"},{"t":"Uygulanabilir Çözümler"}]},{"id":"teknik-seo","name":"Teknik SEO","n":9,"x":0.24,"y":0.2,"items":[{"t":"Tarama ve indeksleme sorunları"},{"t":"Canonical ve hreflang yapıları"},{"t":"Yönlendirme zincirleri ve 404 kontrolleri"},{"t":"Robots.txt ve sitemap incelemeleri"},{"t":"Site mimarisi ve URL yapıları"},{"t":"JavaScript kaynaklı SEO sorunları"},{"t":"Core Web Vitals ve sayfa performansı"},{"t":"Yapılandırılmış veri kontrolleri"},{"t":"Site taşıma ve migration planlaması"}]},{"id":"geo","name":"GEO","n":8,"x":0.62,"y":0.13,"items":[{"t":"Entity ve konu bütünlüğü"},{"t":"Açık ve doğrulanabilir içerik yapısı"},{"t":"Semantik içerik mimarisi"},{"t":"Soru ve yanıt odaklı içerik yapıları"},{"t":"Kaynaklandırma ve uzmanlık sinyalleri"},{"t":"Schema ve yapılandırılmış veri"},{"t":"Marka ve konu otoritesinin desteklenmesi"},{"t":"AI Overview ve üretken arama analizleri"}]},{"id":"icerik","name":"İçerik","n":9,"x":1.03,"y":0.2,"items":[{"t":"Anahtar kelime ve rakip analizi"},{"t":"Arama niyeti sınıflandırması"},{"t":"İçerik planı ve konu kümeleri"},{"t":"Kategori ve ürün sayfası optimizasyonları"},{"t":"İç bağlantı stratejisi"},{"t":"İçerik briefleri"},{"t":"Kanibalizasyon analizi"},{"t":"Meta başlık ve açıklama optimizasyonları"},{"t":"Türkçe ve İngilizce içerik çalışmaları"}]},{"id":"shopify","name":"Shopify","n":11,"x":0.14,"y":0.64,"items":[{"t":"Tema özelleştirmeleri"},{"t":"Liquid kod düzenlemeleri"},{"t":"Özel section ve block geliştirmeleri"},{"t":"Ürün ve koleksiyon sayfası düzenlemeleri"},{"t":"JSON template yapıları"},{"t":"Mobil uyumluluk geliştirmeleri"},{"t":"Site hızı ve görsel optimizasyonları"},{"t":"Çok dilli mağaza yapıları"},{"t":"Canonical ve indeksleme kontrolleri"},{"t":"GitHub üzerinden tema yönetimi"},{"t":"Teknik hata analizi ve çözümü"}]},{"id":"wordpress","name":"WordPress","n":10,"x":1.26,"y":0.46,"items":[{"t":"WordPress site düzenlemeleri"},{"t":"Elementor arayüz geliştirmeleri"},{"t":"Özel HTML ve CSS uygulamaları"},{"t":"JavaScript tabanlı etkileşimler"},{"t":"Mobil uyumluluk"},{"t":"Sayfa hızı optimizasyonları"},{"t":"Form ve yönlendirme yapıları"},{"t":"Tek sayfa ve kurumsal site tasarımları"},{"t":"SEO uyumlu sayfa yapıları"},{"t":"Tema ve eklenti kaynaklı hata çözümleri"}]},{"id":"veri","name":"Veri","n":9,"x":0.92,"y":0.88,"items":[{"t":"GA4 performans analizleri"},{"t":"Google Search Console raporları"},{"t":"Organik trafik ve görünürlük değerlendirmeleri"},{"t":"Dönüşüm takibi"},{"t":"Google Tag Manager kontrolleri"},{"t":"Landing page performansları"},{"t":"Kanal ve yönlendiren analizleri"},{"t":"Yönetim ve müşteri raporları"},{"t":"Verilerin anlaşılır çıktılara dönüştürülmesi"}]},{"id":"otomasyon","name":"Otomasyon","n":7,"x":0.5,"y":0.9,"items":[{"t":"CSV ve Excel verilerinin işlenmesi"},{"t":"SEO verilerinin sınıflandırılması"},{"t":"Toplu yönlendirme kontrolleri"},{"t":"Görsel boyut ve dosya optimizasyonları"},{"t":"Raporlama otomasyonları"},{"t":"Veri temizleme ve düzenleme"},{"t":"Tekrarlayan iş akışlarının sadeleştirilmesi"}]},{"id":"yaklasim","name":"Yaklaşım","n":4,"x":0.42,"y":0.42,"items":[{"t":"Analiz"},{"t":"Önceliklendirme"},{"t":"Uygulama"},{"t":"Ölçümleme"}]},{"id":"yazilar","name":"Yazılar","n":10,"x":1.02,"y":0.6,"items":[{"t":"Yapay Zeka ile İçerik Üretimi ve Google","u":"https://aylininci.com/blog/yapay-zeka-icerik-google-seo"},{"t":"ChatGPT Trafiği GA4’te Neden Direct Görünüyor?","u":"https://aylininci.com/blog/chatgpt-trafigi-ga4-olcumu"},{"t":"Google Eylül 2026 Spam Güncellemesi","u":"https://aylininci.com/blog/google-eylul-2026-spam-guncellemesi"},{"t":"Shopify’a Geçişte SEO","u":"https://aylininci.com/blog/shopify-gecisi-seo-rehberi"},{"t":"Google AI Modu ve SEO","u":"https://aylininci.com/blog/google-ai-modu-seo"},{"t":"Shopify Agentic Storefronts","u":"https://aylininci.com/blog/shopify-agentic-storefronts-chatgpt"},{"t":"Core Web Vitals Performansının Geliştirilmesi","u":"https://aylininci.com/blog/core-web-vitals-performans-optimizasyonu"},{"t":"Shopify Liquid Geliştirmelerinde Performans","u":"https://aylininci.com/blog/shopify-liquid-performans-optimizasyonu"},{"t":"Anahtar Kelime Kanibalizasyonunun Analizi","u":"https://aylininci.com/blog/anahtar-kelime-kanibalizasyonu-analizi"},{"t":"Yapay Zeka Araması İçin İçerik Yapısı","u":"https://aylininci.com/blog/yapay-zeka-arama-icin-icerik-yapisi"}]},{"id":"araclar","name":"Araçlar","n":21,"x":1.3,"y":0.84,"items":[{"t":"Screaming Frog"},{"t":"Google Search Console"},{"t":"Google Analytics 4"},{"t":"Google Tag Manager"},{"t":"PageSpeed Insights"},{"t":"Ahrefs"},{"t":"SEMrush"},{"t":"Looker Studio"},{"t":"Shopify"},{"t":"Liquid"},{"t":"WordPress"},{"t":"Elementor"},{"t":"GitHub"},{"t":"HTML"},{"t":"CSS"},{"t":"JavaScript"},{"t":"Python"},{"t":"PHP"},{"t":"Pandas"},{"t":"OpenPyXL"},{"t":"ImageMagick"}]}];
-  /* a reload always starts at the hero; links to a section keep working */
+  /* a reload always starts at the hero, even if the host restores the position late; opening a section link still works */
   try { history.scrollRestoration = 'manual'; } catch (e) {}
-  if (!location.hash) { scrollTo(0, 0); addEventListener('load', function () { scrollTo(0, 0); }); }
+  var navEntry = performance.getEntriesByType('navigation')[0], reloaded = !!navEntry && navEntry.type === 'reload';
+  if (reloaded && location.hash) { try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {} }
+  if (!location.hash) {
+    var held = true, release = function () { held = false; };
+    ['wheel', 'touchstart', 'keydown', 'mousedown', 'click', 'hashchange'].forEach(function (t) { addEventListener(t, release, { passive: true, once: true }); });
+    (function hold() {
+      if (!held) return;
+      if (scrollY) scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      if (performance.now() < 1800) requestAnimationFrame(hold);
+    })();
+  }
   var root = document.documentElement, body = document.body;
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   var cv = document.getElementById('map'), c = cv.getContext('2d');
