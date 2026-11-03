@@ -10,6 +10,7 @@
 - [LinkedIn](https://www.linkedin.com/in/aylin-inci/)
 
 ## Blog
+- [Shopify Fall '26 Edition: Yapay Zeka Kanallarında ve SEO'da Ne Değişti?](https://aylininci.com/blog/shopify-fall-26-edition): Shopify'ın ilk sonbahar sürümü ajanlarla alışverişi öne çıkarıyor. Ürün verisi, işletme bilgileri ve mağaza tarafında önce kontrol edilecekler.
 - [Yapay Zeka ile İçerik Üretimi ve Google: 2026'da Ne Değişti?](https://aylininci.com/blog/yapay-zeka-icerik-google-seo): Google Ekim 2026'da içerik rehberini güncelledi: denetimsiz AI metni düşük emek sayılıyor. Yapay zekayı SEO'ya zarar vermeden kullanmanın yolları.
 - [ChatGPT Trafiği GA4'te Neden Direct Görünüyor? Yapay Zeka Trafiğini Ölçmek](https://aylininci.com/blog/chatgpt-trafigi-ga4-olcumu): Ekim 2026'da ChatGPT ziyaretleri GA4'te Direct göründü. Ne oldu, verinizi nasıl kontrol edersiniz ve yapay zeka trafiği için ayrı kanal nasıl kurulur?
 - [Google Eylül 2026 Spam Güncellemesi: Siteniz Etkilendi mi?](https://aylininci.com/blog/google-eylul-2026-spam-guncellemesi): Google'ın Eylül 2026 spam güncellemesi 13 gün sürdü. Sitenizin etkilenip etkilenmediğini anlama adımları, sık görülen ihlaller ve toparlanma süreci.
