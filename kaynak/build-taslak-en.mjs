@@ -62,6 +62,8 @@ block('const STEPS = [', '\nconst FEED', `const STEPS = [
 ];`);
 // English titles for the Turkish articles, from the live English page
 const EN = {
+  'shopify-fall-26-edition': ["Shopify Fall '26 Edition: what changed for stores", 'AI shopping agents, business details sent to AI channels, product data by channel and what to check first in your store.'],
+  'robots-txt-yapay-zeka-egitimi': ['Controlling AI training with robots.txt', "The shared AI training signal Google plans to support in 2027, how it relates to Google-Extended, and robots.txt settings."],
   'yapay-zeka-icerik-google-seo': ['AI-generated content and Google', "What Google's October 2026 content guidance update means and how to use AI without hurting SEO."],
   'chatgpt-trafigi-ga4-olcumu': ['Measuring ChatGPT traffic in GA4', 'Why ChatGPT visits showed up as Direct in October 2026 and how to set up an AI-assistant channel in GA4.'],
   'google-eylul-2026-spam-guncellemesi': ['Google September 2026 spam update', "How to tell whether a site was affected by the year's longest spam update, and Google's recovery guidance."],

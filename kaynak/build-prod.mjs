@@ -5,7 +5,8 @@ import path from 'node:path';
 import { rewriteText } from './rewrites.mjs';
 
 const SITE = '../site';
-const TODAY = '2026-11-03';
+const TODAY = process.env.BUILD_DATE || '2026-11-03';
+const later = (a, b) => (a > b ? a : b);
 const FONTS = fs.readFileSync('../fonts/fonts.css', 'utf8').trim();
 const live = (p) => fs.readFileSync(path.join('live-src', p), 'utf8').replace(/\r\n/g, '\n');
 const draft = (p) => fs.readFileSync(p, 'utf8').replace(/\r\n/g, '\n');
@@ -25,7 +26,11 @@ function seoHead(html, slug) {
     .replace(/@@LD(\d+)@@/g, (m, i) => ld[+i])
     // the photo is no longer on the site
     .replace(/,?\s*"image":\s*"https:\/\/aylininci\.com\/aylin-inci[^"]*"/g, '');
-  if (slug) h = rewriteText(slug, h).replace(/"dateModified":\s*"[^"]*"/, `"dateModified": "${TODAY}"`);
+  if (slug) {
+    // the modified date is never earlier than the published date
+    const pub = (h.match(/"datePublished":\s*"([^"]+)"/) || [])[1] || TODAY;
+    h = rewriteText(slug, h).replace(/"dateModified":\s*"[^"]*"/, `"dateModified": "${later(TODAY, pub)}"`);
+  }
   return h.split('\n').map((l) => l.trimEnd()).filter((l) => l.trim()).join('\n');
 }
 const page = (lang, htmlAttr, head, bg, css, body) => `<!DOCTYPE html>
@@ -102,6 +107,9 @@ out('blog/index.html', blogPage('../prev/blog.html', 'blog/index.html'));
 const slugs = fs.readdirSync('../prev/yazi').filter((f) => f.endsWith('.html')).map((f) => f.replace('.html', ''));
 for (const s of slugs) out(`blog/${s}.html`, blogPage(`../prev/yazi/${s}.html`, `blog/${s}.html`, s));
 
+// Share images of published posts
+if (fs.existsSync('og')) for (const f of fs.readdirSync('og')) if (slugs.includes(f.replace(/-og\.jpg$/, ''))) fs.copyFileSync(`og/${f}`, path.join(SITE, 'blog/images', f));
+
 // Fonts and images
 for (const f of fs.readdirSync('../fonts').filter((x) => x.endsWith('.woff2'))) fs.copyFileSync(`../fonts/${f}`, path.join(SITE, 'assets/fonts', f));
 fs.mkdirSync(path.join(SITE, 'assets/img'), { recursive: true });
@@ -111,5 +119,17 @@ for (const f of fs.readdirSync('../prev/img').filter((x) => /^(bolum-|kart-uzman
 let map = fs.readFileSync(path.join(SITE, 'sitemap.xml'), 'utf8');
 map = map.replace(/\s*<image:image>[\s\S]*?<\/image:image>/g, '')
   .replace(/(<loc>https:\/\/aylininci\.com\/(blog\/[^<]*)?<\/loc>[\s\S]*?<lastmod>)[^<]*(<\/lastmod>)/g, `$1${TODAY}$3`);
+for (const s of slugs) {
+  const loc = `https://aylininci.com/blog/${s}`;
+  if (!map.includes(`<loc>${loc}</loc>`)) map = map.replace('</urlset>', `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${later(TODAY, (JSON.parse(fs.readFileSync('posts.json', 'utf8')).find((p) => p.slug === s) || {}).date || TODAY)}</lastmod>\n    <changefreq>yearly</changefreq>\n    <priority>0.8</priority>\n  </url>\n</urlset>`);
+}
 fs.writeFileSync(path.join(SITE, 'sitemap.xml'), map);
+// llms.txt: newest posts first in the blog list
+const posts = JSON.parse(fs.readFileSync('posts.json', 'utf8'));
+let llms = fs.readFileSync(path.join(SITE, 'llms.txt'), 'utf8').replace(/\r\n/g, '\n');
+for (const p of posts.slice().reverse()) {
+  const u = `https://aylininci.com/blog/${p.slug}`;
+  if (!llms.includes(`(${u})`)) llms = llms.replace('## Blog\n', `## Blog\n- [${p.title}](${u}): ${p.desc}\n`);
+}
+fs.writeFileSync(path.join(SITE, 'llms.txt'), llms);
 console.log('built: index, blog/index,', slugs.length, 'posts');

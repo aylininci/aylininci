@@ -37,6 +37,7 @@ const BY = {
     ['Bu tür rakamlara iki nedenle temkinli yaklaşıyorum:', 'Bu tür rakamlara iki nedenle temkinli yaklaşmak gerekiyor:'],
     ['Benim önerdiğim üç adımlık okuma şu:', 'Önerilen üç adımlık okuma şu:'],
     ['Tıklamalarım düştü; içeriği AI özetlerinden çıkarmalı mıyım?', 'Tıklamalar düştüyse içerik AI özetlerinden çıkarılmalı mı?'],
+    ['görünürken tıklanmaya değer olmaktır.', 'görünürken tıklanmaya değer olmaktır. Yapay zeka eğitimi için robots.txt\'de önerilen yeni ortak sinyal <a href="/blog/robots-txt-yapay-zeka-egitimi">robots.txt ile yapay zeka eğitimini kontrol etmek</a> yazısında anlatılıyor.', 'robots-txt-yapay-zeka-egitimi'],
   ],
   'google-eylul-2026-spam-guncellemesi': [
     ['Konuyu <a', 'Konu <a'],
@@ -46,6 +47,7 @@ const BY = {
   'shopify-agentic-storefronts-chatgpt': [
     ['Bu raporu <a', 'Bu rapor <a'],
     ['Ürünlerimin AI asistanları tarafından önerilmesi için ne yapmalıyım?', 'Ürünlerin AI asistanları tarafından önerilmesi için ne yapılmalı?'],
+    ['kanal genişlediğinde hazır olmayı sağlayan bir hazırlık.', 'kanal genişlediğinde hazır olmayı sağlayan bir hazırlık. Kanalın Ekim 2026 sonundaki genişlemesi <a href="/blog/shopify-fall-26-edition">Shopify Fall \'26 Edition</a> yazısında anlatılıyor.', 'shopify-fall-26-edition'],
   ],
   'shopify-gecisi-seo-rehberi': [
     ['Shopify\'a geçince Google sıralamalarım düşer mi?', 'Shopify\'a geçince Google sıralamaları düşer mi?'],
@@ -66,6 +68,7 @@ const BY = {
     ['ilk yazımızda ele aldığımız ', ''],
     ['Danıştığım bir SaaS şirketinin', 'Bir SaaS şirketinin'],
     ['robots.txt üzerinden AI botlarını engellemeli miyim?', 'AI botları robots.txt üzerinden engellenmeli mi?'],
+    ['rekabetçi/özel içerik söz konusuysa engellemek daha mantıklı olabilir.', 'rekabetçi/özel içerik söz konusuysa engellemek daha mantıklı olabilir. Ekim 2026\'da duyurulan ortak eğitim sinyali için <a href="/blog/robots-txt-yapay-zeka-egitimi">robots.txt ile yapay zeka eğitimini kontrol etmek</a> yazısına bakabilirsiniz.', 'robots-txt-yapay-zeka-egitimi'],
     ['yeniden yapılandırdık:', 'yeniden yapılandırıldı:'],
     ['bloğu ekledik;', 'bloğu eklendi;'],
     ['alt başlıkları soru formatına çevirdik;', 'alt başlıklar soru formatına çevrildi;'],
@@ -81,8 +84,12 @@ const BY = {
     ['Sitemde çok sayıda eski yapay zeka içeriği var, ne yapmalıyım?', 'Sitede çok sayıda eski yapay zeka içeriği varsa ne yapılmalı?'],
   ],
 };
+let PUBLISHED = null;
+export const setPublished = (list) => { PUBLISHED = new Set(list); };
+const live = (needs) => !needs || !PUBLISHED || PUBLISHED.has(needs);
 export function rewrite(slug, html, missing) {
-  for (const [a, b] of BY[slug] || []) {
+  for (const [a, b, needs] of BY[slug] || []) {
+    if (!live(needs)) continue;
     if (!html.includes(a)) { missing.push(slug + ': ' + a.slice(0, 60)); continue; }
     html = html.split(a).join(b);
   }
@@ -93,7 +100,7 @@ export function rewrite(slug, html, missing) {
 export const seen = (slug) => (BY[slug] || []).map(([a]) => a);
 // Same edits for text outside the body (structured data, meta), without the presence check
 export function rewriteText(slug, s) {
-  for (const [a, b] of BY[slug] || []) s = s.split(a).join(b);
+  for (const [a, b, needs] of BY[slug] || []) if (live(needs)) s = s.split(a).join(b);
   for (const [a, b] of ALL) s = typeof a === 'string' ? s.split(a).join(b) : s.replace(a, b);
   return s;
 }

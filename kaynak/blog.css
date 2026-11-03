@@ -1,6 +1,6 @@
 /* Blog pages share the home draft's language: one page colour per topic, mono notes, hairlines and drawn maps instead of photos. */
 :root{
-  --ink:#010419; --fg:#fff; --fg-2:rgba(255,255,255,.8); --fg-3:rgba(255,255,255,.6);
+  --ink:#010419; --fg:#fff; --fg-2:rgba(255,255,255,.8); --fg-3:rgba(255,255,255,.72);
   --line:rgba(255,255,255,.18); --panel:rgba(255,255,255,.08); --mint:#7CF2C6;
   --sans:'Instrument Sans','Helvetica Neue',Arial,sans-serif; --mono:'Geist Mono',ui-monospace,Menlo,Consolas,monospace;
   --page:#0B1B5E; --head:64px; color-scheme:dark;

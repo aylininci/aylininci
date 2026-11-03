@@ -1,7 +1,7 @@
 // Builds the draft blog archive and post pages from the live posts in ../site/blog.
 import fs from 'node:fs';
 import path from 'node:path';
-import { rewrite } from './rewrites.mjs';
+import { rewrite, setPublished } from './rewrites.mjs';
 const MISSING = [];
 
 const SRC = 'live-src/blog';
@@ -21,6 +21,8 @@ const SUM = {
   "anahtar-kelime-kanibalizasyonu-analizi": "Aynı sorguda birbiriyle yarışan sayfaları Search Console'da bulmak ve hangisinin kalacağına karar vermek.",
   "core-web-vitals-performans-optimizasyonu": "PageSpeed skoru ile gerçek kullanıcı verisi aynı şey değil. LCP, INP ve CLS'i sahada iyileştiren adımlar.",
   "shopify-liquid-performans-optimizasyonu": "Temaya eklenen her section ve uygulama sayfayı biraz yavaşlatır. Bunu önleyen pratik alışkanlıklar.",
+  "shopify-fall-26-edition": "Shopify'ın ilk sonbahar sürümü ajanlarla alışverişi öne çıkarıyor. Ürün verisi, işletme bilgileri ve mağaza tarafında önce kontrol edilecekler.",
+  "robots-txt-yapay-zeka-egitimi": "Google'ın 2027'de desteklemeyi planladığı ortak yapay zeka eğitim sinyali ve robots.txt'de eğitim ile aramayı ayırmanın yolu.",
   "yapay-zeka-arama-icin-icerik-yapisi": "ChatGPT ve Google AI Overviews kaynak seçerken klasik aramadan farklı davranıyor. İçeriği bu sistemlerin daha kolay anlayacağı biçimde düzenlemek."
 };
 const JS = fs.readFileSync('blog.js', 'utf8');
@@ -33,6 +35,11 @@ const pick = (s, re) => { const m = s.match(re); return m ? m[1].trim() : ''; };
 const dateTr = (iso) => { const [y, m, d] = iso.split('-').map(Number); return `${d} ${MONTHS[m - 1]} ${y}`; };
 const pad = (n) => String(n).padStart(2, '0');
 
+// posts dated after PUBLISH_UNTIL stay out, and so do links pointing to them
+const UNTIL = process.env.PUBLISH_UNTIL || '9999-12-31';
+const dateOf = (f) => (fs.readFileSync(path.join(SRC, f), 'utf8').match(/"datePublished":\s*"([^"]+)"/) || [])[1] || '';
+setPublished(fs.readdirSync(SRC).filter((f) => f.endsWith('.html') && f !== 'index.html' && dateOf(f) <= UNTIL).map((f) => f.replace(/\.html$/, '')));
+for (const o of OUTS) fs.rmSync(path.join(o, 'yazi'), { recursive: true, force: true });
 const posts = fs.readdirSync(SRC).filter((f) => f.endsWith('.html') && f !== 'index.html').map((f) => {
   const html = fs.readFileSync(path.join(SRC, f), 'utf8').replace(/\r\n/g, '\n');
   const slug = f.replace(/\.html$/, '');
@@ -48,7 +55,7 @@ const posts = fs.readdirSync(SRC).filter((f) => f.endsWith('.html') && f !== 'in
   if (!title || !cat || !date || !content) throw new Error('parse ' + f);
   if (!SUM[slug]) throw new Error('summary missing: ' + slug);
   return { slug, title, cat, date, rt, lead, desc, sum: SUM[slug], content, author, related, bg: CATS[cat] || BASE };
-}).sort((a, b) => b.date.localeCompare(a.date) || a.title.localeCompare(b.title, 'tr'));
+}).filter((p) => p.date <= UNTIL).sort((a, b) => b.date.localeCompare(a.date) || a.title.localeCompare(b.title, 'tr'));
 
 const head = (title, desc, bg) => `<!doctype html>
 <html lang="tr" style="--page:${bg}">
