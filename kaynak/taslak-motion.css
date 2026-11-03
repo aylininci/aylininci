@@ -73,7 +73,8 @@ body.at-top .notes{opacity:0;pointer-events:none}
   .fx .grid2>:nth-child(odd){transform:translate3d(-60px,0,0)}
   .fx .grid2>:nth-child(even){transform:translate3d(60px,0,0)}
   .fx .grid3>*{transform:translate3d(0,48px,0) rotate(1.2deg)}
-  .fx .seen li,.fx .seen>*{opacity:1;transform:none;clip-path:inset(0 0 0 0)}
+  /* the end state must beat every per-section start state, which use longer selectors */
+  .fx .seen li,.fx .seen>*{opacity:1!important;transform:none!important;clip-path:inset(0 0 0 0)!important}
 }
 
 /* entrances may start outside the page width */
