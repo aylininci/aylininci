@@ -318,6 +318,18 @@ main{position:relative;z-index:2}
   var seeded = function (s) { var h = 2166136261; for (var i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return function () { h = Math.imul(h ^ (h >>> 15), 2246822507); h = Math.imul(h ^ (h >>> 13), 3266489909); h ^= h >>> 16; return (h >>> 0) / 4294967296; }; };
   var mobile = innerWidth <= 860, all = [];
 
+  /* A new page starts at its top: the host keeps the last scroll position across pages and restores it late */
+  try { history.scrollRestoration = 'manual'; } catch (e) {}
+  if (!location.hash) {
+    var held = true, release = function () { held = false; };
+    ['wheel', 'touchstart', 'keydown', 'mousedown', 'click', 'hashchange'].forEach(function (t) { addEventListener(t, release, { passive: true, once: true }); });
+    (function hold() {
+      if (!held) return;
+      if (scrollY) scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      if (performance.now() < 1800) requestAnimationFrame(hold);
+    })();
+  }
+
   /* Sky: slow white dots behind everything */
   var sky = document.getElementById('sky'), sc = sky.getContext('2d'), dots = [];
   var r0 = seeded('sky'); for (var d = 0; d < 140; d++) dots.push({ x: r0(), y: r0(), s: r0() < .85 ? 1 : 2, v: .4 + r0() });
