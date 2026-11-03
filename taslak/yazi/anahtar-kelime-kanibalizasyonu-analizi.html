@@ -208,16 +208,16 @@ main{position:relative;z-index:2}
   <header class="phero">
     <div class="phero-text">
       <div><nav class="crumbs" aria-label="Sayfa yolu"><a href="../">Anasayfa</a><span>/</span><a href="../blog.html">Yazılar</a><span>/</span><span>İçerik Stratejisi</span></nav><h1 data-split>Anahtar Kelime Kanibalizasyonunun Analizi: Sayfalarınız Birbirinizle mi Yarışıyor?</h1></div>
-      <p class="lede">Bir siteye yeni içerik eklemek her zaman trafiği artırmaz; bazen mevcut bir sayfanın trafiğini böler. Bu yazıda kanibalizasyonu Search Console verisiyle nasıl tespit edeceğinizi, hangi durumda birleştirmeniz hangi durumda ayrı tutmanız gerektiğini anlatıyorum.</p>
+      <p class="lede">Bir siteye yeni içerik eklemek her zaman trafiği artırmaz; bazen mevcut bir sayfanın trafiğini böler. Bu yazı kanibalizasyonu Search Console verisiyle nasıl tespit edeceğinizi, hangi durumda birleştirmeniz hangi durumda ayrı tutmanız gerektiğini anlatıyor.</p>
       <div class="meta"><span>Aylin İnci</span><time datetime="2026-08-28">28 Ağustos 2026</time><span>13 dakika okuma</span><span>12 bölüm</span></div>
     </div>
-    <div class="pmap"><canvas id="pmap" role="img" aria-label="Yazının bölüm haritası"></canvas><p class="hint">Noktalar bölümlere gider</p></div>
+    <div class="pmap"><canvas id="pmap" role="img" aria-label="Yazının bölüm haritası"></canvas><p class="hint">Bölüme gitmek için bir noktaya tıklayın</p></div>
   </header>
   <div class="read">
     <nav class="toc" aria-label="İçindekiler"><b>İçindekiler</b><ol><li><a href="#kanibalizasyon-neden-gercek-bir-sorun">Kanibalizasyon neden gerçek bir sorun?</a></li><li><a href="#kanibalizasyon-her-zaman-kotu-degildir">Kanibalizasyon her zaman kötü değildir</a></li><li><a href="#search-console-ile-tespit-yontemi">Search Console ile tespit yöntemi</a></li><li><a href="#niyet-ayristirma-hangi-sayfa-kalmali">Niyet ayrıştırma: hangi sayfa kalmalı?</a></li><li><a href="#birlestirme-canonical-mi-301-mi">Birleştirme: canonical mı, 301 mi?</a></li><li><a href="#ic-linklemeyi-guncellemek">İç linklemeyi güncellemek</a></li><li><a href="#kanibalizasyonu-bastan-onlemek">Kanibalizasyonu baştan önlemek</a></li><li><a href="#blog-ve-kategori-sayfalarinda-yaygin-kanibalizasyon-senaryol">Blog ve kategori sayfalarında yaygın kanibalizasyon senaryoları</a></li><li><a href="#ucuncu-parti-araclarla-tespit-search-console-un-yeterli-olma">Üçüncü parti araçlarla tespit: Search Console'un yeterli olmadığı durumlar</a></li><li><a href="#vaka-bir-b2b-blogda-uc-yazinin-tek-sayfada-birlestirilmesi">Vaka: bir B2B blogda üç yazının tek sayfada birleştirilmesi</a></li><li><a href="#birlestirme-sonrasi-nasil-olculur">Birleştirme sonrası nasıl ölçülür?</a></li><li><a href="#sonuc">Sonuç</a></li></ol></nav>
     <div class="body">
-<p>"Bu konuda zaten bir yazımız var ama yeterince sıralamıyor, bir tane daha yazalım" cümlesini SEO danışmanlığında sık duyarım. Genelde iyi niyetle söylenir ama çoğu zaman sonucu tam tersi olur: yeni sayfa, eski sayfanın az miktardaki otoritesini de kendisiyle paylaşmaya başlar ve ikisi de birbirini SERP'te aşağı çeker. Buna <strong>anahtar kelime kanibalizasyonu</strong> denir — aynı arama niyetine hizmet eden birden fazla sayfanın, kendi sitenizin içinde birbiriyle rekabet etmesi.</p>
-    <p>Bu sorun özellikle uzun süredir aktif olan, çok yazarlı ya da farklı ajanslarla çalışılmış sitelerde birikir; kimse kötü niyetle hareket etmez, sadece geçmişte yayınlanmış içeriklerin tam envanteri elde bulunmadığı için aynı konu farklı zamanlarda tekrar tekrar ele alınır. Bu yazıda hem bu birikimi geriye dönük nasıl temizleyeceğinizi hem de yeni içerik üretirken bunu baştan nasıl önleyeceğinizi ele alıyorum.</p>
+<p>"Bu konuda zaten bir yazımız var ama yeterince sıralamıyor, bir tane daha yazalım" cümlesi SEO danışmanlığında sık duyulur. Genelde iyi niyetle söylenir ama çoğu zaman sonucu tam tersi olur: yeni sayfa, eski sayfanın az miktardaki otoritesini de kendisiyle paylaşmaya başlar ve ikisi de birbirini SERP'te aşağı çeker. Buna <strong>anahtar kelime kanibalizasyonu</strong> denir — aynı arama niyetine hizmet eden birden fazla sayfanın, kendi sitenizin içinde birbiriyle rekabet etmesi.</p>
+    <p>Bu sorun özellikle uzun süredir aktif olan, çok yazarlı ya da farklı ajanslarla çalışılmış sitelerde birikir; kimse kötü niyetle hareket etmez, sadece geçmişte yayınlanmış içeriklerin tam envanteri elde bulunmadığı için aynı konu farklı zamanlarda tekrar tekrar ele alınır. Bu yazı hem bu birikimi geriye dönük nasıl temizleyeceğinizi hem de yeni içerik üretirken bunu baştan nasıl önleyeceğinizi ele alıyor.</p>
 
     <h2 id="kanibalizasyon-neden-gercek-bir-sorun"><span class="no">01</span><span>Kanibalizasyon neden gerçek bir sorun?</span></h2>
     <p>Google bir sorgu için hangi sayfanızı göstereceğine karar verirken, sitenizdeki en alakalı tek sayfayı seçmeye çalışır. Eğer iki sayfanız da benzer alaka düzeyindeyse üç şey olabilir:</p>
@@ -249,7 +249,7 @@ ORDER BY SUM(impressions) DESC</code></pre>
     <p>BigQuery'e erişiminiz yoksa, Search Console arayüzünde manuel olarak en çok gösterim alan 50-100 sorguyu tek tek "Sayfalar" filtresiyle kontrol etmek de küçük ve orta ölçekli siteler için yeterli bir başlangıçtır.</p>
 
     <h2 id="niyet-ayristirma-hangi-sayfa-kalmali"><span class="no">04</span><span>Niyet ayrıştırma: hangi sayfa kalmalı?</span></h2>
-    <p>Kanibalizasyon tespit edildikten sonra asıl karar süreci başlıyor: iki sayfadan hangisi "kazanan" sayfa olmalı? Bunu belirlerken baktığım kriterler:</p>
+    <p>Kanibalizasyon tespit edildikten sonra asıl karar süreci başlıyor: iki sayfadan hangisi "kazanan" sayfa olmalı? Bunu belirlerken bakılacak kriterler:</p>
     <div class="table"><table>
       <tr><th>Kriter</th><th>Neden önemli</th></tr>
       <tr><td>Hangi sayfa daha fazla dış bağlantı (backlink) almış?</td><td>Otorite sinyali zaten o sayfada birikmiş demektir</td></tr>
@@ -283,7 +283,7 @@ ORDER BY SUM(impressions) DESC</code></pre>
     </ul>
 
     <h2 id="blog-ve-kategori-sayfalarinda-yaygin-kanibalizasyon-senaryol"><span class="no">08</span><span>Blog ve kategori sayfalarında yaygın kanibalizasyon senaryoları</span></h2>
-    <p>En sık karşılaştığım üç senaryo:</p>
+    <p>En sık görülen üç senaryo:</p>
     <ul>
       <li><strong>Etiket (tag) ve kategori sayfalarının çakışması:</strong> Bir e-ticaret ya da blog sitesinde hem bir kategori sayfası hem de neredeyse aynı ürün/yazı setini listeleyen bir etiket sayfası varsa, ikisi genelde aynı sorgu için rekabet eder. Çözüm genelde etiket sayfalarını <code>noindex</code> yapmak ya da kategori sayfasına canonical vermektir.</li>
       <li><strong>Farklı zamanlarda yazılmış, konusu örtüşen blog yazıları:</strong> "2023'te en iyi X" ve "2025'te en iyi X" gibi yıl bazlı yazılar yerine, tek bir "kapsamlı ve güncellenen" sayfa tutmak hem kanibalizasyonu önler hem de zamanla biriken otoriteyi tek sayfada toplar.</li>
@@ -300,8 +300,8 @@ ORDER BY SUM(impressions) DESC</code></pre>
     <p>Ücretsiz bir alternatif olarak, kendi CMS'inizde ya da bir tabloda tüm yayınlanmış içeriklerin başlığını, hedef anahtar kelimesini ve yayın tarihini merkezi olarak tutmak da (bir "içerik envanteri") yeni bir yazı planlanırken hızlı bir çapraz kontrol imkanı verir.</p>
 
     <h2 id="vaka-bir-b2b-blogda-uc-yazinin-tek-sayfada-birlestirilmesi"><span class="no">10</span><span>Vaka: bir B2B blogda üç yazının tek sayfada birleştirilmesi</span></h2>
-    <p>Danıştığım bir B2B yazılım şirketinde, iki yıl içinde aynı konuda ("proje yönetimi yazılımı nasıl seçilir") üç ayrı blog yazısı yayınlanmıştı — her biri farklı bir yazar tarafından, birbirinden habersiz şekilde. Search Console analizinde bu üç sayfanın toplamda aynı 40'a yakın sorgu için gösterim aldığı, ama hiçbirinin ilk sayfada istikrarlı bir sıralamaya oturamadığı görüldü.</p>
-    <p>En çok backlink alan ve en güncel veriye sahip yazıyı ana sayfa olarak seçtik; diğer ikisindeki benzersiz bölümleri (bir tanesinde iyi bir karşılaştırma tablosu, diğerinde özgün bir vaka çalışması vardı) ana sayfaya taşıdık ve iki eski yazıyı 301 ile yönlendirdik. İç linkleme güncellemesinden altı hafta sonra, birleşen sayfa aynı ana sorgu için ilk sayfanın üst sıralarına çıktı — üç sayfanın topladığı gösterim sayısının toplamından daha yüksek bir tıklama oranıyla.</p>
+    <p>Bir B2B yazılım şirketinin sitesinde, iki yıl içinde aynı konuda ("proje yönetimi yazılımı nasıl seçilir") üç ayrı blog yazısı yayınlanmıştı — her biri farklı bir yazar tarafından, birbirinden habersiz şekilde. Search Console analizinde bu üç sayfanın toplamda aynı 40'a yakın sorgu için gösterim aldığı, ama hiçbirinin ilk sayfada istikrarlı bir sıralamaya oturamadığı görüldü.</p>
+    <p>En çok backlink alan ve en güncel veriye sahip yazıyı ana sayfa olarak seçildi; diğer ikisindeki benzersiz bölümleri (bir tanesinde iyi bir karşılaştırma tablosu, diğerinde özgün bir vaka çalışması vardı) ana sayfaya taşındı ve iki eski yazı 301 ile yönlendirildi. İç linkleme güncellemesinden altı hafta sonra, birleşen sayfa aynı ana sorgu için ilk sayfanın üst sıralarına çıktı — üç sayfanın topladığı gösterim sayısının toplamından daha yüksek bir tıklama oranıyla.</p>
     <blockquote>Buradaki asıl ders, "hangi yazı daha iyi" sorusuna tek bir kazananla cevap vermek değil, üç yazının en güçlü parçalarını tek bir kapsamlı kaynakta birleştirmekti. Birleştirme, içerik kaybı değil içerik konsolidasyonu olarak ele alınmalı.</blockquote>
 
     <h2 id="birlestirme-sonrasi-nasil-olculur"><span class="no">11</span><span>Birleştirme sonrası nasıl ölçülür?</span></h2>
@@ -321,16 +321,16 @@ ORDER BY SUM(impressions) DESC</code></pre>
       <p>Hayır. Bir sorgu için birden fazla sayfanızın görünmesi, farklı niyetleri (bilgi arama, satın alma, karşılaştırma) doğru şekilde karşılıyorsa sorun değildir, hatta SERP'te daha fazla yer kaplamanızı sağlayabilir. Sorun, aynı niyete hizmet eden sayfaların birbiriyle rekabet ederek ikisinin de otoritesini bölmesidir.</p>
     </div>
     <div class="faq-item">
-      <h3>301 yönlendirme mi, canonical etiketi mi kullanmalıyım?</h3>
+      <h3>301 yönlendirme mi, canonical etiketi mi kullanılmalı?</h3>
       <p>Sayfayı tamamen kaldırmayı ve tüm trafiği tek bir sayfaya yönlendirmeyi planlıyorsanız 301 kullanın. Her iki sayfanın da kullanıcı için ayrı ayrı var olması gerekiyorsa ama arama motoruna hangisinin öncelikli olduğunu belirtmek istiyorsanız canonical etiketi kullanın.</p>
     </div>
     <div class="faq-item">
-      <h3>Kanibalizasyonu düzelttikten sonra sonucu ne zaman görürüm?</h3>
+      <h3>Kanibalizasyon düzeltildikten sonra sonuç ne zaman görülür?</h3>
       <p>Google'ın konsolide edilmiş sinyali yeniden değerlendirmesi ve yeni sıralamanın oturması genelde birkaç haftadan iki aya kadar sürebilir. 301 yönlendirmelerde bu süreç canonical etiketine göre biraz daha hızlı işleyebilir çünkü sinyal daha kesin bir şekilde iletilir.</p>
     </div>
 
     <div class="faq-item">
-      <h3>Kanibalizasyonu önlemek için içerik takvimini nasıl kurmalıyım?</h3>
+      <h3>Kanibalizasyonu önlemek için içerik takvimi nasıl kurulmalı?</h3>
       <p>En pratik yöntem, her yayınlanan içeriğin hedef anahtar kelimesini, ana niyetini ve URL'sini tek bir merkezi tabloda tutmak. Yeni bir konu önerildiğinde önce bu tabloda ve Search Console'da hızlı bir arama yapmak, aynı konunun daha önce farklı bir başlıkla ya da farklı bir yazar tarafından işlenip işlenmediğini görmenizi sağlar. Büyük ekiplerde bu kontrolü içerik onay sürecinin zorunlu bir adımı haline getirmek, sorunun kaynağında önlenmesini sağlar.</p>
     </div>
 

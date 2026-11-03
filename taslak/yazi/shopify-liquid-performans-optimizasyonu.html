@@ -208,16 +208,16 @@ main{position:relative;z-index:2}
   <header class="phero">
     <div class="phero-text">
       <div><nav class="crumbs" aria-label="Sayfa yolu"><a href="../">Anasayfa</a><span>/</span><a href="../blog.html">Yazılar</a><span>/</span><span lang="en">Shopify</span></nav><h1 data-split>Shopify Liquid Geliştirmelerinde Performansın Korunması</h1></div>
-      <p class="lede">Bir Shopify temasına yeni bir section, yeni bir uygulama ya da özel bir blok eklemek genelde birkaç saatlik bir iş gibi görünür. Ama her ekleme, farkında olmadan tema puanını düşüren küçük bir maliyet biriktirir. Bu yazıda o maliyeti sıfıra indiren pratik alışkanlıkları anlatıyorum.</p>
+      <p class="lede">Bir Shopify temasına yeni bir section, yeni bir uygulama ya da özel bir blok eklemek genelde birkaç saatlik bir iş gibi görünür. Ama her ekleme, farkında olmadan tema puanını düşüren küçük bir maliyet biriktirir. Bu yazı o maliyeti sıfıra indiren pratik alışkanlıkları anlatıyor.</p>
       <div class="meta"><span>Aylin İnci</span><time datetime="2026-08-28">28 Ağustos 2026</time><span>12 dakika okuma</span><span>12 bölüm</span></div>
     </div>
-    <div class="pmap"><canvas id="pmap" role="img" aria-label="Yazının bölüm haritası"></canvas><p class="hint">Noktalar bölümlere gider</p></div>
+    <div class="pmap"><canvas id="pmap" role="img" aria-label="Yazının bölüm haritası"></canvas><p class="hint">Bölüme gitmek için bir noktaya tıklayın</p></div>
   </header>
   <div class="read">
     <nav class="toc" aria-label="İçindekiler"><b>İçindekiler</b><ol><li><a href="#liquid-in-kendi-performans-maliyeti">Liquid'in kendi performans maliyeti</a></li><li><a href="#section-ve-blok-eklerken-javascript-disiplinini-korumak">Section ve blok eklerken JavaScript disiplinini korumak</a></li><li><a href="#uygulamalarin-app-gizli-maliyeti">Uygulamaların (app) gizli maliyeti</a></li><li><a href="#gorsel-ve-medya-yonetimi-shopify-a-ozgu-incelikleri">Görsel ve medya yönetimi Shopify'a özgü incelikleri</a></li><li><a href="#koleksiyon-sayfalarinda-sayfalama-ve-filtreleme-maliyeti">Koleksiyon sayfalarında sayfalama ve filtreleme maliyeti</a></li><li><a href="#vaka-40-tan-fazla-uygulamasi-olan-bir-moda-magazasi">Vaka: 40'tan fazla uygulaması olan bir moda mağazası</a></li><li><a href="#tema-guncellemeleri-ve-kod-temizligi-aliskanligi">Tema güncellemeleri ve kod temizliği alışkanlığı</a></li><li><a href="#tema-puanini-theme-store-skoru-yanlis-anlamamak">Tema puanını (Theme Store skoru) yanlış anlamamak</a></li><li><a href="#gelistirme-surecine-performans-kontrolunu-nasil-yerlestirmel">Geliştirme sürecine performans kontrolünü nasıl yerleştirmeli?</a></li><li><a href="#gelistirici-ile-magaza-sahibi-arasindaki-iletisim-boslugu">Geliştirici ile mağaza sahibi arasındaki iletişim boşluğu</a></li><li><a href="#sik-yapilan-hatalar">Sık yapılan hatalar</a></li><li><a href="#sonuc">Sonuç</a></li></ol></nav>
     <div class="body">
 <p>Shopify temaları diğer CMS'lerden farklı bir kısıtla çalışır: temanın kendisini değil, üzerine inşa edilen mağazanın büyük kısmını mağaza sahibi ve onun eklediği uygulamalar şekillendirir. Bir geliştirici olarak sizin kontrolünüz sadece Liquid dosyalarıyla, tema CSS/JS'iyle ve section şemalarıyla sınırlı; ama performans sorumluluğunun büyük kısmı yine size düşüyor, çünkü mağaza sahibi "sayfa yavaş" dediğinde bakılan ilk yer temadır.</p>
-    <p>Bu durum, geleneksel bir web projesinden farklı bir çalışma disiplini gerektiriyor. Statik bir sitede performans genelde bir kere kurulur ve nadiren bozulur; Shopify mağazasında ise her yeni uygulama kurulumu, her yeni kampanya section'ı, her tema düzenleyici değişikliği potansiyel bir regresyon noktasıdır. Bu yazıda paylaştığım yöntemler, tek seferlik bir "performans temizliği" değil, sürekli tekrar eden bir geliştirme alışkanlığı olarak düşünülmeli.</p>
+    <p>Bu durum, geleneksel bir web projesinden farklı bir çalışma disiplini gerektiriyor. Statik bir sitede performans genelde bir kere kurulur ve nadiren bozulur; Shopify mağazasında ise her yeni uygulama kurulumu, her yeni kampanya section'ı, her tema düzenleyici değişikliği potansiyel bir regresyon noktasıdır. Bu yazıdaki yöntemler, tek seferlik bir "performans temizliği" değil, sürekli tekrar eden bir geliştirme alışkanlığı olarak düşünülmeli.</p>
 
     <h2 id="liquid-in-kendi-performans-maliyeti"><span class="no">01</span><span>Liquid'in kendi performans maliyeti</span></h2>
     <p>Liquid bir şablon dilidir ve her render'da sunucu tarafında yorumlanır (Shopify'ın kendi altyapısında). Liquid kodunun kendisi genelde JavaScript kadar "pahalı" değildir, ama yanlış kullanıldığında ciddi gecikmeye yol açabilir:</p>
@@ -268,7 +268,7 @@ main{position:relative;z-index:2}
     </ul>
 
     <h2 id="vaka-40-tan-fazla-uygulamasi-olan-bir-moda-magazasi"><span class="no">06</span><span>Vaka: 40'tan fazla uygulaması olan bir moda mağazası</span></h2>
-    <p>Danıştığım bir moda mağazasında, yıllar içinde denenip kaldırılmamış toplam 40'ın üzerinde uygulama birikmişti — bir kısmı aktif olarak kullanılıyordu, büyük kısmı ise "belki bir gün lazım olur" mantığıyla pasif duruyordu. Sayfa kaynak kodunu incelediğimizde, hiçbir işlevi olmayan 11 farklı script dosyasının hala her sayfada yüklendiğini gördük. Bu script'leri kaldırmak (uygulamaları tamamen kaldırıp, tema dosyalarında geriye kalan enjeksiyon kodlarını temizleyerek) tek başına toplam JS boyutunu üçte bir oranında azalttı ve mobil LCP'de yaklaşık 900ms'lik bir iyileşme sağladı.</p>
+    <p>Bir moda mağazasında, yıllar içinde denenip kaldırılmamış toplam 40'ın üzerinde uygulama birikmişti — bir kısmı aktif olarak kullanılıyordu, büyük kısmı ise "belki bir gün lazım olur" mantığıyla pasif duruyordu. Sayfa kaynak kodu incelendiğinde, hiçbir işlevi olmayan 11 farklı script dosyasının hala her sayfada yüklendiği görüldü. Bu script'leri kaldırmak (uygulamaları tamamen kaldırıp, tema dosyalarında geriye kalan enjeksiyon kodlarını temizleyerek) tek başına toplam JS boyutunu üçte bir oranında azalttı ve mobil LCP'de yaklaşık 900ms'lik bir iyileşme sağladı.</p>
     <p>Buradaki ders şu: performans denetimi yaparken yalnızca "şu an aktif olarak kullanılan" uygulamalara değil, temanın <code>theme.liquid</code>, <code>header.liquid</code> ve tüm section dosyalarına sızmış, artık hiçbir işlevi olmayan kod kalıntılarına da bakmak gerekiyor. Bir uygulamayı Shopify yönetim panelinden kaldırmak, o uygulamanın tema dosyalarına elle eklediği kod parçalarını otomatik olarak temizlemez.</p>
 
     <h2 id="tema-guncellemeleri-ve-kod-temizligi-aliskanligi"><span class="no">07</span><span>Tema güncellemeleri ve kod temizliği alışkanlığı</span></h2>
@@ -309,7 +309,7 @@ main{position:relative;z-index:2}
 
     <h2 id="sonuc"><span class="no">12</span><span>Sonuç</span></h2>
     <p>Shopify'da performans, tek seferlik bir tema optimizasyonundan çok, her yeni özellik eklendiğinde tekrar sorulması gereken bir disiplin. Liquid döngülerini sadeleştirmek, section script'lerini kapsüllemek, uygulama envanterini düzenli denetlemek ve görsel teslimini Shopify'ın kendi CDN mekanizmasına bırakmak, tema puanını değil gerçek kullanıcı deneyimini koruyan adımlar. Asıl soru "bu özellik eklenebilir mi" değil, "bu özellik hangi maliyetle eklenebilir" olmalı.</p>
-    <p>Yukarıda anlatılan moda mağazası örneğinde uyguladığımız değişikliklerin özeti aşağıdaki gibiydi; küçük ve tek tek bakıldığında mütevazı görünen adımların toplamda ne kadar fark yarattığını göstermesi açısından faydalı bir referans:</p>
+    <p>Yukarıda anlatılan moda mağazası örneğinde uygulanan değişikliklerin özeti aşağıdaki gibiydi; küçük ve tek tek bakıldığında mütevazı görünen adımların toplamda ne kadar fark yarattığını göstermesi açısından faydalı bir referans:</p>
     <div class="table"><table>
       <tr><th>Adım</th><th>Etki</th></tr>
       <tr><td>Kullanılmayan 40+ uygulamadan 27'sinin kaldırılması</td><td>Toplam JS boyutunda ~%33 azalma</td></tr>
@@ -317,14 +317,14 @@ main{position:relative;z-index:2}
       <tr><td>Ürün görsellerinin Shopify CDN filtrelerine taşınması</td><td>Mobil LCP'de ~900ms iyileşme</td></tr>
       <tr><td>Section script'lerinin koşullu yüklemeye geçirilmesi</td><td>İlgisiz sayfalarda gereksiz indirmenin ortadan kalkması</td></tr>
     </table></div>
-    <p>Bu tablodaki hiçbir madde tek başına devrim niteliğinde bir değişiklik değil; hepsi ayrı ayrı birkaç saatlik, sıkıcı denebilecek bakım işleri. Ama toplandığında mağazanın hem arama motorlarındaki hem de gerçek kullanıcı deneyimindeki görünümünü kalıcı olarak değiştiren bir bütün oluşturdular. Shopify performansında genelde aranan "tek büyük çözüm" yoktur; küçük, tekrarlanabilir disiplinlerin toplamı vardır. Bu yüzden bir sonraki adım olarak, kendi mağazanızda kurulu uygulamaların ve tema dosyalarınızın kısa bir envanterini çıkarmanızı öneririm — çoğu zaman en büyük kazanç, en karmaşık teknik çözümde değil, bu envanterin ilk taramasında ortaya çıkar.</p>
+    <p>Bu tablodaki hiçbir madde tek başına devrim niteliğinde bir değişiklik değil; hepsi ayrı ayrı birkaç saatlik, sıkıcı denebilecek bakım işleri. Ama toplandığında mağazanın hem arama motorlarındaki hem de gerçek kullanıcı deneyimindeki görünümünü kalıcı olarak değiştiren bir bütün oluşturdular. Shopify performansında genelde aranan "tek büyük çözüm" yoktur; küçük, tekrarlanabilir disiplinlerin toplamı vardır. Bu yüzden bir sonraki adım olarak, kendi mağazanızda kurulu uygulamaların ve tema dosyalarınızın kısa bir envanterini çıkarmanız önerilir — çoğu zaman en büyük kazanç, en karmaşık teknik çözümde değil, bu envanterin ilk taramasında ortaya çıkar.</p>
 
     <div class="faq-item">
       <h3>Shopify'ın kendi tema puanı yeterli bir gösterge mi?</h3>
       <p>İyi bir başlangıç noktası ama tek başına yeterli değil. Tema puanı temanın varsayılan haliyle ölçülür; mağaza sahibinin sonradan eklediği uygulamalar, özel section'lar ve tema düzenlemeleri bu skora dahil değildir. Gerçek performansı görmek için canlı mağazanızı PageSpeed Insights ve Shopify'ın kendi Online Store Speed raporuyla ayrıca test etmeniz gerekir.</p>
     </div>
     <div class="faq-item">
-      <h3>Her yeni section için ayrı bir JavaScript dosyası mı yüklemeliyim?</h3>
+      <h3>Her yeni section için ayrı bir JavaScript dosyası mı yüklenmeli?</h3>
       <p>Section'a özgü davranış gerekiyorsa evet, ama dosyayı sadece o section sayfada varsa yüklemek şartıyla. Bunu section'ın kendi Liquid dosyası içinde koşullu olarak script etiketi eklemek ve defer kullanmak, o kodun ihtiyacı olmayan sayfalarda indirilmesini engeller.</p>
     </div>
     <div class="faq-item">

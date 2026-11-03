@@ -208,10 +208,10 @@ main{position:relative;z-index:2}
   <header class="phero">
     <div class="phero-text">
       <div><nav class="crumbs" aria-label="Sayfa yolu"><a href="../">Anasayfa</a><span>/</span><a href="../blog.html">Yazılar</a><span>/</span><span>Teknik SEO</span></nav><h1 data-split>Core Web Vitals Performansının Geliştirilmesi: LCP, INP ve CLS için Sahadan Notlar</h1></div>
-      <p class="lede">PageSpeed skorunu 100 yapmak ayrı bir hedef, gerçek kullanıcıların sayfayı hızlı ve kararlı bulması ayrı bir hedef. Bu yazıda ikisi arasındaki farkı ve üç metriği (LCP, INP, CLS) sahada gerçekten iyileştiren adımları anlatıyorum.</p>
+      <p class="lede">PageSpeed skorunu 100 yapmak ayrı bir hedef, gerçek kullanıcıların sayfayı hızlı ve kararlı bulması ayrı bir hedef. Bu yazı ikisi arasındaki farkı ve üç metriği (LCP, INP, CLS) sahada gerçekten iyileştiren adımları anlatıyor.</p>
       <div class="meta"><span>Aylin İnci</span><time datetime="2026-08-28">28 Ağustos 2026</time><span>12 dakika okuma</span><span>11 bölüm</span></div>
     </div>
-    <div class="pmap"><canvas id="pmap" role="img" aria-label="Yazının bölüm haritası"></canvas><p class="hint">Noktalar bölümlere gider</p></div>
+    <div class="pmap"><canvas id="pmap" role="img" aria-label="Yazının bölüm haritası"></canvas><p class="hint">Bölüme gitmek için bir noktaya tıklayın</p></div>
   </header>
   <div class="read">
     <nav class="toc" aria-label="İçindekiler"><b>İçindekiler</b><ol><li><a href="#laboratuvar-verisi-mi-saha-verisi-mi">Laboratuvar verisi mi, saha verisi mi?</a></li><li><a href="#uc-metrik-uc-farkli-problem">Üç metrik, üç farklı problem</a></li><li><a href="#lcp-yi-iyilestirmek-en-buyuk-ogeyi-olabildigince-erken-goste">LCP'yi iyileştirmek: en büyük öğeyi olabildiğince erken göstermek</a></li><li><a href="#inp-yi-iyilestirmek-ana-is-parcacigini-rahat-tutmak">INP'yi iyileştirmek: ana iş parçacığını rahat tutmak</a></li><li><a href="#cls-i-iyilestirmek-yer-kaplayan-her-ogeye-onceden-yer-ayirma">CLS'i iyileştirmek: yer kaplayan her öğeye önceden yer ayırmak</a></li><li><a href="#kendi-saha-verinizi-toplamak-rum-neden-crux-tan-daha-degerli">Kendi saha verinizi toplamak: RUM neden CrUX'tan daha değerli olabilir</a></li><li><a href="#sunucu-ve-cdn-katmani-gorunmeyen-ama-en-buyuk-etkiyi-yapan-k">Sunucu ve CDN katmanı: görünmeyen ama en büyük etkiyi yapan kısım</a></li><li><a href="#onceliklendirme-hangi-sayfadan-baslamali">Önceliklendirme: hangi sayfadan başlamalı?</a></li><li><a href="#sik-yapilan-hatalar">Sık yapılan hatalar</a></li><li><a href="#raporlamayi-surdurulebilir-hale-getirmek">Raporlamayı sürdürülebilir hale getirmek</a></li><li><a href="#sonuc">Sonuç</a></li></ol></nav>
@@ -222,7 +222,7 @@ main{position:relative;z-index:2}
     <p>PageSpeed Insights'ı açtığınızda üstte gördüğünüz büyük skor, Lighthouse'un tek bir simüle cihazda ve tek bir ağ koşulunda (genelde orta seviye bir Android cihaz + yavaşlatılmış 4G) yaptığı senkron bir ölçümdür. Bu, <strong>laboratuvar verisidir</strong>: tekrarlanabilir, hata ayıklamak için ideal, ama tek bir kullanıcının tek bir anını temsil eder.</p>
     <p>Sayfanın biraz aşağısında ise "Discover what your real users are experiencing" başlığı altında farklı bir tablo çıkar. Bu, Chrome kullanıcı deneyimi raporundan (<strong>CrUX</strong>) gelir: son 28 günde, gerçekten o sayfayı Chrome ile ziyaret eden kullanıcılardan toplanan anonim ölçümlerin toplamıdır. Google Arama Konsolu'ndaki "Önemli Web Verileri" raporu da bu saha verisine dayanır — sıralama sinyali olarak kullanılan veri budur, Lighthouse skoru değil.</p>
     <div class="callout">
-      <p><strong>Sahada gördüğüm en yaygın yanılgı:</strong> Ekip aylarca Lighthouse skorunu 100'e çıkarmaya odaklanıyor, ama Search Console'daki gerçek kullanıcı verisi "Zayıf" kalmaya devam ediyor. Sebep genelde şu: test, geliştiricinin hızlı fiber bağlantısından ya da ofis Wi-Fi'ından yapılıyor; gerçek kullanıcı kitlesinin önemli bir kısmı ise orta seviye bir telefon ve daha yavaş bir mobil bağlantıyla geliyor. İkisi arasındaki farkı kapatmadan "hızlı site" iddiası havada kalıyor.</p>
+      <p><strong>Sahada en sık görülen yanılgı:</strong> Ekip aylarca Lighthouse skorunu 100'e çıkarmaya odaklanıyor, ama Search Console'daki gerçek kullanıcı verisi "Zayıf" kalmaya devam ediyor. Sebep genelde şu: test, geliştiricinin hızlı fiber bağlantısından ya da ofis Wi-Fi'ından yapılıyor; gerçek kullanıcı kitlesinin önemli bir kısmı ise orta seviye bir telefon ve daha yavaş bir mobil bağlantıyla geliyor. İkisi arasındaki farkı kapatmadan "hızlı site" iddiası havada kalıyor.</p>
     </div>
 
     <h2 id="uc-metrik-uc-farkli-problem"><span class="no">02</span><span>Üç metrik, üç farklı problem</span></h2>
@@ -236,7 +236,7 @@ main{position:relative;z-index:2}
     <p>Buradaki "p75" kısmı önemli: Google bu metrikleri ortalama değil, kullanıcılarınızın <strong>%75'inin</strong> yaşadığı deneyimi (75. yüzdelik dilim) baz alarak değerlendiriyor. Yani sitenizin çok hızlı açıldığı iyi senaryolar değil, kullanıcılarınızın çoğunluğunun en kötü ihtimalle yaşadığı deneyim önemli.</p>
 
     <h2 id="lcp-yi-iyilestirmek-en-buyuk-ogeyi-olabildigince-erken-goste"><span class="no">03</span><span>LCP'yi iyileştirmek: en büyük öğeyi olabildiğince erken göstermek</span></h2>
-    <p>LCP genelde bir görsel, bir video posteri ya da büyük bir başlık metnidir. Sahada en sık karşılaştığım LCP sorunları ve çözümleri şöyle:</p>
+    <p>LCP genelde bir görsel, bir video posteri ya da büyük bir başlık metnidir. Sahada en sık görülen LCP sorunları ve çözümleri şöyle:</p>
     <ul>
       <li><strong>Sunucu yanıt süresi (TTFB) yüksek:</strong> LCP'nin saati sunucudan ilk baytın gelmesiyle başlar. TTFB 600ms'nin üzerindeyse, LCP'nin geri kalanı ne kadar optimize edilirse edilsin tavan bir yerde kalır. Statik sayfa üretimi, CDN önbellekleme ve sunucu tarafı önbellek katmanları burada en büyük kazancı sağlar.</li>
       <li><strong>Render-blocking CSS/JS:</strong> Head içinde senkron yüklenen büyük CSS dosyaları ya da <code>&lt;script&gt;</code> etiketleri, tarayıcının içerik göstermeden önce indirip işlemesi gereken kaynaklardır. Kritik olmayan CSS'i ertelemek, JS'e <code>defer</code> ya da <code>async</code> eklemek doğrudan LCP'yi düşürür.</li>
@@ -334,8 +334,8 @@ onCLS(gonder);</code></pre>
     </div>
 
     <div class="faq-item">
-      <h3>Core Web Vitals iyileştirmesine ne kadar zaman ayırmalıyım?</h3>
-      <p>Bu, sitenin mevcut durumuna ve teknik borcuna göre değişir; ama genel bir kural olarak ilk turda en çok trafik alan sayfa şablonlarına (anasayfa, kategori/ürün, blog yazısı gibi tek bir grup) odaklanıp ölçülebilir bir iyileşme görmek genelde birkaç haftalık, odaklı bir çalışmadır. Asıl zaman alan kısım tek seferlik düzeltme değil, yukarıda anlattığım sürekli izleme disiplinini kurumsallaştırmaktır.</p>
+      <h3>Core Web Vitals iyileştirmesine ne kadar zaman ayrılmalı?</h3>
+      <p>Bu, sitenin mevcut durumuna ve teknik borcuna göre değişir; ama genel bir kural olarak ilk turda en çok trafik alan sayfa şablonlarına (anasayfa, kategori/ürün, blog yazısı gibi tek bir grup) odaklanıp ölçülebilir bir iyileşme görmek genelde birkaç haftalık, odaklı bir çalışmadır. Asıl zaman alan kısım tek seferlik düzeltme değil, yukarıda anlatılan sürekli izleme disiplinini kurumsallaştırmaktır.</p>
     </div>
 
 
