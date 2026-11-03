@@ -70,6 +70,16 @@ homeBody = cv(noDraftMark(homeBody))
   .replace(/src="img\//g, 'src="/assets/img/');
 out('index.html', page('tr', '', seoHead(live('index.html')), '#051DAA', homeCss, homeBody));
 
+// English home: same design, English content, the live English page's SEO head
+const en = draft('draft-home-en.html');
+const enBody = noDraftMark(en.slice(en.indexOf('</style>') + 8))
+  .split('https://aylininci.com/Aylin_Inci_CV_EN.pdf').join('/Aylin_Inci_CV_EN.pdf')
+  .replace(/href="yazi\/([a-z0-9-]+)\.html"/g, 'href="/blog/$1"')
+  .replace(/"u":"yazi\/([a-z0-9-]+)\.html"/g, '"u":"/blog/$1"')
+  .replace(/href="blog\.html"/g, 'href="/blog/" hreflang="tr"')
+  .replace(/src="img\//g, 'src="/assets/img/');
+out('en/index.html', page('en', '', seoHead(live('en/index.html')), '#051DAA', en.match(/<style>([\s\S]*?)<\/style>/)[1].trim(), enBody));
+
 // Blog pages: draft body, live SEO head
 const blogLinks = (s) => cv(noDraftMark(s))
   .replace(/href="\.\.\/blog\.html"/g, 'href="/blog/"')

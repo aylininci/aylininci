@@ -71,7 +71,7 @@
 
   var STOP = { 'veri': 1, 'yapil': 1, 'kontr': 1, 'analiz': 1, 'analı': 1, 'calis': 1, 'çalış': 1, 'düzen': 1, 'geliş': 1, 'optim': 1, 'sorun': 1, 'içeri': 0, 'uygul': 1, 'sayfa': 0, 'yapıl': 1, 'yapıs': 1, 'yapıl': 1, 'yönel': 1 };
   var tokens = HUBS.map(function (h) { return h.items.map(function (it) {
-    return it.t.toLocaleLowerCase('tr').split(/[^a-zçğıöşü0-9]+/).filter(function (w) { return w.length >= 3 && w !== 've' && w !== 'için'; }).map(function (w) { return w.slice(0, 5); }).filter(function (w) { return !STOP[w]; });
+    return it.t.toLocaleLowerCase('tr').split(/[^a-zçğıöşü0-9]+/).filter(function (w) { return w.length >= 3 && !/^(ve|için|and|the|for|with|via|not)$/.test(w); }).map(function (w) { return w.slice(0, 5); }).filter(function (w) { return !STOP[w]; });
   }); });
   function related(i, j) {
     var mine = tokens[i][j], list = [];
