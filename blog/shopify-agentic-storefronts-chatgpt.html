@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" style="--page:#0A5A3C">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +8,6 @@
 <link rel="canonical" href="https://aylininci.com/blog/shopify-agentic-storefronts-chatgpt">
 <meta name="robots" content="index, follow">
 <meta name="author" content="Aylin İnci">
-
 <meta property="og:type" content="article">
 <meta property="og:title" content="Shopify Agentic Storefronts: ChatGPT'de Satış Rehberi">
 <meta property="og:description" content="Agentic Storefronts kanalları, Türkiye'deki mağazalar için durum ve ürün verisi kontrol listesi.">
@@ -23,18 +22,9 @@
 <meta name="twitter:title" content="Shopify Agentic Storefronts: ChatGPT'de Satış Rehberi">
 <meta name="twitter:description" content="Agentic Storefronts kanalları, Türkiye'deki mağazalar için durum ve ürün verisi kontrol listesi.">
 <meta name="twitter:image" content="https://aylininci.com/blog/images/shopify-agentic-storefronts-chatgpt-og.jpg">
-
-<meta name="theme-color" content="#F6F4FB" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#150F26" media="(prefers-color-scheme: dark)">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/assets/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/site.css">
-<script>(function(){try{var t=localStorage.getItem('aylin-theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme: dark)').matches))document.documentElement.setAttribute('data-theme','dark');}catch(e){}})();</script>
-<script src="/assets/site.js" defer></script>
-
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -42,12 +32,12 @@
   "image": "https://aylininci.com/blog/images/shopify-agentic-storefronts-chatgpt-hero.webp",
   "headline": "Shopify Agentic Storefronts: ChatGPT'de Satış Rehberi",
   "description": "Shopify Agentic Storefronts nedir, ChatGPT, Copilot ve Google AI Modu'nda kimler satış yapabilir? Türkiye'deki mağazalar için durum ve AI asistanları için ürün verisi hazırlığı.",
-  "author": {"@type": "Person", "@id": "https://aylininci.com/#person", "name": "Aylin İnci", "url": "https://aylininci.com/", "image": "https://aylininci.com/aylin-inci.jpg", "sameAs": ["https://www.linkedin.com/in/aylin-inci/"]},
+  "author": {"@type": "Person", "@id": "https://aylininci.com/#person", "name": "Aylin İnci", "url": "https://aylininci.com/", "sameAs": ["https://www.linkedin.com/in/aylin-inci/"]},
   "publisher": {
     "@id": "https://aylininci.com/#person"
   },
   "datePublished": "2026-10-10",
-  "dateModified": "2026-10-10",
+  "dateModified": "2026-11-03",
   "inLanguage": "tr",
   "mainEntityOfPage": {
     "@type": "WebPage",
@@ -112,7 +102,7 @@
     },
     {
       "@type": "Question",
-      "name": "Ürünlerimin AI asistanları tarafından önerilmesi için ne yapmalıyım?",
+      "name": "Ürünlerin AI asistanları tarafından önerilmesi için ne yapılmalı?",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Ürün başlığında ürünün ne olduğunu açıkça yazın, açıklamada malzeme, ölçü ve kullanım gibi somut bilgileri verin, varyant adlarını tutarlı tutun, doğru kategori atayın, stok ve fiyatı güncel tutun ve kargo ile iade bilgilerini netleştirin. Ürün sayfasındaki Product yapılandırılmış verisi de sayfadaki bilgilerle uyumlu olmalı."
@@ -121,105 +111,229 @@
   ]
 }
 </script>
-
+<meta name="theme-color" content="#0A5A3C">
+<link rel="preload" href="/assets/fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>
-  *{box-sizing:border-box;}
-  body{margin:0;background:var(--canvas);color:var(--body);font-family:var(--font-body);line-height:1.7;}
-  .wrap{max-width:760px;margin:0 auto;padding:0 24px;}
-  article header.article-head{padding:56px 0 32px;}
-  .eyebrow{display:inline-block;background:var(--surface-strong);color:var(--primary-active);font-size:0.78rem;font-weight:600;letter-spacing:0.02em;padding:5px 12px;border-radius:100px;margin-bottom:18px;}
-  h1{font-family:var(--font-display);font-weight:600;font-size:2.1rem;line-height:1.25;color:var(--ink-active);margin:0 0 16px;}
-  .meta-row{display:flex;gap:16px;flex-wrap:wrap;color:var(--muted);font-size:0.9rem;margin-bottom:8px;}
-  .lead{font-size:1.15rem;color:var(--body-strong);}
-  article .content{padding-bottom:64px;}
-  h2{font-family:var(--font-display);font-weight:600;font-size:1.5rem;color:var(--ink-active);margin:44px 0 14px;}
-  h3{font-family:var(--font-display);font-weight:600;font-size:1.2rem;color:var(--ink-active);margin:32px 0 10px;}
-  p{margin:0 0 18px;}
-  ul,ol{margin:0 0 18px;padding-left:1.3em;}
-  li{margin-bottom:8px;}
-  strong{color:var(--body-strong);}
-  code{background:var(--surface-strong);color:var(--ink-active);padding:2px 6px;border-radius:5px;font-size:0.9em;}
-  pre{background:var(--canvas-deep);color:#EFEAFA;padding:18px 20px;border-radius:12px;overflow-x:auto;font-size:0.88rem;line-height:1.6;margin:0 0 22px;}
-  pre code{background:none;color:inherit;padding:0;}
-  blockquote{margin:28px 0;padding:4px 0 4px 20px;border-left:3px solid var(--primary);color:var(--body-strong);font-style:italic;}
-  table{width:100%;border-collapse:collapse;margin:0 0 24px;font-size:0.92rem;}
-  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--hairline);}
-  th{color:var(--ink-active);font-weight:600;}
-  .callout{background:var(--surface-strong);border-radius:14px;padding:20px 22px;margin:0 0 24px;}
-  .callout p:last-child{margin-bottom:0;}
-  .faq-item{border-top:1px solid var(--hairline);padding:20px 0;}
-  .faq-item h3{margin-top:0;}
-  .checklist{list-style:none;padding-left:0;}
-  .checklist li{padding-left:28px;position:relative;}
-  .checklist li::before{content:"✓";position:absolute;left:0;color:var(--primary);font-weight:700;}
-  .author-box{display:flex;gap:14px;align-items:flex-start;background:var(--surface-card);border:1px solid var(--hairline);border-radius:16px;padding:20px;margin-top:48px;}
-  .author-box img{width:56px;height:56px;border-radius:50%;object-fit:cover;flex-shrink:0;}
-  .author-box strong{display:block;color:var(--ink-active);}
-  .related{padding:32px 0 72px;border-top:1px solid var(--hairline);}
-  .related h2{margin-top:0;}
-  .related-list{display:grid;gap:14px;}
-  .related-list a{display:block;background:var(--surface-card);border:1px solid var(--hairline);border-radius:14px;padding:16px 18px;color:var(--ink-active);text-decoration:none;font-weight:500;}
-  .related-list a:hover{border-color:var(--primary);}
-  .related-list span{display:block;color:var(--muted);font-size:0.85rem;font-weight:400;margin-top:4px;}
-  .hero-image{width:100%;height:auto;display:block;border-radius:16px;margin:8px 0 0;}
-  .hero-wrap{padding:0 0 8px;}
+@font-face{font-family:'Geist Mono';font-style:normal;font-weight:300 400;font-display:swap;src:url(/assets/fonts/geist-mono-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Geist Mono';font-style:normal;font-weight:300 400;font-display:swap;src:url(/assets/fonts/geist-mono-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Instrument Sans';font-style:normal;font-weight:400 500;font-display:swap;src:url(/assets/fonts/instrument-sans-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Instrument Sans';font-style:normal;font-weight:400 500;font-display:swap;src:url(/assets/fonts/instrument-sans-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+/* Blog pages share the home draft's language: one page colour per topic, mono notes, hairlines and drawn maps instead of photos. */
+:root{
+  --ink:#010419; --fg:#fff; --fg-2:rgba(255,255,255,.8); --fg-3:rgba(255,255,255,.6);
+  --line:rgba(255,255,255,.18); --panel:rgba(255,255,255,.08); --mint:#7CF2C6;
+  --sans:'Instrument Sans','Helvetica Neue',Arial,sans-serif; --mono:'Geist Mono',ui-monospace,Menlo,Consolas,monospace;
+  --page:#0B1B5E; --head:64px; color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--head) + 24px)}
+body{margin:0;background:var(--page);color:var(--fg);font:400 17px/1.5 var(--sans);-webkit-font-smoothing:antialiased;transition:background-color .8s ease;overflow-x:clip}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--mint);outline-offset:3px}
+#sky{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.top{position:sticky;top:0;z-index:20;height:var(--head);display:flex;align-items:center;justify-content:space-between;gap:16px;padding:0 max(16px,env(safe-area-inset-right,0px)) 0 max(16px,env(safe-area-inset-left,0px));background:var(--page);border-bottom:1px solid var(--line);transition:background-color .8s ease}
+.brand{font-weight:500;font-size:19px;text-decoration:none;display:flex;align-items:baseline;gap:10px}
+.brand small{font:300 12px var(--mono);color:var(--fg-2)}
+.top-links{display:flex;align-items:center;gap:24px;font-weight:500;font-size:15px}
+.top-links a{text-decoration:none}.top-links a:hover,.top-links a[aria-current]{text-decoration:underline;text-underline-offset:4px}
+.cta{background:#fff;color:#0B1030;border-radius:999px;padding:9px 18px;text-decoration:none;font-weight:500;font-size:15px;white-space:nowrap}
+.cta:hover{background:var(--mint)}
+main{position:relative;z-index:2}
+.mono{font:300 13px/1.45 var(--mono)}
+.chip{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);border-radius:999px;padding:4px 11px;font:300 12px var(--mono);color:var(--fg);background:none;text-decoration:none;cursor:pointer;white-space:nowrap}
+.chip::before{content:"";width:6px;height:6px;border:1px solid currentColor}
+.chip:hover,.chip[aria-pressed="true"]{background:#fff;color:var(--ink);border-color:#fff}
+.chip span{color:inherit;opacity:.6}
+.mark{flex:none;display:inline-block;width:6px;height:6px;border:1px solid currentColor;transform:translateY(-2px)}
+
+/* Archive */
+.ahero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:10px;padding:10px 16px;min-height:calc(100vh - var(--head));min-height:calc(100dvh - var(--head))}
+.ahero-text{display:grid;align-content:space-between;gap:24px;padding:18px 8px 8px}
+.ahero h1{font-weight:500;font-size:clamp(88px,13vw,210px);line-height:.88;letter-spacing:-.045em;margin:0}
+.ahero p{font-size:clamp(20px,2vw,26px);line-height:1.2;letter-spacing:-.01em;color:var(--fg-2);margin:0;max-width:24ch}
+.filters{display:flex;flex-wrap:nowrap;gap:6px;overflow-x:auto;scrollbar-width:none;margin-right:-8px;padding-right:8px}
+.filters::-webkit-scrollbar{display:none}
+.filters .chip{flex:none;padding:4px 9px;gap:6px;font-size:11.5px}
+.amap{position:relative;background:var(--ink);min-height:520px;overflow:hidden}
+.amap canvas,.pmap canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.amap .hint,.pmap .hint{position:absolute;left:12px;bottom:10px;margin:0;font:300 12px var(--mono);color:var(--fg-3);pointer-events:none}
+.wrap{max-width:1180px;margin-inline:auto;padding-inline:max(16px,env(safe-area-inset-left,0px))}
+.lead-post{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:0;margin:clamp(72px,14vh,140px) auto clamp(40px,8vh,80px);border:1px solid var(--line);background:color-mix(in srgb,var(--page) 62%,rgba(255,255,255,.2));text-decoration:none;min-height:420px}
+.lead-post .txt{padding:28px;display:grid;align-content:space-between;gap:24px}
+.lead-post h2{font-weight:500;font-size:clamp(32px,3.6vw,52px);line-height:1.02;letter-spacing:-.025em;margin:0}
+.lead-post p{margin:0;color:var(--fg-2);font-size:19px;line-height:1.3;max-width:40ch}
+.lead-post .art{position:relative;background:var(--ink);min-height:300px}
+.lead-post .art canvas{position:absolute;inset:0;width:100%;height:100%}
+.lead-post:hover h2{text-decoration:underline;text-underline-offset:6px;text-decoration-thickness:2px}
+.meta{display:flex;flex-wrap:wrap;gap:6px 16px;font:300 13px var(--mono);color:var(--fg-2)}
+.list{list-style:none;margin:0 auto clamp(80px,14vh,160px);padding:0;border-bottom:1px solid var(--line)}
+.row{border-top:1px solid var(--line);transition:opacity .4s ease}
+.row a{display:grid;grid-template-columns:52px 120px minmax(0,1fr) 170px 96px 28px;gap:16px;align-items:baseline;padding:22px 8px;text-decoration:none;position:relative}
+.row a::before{content:"";position:absolute;inset:0;background:#fff;transform:scaleY(0);transform-origin:50% 100%;transition:transform .45s cubic-bezier(.2,.8,.2,1);z-index:-1}
+.row a:hover::before,.row a:focus-visible::before{transform:scaleY(1)}
+.row a:hover,.row a:focus-visible{color:var(--ink)}
+.row .n,.row time,.row .rt{font:300 13px var(--mono);color:inherit;opacity:.75}
+.row h3{margin:0;font-weight:500;font-size:clamp(22px,2.4vw,34px);line-height:1.08;letter-spacing:-.02em}
+.row .cat{font:300 12px var(--mono)}
+.row .go{font:300 18px var(--mono);transition:transform .3s ease}
+.row a:hover .go{transform:translateX(6px)}
+.row.out{display:none}
+.peek{position:fixed;left:0;top:0;z-index:30;width:300px;height:190px;pointer-events:none;opacity:0;transform:scale(.9);transition:opacity .25s ease,transform .25s ease;background:var(--ink);border:1px solid rgba(255,255,255,.35)}
+.peek.on{opacity:1;transform:scale(1)}
+.peek canvas{width:100%;height:100%;display:block}
+.sec-title{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin:0 0 18px;padding-inline:8px}
+.sec-title h2{font-weight:500;font-size:clamp(40px,6vw,88px);letter-spacing:-.03em;line-height:1;margin:0}
+
+/* Single post */
+.progress{position:fixed;left:0;top:var(--head);height:2px;width:100%;z-index:21;background:var(--mint);transform-origin:0 50%;transform:scaleX(0)}
+.phero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px;padding:10px 16px;min-height:calc(100vh - var(--head));min-height:calc(100dvh - var(--head))}
+.phero-text{display:grid;align-content:space-between;gap:28px;padding:18px 8px 8px}
+.crumbs{font:300 13px var(--mono);color:var(--fg-2);display:flex;gap:8px;flex-wrap:wrap}
+.crumbs a{text-decoration:none}.crumbs a:hover{text-decoration:underline}
+.phero h1{font-weight:500;font-size:clamp(40px,5.2vw,84px);line-height:.98;letter-spacing:-.035em;margin:14px 0 0;text-wrap:balance}
+.phero .lede{font-size:clamp(19px,1.7vw,23px);line-height:1.28;color:var(--fg-2);margin:0;max-width:44ch}
+.pmap{position:relative;background:var(--ink);min-height:520px;overflow:hidden}
+.read{display:grid;grid-template-columns:minmax(0,200px) minmax(0,700px) minmax(0,220px);justify-content:center;gap:clamp(24px,4vw,64px);padding:clamp(80px,14vh,140px) 16px clamp(60px,10vh,120px)}
+.toc{position:sticky;top:calc(var(--head) + 32px);align-self:start;font:300 13px/1.35 var(--mono)}
+.toc b{display:block;font-weight:300;color:var(--fg-3);margin-bottom:10px}
+.toc ol{list-style:none;margin:0;padding:0}
+.toc a{display:grid;grid-template-columns:minmax(0,1fr) 8px;gap:10px;align-items:center;padding:6px 0;text-decoration:none;color:var(--fg-2)}
+.toc a::after{content:"";width:6px;height:6px;border-radius:50%;border:1px solid var(--fg-2)}
+.toc a[aria-current="true"]{color:#fff}
+.toc a[aria-current="true"]::after{background:#fff;border-color:#fff}
+.notes{position:sticky;top:calc(var(--head) + 32px);align-self:start;border:1px solid var(--line);font:300 12px/1.45 var(--mono);background:var(--page);transition:background-color .8s ease}
+.notes b{display:block;font-weight:300;color:var(--fg-2);padding:6px 8px;border-bottom:1px solid var(--line)}
+.notes ol{list-style:none;margin:0;padding:8px;display:grid;gap:8px}
+.notes li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px;opacity:.45;transition:opacity .3s ease}
+.notes li.on{opacity:1}
+.notes a{word-break:break-word}
+.notes .none{padding:8px;color:var(--fg-3)}
+#wires{position:fixed;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
+.body{min-width:0;font-size:19px;line-height:1.62;color:var(--fg)}
+.body>p:first-child::first-letter{font-size:3.3em;float:left;line-height:.86;margin:.06em .1em 0 0;font-weight:500}
+.body p{margin:0 0 1.1em}
+.body a{text-decoration-color:rgba(255,255,255,.5);text-underline-offset:3px}
+.body a:hover{text-decoration-color:var(--mint);color:var(--mint)}
+.body strong{font-weight:500;color:#fff;background:linear-gradient(transparent 62%,rgba(124,242,198,.22) 62%)}
+.body h2{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;align-items:baseline;font-weight:500;font-size:clamp(28px,2.8vw,38px);line-height:1.08;letter-spacing:-.02em;margin:2.2em 0 .7em;padding-top:18px;border-top:1px solid var(--line)}
+.body h2 .no{font:300 13px var(--mono);color:var(--mint);transform:translateY(-.5em)}
+.body h3{font-weight:500;font-size:22px;line-height:1.2;margin:1.6em 0 .5em;display:flex;gap:10px;align-items:baseline}
+.body h3::before{content:"";flex:none;width:6px;height:6px;border:1px solid currentColor;transform:translateY(-3px)}
+.body ul,.body ol{margin:0 0 1.2em;padding:0;list-style:none;display:grid;gap:.55em}
+.body li{position:relative}
+.body ul li{padding-left:24px}
+.body ul li::before{content:"";position:absolute;left:2px;top:.68em;width:6px;height:6px;border:1px solid var(--fg-2)}
+.body ol{counter-reset:o}
+.body ol li{counter-increment:o;padding-left:38px}
+.body ol li::before{content:counter(o,decimal-leading-zero);position:absolute;left:0;top:0;font:300 13px/1.9 var(--mono);color:var(--mint)}
+.body ul.checklist li::before{border-color:var(--mint);background:linear-gradient(var(--mint),var(--mint)) center/0 0 no-repeat;transition:background-size .3s ease}
+.body ul.checklist li.seen::before{background-size:100% 100%}
+.body code{font:300 .82em var(--mono);background:var(--ink);padding:2px 6px;border-radius:5px}
+.body pre{background:var(--ink);padding:16px;overflow-x:auto;border-radius:10px;font:300 14px/1.6 var(--mono)}
+.table{overflow-x:auto;margin:0 0 1.4em;border:1px solid var(--line)}
+.body table{border-collapse:collapse;width:100%;font-size:15px;line-height:1.4}
+.body th{font:300 12px var(--mono);text-align:left;color:var(--fg-2);background:var(--panel)}
+.body th,.body td{padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+.body tr:last-child td{border-bottom:0}
+.body tr:hover td{background:rgba(255,255,255,.05)}
+.callout{position:relative;margin:1.6em 0;padding:20px 22px 20px 22px;border:1px solid var(--line);background:color-mix(in srgb,var(--page) 62%,rgba(255,255,255,.2))}
+.callout::before{content:"Not";position:absolute;left:-1px;top:-11px;background:var(--mint);color:var(--ink);font:400 11px var(--mono);padding:2px 7px}
+.callout p:last-child{margin:0}
+.ref{font:300 11px var(--mono);color:var(--mint);margin-left:2px;vertical-align:super;line-height:0;text-decoration:none}
+.faq{margin-top:2.2em}
+.faq details{border-top:1px solid var(--line)}
+.faq details:last-child{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:minmax(0,1fr) 24px;gap:12px;padding:16px 0;font-weight:500;font-size:20px;line-height:1.25}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font:300 22px/1 var(--mono);transition:transform .3s ease;text-align:center}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{margin:0 0 18px;color:var(--fg-2)}
+.byline{margin-top:3em;padding:20px;border:1px solid var(--line);display:grid;grid-template-columns:52px minmax(0,1fr);gap:16px;align-items:center}
+.byline .mono-av{width:52px;height:52px;display:grid;place-items:center;background:#fff;color:var(--ink);font:500 18px var(--sans);letter-spacing:-.02em}
+.byline p{margin:2px 0 0;color:var(--fg-2);font-size:15px;line-height:1.4}
+.next{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.next a{position:relative;display:grid;gap:10px;padding:clamp(28px,6vh,56px) 16px;text-decoration:none;min-width:0}
+.next a+a{border-left:1px solid var(--line);text-align:right}
+.next strong{font-weight:500;font-size:clamp(24px,3vw,44px);line-height:1.04;letter-spacing:-.025em}
+.next a::before{content:"";position:absolute;inset:0;background:#fff;transform:scaleX(0);transform-origin:0 50%;transition:transform .5s cubic-bezier(.2,.8,.2,1);z-index:-1}
+.next a+a::before{transform-origin:100% 50%}
+.next a:hover::before{transform:scaleX(1)}
+.next a:hover{color:var(--ink)}
+.related{padding:clamp(80px,14vh,140px) 16px}
+.rel{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.rel a{display:grid;grid-template-rows:auto 1fr;text-decoration:none;border:1px solid var(--line);background:var(--panel);min-width:0}
+.rel .art{position:relative;aspect-ratio:3/2;background:var(--ink)}
+.rel .art canvas{position:absolute;inset:0;width:100%;height:100%}
+.rel div.t{padding:14px;display:grid;gap:8px;align-content:start}
+.rel strong{font-weight:500;font-size:19px;line-height:1.15}
+.rel a:hover{border-color:#fff}
+.foot{position:relative;z-index:2;border-top:1px solid var(--line);padding:28px 16px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font:300 13px var(--mono);color:var(--fg-2)}
+.foot a{text-decoration:none}.foot a:hover{text-decoration:underline}
+
+/* Entrances */
+.rise{opacity:0;transform:translate3d(0,26px,0);transition:opacity .8s ease,transform .9s cubic-bezier(.2,.8,.2,1);transition-delay:calc(var(--d,0) * 60ms)}
+.rise.seen{opacity:1;transform:none}
+.split-ch{display:inline-block;opacity:0;transform:translate3d(0,.6em,0);animation:ch .8s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:calc(var(--i) * 28ms + 150ms)}
+@keyframes ch{to{opacity:1;transform:none}}
+
+@media (max-width:1180px){.notes{display:none}.read{grid-template-columns:minmax(0,190px) minmax(0,700px)}#wires{display:none}}
+@media (max-width:980px){
+  .row a{grid-template-columns:40px minmax(0,1fr) 28px;gap:6px 12px}
+  .row time,.row .rt{display:none}
+  .row .cat{grid-column:2;grid-row:2}
+  .lead-post{grid-template-columns:minmax(0,1fr)}
+  .rel{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:860px){
+  .top-links a:not(.cta){display:none}
+  .ahero,.phero{grid-template-columns:minmax(0,1fr);min-height:0}
+  .amap,.pmap{min-height:0;aspect-ratio:1/1;order:-1}
+  .ahero h1{font-size:clamp(72px,24vw,120px)}
+  .read{grid-template-columns:minmax(0,1fr);padding-top:48px}
+  .toc{position:relative;top:auto;border:1px solid var(--line);padding:12px}
+  .body{font-size:18px}
+  .next{grid-template-columns:minmax(0,1fr)}
+  .next a+a{border-left:0;border-top:1px solid var(--line);text-align:left}
+  .peek{display:none}
+}
+@media (max-width:560px){.rel{grid-template-columns:minmax(0,1fr)}}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .rise,.split-ch{opacity:1;transform:none;animation:none;transition:none}
+  .row a::before,.next a::before{transition:none}
+}
+.srcs{display:none;margin-top:2.4em;border-top:1px solid var(--line);padding-top:12px}
+.srcs ol{font:300 13px var(--mono)}
+@media (max-width:1180px){.srcs{display:block}}
+.filters .chip::before{display:none}
 </style>
 </head>
 <body>
-
-<nav class="site-nav">
-  <div class="shell">
-    <a href="/" class="brand" aria-label="Aylin İnci"><img src="/aylin-inci-logo.webp" alt="Aylin İnci" width="110" height="38"></a>
-    <div class="nav-links" id="navLinks">
-      <a href="/#hakkimda">Hakkımda</a>
-      <a href="/#uzmanlik">Uzmanlık Alanları</a>
-      <a href="/#yaklasim">Çalışma Yaklaşımı</a>
-      <a href="/blog/" aria-current="page">Blog</a>
-      <a href="/#araclar">Araçlar</a>
-      <a href="/#iletisim">İletişim</a>
-    </div>
-    <div class="nav-actions">
-      <a class="pill-btn" id="langToggle" href="/en/" hreflang="en" lang="en" aria-label="EN – English version">EN</a>
-      <button class="pill-btn icon-only" id="themeToggle" type="button" aria-label="Tema değiştir">◐</button>
-      <a href="/Aylin_Inci_CV_TR.pdf" target="_blank" rel="noopener" class="btn btn-primary nav-cta-desktop">Özgeçmiş</a>
-      <button class="hamburger" id="hamburger" type="button" aria-label="Menü" aria-expanded="false">☰</button>
-    </div>
-  </div>
-</nav>
-
-<main id="main">
+<canvas id="sky" aria-hidden="true"></canvas><header class="top"><a class="brand" href="/">Aylin İnci</a><nav class="top-links" aria-label="Ana menü"><a href="/#hakkimda">Hakkımda</a><a href="/blog/" aria-current="page">Yazılar</a><a href="/#iletisim">İletişim</a><a href="/en/" lang="en" hreflang="en">EN</a><a class="cta" href="/Aylin_Inci_CV_TR.pdf" target="_blank" rel="noopener">Özgeçmiş</a></nav></header>
+<div class="progress" id="bar" aria-hidden="true"></div>
+<canvas id="wires" aria-hidden="true"></canvas>
+<main>
 <article>
-  <header class="article-head">
-    <div class="wrap">
-      <nav class="crumbs" aria-label="Sayfa yolu"><a href="/">Anasayfa</a><span>/</span><a href="/blog/">Blog</a></nav>
-      <span class="eyebrow">Shopify</span>
-      <h1>Shopify Agentic Storefronts: Ürünlerinizi ChatGPT, Copilot ve Google AI Modu'nda Satmak</h1>
-      <div class="meta-row">
-        <span>Aylin İnci</span>
-        <span>·</span>
-        <span>10 Ekim 2026</span>
-        <span>·</span>
-        <span>Yaklaşık 6 dakika okuma</span>
-      </div>
-      <p class="lead">Kullanıcılar artık ürünleri ChatGPT'ye, Copilot'a ve Google AI Modu'na sorarak buluyor ve satın alıyor. Shopify'ın Agentic Storefronts kanalı mağazanızı bu asistanlara bağlıyor. Bu yazıda özelliğin nasıl çalıştığını, Türkiye'deki mağazalar için ne anlama geldiğini ve ürünlerinizin önerilmesi için verinizi nasıl hazırlamanız gerektiğini anlatıyorum.</p>
+  <header class="phero">
+    <div class="phero-text">
+      <div><nav class="crumbs" aria-label="Sayfa yolu"><a href="/">Anasayfa</a><span>/</span><a href="/blog/">Yazılar</a><span>/</span><span lang="en">Shopify</span></nav><h1 data-split>Shopify Agentic Storefronts: Ürünlerinizi ChatGPT, Copilot ve Google AI Modu'nda Satmak</h1></div>
+      <p class="lede">Kullanıcılar artık ürünleri ChatGPT'ye, Copilot'a ve Google AI Modu'na sorarak buluyor ve satın alıyor. Shopify'ın Agentic Storefronts kanalı mağazanızı bu asistanlara bağlıyor. Bu yazı özelliğin nasıl çalıştığını, Türkiye'deki mağazalar için ne anlama geldiğini ve ürünlerinizin önerilmesi için verinizi nasıl hazırlamanız gerektiğini anlatıyor.</p>
+      <div class="meta"><span>Aylin İnci</span><time datetime="2026-10-10">10 Ekim 2026</time><span>6 dakika okuma</span><span>9 bölüm</span></div>
     </div>
+    <div class="pmap"><canvas id="pmap" role="img" aria-label="Yazının bölüm haritası"></canvas><p class="hint">Bölüme gitmek için bir noktaya tıklayın</p></div>
   </header>
+  <div class="read">
+    <nav class="toc" aria-label="İçindekiler"><b>İçindekiler</b><ol><li><a href="#agentic-commerce-nedir">Agentic commerce nedir?</a></li><li><a href="#shopify-agentic-storefronts-ne-yapiyor">Shopify Agentic Storefronts ne yapıyor?</a></li><li><a href="#hangi-kanallarda-kimler-icin-calisiyor">Hangi kanallarda, kimler için çalışıyor?</a></li><li><a href="#turkiye-deki-magazalar-icin-ne-anlama-geliyor">Türkiye'deki mağazalar için ne anlama geliyor?</a></li><li><a href="#perde-arkasi-shopify-catalog-ve-ucp">Perde arkası: Shopify Catalog ve UCP</a></li><li><a href="#ai-asistanlarinin-urununuzu-onermesi-icin-veri-hazirligi">AI asistanlarının ürününüzü önermesi için veri hazırlığı</a></li><li><a href="#sonuclari-nasil-olcersiniz">Sonuçları nasıl ölçersiniz?</a></li><li><a href="#sonuc">Sonuç</a></li><li><a href="#sss">Sık sorulan sorular</a></li></ol></nav>
+    <div class="body">
+<p>E-ticarette ürün keşfi uzun süre iki kanaldan yürüdü: arama motorları ve sosyal medya. 2026'da üçüncü bir kanal ciddi şekilde devreye girdi: kullanıcının ChatGPT'ye, Microsoft Copilot'a ya da Google'ın AI Modu'na "300 dolar altı, su geçirmez bir yürüyüş botu öner" diye yazdığı ve yanıtın içinde ürünleri görüp satın alabildiği sohbetler.</p>
+    <p>Shopify'ın bu kanala cevabı <strong>Agentic Storefronts</strong>. Bu yazı özelliğin ne yaptığını, hangi kanallarda ve kimler için çalıştığını, Türkiye'deki mağazalar için ne anlama geldiğini ve en önemlisi yapay zeka asistanlarının ürünlerinizi önermesi için ürün verinizi nasıl hazırlamanız gerektiğini anlatıyor.</p>
 
-  <div class="wrap hero-wrap">
-    <img class="hero-image" src="/blog/images/shopify-agentic-storefronts-chatgpt-hero-1200.webp" srcset="/blog/images/shopify-agentic-storefronts-chatgpt-hero-800.webp 800w, /blog/images/shopify-agentic-storefronts-chatgpt-hero-1200.webp 1200w, /blog/images/shopify-agentic-storefronts-chatgpt-hero.webp 1800w" sizes="(max-width: 808px) calc(100vw - 48px), 760px" alt="Bir sohbet balonunun içinde ürün kartı ve sepet simgesiyle yapay zeka asistanı üzerinden alışverişi simgeleyen illüstrasyon" width="1800" height="1200" fetchpriority="high">
-  </div>
-
-  <div class="content wrap">
-
-    <p>E-ticarette ürün keşfi uzun süre iki kanaldan yürüdü: arama motorları ve sosyal medya. 2026'da üçüncü bir kanal ciddi şekilde devreye girdi: kullanıcının ChatGPT'ye, Microsoft Copilot'a ya da Google'ın AI Modu'na "300 dolar altı, su geçirmez bir yürüyüş botu öner" diye yazdığı ve yanıtın içinde ürünleri görüp satın alabildiği sohbetler.</p>
-    <p>Shopify'ın bu kanala cevabı <strong>Agentic Storefronts</strong>. Bu yazıda özelliğin ne yaptığını, hangi kanallarda ve kimler için çalıştığını, Türkiye'deki mağazalar için ne anlama geldiğini ve en önemlisi yapay zeka asistanlarının ürünlerinizi önermesi için ürün verinizi nasıl hazırlamanız gerektiğini anlatıyorum.</p>
-
-    <h2>1. Agentic commerce nedir?</h2>
+    <h2 id="agentic-commerce-nedir"><span class="no">01</span><span>Agentic commerce nedir?</span></h2>
     <p><strong>Agentic commerce (ajan tabanlı ticaret), alışverişin bir kısmının ya da tamamının kullanıcı adına hareket eden bir yapay zeka asistanı üzerinden yapılmasıdır.</strong> Asistan kullanıcının ihtiyacını anlar, uygun ürünleri bulur, fiyat ve stok bilgisini kontrol eder ve satın alma adımına kadar süreci yönetir.</p>
     <p>Buradaki kritik değişiklik şu: Ürününüzü artık bir insan değil, önce bir yazılım "okuyor". Asistan, ürün başlığınızdan, açıklamanızdan, varyantlarınızdan ve stok bilginizden yola çıkarak ürününüzün kullanıcının sorusuna uyup uymadığına karar veriyor. Eksik ya da belirsiz veri, ürünün hiç önerilmemesi anlamına gelebiliyor.</p>
 
-    <h2>2. Shopify Agentic Storefronts ne yapıyor?</h2>
-    <p>Agentic Storefronts, Shopify yönetim panelinde bir <strong>satış kanalı</strong> olarak çalışıyor ve mağazanızın ürünlerini yapay zeka alışveriş platformlarına bağlıyor. Shopify'ın <a href="https://www.shopify.com/blog/how-agentic-commerce-works" target="_blank" rel="noopener">resmi açıklamasına</a> göre öne çıkan özellikleri şunlar:</p>
+    <h2 id="shopify-agentic-storefronts-ne-yapiyor"><span class="no">02</span><span>Shopify Agentic Storefronts ne yapıyor?</span></h2>
+    <p>Agentic Storefronts, Shopify yönetim panelinde bir <strong>satış kanalı</strong> olarak çalışıyor ve mağazanızın ürünlerini yapay zeka alışveriş platformlarına bağlıyor. Shopify'ın <a href="https://www.shopify.com/blog/how-agentic-commerce-works" target="_blank" rel="noopener">resmi açıklamasına</a><a class="ref" href="#ref-1" aria-label="Kaynak 1">1</a> göre öne çıkan özellikleri şunlar:</p>
     <ul>
       <li><strong>Kurulum gerektirmiyor:</strong> Uygun mağazalarda otomatik olarak etkin; ek uygulama ya da özel entegrasyon gerekmiyor.</li>
       <li><strong>Ürünler otomatik senkronize oluyor:</strong> Yönetim panelinde fiyat, stok ve açıklamada yaptığınız değişiklikler AI kanallarına kendiliğinden yansıyor.</li>
@@ -228,16 +342,16 @@
       <li><strong>Müşteri sizin:</strong> Siparişler Shopify yönetim panelinize AI kanalı etiketiyle düşüyor; satıcı (merchant of record) siz oluyorsunuz ve müşteri ilişkisi sizde kalıyor.</li>
     </ul>
 
-    <h2>3. Hangi kanallarda, kimler için çalışıyor?</h2>
-    <table>
+    <h2 id="hangi-kanallarda-kimler-icin-calisiyor"><span class="no">03</span><span>Hangi kanallarda, kimler için çalışıyor?</span></h2>
+    <div class="table"><table>
       <tr><th>Kanal</th><th>Durum</th><th>Satın alma nasıl tamamlanıyor?</th></tr>
       <tr><td>ChatGPT (OpenAI)</td><td>ABD'deki alıcılara satış yapan uygun mağazalar için yayında</td><td>Uygulama içi tarayıcıda, mağazanızın kendi ödeme sayfasında</td></tr>
       <tr><td>Microsoft Copilot</td><td>Shopify Catalog'da bulunan uygun mağazalar için yayında</td><td>Uygun mağazalarda doğrudan Copilot içinde (Copilot Checkout)</td></tr>
       <tr><td>Google AI Modu ve Gemini</td><td>ABD'deki seçili markalarla başladı, genişleme sürüyor</td><td>Google arayüzü içine gömülü ödeme</td></tr>
-    </table>
+    </table></div>
     <p>Copilot, AI Modu ve Gemini için doğrudan ödemeyi kanal bazında açıp kapatabiliyorsunuz; kapalıysa alıcı mağazanıza yönlendiriliyor. ChatGPT tarafında doğrudan ödeme seçeneği yok; satın alma her zaman mağazanızın ödeme sayfasında tamamlanıyor.</p>
 
-    <h2>4. Türkiye'deki mağazalar için ne anlama geliyor?</h2>
+    <h2 id="turkiye-deki-magazalar-icin-ne-anlama-geliyor"><span class="no">04</span><span>Türkiye'deki mağazalar için ne anlama geliyor?</span></h2>
     <p>Şu an için en önemli sınırlama alıcının konumu: <strong>AI kanallarındaki satın almalar yalnızca ABD'deki alıcılarla sınırlı.</strong> Mağazanın nerede olduğu ise ChatGPT ve Copilot için belirleyici değil; Shopify, ABD'ye satış yapan Catalog mağazalarının mağaza konumundan bağımsız olarak bu kanallara katılabildiğini belirtiyor.</p>
     <p>Bu durumda tablo şöyle:</p>
     <ul>
@@ -245,14 +359,14 @@
       <li><strong>Yalnızca Türkiye'ye satış yapan mağazalar</strong> için kanal henüz satış getirmiyor. Ancak Google AI Modu Şubat 2026'dan beri Türkiye'de Türkçe kullanılıyor ve ürün karşılaştırma sorularında zaten ürün sayfalarından besleniyor. Aşağıdaki veri hazırlığı, kanal Türkiye'ye geldiğinde hazır olmanın yanı sıra bugün AI Modu'nda ve klasik aramada görünürlüğü de artırıyor.</li>
     </ul>
 
-    <h2>5. Perde arkası: Shopify Catalog ve UCP</h2>
+    <h2 id="perde-arkasi-shopify-catalog-ve-ucp"><span class="no">05</span><span>Perde arkası: Shopify Catalog ve UCP</span></h2>
     <p>Sistemin iki temel parçası var:</p>
     <ul>
       <li><strong>Shopify Catalog:</strong> Milyonlarca mağazanın milyarlarca ürününü ortak bir sınıflandırma (taksonomi) ile yapılandıran veri katmanı. Fiyat ve stok bilgisini gerçek zamanlı doğruluyor ve bağlı AI platformlarına dağıtıyor. Uygun ürünler varsayılan olarak listeleniyor. Catalog, eksik ürün özelliklerini makine öğrenmesiyle tahmin edebiliyor; özel veri yapısı kullanan mağazalar Catalog Mapping ile alanlarını eşleştirebiliyor.</li>
       <li><strong>Universal Commerce Protocol (UCP):</strong> Shopify ve Google'ın birlikte geliştirdiği açık standart. AI ajanlarının sepet oluşturma, ödeme ve satış sonrası adımları farklı platformlarda aynı şekilde yürütmesini sağlıyor. Destekleyenler arasında Amazon, Etsy, Mastercard, Meta, Microsoft, Stripe, Target, Walmart ve Visa var. İndirim kurallarınız ve satış koşullarınız tüm ajanlarda tutarlı kalıyor.</li>
     </ul>
 
-    <h2>6. AI asistanlarının ürününüzü önermesi için veri hazırlığı</h2>
+    <h2 id="ai-asistanlarinin-urununuzu-onermesi-icin-veri-hazirligi"><span class="no">06</span><span>AI asistanlarının ürününüzü önermesi için veri hazırlığı</span></h2>
     <p>Shopify, agentic commerce için ürün verisini değiştirmeniz gerekmediğini, Catalog'un veriyi otomatik olarak yapılandırdığını söylüyor. Bu doğru, ama "çalışması" ile "önerilmesi" farklı şeyler. Asistanlar, kullanıcının sorusuna hangi ürünün uyduğuna karar verirken verinin eksiksizliğine ve netliğine bakıyor. Shopify da başlık, açıklama, görsel, fiyat, stok ve kargo bilgisinin eksiksiz ve doğru olmasını vurguluyor. Pratikte kontrol listem şöyle:</p>
     <ul class="checklist">
       <li><strong>Başlıkta ürünün ne olduğunu söyleyin.</strong> "Luna 01" değil, "Luna Su Geçirmez Deri Kadın Yürüyüş Botu". Asistan, sadece marka ya da model koduyla ürünün ne olduğunu çıkarmakta zorlanır.</li>
@@ -263,84 +377,244 @@
       <li><strong>Kargo, iade ve teslimat süresini netleştirin.</strong> "ABD'ye kaç günde gelir?" sorusu satın alma kararının parçası.</li>
       <li><strong>Görselleri ve alt metinleri tamamlayın.</strong> Birden fazla açıdan, ürünü net gösteren görseller ve ne gösterdiğini anlatan alt metinler.</li>
       <li><strong>Ürün sayfasındaki yapılandırılmış veriyi kontrol edin.</strong> <code>Product</code> ve <code>Offer</code> işaretlemesi sayfadaki fiyat ve stokla birebir uyumlu olmalı. Shopify'ın ücretsiz agentic hazırlık denetim aracı da ürün sayfalarında yapılandırılmış veriyi ve robots.txt erişimini kontrol ediyor.</li>
-      <li><strong>Tema performansını ihmal etmeyin.</strong> Ödeme mağazanızda tamamlandığında yavaş bir sayfa satışı kaybettirir; bu konuda <a href="/blog/shopify-liquid-performans-optimizasyonu">Shopify Liquid performansı</a> yazımdaki adımlar burada da geçerli.</li>
+      <li><strong>Tema performansını ihmal etmeyin.</strong> Ödeme mağazanızda tamamlandığında yavaş bir sayfa satışı kaybettirir; bu konuda <a href="/blog/shopify-liquid-performans-optimizasyonu">Shopify Liquid performansı</a> yazısındaki adımlar burada da geçerli.</li>
     </ul>
     <div class="callout">
       <p><strong>İpucu:</strong> Hazırlığı test etmenin pratik bir yolu, bir ürününüzü ChatGPT'ye ya da Google AI Modu'na kendi müşterinizin soracağı şekilde aratmak ("100 dolar altı, makinede yıkanabilir keten masa örtüsü" gibi) ve rakiplerinizin hangi bilgilerle önerildiğine bakmak. Önerilen ürünlerin sayfalarında olup sizde olmayan bilgi, ilk düzeltmeniz gereken eksiktir.</p>
     </div>
 
-    <h2>7. Sonuçları nasıl ölçersiniz?</h2>
+    <h2 id="sonuclari-nasil-olcersiniz"><span class="no">07</span><span>Sonuçları nasıl ölçersiniz?</span></h2>
     <p>AI kanallarından gelen siparişler Shopify yönetim panelinde ilgili kanal etiketiyle görünüyor; bu, kanal performansını izlemenin en güvenilir yolu. Buna ek olarak:</p>
     <ul>
       <li>Google Analytics 4'te <code>chatgpt.com</code>, <code>copilot.microsoft.com</code> gibi yönlendiren kaynakları ayrı bir "AI asistanları" kanal grubunda toplayın.</li>
-      <li>Search Console'daki Üretken AI raporuyla ürün ve kategori sayfalarınızın Google AI Modu'nda ne sıklıkla göründüğünü takip edin. Bu raporu <a href="/blog/google-ai-modu-seo">Google AI Modu ve SEO</a> yazımda ayrıntılı anlattım.</li>
+      <li>Search Console'daki Üretken AI raporuyla ürün ve kategori sayfalarınızın Google AI Modu'nda ne sıklıkla göründüğünü takip edin. Bu rapor <a href="/blog/google-ai-modu-seo">Google AI Modu ve SEO</a> yazısında ayrıntılı anlatılıyor.</li>
       <li>AI kanallarından gelen siparişlerin ortalama sepet tutarını ve iade oranını diğer kanallarla karşılaştırın.</li>
     </ul>
     <p>Kanalın potansiyeli hakkında fikir vermesi için: Shopify'ın paylaştığı verilere göre 2026'nın ilk çeyreğinde Shopify mağazalarına yapay zeka kaynaklı trafik bir önceki yıla göre 8 kat, yapay zeka destekli aramalardan gelen siparişler ise yaklaşık 13 kat arttı. Bu rakamlar düşük bir başlangıç noktasından gelen büyümeyi gösteriyor; kendi mağazanızdaki payı mutlaka kendi verinizle ölçün.</p>
 
-    <h2>Sonuç</h2>
+    <h2 id="sonuc"><span class="no">08</span><span>Sonuç</span></h2>
     <p>Agentic Storefronts, Shopify mağazalarının büyük bölümü için "aç ve unut" türünden bir özellik gibi görünse de, asıl fark ürün verisinin kalitesinde ortaya çıkıyor. Aynı kanala bağlı iki mağazadan, ürününü net ve eksiksiz tarif eden önerilir. ABD'ye satış yapan markalar için bu bugünün satış fırsatı; Türkiye pazarına odaklı mağazalar için ise hem AI Modu'ndaki görünürlüğü artıran hem de kanal genişlediğinde hazır olmayı sağlayan bir hazırlık.</p>
     <p>Başlamak için en çok satan 10 ürününüzün başlığını, açıklamasını ve varyant adlarını yukarıdaki listeye göre gözden geçirin. Çoğu mağazada en büyük kazanç, en çok satan ürünlerin verisini düzeltmekten geliyor.</p>
-
-    <h2>Sık sorulan sorular</h2>
-    <div class="faq-item">
-      <h3>Shopify Agentic Storefronts ücretli mi?</h3>
-      <p>Shopify'a göre Agentic Storefronts için standart ödeme işleme ücretleri dışında ek bir işlem ücreti alınmıyor ve kurulum gerektirmiyor; uygun mağazalarda kanal otomatik olarak etkin.</p>
+<section class="faq"><h2 id="sss"><span class="no">09</span><span>Sık sorulan sorular</span></h2><details><summary>Shopify Agentic Storefronts ücretli mi?</summary><p>Shopify'a göre Agentic Storefronts için standart ödeme işleme ücretleri dışında ek bir işlem ücreti alınmıyor ve kurulum gerektirmiyor; uygun mağazalarda kanal otomatik olarak etkin.</p></details><details><summary>Türkiye'deki bir Shopify mağazası ChatGPT'de satış yapabilir mi?</summary><p>Mağaza konumu ChatGPT ve Copilot için belirleyici değil, ancak AI kanallarındaki satın almalar şu an yalnızca ABD'deki alıcılarla sınırlı. Yani ABD'ye satış yapan Türk markaları bu kanallardan yararlanabilir; yalnızca Türkiye'ye satış yapan mağazalar için kanal henüz satış getirmiyor.</p></details><details><summary>ChatGPT'den gelen siparişte ödeme nerede yapılıyor?</summary><p>ChatGPT'de satın alma, uygulama içi tarayıcıda mağazanızın kendi Shopify ödeme sayfasında tamamlanıyor. Copilot, Google AI Modu ve Gemini'de ise uygun mağazalar için asistanın içine gömülü ödeme kullanılabiliyor; bu seçenek kanal bazında açılıp kapatılabiliyor.</p></details><details><summary>Ürünlerin AI asistanları tarafından önerilmesi için ne yapılmalı?</summary><p>Ürün başlığında ürünün ne olduğunu açıkça yazın, açıklamada malzeme, ölçü ve kullanım gibi somut bilgileri verin, varyant adlarını tutarlı tutun, doğru kategori atayın, stok ve fiyatı güncel tutun ve kargo ile iade bilgilerini netleştirin. Ürün sayfasındaki Product yapılandırılmış verisi de sayfadaki bilgilerle uyumlu olmalı.</p></details></section>
+<section class="srcs" aria-label="Kaynaklar"><h3>Kaynaklar</h3><ol><li id="ref-1"><a href="https://www.shopify.com/blog/how-agentic-commerce-works" target="_blank" rel="noopener">shopify.com</a></li></ol></section>
+      <div class="byline"><span class="mono-av" aria-hidden="true">Aİ</span><div><strong>Aylin İnci</strong><p>SEO, GEO ve web geliştirme üzerine çalışıyor. <a href="https://www.linkedin.com/in/aylin-inci/" target="_blank" rel="noopener">LinkedIn</a></p></div></div>
     </div>
-    <div class="faq-item">
-      <h3>Türkiye'deki bir Shopify mağazası ChatGPT'de satış yapabilir mi?</h3>
-      <p>Mağaza konumu ChatGPT ve Copilot için belirleyici değil, ancak AI kanallarındaki satın almalar şu an yalnızca ABD'deki alıcılarla sınırlı. Yani ABD'ye satış yapan Türk markaları bu kanallardan yararlanabilir; yalnızca Türkiye'ye satış yapan mağazalar için kanal henüz satış getirmiyor.</p>
-    </div>
-    <div class="faq-item">
-      <h3>ChatGPT'den gelen siparişte ödeme nerede yapılıyor?</h3>
-      <p>ChatGPT'de satın alma, uygulama içi tarayıcıda mağazanızın kendi Shopify ödeme sayfasında tamamlanıyor. Copilot, Google AI Modu ve Gemini'de ise uygun mağazalar için asistanın içine gömülü ödeme kullanılabiliyor; bu seçenek kanal bazında açılıp kapatılabiliyor.</p>
-    </div>
-    <div class="faq-item">
-      <h3>Ürünlerimin AI asistanları tarafından önerilmesi için ne yapmalıyım?</h3>
-      <p>Ürün başlığında ürünün ne olduğunu açıkça yazın, açıklamada malzeme, ölçü ve kullanım gibi somut bilgileri verin, varyant adlarını tutarlı tutun, doğru kategori atayın, stok ve fiyatı güncel tutun ve kargo ile iade bilgilerini netleştirin. Ürün sayfasındaki Product yapılandırılmış verisi de sayfadaki bilgilerle uyumlu olmalı.</p>
-    </div>
-
-    <div class="author-box">
-      <img src="/aylin-inci-120.webp" alt="Aylin İnci" width="56" height="56" loading="lazy">
-      <div>
-        <strong><a href="/" style="color:inherit;text-decoration:none;">Aylin İnci</a></strong>
-        <span>Teknik SEO, GEO ve web geliştirme üzerine çalışıyor; içerik yapısı ve arama görünürlüğü odaklı danışmanlık veriyor. <a href="https://www.linkedin.com/in/aylin-inci/" target="_blank" rel="noopener" style="color:var(--primary);">LinkedIn</a></span>
-      </div>
-    </div>
-  </div>
-
-  <div class="related wrap">
-    <h2>İlgili içerikler</h2>
-    <div class="related-list">
-      <a href="/blog/shopify-gecisi-seo-rehberi">Shopify'a geçişte SEO<span>URL eşleştirme, 301 yönlendirme ve kontrol listesi</span></a>
-      <a href="/blog/google-ai-modu-seo">Google AI Modu ve SEO<span>Query fan-out, trafik etkisi ve Üretken AI raporu</span></a>
-      <a href="/blog/shopify-liquid-performans-optimizasyonu">Shopify Liquid Geliştirmelerinde Performansın Korunması<span>Tema geliştirirken render gecikmelerini önlemek</span></a>
-      <a href="/blog/yapay-zeka-arama-icin-icerik-yapisi">Yapay Zeka Destekli Arama Sistemleri İçin İçerik Yapısı<span>GEO için yapılandırılmış veri ve içerik netliği</span></a>
-    </div>
+    <aside class="notes" aria-label="Kaynaklar"><b>Kaynaklar</b><ol><li data-s="1"><span>[1]</span><a href="https://www.shopify.com/blog/how-agentic-commerce-works" target="_blank" rel="noopener">shopify.com</a></li></ol></aside>
   </div>
 </article>
+<nav class="next" aria-label="Diğer yazılar"><a href="/blog/anahtar-kelime-kanibalizasyonu-analizi"><span class="mono">← Önceki yazı</span><strong>Anahtar Kelime Kanibalizasyonunun Analizi: Sayfalarınız Birbirinizle mi Yarışıyor?</strong></a><a href="/blog/google-ai-modu-seo"><span class="mono">Sonraki yazı →</span><strong>Google AI Modu ve SEO: Tıklamalar Azalırken Görünürlüğü Korumak</strong></a></nav>
+<section class="related"><div class="sec-title rise"><h2>İlgili yazılar</h2><a class="chip" href="/blog/">Tüm yazılar</a></div><div class="rel"><a class="rise" style="--d:0" href="/blog/shopify-gecisi-seo-rehberi"><div class="art"><canvas data-slug="shopify-gecisi-seo-rehberi" data-bg="#0A5A3C" aria-hidden="true"></canvas></div><div class="t"><span class="mono">Shopify · 5 dk</span><strong>Shopify'a Geçişte SEO: Trafiği Kaybetmeden Site Taşıma Rehberi</strong></div></a><a class="rise" style="--d:1" href="/blog/google-ai-modu-seo"><div class="art"><canvas data-slug="google-ai-modu-seo" data-bg="#2A0FA8" aria-hidden="true"></canvas></div><div class="t"><span class="mono">GEO · 7 dk</span><strong>Google AI Modu ve SEO: Tıklamalar Azalırken Görünürlüğü Korumak</strong></div></a><a class="rise" style="--d:2" href="/blog/shopify-liquid-performans-optimizasyonu"><div class="art"><canvas data-slug="shopify-liquid-performans-optimizasyonu" data-bg="#0A5A3C" aria-hidden="true"></canvas></div><div class="t"><span class="mono">Shopify · 12 dk</span><strong>Shopify Liquid Geliştirmelerinde Performansın Korunması</strong></div></a><a class="rise" style="--d:3" href="/blog/yapay-zeka-arama-icin-icerik-yapisi"><div class="art"><canvas data-slug="yapay-zeka-arama-icin-icerik-yapisi" data-bg="#2A0FA8" aria-hidden="true"></canvas></div><div class="t"><span class="mono">GEO · 13 dk</span><strong>Yapay Zeka Destekli Arama Sistemleri İçin İçerik Yapısı</strong></div></a></div></section>
 </main>
+<footer class="foot"><span>© 2026 Aylin İnci</span><span><a href="/">Anasayfa</a> · <a href="/blog/">Yazılar</a> · <a href="https://www.linkedin.com/in/aylin-inci/" target="_blank" rel="noopener">LinkedIn</a></span><span><a href="/kvkk-aydinlatma-metni">KVKK Aydınlatma Metni</a> · <a href="/cerez-politikasi">Çerez Politikası</a> · <a href="/gizlilik-politikasi">Gizlilik Politikası</a></span></footer><script>(function () {
+  /* Blog pages: drawn maps replace photos. Each post gets its own constellation from its slug, coloured by topic. */
+  var DATA = {"page":"post","slug":"shopify-agentic-storefronts-chatgpt","sections":[{"id":"agentic-commerce-nedir","short":"Agentic commerce nedir?","n":2},{"id":"shopify-agentic-storefronts-ne-yapiyor","short":"Shopify Agentic Storefron…","n":3},{"id":"hangi-kanallarda-kimler-icin-calisiyor","short":"Hangi kanallarda, kimler…","n":2},{"id":"turkiye-deki-magazalar-icin-ne-anlama-geliyor","short":"Türkiye'deki mağazalar iç…","n":2},{"id":"perde-arkasi-shopify-catalog-ve-ucp","short":"Perde arkası: Shopify Cat…","n":2},{"id":"ai-asistanlarinin-urununuzu-onermesi-icin-veri-hazirligi","short":"AI asistanlarının ürününü…","n":5},{"id":"sonuclari-nasil-olcersiniz","short":"Sonuçları nasıl ölçersini…","n":2},{"id":"sonuc","short":"Sonuç","n":2},{"id":"sss","short":"Sık sorulan sorular","n":4}]};
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var root = document.documentElement, body = document.body;
+  var INK = [1, 4, 25], MINT = [124, 242, 198], BLUE = [96, 132, 255];
+  var clamp = function (v) { return v < 0 ? 0 : v > 1 ? 1 : v; };
+  var lerp = function (a, b, t) { return a + (b - a) * t; };
+  var rgb = function (c, a) { return 'rgba(' + (c[0] | 0) + ',' + (c[1] | 0) + ',' + (c[2] | 0) + ',' + a + ')'; };
+  var hex = function (h) { return [parseInt(h.slice(1, 3), 16), parseInt(h.slice(3, 5), 16), parseInt(h.slice(5, 7), 16)]; };
+  var seeded = function (s) { var h = 2166136261; for (var i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return function () { h = Math.imul(h ^ (h >>> 15), 2246822507); h = Math.imul(h ^ (h >>> 13), 3266489909); h ^= h >>> 16; return (h >>> 0) / 4294967296; }; };
+  var mobile = innerWidth <= 860, all = [];
 
-<footer class="site-foot">
-  <div class="shell footer-grid">
-    <div class="footer-brand">
-      <img src="/aylin-inci-logo.webp" alt="Aylin İnci" width="92" height="32" loading="lazy">
-      <p>SEO, GEO ve Web Geliştirme Uzmanı · Türkiye</p>
-    </div>
-    <div class="footer-links">
-      <a href="https://www.linkedin.com/in/aylin-inci/" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="/Aylin_Inci_CV_TR.pdf" target="_blank" rel="noopener">Özgeçmiş</a>
-      <a href="/blog/">Blog</a>
-      <a href="/#iletisim">İletişim</a>
-    </div>
-  </div>
-  <div class="shell footer-legal">
-    <a href="/kvkk-aydinlatma-metni">KVKK Aydınlatma Metni</a>
-    <a href="/cerez-politikasi">Çerez Politikası</a>
-    <a href="/gizlilik-politikasi">Gizlilik Politikası</a>
-    <span>© 2026 Aylin İnci</span>
-  </div>
-</footer>
+  /* A new page starts at its top: the host keeps the last scroll position across pages and restores it late */
+  try { history.scrollRestoration = 'manual'; } catch (e) {}
+  if (!location.hash) {
+    var held = true, release = function () { held = false; };
+    ['wheel', 'touchstart', 'keydown', 'mousedown', 'click', 'hashchange'].forEach(function (t) { addEventListener(t, release, { passive: true, once: true }); });
+    (function hold() {
+      if (!held) return;
+      if (scrollY) scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      if (performance.now() < 1800) requestAnimationFrame(hold);
+    })();
+  }
 
+  /* Sky: slow white dots behind everything */
+  var sky = document.getElementById('sky'), sc = sky.getContext('2d'), dots = [];
+  var r0 = seeded('sky'); for (var d = 0; d < 140; d++) dots.push({ x: r0(), y: r0(), s: r0() < .85 ? 1 : 2, v: .4 + r0() });
+  function paintSky(now) {
+    sky.width = innerWidth; sky.height = innerHeight; sc.fillStyle = 'rgba(255,255,255,.3)';
+    var drift = reduce ? 0 : now / 90000, y = scrollY;
+    dots.forEach(function (p) { var py = (p.y + drift * p.v - y / 60000 * p.v) % 1; if (py < 0) py += 1; sc.fillRect(p.x * sky.width, py * sky.height, p.s, p.s); });
+  }
+
+  /* One constellation: hubs with satellites on a slowly turning sphere */
+  function Map(canvas, opt) {
+    var c = canvas.getContext('2d'), rnd = seeded(opt.seed), W = 0, H = 0, dpr = Math.min(devicePixelRatio || 1, 1.5);
+    var hubs = opt.hubs.map(function (h, i) {
+      var a = i / opt.hubs.length * 6.283 + rnd() * .4, r = opt.hubs.length > 1 ? .6 + rnd() * .3 : 0;
+      var hub = { label: h.label, tag: h.tag, href: h.href, i: i, x: Math.cos(a) * r, y: (rnd() - .5) * .9, z: Math.sin(a) * r * .7, sats: [] };
+      for (var s = 0; s < h.n + (opt.deco || 0); s++) { var b = rnd() * 6.283, e = (rnd() - .5) * 2.4, l = .16 + rnd() * .2; hub.sats.push({ label: h.items && s < h.n ? h.items[s] : '', href: h.hrefs && s < h.n ? h.hrefs[s] : null, x: Math.cos(b) * Math.cos(e) * l, y: Math.sin(e) * l, z: Math.sin(b) * Math.cos(e) * l, box: rnd() < .3 }); }
+      return hub;
+    });
+    var extra = []; for (var k = 0; k < (opt.dust || 70); k++) extra.push({ x: (rnd() - .5) * 2.4, y: (rnd() - .5) * 1.6, z: (rnd() - .5) * 2.4 });
+    var self = { active: -1, hover: null, mx: -1, my: -1, tilt: 0, pts: [], col: opt.col || BLUE, t0: performance.now() };
+    function size() { var r = canvas.getBoundingClientRect(); W = r.width; H = r.height; canvas.width = W * dpr; canvas.height = H * dpr; }
+    function proj(p, yaw, pitch) {
+      var cy = Math.cos(yaw), sy = Math.sin(yaw), cp = Math.cos(pitch), sp = Math.sin(pitch);
+      var x = p.x * cy + p.z * sy, z = -p.x * sy + p.z * cy, y = p.y * cp - z * sp; z = p.y * sp + z * cp;
+      var f = 2.4 / (2.4 + z), s = Math.min(W, H) * (opt.zoom || .62);
+      return { x: W / 2 + x * s * f, y: H / 2 + y * s * f, p: f, z: z };
+    }
+    self.draw = function (now) {
+      if (!W) size();
+      var t = reduce ? 0 : (now - self.t0) / 1000, open = reduce ? 1 : clamp(t / 1.4);
+      var yaw = (reduce ? .4 : Math.sin(now * .00011) * .35 + now * .00004 * (opt.spin || 1)) + self.tilt * .25, pitch = .12 + (reduce ? 0 : Math.sin(now * .00017) * .08);
+      c.setTransform(dpr, 0, 0, dpr, 0, 0); c.clearRect(0, 0, W, H);
+      c.fillStyle = 'rgba(255,255,255,.22)';
+      extra.forEach(function (p) { var q = proj(p, yaw * .6, pitch); if (q.x > 0 && q.x < W && q.y > 0 && q.y < H) c.fillRect(q.x, q.y, 1, 1); });
+      var C = opt.center ? proj({ x: 0, y: 0, z: 0 }, yaw, pitch) : null, pts = [];
+      hubs.forEach(function (h, i) {
+        var e = clamp(open * 1.4 - i * .06), hp = proj({ x: h.x * e, y: h.y * e, z: h.z * e }, yaw, pitch), on = self.active === i || (self.hover && self.hover.hub === h);
+        if (C) { c.strokeStyle = on ? rgb(MINT, .9) : 'rgba(255,255,255,.28)'; c.lineWidth = on ? 1.2 : 1; c.beginPath(); c.moveTo(C.x, C.y); c.lineTo(hp.x, hp.y); c.stroke(); }
+        h.sats.forEach(function (s, q) {
+          var sp = proj({ x: h.x * e + s.x * e, y: h.y * e + s.y * e, z: h.z * e + s.z * e }, yaw, pitch), lit = self.hover === s;
+          var near = self.mx < 0 ? 0 : clamp(1.2 - Math.sqrt((sp.x - self.mx) * (sp.x - self.mx) + (sp.y - self.my) * (sp.y - self.my)) / 150);
+          c.strokeStyle = on || lit ? rgb(MINT, .75) : rgb(lerp(BLUE[0], 255, near), (.22 + near * .5) * e); c.lineWidth = 1; c.beginPath(); c.moveTo(hp.x, hp.y); c.lineTo(sp.x, sp.y); c.stroke();
+          if (s.box) { c.fillStyle = rgb(INK, e); c.fillRect(sp.x - 8, sp.y - 6, 16, 12); c.strokeStyle = 'rgba(255,255,255,' + .7 * e + ')'; c.strokeRect(sp.x - 8, sp.y - 6, 16, 12); c.fillStyle = 'rgba(255,255,255,' + e + ')'; c.fillRect(sp.x - 5, sp.y - 3, 7, 6); c.fillRect(sp.x + 3, sp.y - 3, 3, 3); }
+          else { c.fillStyle = lit || near > .25 || on ? 'rgba(255,255,255,' + e + ')' : rgb([150, 180, 255], e * .9); c.beginPath(); c.arc(sp.x, sp.y, (1.6 + near * 1.4) * sp.p + (lit ? 1.5 : 0), 0, 6.283); c.fill(); }
+          pts.push({ x: sp.x, y: sp.y, item: s, hub: h });
+        });
+        var hs = (on ? 5.5 : 4) * hp.p; c.fillStyle = on ? rgb(MINT, 1) : rgb(BLUE, 1); c.fillRect(hp.x - hs, hp.y - hs, hs * 2, hs * 2);
+        pts.push({ x: hp.x, y: hp.y, item: h, hub: h, isHub: true });
+        var full = on || self.hover === h, text = h.tag && !full ? h.tag : (h.tag ? h.tag + '  ' + h.label : h.label);
+        if (text && opt.labels !== false && e > .5) {
+          c.font = '400 12px "Geist Mono", monospace'; var lw = c.measureText(text).width;
+          var lx = hp.x + 9, ly = hp.y - 7; if (lx + lw > W - 6) lx = hp.x - 9 - lw;
+          c.fillStyle = on ? rgb(MINT, 1) : rgb(INK, .85); c.fillRect(lx - 4, ly - 12, lw + 8, 17);
+          c.fillStyle = on ? rgb(INK, 1) : 'rgba(255,255,255,.95)'; c.fillText(text, lx, ly);
+        }
+      });
+      if (C) { c.strokeStyle = '#fff'; c.lineWidth = 1; c.beginPath(); c.arc(C.x, C.y, 6, 0, 6.283); c.stroke(); c.fillStyle = rgb(MINT, 1); c.fillRect(C.x - 2, C.y - 2, 4, 4); }
+      if (self.hover && self.hover.label && !self.hover.sats) {
+        var hv = pts.filter(function (p) { return p.item === self.hover; })[0];
+        if (hv) { c.font = '400 12px "Geist Mono", monospace'; var w2 = c.measureText(self.hover.label).width, x2 = Math.min(hv.x + 10, W - w2 - 10); c.fillStyle = '#fff'; c.fillRect(x2 - 5, hv.y - 22, w2 + 10, 18); c.fillStyle = rgb(INK, 1); c.fillText(self.hover.label, x2, hv.y - 9); }
+      }
+      self.pts = pts;
+    };
+    self.pick = function (x, y) {
+      var best = null, lim = 24 * 24;
+      self.pts.forEach(function (p) { var d = (p.x - x) * (p.x - x) + (p.y - y) * (p.y - y); if (d < lim && (p.item.href || p.isHub)) { lim = d; best = p; } });
+      return best;
+    };
+    self.size = size;
+    all.push(self);
+    return self;
+  }
+  function interactive(map, canvas, onPick) {
+    canvas.addEventListener('mousemove', function (e) {
+      var r = canvas.getBoundingClientRect(); map.mx = e.clientX - r.left; map.my = e.clientY - r.top; map.tilt = (map.mx / r.width - .5) * 2;
+      var p = map.pick(map.mx, map.my); map.hover = p ? p.item : null; canvas.style.cursor = p && (p.item.href || p.isHub) ? 'pointer' : '';
+    });
+    canvas.addEventListener('mouseleave', function () { map.mx = map.my = -1; map.hover = null; map.tilt = 0; });
+    canvas.addEventListener('click', function (e) { var r = canvas.getBoundingClientRect(), p = map.pick(e.clientX - r.left, e.clientY - r.top); if (p) onPick(p); });
+  }
+  /* Small static art for cards: one frame of a post's map */
+  function art(canvas, slug, col, n) {
+    var m = Map(canvas, { seed: slug, col: col, hubs: [{ label: '', n: 8 + n % 4 }, { label: '', n: 6 + n % 3 }, { label: '', n: 7 }, { label: '', n: 5 + n % 2 }], center: true, labels: false, zoom: .55, dust: 60 });
+    m.t0 = -1e9; return m;
+  }
+
+  var loops = [];
+  function loop(now) {
+    paintSky(now);
+    loops.forEach(function (f) { f(now); });
+    if (!reduce) requestAnimationFrame(loop);
+  }
+  var visible = function (el) { var r = el.getBoundingClientRect(); return r.bottom > 0 && r.top < innerHeight; };
+
+  /* reveal on scroll */
+  var seen = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('seen'); seen.unobserve(e.target); } }); }, { rootMargin: '0px 0px -8% 0px' });
+  [].forEach.call(document.querySelectorAll('.rise,.checklist li'), function (e) { if (reduce) e.classList.add('seen'); else seen.observe(e); });
+  /* titles rise letter by letter */
+  [].forEach.call(document.querySelectorAll('[data-split]'), function (t) {
+    if (reduce) return; var text = t.textContent, i = 0; t.setAttribute('aria-label', text); t.textContent = '';
+    text.split(' ').forEach(function (w, k) {
+      if (k) t.appendChild(document.createTextNode(' '));
+      var box = document.createElement('span'); box.setAttribute('aria-hidden', 'true'); box.style.display = 'inline-block';
+      w.split('').forEach(function (l) { var s = document.createElement('span'); s.className = 'split-ch'; s.style.setProperty('--i', i++); s.textContent = l; box.appendChild(s); });
+      t.appendChild(box);
+    });
+  });
+
+  /* ---------- Archive ---------- */
+  if (DATA.page === 'archive') {
+    var base = hex(DATA.base), cur = base.slice(), goal = base.slice();
+    var cats = DATA.cats, posts = DATA.posts;
+    var amap = document.getElementById('amap');
+    var M = Map(amap, { seed: 'yazilar', hubs: cats.map(function (k) { var ps = posts.filter(function (p) { return p.cat === k.name; }); return { label: k.name, n: ps.length, items: ps.map(function (p) { return p.title; }), hrefs: ps.map(function (p) { return p.href; }) }; }), center: true, zoom: mobile ? .5 : .48, deco: 7, dust: 110 });
+    interactive(M, amap, function (p) { if (p.item.href) location.href = p.item.href; else if (p.isHub) filter(p.item.label); });
+    loops.push(function (now) { if (visible(amap)) M.draw(now); });
+    var chips = [].slice.call(document.querySelectorAll('.filters .chip')), rows = [].slice.call(document.querySelectorAll('.row'));
+    function filter(name) {
+      chips.forEach(function (c) { c.setAttribute('aria-pressed', String(c.dataset.cat === name || (!name && !c.dataset.cat))); });
+      rows.forEach(function (r) { r.classList.toggle('out', !!name && r.dataset.cat !== name); });
+      var k = cats.filter(function (x) { return x.name === name; })[0]; goal = k ? hex(k.bg) : base.slice();
+      M.active = k ? cats.indexOf(k) : -1;
+    }
+    chips.forEach(function (c) { c.addEventListener('click', function () { filter(c.getAttribute('aria-pressed') === 'true' ? '' : c.dataset.cat); }); });
+    loops.push(function () {
+      for (var i = 0; i < 3; i++) cur[i] += (goal[i] - cur[i]) * (reduce ? 1 : .06);
+      root.style.setProperty('--page', 'rgb(' + (cur[0] | 0) + ',' + (cur[1] | 0) + ',' + (cur[2] | 0) + ')');
+    });
+    /* row hover: the post's own map follows the pointer */
+    var peek = document.getElementById('peek'), pc = peek.querySelector('canvas'), pm = null, px = 0, py = 0, tx = 0, ty = 0;
+    rows.forEach(function (r) {
+      var a = r.querySelector('a');
+      a.addEventListener('mouseenter', function () { var p = posts[+r.dataset.i]; pm = art(pc, p.slug, hex(p.bg), +r.dataset.i); pm.size(); peek.classList.add('on'); M.hover = null; M.active = cats.map(function (k) { return k.name; }).indexOf(p.cat); });
+      a.addEventListener('mouseleave', function () { peek.classList.remove('on'); M.active = -1; chips.forEach(function (c) { if (c.getAttribute('aria-pressed') === 'true' && c.dataset.cat) M.active = cats.map(function (k) { return k.name; }).indexOf(c.dataset.cat); }); });
+      a.addEventListener('mousemove', function (e) { var rb = a.getBoundingClientRect(); tx = Math.max(e.clientX + 40, rb.right - 430); ty = e.clientY - 95; });
+    });
+    loops.push(function (now) {
+      if (!peek.classList.contains('on') || !pm) return;
+      px += (tx - px) * .18; py += (ty - py) * .18; peek.style.transform = 'translate3d(' + Math.min(px, innerWidth - 316).toFixed(1) + 'px,' + py.toFixed(1) + 'px,0)';
+      pm.draw(now);
+    });
+    var lead = document.getElementById('leadArt'), LM = art(lead, posts[0].slug, hex(posts[0].bg), 0);
+    LM.t0 = performance.now(); loops.push(function (now) { if (visible(lead)) LM.draw(now); });
+    if (reduce) { M.draw(0); LM.draw(0); }
+  }
+
+  /* ---------- Single post ---------- */
+  if (DATA.page === 'post') {
+    var heads = [].slice.call(document.querySelectorAll('.body h2[id]')), toc = [].slice.call(document.querySelectorAll('.toc a'));
+    var pmap = document.getElementById('pmap');
+    var PM = Map(pmap, { seed: DATA.slug, center: true, hubs: DATA.sections.map(function (s, i) { return { label: s.short, tag: (i < 9 ? '0' : '') + (i + 1), n: s.n, href: '#' + s.id }; }), zoom: mobile ? .5 : .46, spin: .6, deco: 2 });
+    interactive(PM, pmap, function (p) { var id = p.hub.href; if (id) document.querySelector(id).scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' }); });
+    loops.push(function (now) { if (visible(pmap)) PM.draw(now); });
+    var bar = document.getElementById('bar'), art0 = document.querySelector('.body'), notes = [].slice.call(document.querySelectorAll('.notes li'));
+    var wires = document.getElementById('wires'), wc = wires.getContext('2d'), current = -1;
+    function setCurrent(i) {
+      if (i === current) return; current = i; PM.active = i;
+      toc.forEach(function (a, k) { if (k === i) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current'); });
+      notes.forEach(function (n) { n.classList.toggle('on', +n.dataset.s === i); });
+    }
+    loops.push(function (now) {
+      var r = art0.getBoundingClientRect(), p = clamp((innerHeight * .5 - r.top) / r.height);
+      bar.style.transform = 'scaleX(' + p.toFixed(4) + ')';
+      var i = -1; heads.forEach(function (h, k) { if (h.getBoundingClientRect().top < innerHeight * .4) i = k; }); setCurrent(i);
+      wires.width = innerWidth; wires.height = innerHeight; wc.clearRect(0, 0, innerWidth, innerHeight);
+      if (i < 0 || innerWidth <= 1180) return;
+      var dot = toc[i].getBoundingClientRect(), h = heads[i].getBoundingClientRect(), nb = document.querySelector('.notes').getBoundingClientRect();
+      if (h.bottom < 0 || h.top > innerHeight) return;
+      var ws = [[dot.right, dot.top + dot.height / 2, h.left - 10, h.top + 30], [h.right + 10, h.top + 30, nb.left, nb.top + 14]];
+      wc.strokeStyle = 'rgba(255,255,255,.4)'; wc.lineWidth = 1; wc.beginPath(); ws.forEach(function (w) { wc.moveTo(w[0], w[1]); wc.lineTo(w[2], w[3]); }); wc.stroke();
+      if (!reduce) { var run = (now % 4000) / 4000 * 1.5 - .15; wc.strokeStyle = '#fff'; wc.lineWidth = 1.5; wc.beginPath(); ws.forEach(function (w) { var a = clamp(run), b = clamp(run + .15); if (b > a) { wc.moveTo(lerp(w[0], w[2], a), lerp(w[1], w[3], a)); wc.lineTo(lerp(w[0], w[2], b), lerp(w[1], w[3], b)); } }); wc.stroke(); }
+      wc.fillStyle = '#fff'; wc.fillRect(h.left - 12, h.top + 28, 4, 4); wc.fillRect(h.right + 8, h.top + 28, 4, 4);
+    });
+    [].forEach.call(document.querySelectorAll('.rel .art canvas'), function (cv, k) {
+      var m = art(cv, cv.dataset.slug, hex(cv.dataset.bg), k); m.size();
+      loops.push(function (now) { if (visible(cv)) m.draw(now); });
+      if (reduce) m.draw(0);
+    });
+    if (reduce) PM.draw(0);
+  }
+
+  addEventListener('resize', function () { mobile = innerWidth <= 860; all.forEach(function (m) { m.size(); if (reduce) m.draw(0); }); });
+  if (reduce) { paintSky(0); addEventListener('scroll', function () { paintSky(0); }, { passive: true }); }
+  requestAnimationFrame(loop);
+})();
+</script>
 </body>
 </html>
