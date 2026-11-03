@@ -109,11 +109,12 @@ main{position:relative;z-index:2}
 .body h3{font-weight:500;font-size:22px;line-height:1.2;margin:1.6em 0 .5em;display:flex;gap:10px;align-items:baseline}
 .body h3::before{content:"";flex:none;width:6px;height:6px;border:1px solid currentColor;transform:translateY(-3px)}
 .body ul,.body ol{margin:0 0 1.2em;padding:0;list-style:none;display:grid;gap:.55em}
-.body ul li{display:grid;grid-template-columns:14px minmax(0,1fr);gap:10px}
-.body ul li::before{content:"";width:6px;height:6px;border:1px solid var(--fg-2);margin-top:.66em}
+.body li{position:relative}
+.body ul li{padding-left:24px}
+.body ul li::before{content:"";position:absolute;left:2px;top:.68em;width:6px;height:6px;border:1px solid var(--fg-2)}
 .body ol{counter-reset:o}
-.body ol li{counter-increment:o;display:grid;grid-template-columns:30px minmax(0,1fr);gap:8px}
-.body ol li::before{content:counter(o,decimal-leading-zero);font:300 13px/1.9 var(--mono);color:var(--mint)}
+.body ol li{counter-increment:o;padding-left:38px}
+.body ol li::before{content:counter(o,decimal-leading-zero);position:absolute;left:0;top:0;font:300 13px/1.9 var(--mono);color:var(--mint)}
 .body ul.checklist li::before{border-color:var(--mint);background:linear-gradient(var(--mint),var(--mint)) center/0 0 no-repeat;transition:background-size .3s ease}
 .body ul.checklist li.seen::before{background-size:100% 100%}
 .body code{font:300 .82em var(--mono);background:var(--ink);padding:2px 6px;border-radius:5px}
