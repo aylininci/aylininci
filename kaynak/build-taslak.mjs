@@ -124,8 +124,9 @@ a{color:inherit}
 #links{position:fixed;inset:0;width:100%;height:100%;pointer-events:none}
 #links{z-index:2}
 .top{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;height:var(--head);display:flex;align-items:center;justify-content:space-between;gap:16px;background:var(--page);border-bottom:1px solid var(--line);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-.brand{font-weight:500;font-size:17px;text-decoration:none;white-space:nowrap}
-.brand small{font:300 12px var(--mono);color:var(--fg-2);margin-left:10px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:500;font-size:17px;text-decoration:none;white-space:nowrap}
+.brand img{display:block;flex:none;width:28px;height:28px}
+.brand small{font:300 12px var(--mono);color:var(--fg-2)}
 .top-links{display:flex;align-items:center;gap:24px;font-weight:500;font-size:15px}
 .top-links a{text-decoration:none}.top-links a:hover{text-decoration:underline}
 .cta{background:#fff;color:#0B1030;border-radius:999px;padding:9px 18px;text-decoration:none;font-weight:500;font-size:15px;white-space:nowrap}
@@ -250,7 +251,7 @@ ${fs.readFileSync('taslak-motion.css', 'utf8')}</style>
 <canvas id="links" aria-hidden="true"></canvas>
 
 <header class="top">
-  <a class="brand" href="#ust">Aylin İnci<small>Taslak</small></a>
+  <a class="brand" href="#ust"><img src="img/logo-mark.svg" alt="" width="28" height="28">Aylin İnci<small>Taslak</small></a>
   <nav class="top-links" aria-label="Ana menü">
     <a href="#hakkimda">Hakkımda</a><a href="blog.html">Yazılar</a><a href="#iletisim">İletişim</a><a href="/en/" lang="en" hreflang="en">EN</a>
     <a class="cta" href="${LIVE}/Aylin_Inci_CV_TR.pdf" target="_blank" rel="noopener">Özgeçmiş</a>

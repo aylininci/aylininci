@@ -88,7 +88,8 @@ const blogLinks = (s) => cv(noDraftMark(s))
   .replace(/href="\.\/(#[^"]*)?"/g, 'href="/$1"')
   .replace(/href="yazi\/([a-z0-9-]+)\.html"/g, 'href="/blog/$1"')
   .replace(/href="([a-z0-9-]+)\.html(#[^"]*)?"/g, 'href="/blog/$1$2"')
-  .replace(/"href":"yazi\/([a-z0-9-]+)\.html"/g, '"href":"/blog/$1"');
+  .replace(/"href":"yazi\/([a-z0-9-]+)\.html"/g, '"href":"/blog/$1"')
+  .replace(/src="(?:\.\.?\/)?img\//g, 'src="/assets/img/');
 function blogPage(draftFile, liveFile, slug) {
   const d = draft(draftFile);
   const attr = (d.match(/<html lang="tr"([^>]*)>/) || [])[1] || '';
@@ -104,7 +105,7 @@ for (const s of slugs) out(`blog/${s}.html`, blogPage(`../prev/yazi/${s}.html`, 
 // Fonts and images
 for (const f of fs.readdirSync('../fonts').filter((x) => x.endsWith('.woff2'))) fs.copyFileSync(`../fonts/${f}`, path.join(SITE, 'assets/fonts', f));
 fs.mkdirSync(path.join(SITE, 'assets/img'), { recursive: true });
-for (const f of fs.readdirSync('../prev/img').filter((x) => /^(bolum-|kart-uzmanlik)/.test(x))) fs.copyFileSync(`../prev/img/${f}`, path.join(SITE, 'assets/img', f));
+for (const f of fs.readdirSync('../prev/img').filter((x) => /^(bolum-|kart-uzmanlik|logo-mark)/.test(x))) fs.copyFileSync(`../prev/img/${f}`, path.join(SITE, 'assets/img', f));
 
 // Sitemap: new dates for the redesigned pages, no images that are no longer on them
 let map = fs.readFileSync(path.join(SITE, 'sitemap.xml'), 'utf8');
