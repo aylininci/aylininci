@@ -753,7 +753,13 @@ body.at-top .notes{opacity:0;pointer-events:none}
     var main = chip('main', isSat ? h.items[s.j].t : h.name, isSat ? '' : String(h.n));
     var target = isSat ? h.items[s.j] : null, go = document.createElement('a');
     go.className = 'chip-center'; go.setAttribute('aria-label', target && target.u ? 'Yazıyı oku' : 'Bölüme git');
-    if (target && target.u) { go.href = target.u; go.target = '_blank'; go.rel = 'noopener'; }
+    if (target && target.u) {
+      /* draft post pages sit next to this page, so they open in the same frame */
+      go.href = target.u;
+      if (/^https?:/.test(target.u)) { go.target = '_blank'; go.rel = 'noopener'; }
+      main.style.cursor = 'pointer';
+      main.addEventListener('click', function (e) { e.stopPropagation(); go.click(); });
+    }
     else { go.href = '#' + h.id; go.addEventListener('click', function (e) { e.preventDefault(); goTo(s.i)(); }); }
     chipLayer.appendChild(go);
     var parent = null;
