@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="tr" style="--page:#2A0FA8">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Google AI Modu ve SEO: Tıklamalar Azalırken Görünürlüğü Korumak | Aylin İnci</title>
+<meta name="description" content="Google AI Modu Türkiye'de: query fan-out nasıl çalışır, tıklamalar neden düşer ve Search Console Üretken AI raporuyla etki nasıl ölçülür?">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500&family=Geist+Mono:wght@300;400&display=swap">
+<style>/* Blog pages share the home draft's language: one page colour per topic, mono notes, hairlines and drawn maps instead of photos. */
+:root{
+  --ink:#010419; --fg:#fff; --fg-2:rgba(255,255,255,.8); --fg-3:rgba(255,255,255,.6);
+  --line:rgba(255,255,255,.18); --panel:rgba(255,255,255,.08); --mint:#7CF2C6;
+  --sans:'Instrument Sans','Helvetica Neue',Arial,sans-serif; --mono:'Geist Mono',ui-monospace,Menlo,Consolas,monospace;
+  --page:#0B1B5E; --head:64px; color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--head) + 24px)}
+body{margin:0;background:var(--page);color:var(--fg);font:400 17px/1.5 var(--sans);-webkit-font-smoothing:antialiased;transition:background-color .8s ease;overflow-x:clip}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--mint);outline-offset:3px}
+#sky{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.top{position:sticky;top:0;z-index:20;height:var(--head);display:flex;align-items:center;justify-content:space-between;gap:16px;padding:0 max(16px,env(safe-area-inset-right,0px)) 0 max(16px,env(safe-area-inset-left,0px));background:var(--page);border-bottom:1px solid var(--line);transition:background-color .8s ease}
+.brand{font-weight:500;font-size:19px;text-decoration:none;display:flex;align-items:baseline;gap:10px}
+.brand small{font:300 12px var(--mono);color:var(--fg-2)}
+.top-links{display:flex;align-items:center;gap:24px;font-weight:500;font-size:15px}
+.top-links a{text-decoration:none}.top-links a:hover,.top-links a[aria-current]{text-decoration:underline;text-underline-offset:4px}
+.cta{background:#fff;color:#0B1030;border-radius:999px;padding:9px 18px;text-decoration:none;font-weight:500;font-size:15px;white-space:nowrap}
+.cta:hover{background:var(--mint)}
+main{position:relative;z-index:2}
+.mono{font:300 13px/1.45 var(--mono)}
+.chip{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);border-radius:999px;padding:4px 11px;font:300 12px var(--mono);color:var(--fg);background:none;text-decoration:none;cursor:pointer;white-space:nowrap}
+.chip::before{content:"";width:6px;height:6px;border:1px solid currentColor}
+.chip:hover,.chip[aria-pressed="true"]{background:#fff;color:var(--ink);border-color:#fff}
+.chip span{color:inherit;opacity:.6}
+.mark{flex:none;display:inline-block;width:6px;height:6px;border:1px solid currentColor;transform:translateY(-2px)}
+
+/* Archive */
+.ahero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:10px;padding:10px 16px;min-height:calc(100vh - var(--head));min-height:calc(100dvh - var(--head))}
+.ahero-text{display:grid;align-content:space-between;gap:24px;padding:18px 8px 8px}
+.ahero h1{font-weight:500;font-size:clamp(88px,13vw,210px);line-height:.88;letter-spacing:-.045em;margin:0}
+.ahero p{font-size:clamp(20px,2vw,26px);line-height:1.2;letter-spacing:-.01em;color:var(--fg-2);margin:0;max-width:24ch}
+.filters{display:flex;flex-wrap:wrap;gap:8px}
+.amap{position:relative;background:var(--ink);min-height:520px;overflow:hidden}
+.amap canvas,.pmap canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.amap .hint,.pmap .hint{position:absolute;left:12px;bottom:10px;margin:0;font:300 12px var(--mono);color:var(--fg-3);pointer-events:none}
+.wrap{max-width:1180px;margin-inline:auto;padding-inline:max(16px,env(safe-area-inset-left,0px))}
+.lead-post{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:0;margin:clamp(72px,14vh,140px) auto clamp(40px,8vh,80px);border:1px solid var(--line);background:color-mix(in srgb,var(--page) 62%,rgba(255,255,255,.2));text-decoration:none;min-height:420px}
+.lead-post .txt{padding:28px;display:grid;align-content:space-between;gap:24px}
+.lead-post h2{font-weight:500;font-size:clamp(32px,3.6vw,52px);line-height:1.02;letter-spacing:-.025em;margin:0}
+.lead-post p{margin:0;color:var(--fg-2);font-size:19px;line-height:1.3;max-width:40ch}
+.lead-post .art{position:relative;background:var(--ink);min-height:300px}
+.lead-post .art canvas{position:absolute;inset:0;width:100%;height:100%}
+.lead-post:hover h2{text-decoration:underline;text-underline-offset:6px;text-decoration-thickness:2px}
+.meta{display:flex;flex-wrap:wrap;gap:6px 16px;font:300 13px var(--mono);color:var(--fg-2)}
+.list{list-style:none;margin:0 auto clamp(80px,14vh,160px);padding:0;border-bottom:1px solid var(--line)}
+.row{border-top:1px solid var(--line);transition:opacity .4s ease}
+.row a{display:grid;grid-template-columns:52px 120px minmax(0,1fr) 170px 96px 28px;gap:16px;align-items:baseline;padding:22px 8px;text-decoration:none;position:relative}
+.row a::before{content:"";position:absolute;inset:0;background:#fff;transform:scaleY(0);transform-origin:50% 100%;transition:transform .45s cubic-bezier(.2,.8,.2,1);z-index:-1}
+.row a:hover::before,.row a:focus-visible::before{transform:scaleY(1)}
+.row a:hover,.row a:focus-visible{color:var(--ink)}
+.row .n,.row time,.row .rt{font:300 13px var(--mono);color:inherit;opacity:.75}
+.row h3{margin:0;font-weight:500;font-size:clamp(22px,2.4vw,34px);line-height:1.08;letter-spacing:-.02em}
+.row .cat{font:300 12px var(--mono)}
+.row .go{font:300 18px var(--mono);transition:transform .3s ease}
+.row a:hover .go{transform:translateX(6px)}
+.row.out{display:none}
+.peek{position:fixed;left:0;top:0;z-index:30;width:300px;height:190px;pointer-events:none;opacity:0;transform:scale(.9);transition:opacity .25s ease,transform .25s ease;background:var(--ink);border:1px solid rgba(255,255,255,.35)}
+.peek.on{opacity:1;transform:scale(1)}
+.peek canvas{width:100%;height:100%;display:block}
+.sec-title{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin:0 0 18px;padding-inline:8px}
+.sec-title h2{font-weight:500;font-size:clamp(40px,6vw,88px);letter-spacing:-.03em;line-height:1;margin:0}
+
+/* Single post */
+.progress{position:fixed;left:0;top:var(--head);height:2px;width:100%;z-index:21;background:var(--mint);transform-origin:0 50%;transform:scaleX(0)}
+.phero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px;padding:10px 16px;min-height:calc(100vh - var(--head));min-height:calc(100dvh - var(--head))}
+.phero-text{display:grid;align-content:space-between;gap:28px;padding:18px 8px 8px}
+.crumbs{font:300 13px var(--mono);color:var(--fg-2);display:flex;gap:8px;flex-wrap:wrap}
+.crumbs a{text-decoration:none}.crumbs a:hover{text-decoration:underline}
+.phero h1{font-weight:500;font-size:clamp(40px,5.2vw,84px);line-height:.98;letter-spacing:-.035em;margin:14px 0 0;text-wrap:balance}
+.phero .lede{font-size:clamp(19px,1.7vw,23px);line-height:1.28;color:var(--fg-2);margin:0;max-width:44ch}
+.pmap{position:relative;background:var(--ink);min-height:520px;overflow:hidden}
+.read{display:grid;grid-template-columns:minmax(0,200px) minmax(0,700px) minmax(0,220px);justify-content:center;gap:clamp(24px,4vw,64px);padding:clamp(80px,14vh,140px) 16px clamp(60px,10vh,120px)}
+.toc{position:sticky;top:calc(var(--head) + 32px);align-self:start;font:300 13px/1.35 var(--mono)}
+.toc b{display:block;font-weight:300;color:var(--fg-3);margin-bottom:10px}
+.toc ol{list-style:none;margin:0;padding:0}
+.toc a{display:grid;grid-template-columns:minmax(0,1fr) 8px;gap:10px;align-items:center;padding:6px 0;text-decoration:none;color:var(--fg-2)}
+.toc a::after{content:"";width:6px;height:6px;border-radius:50%;border:1px solid var(--fg-2)}
+.toc a[aria-current="true"]{color:#fff}
+.toc a[aria-current="true"]::after{background:#fff;border-color:#fff}
+.notes{position:sticky;top:calc(var(--head) + 32px);align-self:start;border:1px solid var(--line);font:300 12px/1.45 var(--mono);background:var(--page);transition:background-color .8s ease}
+.notes b{display:block;font-weight:300;color:var(--fg-2);padding:6px 8px;border-bottom:1px solid var(--line)}
+.notes ol{list-style:none;margin:0;padding:8px;display:grid;gap:8px}
+.notes li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px;opacity:.45;transition:opacity .3s ease}
+.notes li.on{opacity:1}
+.notes a{word-break:break-word}
+.notes .none{padding:8px;color:var(--fg-3)}
+#wires{position:fixed;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
+.body{min-width:0;font-size:19px;line-height:1.62;color:var(--fg)}
+.body>p:first-child::first-letter{font-size:3.3em;float:left;line-height:.86;margin:.06em .1em 0 0;font-weight:500}
+.body p{margin:0 0 1.1em}
+.body a{text-decoration-color:rgba(255,255,255,.5);text-underline-offset:3px}
+.body a:hover{text-decoration-color:var(--mint);color:var(--mint)}
+.body strong{font-weight:500;color:#fff;background:linear-gradient(transparent 62%,rgba(124,242,198,.22) 62%)}
+.body h2{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;align-items:baseline;font-weight:500;font-size:clamp(28px,2.8vw,38px);line-height:1.08;letter-spacing:-.02em;margin:2.2em 0 .7em;padding-top:18px;border-top:1px solid var(--line)}
+.body h2 .no{font:300 13px var(--mono);color:var(--mint);transform:translateY(-.5em)}
+.body h3{font-weight:500;font-size:22px;line-height:1.2;margin:1.6em 0 .5em;display:flex;gap:10px;align-items:baseline}
+.body h3::before{content:"";flex:none;width:6px;height:6px;border:1px solid currentColor;transform:translateY(-3px)}
+.body ul,.body ol{margin:0 0 1.2em;padding:0;list-style:none;display:grid;gap:.55em}
+.body ul li{display:grid;grid-template-columns:14px minmax(0,1fr);gap:10px}
+.body ul li::before{content:"";width:6px;height:6px;border:1px solid var(--fg-2);margin-top:.66em}
+.body ol{counter-reset:o}
+.body ol li{counter-increment:o;display:grid;grid-template-columns:30px minmax(0,1fr);gap:8px}
+.body ol li::before{content:counter(o,decimal-leading-zero);font:300 13px/1.9 var(--mono);color:var(--mint)}
+.body ul.checklist li::before{border-color:var(--mint);background:linear-gradient(var(--mint),var(--mint)) center/0 0 no-repeat;transition:background-size .3s ease}
+.body ul.checklist li.seen::before{background-size:100% 100%}
+.body code{font:300 .82em var(--mono);background:var(--ink);padding:2px 6px;border-radius:5px}
+.body pre{background:var(--ink);padding:16px;overflow-x:auto;border-radius:10px;font:300 14px/1.6 var(--mono)}
+.table{overflow-x:auto;margin:0 0 1.4em;border:1px solid var(--line)}
+.body table{border-collapse:collapse;width:100%;font-size:15px;line-height:1.4}
+.body th{font:300 12px var(--mono);text-align:left;color:var(--fg-2);background:var(--panel)}
+.body th,.body td{padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+.body tr:last-child td{border-bottom:0}
+.body tr:hover td{background:rgba(255,255,255,.05)}
+.callout{position:relative;margin:1.6em 0;padding:20px 22px 20px 22px;border:1px solid var(--line);background:color-mix(in srgb,var(--page) 62%,rgba(255,255,255,.2))}
+.callout::before{content:"Not";position:absolute;left:-1px;top:-11px;background:var(--mint);color:var(--ink);font:400 11px var(--mono);padding:2px 7px}
+.callout p:last-child{margin:0}
+.ref{font:300 11px var(--mono);color:var(--mint);margin-left:2px;vertical-align:super;line-height:0;text-decoration:none}
+.faq{margin-top:2.2em}
+.faq details{border-top:1px solid var(--line)}
+.faq details:last-child{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:minmax(0,1fr) 24px;gap:12px;padding:16px 0;font-weight:500;font-size:20px;line-height:1.25}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font:300 22px/1 var(--mono);transition:transform .3s ease;text-align:center}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{margin:0 0 18px;color:var(--fg-2)}
+.byline{margin-top:3em;padding:20px;border:1px solid var(--line);display:grid;grid-template-columns:52px minmax(0,1fr);gap:16px;align-items:center}
+.byline .mono-av{width:52px;height:52px;display:grid;place-items:center;background:#fff;color:var(--ink);font:500 18px var(--sans);letter-spacing:-.02em}
+.byline p{margin:2px 0 0;color:var(--fg-2);font-size:15px;line-height:1.4}
+.next{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.next a{position:relative;display:grid;gap:10px;padding:clamp(28px,6vh,56px) 16px;text-decoration:none;min-width:0}
+.next a+a{border-left:1px solid var(--line);text-align:right}
+.next strong{font-weight:500;font-size:clamp(24px,3vw,44px);line-height:1.04;letter-spacing:-.025em}
+.next a::before{content:"";position:absolute;inset:0;background:#fff;transform:scaleX(0);transform-origin:0 50%;transition:transform .5s cubic-bezier(.2,.8,.2,1);z-index:-1}
+.next a+a::before{transform-origin:100% 50%}
+.next a:hover::before{transform:scaleX(1)}
+.next a:hover{color:var(--ink)}
+.related{padding:clamp(80px,14vh,140px) 16px}
+.rel{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.rel a{display:grid;grid-template-rows:auto 1fr;text-decoration:none;border:1px solid var(--line);background:var(--panel);min-width:0}
+.rel .art{position:relative;aspect-ratio:3/2;background:var(--ink)}
+.rel .art canvas{position:absolute;inset:0;width:100%;height:100%}
+.rel div.t{padding:14px;display:grid;gap:8px;align-content:start}
+.rel strong{font-weight:500;font-size:19px;line-height:1.15}
+.rel a:hover{border-color:#fff}
+.foot{position:relative;z-index:2;border-top:1px solid var(--line);padding:28px 16px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font:300 13px var(--mono);color:var(--fg-2)}
+.foot a{text-decoration:none}.foot a:hover{text-decoration:underline}
+
+/* Entrances */
+.rise{opacity:0;transform:translate3d(0,26px,0);transition:opacity .8s ease,transform .9s cubic-bezier(.2,.8,.2,1);transition-delay:calc(var(--d,0) * 60ms)}
+.rise.seen{opacity:1;transform:none}
+.split-ch{display:inline-block;opacity:0;transform:translate3d(0,.6em,0);animation:ch .8s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:calc(var(--i) * 28ms + 150ms)}
+@keyframes ch{to{opacity:1;transform:none}}
+
+@media (max-width:1180px){.notes{display:none}.read{grid-template-columns:minmax(0,190px) minmax(0,700px)}#wires{display:none}}
+@media (max-width:980px){
+  .row a{grid-template-columns:40px minmax(0,1fr) 28px;gap:6px 12px}
+  .row time,.row .rt{display:none}
+  .row .cat{grid-column:2;grid-row:2}
+  .lead-post{grid-template-columns:minmax(0,1fr)}
+  .rel{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:860px){
+  .top-links a:not(.cta){display:none}
+  .ahero,.phero{grid-template-columns:minmax(0,1fr);min-height:0}
+  .amap,.pmap{min-height:0;aspect-ratio:1/1;order:-1}
+  .ahero h1{font-size:clamp(72px,24vw,120px)}
+  .read{grid-template-columns:minmax(0,1fr);padding-top:48px}
+  .toc{position:relative;top:auto;border:1px solid var(--line);padding:12px}
+  .body{font-size:18px}
+  .next{grid-template-columns:minmax(0,1fr)}
+  .next a+a{border-left:0;border-top:1px solid var(--line);text-align:left}
+  .peek{display:none}
+}
+@media (max-width:560px){.rel{grid-template-columns:minmax(0,1fr)}}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .rise,.split-ch{opacity:1;transform:none;animation:none;transition:none}
+  .row a::before,.next a::before{transition:none}
+}
+.srcs{display:none;margin-top:2.4em;border-top:1px solid var(--line);padding-top:12px}
+.srcs ol{font:300 13px var(--mono)}
+@media (max-width:1180px){.srcs{display:block}}
+</style>
+</head>
+<body>
+<canvas id="sky" aria-hidden="true"></canvas><header class="top"><a class="brand" href="../">Aylin İnci<small>Taslak</small></a><nav class="top-links" aria-label="Ana menü"><a href="../#hakkimda">Hakkımda</a><a href="../blog.html" aria-current="page">Yazılar</a><a href="../#iletisim">İletişim</a><a class="cta" href="https://aylininci.com/Aylin_Inci_CV_TR.pdf" target="_blank" rel="noopener">Özgeçmiş</a></nav></header>
+<div class="progress" id="bar" aria-hidden="true"></div>
+<canvas id="wires" aria-hidden="true"></canvas>
+<main>
+<article>
+  <header class="phero">
+    <div class="phero-text">
+      <div><nav class="crumbs" aria-label="Sayfa yolu"><a href="../">Anasayfa</a><span>/</span><a href="../blog.html">Yazılar</a><span>/</span><span>GEO</span></nav><h1 data-split>Google AI Modu ve SEO: Tıklamalar Azalırken Görünürlüğü Korumak</h1></div>
+      <p class="lede">Google'ın AI Modu ve AI Bakışı artık Türkiye'de Türkçe kullanılıyor ve birçok sitede gösterimler yerinde dururken tıklamalar azalıyor. Bu yazıda AI Modu'nun nasıl çalıştığını, trafiğe etkisi hakkındaki verilerin gerçekte ne söylediğini ve Search Console'un yeni Üretken AI raporuyla etkiyi kendi sitenizde nasıl ölçeceğinizi anlatıyorum.</p>
+      <div class="meta"><span>Aylin İnci</span><time datetime="2026-10-10">10 Ekim 2026</time><span>7 dakika okuma</span><span>9 bölüm</span></div>
+    </div>
+    <div class="pmap"><canvas id="pmap" role="img" aria-label="Yazının bölüm haritası"></canvas><p class="hint">Bölüme gitmek için bir noktaya tıklayın</p></div>
+  </header>
+  <div class="read">
+    <nav class="toc" aria-label="İçindekiler"><b>İçindekiler</b><ol><li><a href="#ai-modu-nedir-ai-bakisi-ndan-farki-ne">AI Modu nedir, AI Bakışı'ndan farkı ne?</a></li><li><a href="#query-fan-out-tek-soru-onlarca-arka-plan-aramasi">&quot;Query fan-out&quot;: tek soru, onlarca arka plan araması</a></li><li><a href="#trafige-etkisi-veriler-ne-soyluyor-ne-soylemiyor">Trafiğe etkisi: veriler ne söylüyor, ne söylemiyor?</a></li><li><a href="#google-in-resmi-tutumu-ek-bir-optimizasyon-gerekiyor-mu">Google'ın resmi tutumu: Ek bir optimizasyon gerekiyor mu?</a></li><li><a href="#etkiyi-olcmek-search-console-daki-uretken-ai-raporu">Etkiyi ölçmek: Search Console'daki Üretken AI raporu</a></li><li><a href="#ai-modu-doneminde-icerik-nasil-yazilmali">AI Modu döneminde içerik nasıl yazılmalı?</a></li><li><a href="#ai-ozelliklerinde-gorunmek-istemezseniz">AI özelliklerinde görünmek istemezseniz</a></li><li><a href="#sonuc">Sonuç</a></li><li><a href="#sss">Sık sorulan sorular</a></li></ol></nav>
+    <div class="body">
+<p>Google'ın AI Modu, 18 Şubat 2026'dan itibaren Türkiye'de Türkçe olarak kademeli şekilde kullanıma açıldı; aynı tarihte arama sonuçlarının üstünde çıkan yapay zeka özetleri, yani AI Bakışı (AI Overviews) da geldi. O günden bu yana site sahiplerinin en sık sorduğu soru aynı: "Gösterimlerimiz yerinde ama tıklamalar düşüyor, ne oluyor?"</p>
+    <p>Bu yazıda AI Modu'nun nasıl çalıştığını, trafiğe etkisi hakkında elimizdeki verinin gerçekte ne söylediğini, Google'ın resmi tutumunu ve Search Console'a eklenen yeni Üretken AI raporuyla etkiyi kendi sitenizde nasıl ölçeceğinizi anlatıyorum. Sonda da uygulanabilir bir kontrol listesi var.</p>
+
+    <h2 id="ai-modu-nedir-ai-bakisi-ndan-farki-ne"><span class="no">01</span><span>AI Modu nedir, AI Bakışı'ndan farkı ne?</span></h2>
+    <p><strong>AI Modu, Google Arama içinde sohbet biçiminde çalışan, takip soruları sorulabilen ve yanıtını birden fazla kaynaktan derleyen ayrı bir arama deneyimidir.</strong> AI Bakışı ise klasik sonuç sayfasının en üstünde beliren kısa bir özettir; altında her zamanki on mavi bağlantı durmaya devam eder.</p>
+    <div class="table"><table>
+      <tr><th>Özellik</th><th>AI Bakışı (AI Overviews)</th><th>AI Modu</th></tr>
+      <tr><td>Nerede görünür?</td><td>Klasik sonuç sayfasının üstünde</td><td>Ayrı bir sekme / mod olarak</td></tr>
+      <tr><td>Ne zaman çıkar?</td><td>Yalnızca Google özetin faydalı olacağına karar verdiğinde</td><td>Kullanıcı modu kendisi seçtiğinde</td></tr>
+      <tr><td>Etkileşim</td><td>Tek seferlik özet</td><td>Takip soruları, sesle ve kamerayla arama</td></tr>
+      <tr><td>Klasik sonuçlar</td><td>Özetin altında görünmeye devam eder</td><td>Yanıtın içinde ve yanında kaynak bağlantıları olarak</td></tr>
+    </table></div>
+    <p>Türkiye'de iki özellik de Gemini 3 model ailesiyle çalışıyor ve masaüstü arama sayfasının yanı sıra Android ve iOS Google uygulamalarında sunuluyor. Açılış kademeli olduğu için bazı kullanıcılar özelliği hâlâ görmüyor olabilir.</p>
+
+    <h2 id="query-fan-out-tek-soru-onlarca-arka-plan-aramasi"><span class="no">02</span><span>"Query fan-out": tek soru, onlarca arka plan araması</span></h2>
+    <p>AI Modu'nu klasik aramadan ayıran en önemli teknik fark <strong>query fan-out</strong> (sorgu dağıtma) yöntemi. Google'ın <a href="https://developers.google.com/search/docs/appearance/ai-features" target="_blank" rel="noopener">resmi dokümantasyonuna</a><a class="ref" href="#ref-1" aria-label="Kaynak 1">1</a> göre AI Bakışı ve AI Modu, bir yanıtı oluştururken "alt konular ve veri kaynakları genelinde birden fazla ilişkili arama" yapabiliyor.</p>
+    <p>Pratikte bu şu anlama geliyor: Kullanıcı "Küçük bir e-ticaret sitesi için hangi altyapıyı seçmeliyim?" diye sorduğunda sistem arka planda "Shopify maliyeti", "WordPress WooCommerce karşılaştırma", "Türkiye ödeme altyapısı entegrasyonu" gibi ayrı sorgular çalıştırır ve her birinden en iyi parçaları toplar. Sizin sayfanız ana soruya değil, bu alt sorulardan yalnızca birine en iyi cevabı verdiği için kaynak olarak seçilebilir.</p>
+    <div class="callout">
+      <p><strong>İçerik için çıkarım:</strong> Bir konuyu tek bir "her şeyi anlatan" sayfayla değil, alt soruların her birine net cevap veren bölümler ve birbirine bağlı sayfalarla ele almak, fan-out sırasında seçilme ihtimalini artırır. Bu, <a href="anahtar-kelime-kanibalizasyonu-analizi.html">kanibalizasyon riskini</a> yönetmeyi de daha önemli hale getiriyor: Aynı alt soruyu cevaplayan iki sayfanız varsa, ikisi de zayıf bir aday olur.</p>
+    </div>
+
+    <h2 id="trafige-etkisi-veriler-ne-soyluyor-ne-soylemiyor"><span class="no">03</span><span>Trafiğe etkisi: veriler ne söylüyor, ne söylemiyor?</span></h2>
+    <p>Bu konuda dolaşan rakamların çoğu dikkatli okunmayı gerektiriyor. En sağlam kaynaklardan biri Pew Research Center'ın Temmuz 2025'te yayımladığı, ABD'li yetişkinlerin gerçek tarama verisine dayanan <a href="https://www.pewresearch.org/short-reads/2025/07/22/google-users-are-less-likely-to-click-on-links-when-an-ai-summary-appears-in-the-results/" target="_blank" rel="noopener">araştırması</a><a class="ref" href="#ref-2" aria-label="Kaynak 2">2</a>. Buna göre AI özeti çıkan arama sayfası ziyaretlerinin yalnızca %8'inde klasik bir sonuca tıklanırken, özet çıkmayan ziyaretlerde bu oran %15. Özetin içindeki kaynak bağlantılarına tıklanması ise ziyaretlerin yalnızca %1'inde gerçekleşiyor.</p>
+    <p>AI Modu için ise "%93 tıklamasız arama" gibi çok daha çarpıcı rakamlar paylaşılıyor. Bu tür rakamlara iki nedenle temkinli yaklaşıyorum:</p>
+    <ul>
+      <li><strong>Çoğu aynı birkaç çalışmaya dayanıyor.</strong> Farklı bloglarda tekrar edilen bir rakam, bağımsız olarak doğrulanmış anlamına gelmiyor.</li>
+      <li><strong>Etki sorgu türüne göre çok değişiyor.</strong> "X nedir?" gibi bilgi amaçlı sorgular özetle kolayca cevaplanırken, satın alma, karşılaştırma ve hizmet arama sorgularında kullanıcılar hâlâ siteye gitmeye ihtiyaç duyuyor.</li>
+    </ul>
+    <p>Google'ın kendi açıklaması da bu tabloyu tamamlıyor: Şirkete göre AI özetlerinin bulunduğu sayfalardan gelen tıklamalar daha nitelikli; bu kullanıcıların sitede daha fazla zaman geçirme eğiliminde olduğunu belirtiyor. Yani doğru soru "trafik düştü mü?" değil, <strong>"hangi tür sorgularda düştü ve kalan trafik ne kadar değerli?"</strong></p>
+
+    <h2 id="google-in-resmi-tutumu-ek-bir-optimizasyon-gerekiyor-mu"><span class="no">04</span><span>Google'ın resmi tutumu: Ek bir optimizasyon gerekiyor mu?</span></h2>
+    <p>Google'ın AI özellikleri için yayımladığı rehber bu konuda oldukça net: AI Bakışı'nda veya AI Modu'nda görünmek için <strong>ek bir teknik gereksinim ya da özel bir optimizasyon yok.</strong> Sayfanın dizine eklenmiş ve arama sonuçlarında snippet (açıklama metni) ile gösterilmeye uygun olması yeterli. Google ayrıca bunun için yeni makine tarafından okunabilir dosyalara, özel AI metin dosyalarına ya da özel schema işaretlemesine gerek olmadığını belirtiyor.</p>
+    <p>Bu, "AI SEO" adıyla satılan bazı hizmetlerin vaat ettiği gizli bir formül olmadığı anlamına geliyor. Ama hiçbir şey yapmamak gerektiği anlamına da gelmiyor: Google'ın önerdiği en iyi uygulamalar, iyi yapılmış teknik SEO'nun ta kendisi.</p>
+    <ul class="checklist">
+      <li>robots.txt'de ve CDN/barındırma katmanında Googlebot'un taramasına izin verin.</li>
+      <li>Önemli sayfaları iç bağlantılarla bulunabilir hale getirin.</li>
+      <li>İyi bir sayfa deneyimi sunun (hız, mobil uyum, rahatsız etmeyen tasarım).</li>
+      <li>Önemli içeriği görsel ya da JavaScript arkasına saklamadan metin olarak sunun.</li>
+      <li>Metni kaliteli görsel ve videolarla destekleyin.</li>
+      <li>Yapılandırılmış verinin sayfada görünen metinle birebir uyumlu olmasını sağlayın.</li>
+      <li>Merchant Center ve Google İşletme Profili bilgilerinizi güncel tutun.</li>
+    </ul>
+    <p>AI özelliklerinden gelen trafik de ayrı bir arama türü olarak değil, Search Console Performans raporunda <strong>"Web"</strong> arama türünün içinde sayılıyor.</p>
+
+    <h2 id="etkiyi-olcmek-search-console-daki-uretken-ai-raporu"><span class="no">05</span><span>Etkiyi ölçmek: Search Console'daki Üretken AI raporu</span></h2>
+    <p>Uzun süre AI Modu'nun etkisini ayrı görmenin bir yolu yoktu; veriler genel toplamların içinde kayboluyordu. Google, <a href="https://developers.google.com/search/blog/2026/06/gen-ai-performance-reports" target="_blank" rel="noopener">3 Haziran 2026'da duyurduğu</a><a class="ref" href="#ref-3" aria-label="Kaynak 3">3</a> Search Generative AI performans raporlarıyla bunu değiştirdi. Rapor önce bir grup siteye açıldı; Google'ın notuna göre <strong>31 Ağustos 2026 itibarıyla dünya genelindeki tüm sitelere</strong> sunuluyor.</p>
+    <p>Raporu Search Console'da Performans bölümünün altındaki Üretken AI görünümünde bulabilirsiniz. Gösterdiği veriler:</p>
+    <div class="table"><table>
+      <tr><th>Veri</th><th>Ne gösterir?</th></tr>
+      <tr><td>Gösterimler</td><td>Sitenizin URL'lerinin AI Bakışı, AI Modu ve Discover'daki üretken AI özelliklerinde ne sıklıkla göründüğü</td></tr>
+      <tr><td>Sayfalar</td><td>Hangi URL'lerin AI özelliklerinde yer aldığı</td></tr>
+      <tr><td>Ülkeler</td><td>Görünürlüğün ülke bazında dağılımı</td></tr>
+      <tr><td>Cihazlar</td><td>Kullanıcıların hangi cihazda gördüğü (yalnızca Arama için)</td></tr>
+      <tr><td>Tarihler</td><td>Saatlik, günlük, haftalık ve aylık zaman serisi</td></tr>
+    </table></div>
+    <p>Raporun en önemli sınırlaması: <strong>tıklama, tıklama oranı, ortalama pozisyon ve sorgu verisi yok.</strong> Google ileride metrik eklemeyi planladığını söylüyor, ama şu an yalnızca "görüldünüz mü?" sorusunun cevabını veriyor.</p>
+    <h3>Raporu nasıl yorumlamalı?</h3>
+    <p>Bu sınırlamayla bile rapor çok işe yarıyor. Benim önerdiğim üç adımlık okuma şu:</p>
+    <ol>
+      <li><strong>AI'da en çok görünen sayfaları listeleyin.</strong> Üretken AI raporundaki "Sayfalar" sekmesinden ilk 20 URL'yi alın.</li>
+      <li><strong>Aynı sayfaların klasik performansına bakın.</strong> Ana Performans raporunda bu URL'lerin son 3 ay ile önceki dönemi karşılaştırın. AI gösterimi yüksek, tıklaması düşen sayfalar özetlerde "cevap kaynağı" olarak kullanılıp tıklama almayan sayfalarınızdır.</li>
+      <li><strong>Sorgu türüne göre ayırın.</strong> Bu sayfaları getiren sorguları bilgi amaçlı ("nedir", "nasıl") ve ticari/işlem amaçlı ("fiyat", "ajans", "hizmet") olarak gruplayın. Bilgi amaçlı sorgularda tıklama kaybı beklenen bir sonuç; ticari sorgularda kayıp varsa öncelikli olarak orayı inceleyin.</li>
+    </ol>
+
+    <h2 id="ai-modu-doneminde-icerik-nasil-yazilmali"><span class="no">06</span><span>AI Modu döneminde içerik nasıl yazılmalı?</span></h2>
+    <p>Google ek bir optimizasyon gerekmediğini söylese de, fan-out mantığı ve özetlerin çalışma biçimi bazı içerik alışkanlıklarını öne çıkarıyor. Bunları <a href="yapay-zeka-arama-icin-icerik-yapisi.html">yapay zeka destekli arama için içerik yapısı</a> yazımda daha ayrıntılı anlattım; AI Modu özelinde öne çıkanlar şunlar:</p>
+    <ul>
+      <li><strong>Her bölümün ilk cümlesinde doğrudan cevap verin.</strong> Bir başlığın altındaki ilk cümle tek başına okunduğunda anlamlı olmalı. Özetler çoğu zaman bu tür bağımsız cümleleri kullanıyor.</li>
+      <li><strong>Alt soruları kapsayın.</strong> Ana konunun etrafındaki 5–10 alt soruyu (maliyet, süre, alternatifler, sık yapılan hatalar) belirleyin ve her biri için net bir bölüm yazın.</li>
+      <li><strong>Özetin veremeyeceği şeyi verin.</strong> Kendi ölçümleriniz, ekran görüntüleriniz, karşılaştırma tablolarınız, araç ve şablonlar... Bir özetin yerine geçemeyeceği birinci elden bilgi, kullanıcının siteye tıklaması için en güçlü neden.</li>
+      <li><strong>Yazarı görünür kılın.</strong> Yazar adı, uzmanlık alanı ve profil bağlantıları (sayfada ve <code>Person</code> şemasında) içeriğin kimden geldiğini netleştirir. Bilgilerin gerçek olması şart: Uydurma uzman profilleri, ortaya çıktığında sitenin tüm içeriğine olan güveni zedeler.</li>
+      <li><strong>Tarih ve güncelliği belirtin.</strong> Hızlı değişen konularda yayın ve güncelleme tarihini sayfada ve <code>Article</code> şemasında açıkça gösterin; içeriği gerçekten güncellediğinizde tarihi de güncelleyin.</li>
+    </ul>
+
+    <h2 id="ai-ozelliklerinde-gorunmek-istemezseniz"><span class="no">07</span><span>AI özelliklerinde görünmek istemezseniz</span></h2>
+    <p>Bazı siteler, özellikle içeriğin kendisini satan yayıncılar, metinlerinin özetlerde kullanılmasını sınırlamak isteyebilir. Google'ın sunduğu kontroller şunlar:</p>
+    <ul>
+      <li><code>nosnippet</code>, <code>data-nosnippet</code> ve <code>max-snippet</code>: Sayfadan ne kadar metnin gösterilebileceğini sınırlar; AI özelliklerinde kullanımı da etkiler.</li>
+      <li><code>noindex</code>: Sayfayı aramadan tamamen çıkarır.</li>
+      <li><code>Google-Extended</code>: İçeriğin Google'ın diğer yapay zeka sistemlerinde eğitim ve temellendirme amacıyla kullanılmasını sınırlar.</li>
+    </ul>
+    <p>Bu kontrollerin bir bedeli var: Snippet'i kısıtlamak klasik arama sonuçlarındaki görünümünüzü de etkiler. Çoğu işletme sitesi için doğru tercih, görünmeyi engellemek değil, görünürken tıklanmaya değer olmaktır.</p>
+
+    <h2 id="sonuc"><span class="no">08</span><span>Sonuç</span></h2>
+    <p>AI Modu, SEO'yu bitirmiyor ama "sıralama" kavramını genişletiyor. Artık hedef yalnızca ilk sıraya çıkmak değil, yanıtların içinde kaynak olarak yer almak ve kullanıcının tıklamak için hâlâ nedeni olan içeriği üretmek. İyi haber şu: Bunun yolu yeni bir hile değil, sağlam teknik altyapı, net yazılmış içerik ve birinci elden bilgi. Kötü haber de aynı: Kestirme yol yok.</p>
+    <p>İlk adım olarak bu hafta Search Console'daki Üretken AI raporunu açın ve AI'da en çok görünen 20 sayfanızı klasik performanslarıyla karşılaştırın. Nereden başlamanız gerektiğini büyük ihtimalle o tablo söyleyecek.</p>
+<section class="faq"><h2 id="sss"><span class="no">09</span><span>Sık sorulan sorular</span></h2><details><summary>Google AI Modu Türkiye'de kullanılabiliyor mu?</summary><p>Evet. Google, AI Modu'nu AI Bakışı ile birlikte 18 Şubat 2026'dan itibaren Türkiye'de Türkçe olarak kademeli şekilde kullanıma sundu. Özellik Google Arama'da ve Android ile iOS Google uygulamalarında bulunuyor.</p></details><details><summary>AI Modu'nda görünmek için özel bir optimizasyon gerekiyor mu?</summary><p>Google'a göre hayır. Sayfanın dizine eklenmiş ve snippet ile gösterilmeye uygun olması yeterli; özel bir dosya ya da schema gerekmiyor. Ancak net yazılmış, alt soruları kapsayan ve teknik olarak sağlam içerik, yanıtlarda kaynak olarak seçilme ihtimalini artırır.</p></details><details><summary>AI Modu trafiği Search Console'da nerede görünür?</summary><p>AI Bakışı ve AI Modu'ndan gelen trafik Performans raporunda "Web" arama türünün içinde sayılır. Ayrıca 31 Ağustos 2026 itibarıyla tüm sitelere açılan Üretken AI raporu, URL'lerinizin bu özelliklerde kaç kez gösterildiğini ayrı olarak gösterir; ancak tıklama ve sorgu verisi içermez.</p></details><details><summary>Tıklamalarım düştü; içeriği AI özetlerinden çıkarmalı mıyım?</summary><p>Çoğu işletme için önerilmez. nosnippet veya max-snippet gibi kontroller AI özelliklerindeki kullanımı sınırlar ama klasik arama sonuçlarındaki görünümünüzü de kısıtlar. Önce hangi sorgu türlerinde tıklama kaybettiğinizi ölçün; bilgi amaçlı sorgulardaki kayıp beklenen bir sonuçtur, asıl odak ticari sorgular olmalıdır.</p></details></section>
+<section class="srcs" aria-label="Kaynaklar"><h3>Kaynaklar</h3><ol><li id="ref-1"><a href="https://developers.google.com/search/docs/appearance/ai-features" target="_blank" rel="noopener">developers.google.com</a></li><li id="ref-2"><a href="https://www.pewresearch.org/short-reads/2025/07/22/google-users-are-less-likely-to-click-on-links-when-an-ai-summary-appears-in-the-results/" target="_blank" rel="noopener">pewresearch.org</a></li><li id="ref-3"><a href="https://developers.google.com/search/blog/2026/06/gen-ai-performance-reports" target="_blank" rel="noopener">developers.google.com</a></li></ol></section>
+      <div class="byline"><span class="mono-av" aria-hidden="true">Aİ</span><div><strong>Aylin İnci</strong><p>Teknik SEO, GEO ve web geliştirme üzerine çalışıyor; içerik yapısı ve arama görünürlüğü odaklı danışmanlık veriyor. <a href="https://www.linkedin.com/in/aylin-inci/" target="_blank" rel="noopener">LinkedIn</a></p></div></div>
+    </div>
+    <aside class="notes" aria-label="Kaynaklar"><b>Kaynaklar</b><ol><li data-s="1"><span>[1]</span><a href="https://developers.google.com/search/docs/appearance/ai-features" target="_blank" rel="noopener">developers.google.com</a></li><li data-s="2"><span>[2]</span><a href="https://www.pewresearch.org/short-reads/2025/07/22/google-users-are-less-likely-to-click-on-links-when-an-ai-summary-appears-in-the-results/" target="_blank" rel="noopener">pewresearch.org</a></li><li data-s="4"><span>[3]</span><a href="https://developers.google.com/search/blog/2026/06/gen-ai-performance-reports" target="_blank" rel="noopener">developers.google.com</a></li></ol></aside>
+  </div>
+</article>
+<nav class="next" aria-label="Diğer yazılar"><a href="shopify-agentic-storefronts-chatgpt.html"><span class="mono">← Önceki yazı</span><strong>Shopify Agentic Storefronts: Ürünlerinizi ChatGPT, Copilot ve Google AI Modu'nda Satmak</strong></a><a href="yapay-zeka-icerik-google-seo.html"><span class="mono">Sonraki yazı →</span><strong>Yapay Zeka ile İçerik Üretimi ve Google: 2026'da Ne Değişti?</strong></a></nav>
+<section class="related"><div class="sec-title rise"><h2>İlgili yazılar</h2><a class="chip" href="../blog.html">Tüm yazılar</a></div><div class="rel"><a class="rise" style="--d:0" href="chatgpt-trafigi-ga4-olcumu.html"><div class="art"><canvas data-slug="chatgpt-trafigi-ga4-olcumu" data-bg="#6A1045" aria-hidden="true"></canvas></div><div class="t"><span class="mono">Analitik · 4 dk</span><strong>ChatGPT Trafiği GA4'te Neden Direct Görünüyor? Yapay Zeka Trafiğini Ölçmek</strong></div></a><a class="rise" style="--d:1" href="shopify-agentic-storefronts-chatgpt.html"><div class="art"><canvas data-slug="shopify-agentic-storefronts-chatgpt" data-bg="#0A5A3C" aria-hidden="true"></canvas></div><div class="t"><span class="mono">Shopify · 6 dk</span><strong>Shopify Agentic Storefronts: Ürünlerinizi ChatGPT, Copilot ve Google AI Modu'nda Satmak</strong></div></a><a class="rise" style="--d:2" href="yapay-zeka-arama-icin-icerik-yapisi.html"><div class="art"><canvas data-slug="yapay-zeka-arama-icin-icerik-yapisi" data-bg="#2A0FA8" aria-hidden="true"></canvas></div><div class="t"><span class="mono">GEO · 13 dk</span><strong>Yapay Zeka Destekli Arama Sistemleri İçin İçerik Yapısı</strong></div></a><a class="rise" style="--d:3" href="anahtar-kelime-kanibalizasyonu-analizi.html"><div class="art"><canvas data-slug="anahtar-kelime-kanibalizasyonu-analizi" data-bg="#4A0B7A" aria-hidden="true"></canvas></div><div class="t"><span class="mono">İçerik Stratejisi · 13 dk</span><strong>Anahtar Kelime Kanibalizasyonunun Analizi: Sayfalarınız Birbirinizle mi Yarışıyor?</strong></div></a></div></section>
+</main>
+<footer class="foot"><span>© 2026 Aylin İnci</span><span><a href="../">Anasayfa</a> · <a href="../blog.html">Yazılar</a> · <a href="https://www.linkedin.com/in/aylin-inci/" target="_blank" rel="noopener">LinkedIn</a></span></footer><script>(function () {
+  /* Blog pages: drawn maps replace photos. Each post gets its own constellation from its slug, coloured by topic. */
+  var DATA = {"page":"post","slug":"google-ai-modu-seo","sections":[{"id":"ai-modu-nedir-ai-bakisi-ndan-farki-ne","short":"AI Modu nedir, AI Bakışı'…","n":3},{"id":"query-fan-out-tek-soru-onlarca-arka-plan-aramasi","short":"\"Query fan-out\": tek soru…","n":2},{"id":"trafige-etkisi-veriler-ne-soyluyor-ne-soylemiyor","short":"Trafiğe etkisi: veriler n…","n":2},{"id":"google-in-resmi-tutumu-ek-bir-optimizasyon-gerekiyor-mu","short":"Google'ın resmi tutumu: E…","n":5},{"id":"etkiyi-olcmek-search-console-daki-uretken-ai-raporu","short":"Etkiyi ölçmek: Search Con…","n":6},{"id":"ai-modu-doneminde-icerik-nasil-yazilmali","short":"AI Modu döneminde içerik…","n":3},{"id":"ai-ozelliklerinde-gorunmek-istemezseniz","short":"AI özelliklerinde görünme…","n":2},{"id":"sonuc","short":"Sonuç","n":2},{"id":"sss","short":"Sık sorulan sorular","n":4}]};
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var root = document.documentElement, body = document.body;
+  var INK = [1, 4, 25], MINT = [124, 242, 198], BLUE = [96, 132, 255];
+  var clamp = function (v) { return v < 0 ? 0 : v > 1 ? 1 : v; };
+  var lerp = function (a, b, t) { return a + (b - a) * t; };
+  var rgb = function (c, a) { return 'rgba(' + (c[0] | 0) + ',' + (c[1] | 0) + ',' + (c[2] | 0) + ',' + a + ')'; };
+  var hex = function (h) { return [parseInt(h.slice(1, 3), 16), parseInt(h.slice(3, 5), 16), parseInt(h.slice(5, 7), 16)]; };
+  var seeded = function (s) { var h = 2166136261; for (var i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return function () { h = Math.imul(h ^ (h >>> 15), 2246822507); h = Math.imul(h ^ (h >>> 13), 3266489909); h ^= h >>> 16; return (h >>> 0) / 4294967296; }; };
+  var mobile = innerWidth <= 860, all = [];
+
+  /* Sky: slow white dots behind everything */
+  var sky = document.getElementById('sky'), sc = sky.getContext('2d'), dots = [];
+  var r0 = seeded('sky'); for (var d = 0; d < 140; d++) dots.push({ x: r0(), y: r0(), s: r0() < .85 ? 1 : 2, v: .4 + r0() });
+  function paintSky(now) {
+    sky.width = innerWidth; sky.height = innerHeight; sc.fillStyle = 'rgba(255,255,255,.3)';
+    var drift = reduce ? 0 : now / 90000, y = scrollY;
+    dots.forEach(function (p) { var py = (p.y + drift * p.v - y / 60000 * p.v) % 1; if (py < 0) py += 1; sc.fillRect(p.x * sky.width, py * sky.height, p.s, p.s); });
+  }
+
+  /* One constellation: hubs with satellites on a slowly turning sphere */
+  function Map(canvas, opt) {
+    var c = canvas.getContext('2d'), rnd = seeded(opt.seed), W = 0, H = 0, dpr = Math.min(devicePixelRatio || 1, 1.5);
+    var hubs = opt.hubs.map(function (h, i) {
+      var a = i / opt.hubs.length * 6.283 + rnd() * .4, r = opt.hubs.length > 1 ? .6 + rnd() * .3 : 0;
+      var hub = { label: h.label, tag: h.tag, href: h.href, i: i, x: Math.cos(a) * r, y: (rnd() - .5) * .9, z: Math.sin(a) * r * .7, sats: [] };
+      for (var s = 0; s < h.n + (opt.deco || 0); s++) { var b = rnd() * 6.283, e = (rnd() - .5) * 2.4, l = .16 + rnd() * .2; hub.sats.push({ label: h.items && s < h.n ? h.items[s] : '', href: h.hrefs && s < h.n ? h.hrefs[s] : null, x: Math.cos(b) * Math.cos(e) * l, y: Math.sin(e) * l, z: Math.sin(b) * Math.cos(e) * l, box: rnd() < .3 }); }
+      return hub;
+    });
+    var extra = []; for (var k = 0; k < (opt.dust || 70); k++) extra.push({ x: (rnd() - .5) * 2.4, y: (rnd() - .5) * 1.6, z: (rnd() - .5) * 2.4 });
+    var self = { active: -1, hover: null, mx: -1, my: -1, tilt: 0, pts: [], col: opt.col || BLUE, t0: performance.now() };
+    function size() { var r = canvas.getBoundingClientRect(); W = r.width; H = r.height; canvas.width = W * dpr; canvas.height = H * dpr; }
+    function proj(p, yaw, pitch) {
+      var cy = Math.cos(yaw), sy = Math.sin(yaw), cp = Math.cos(pitch), sp = Math.sin(pitch);
+      var x = p.x * cy + p.z * sy, z = -p.x * sy + p.z * cy, y = p.y * cp - z * sp; z = p.y * sp + z * cp;
+      var f = 2.4 / (2.4 + z), s = Math.min(W, H) * (opt.zoom || .62);
+      return { x: W / 2 + x * s * f, y: H / 2 + y * s * f, p: f, z: z };
+    }
+    self.draw = function (now) {
+      if (!W) size();
+      var t = reduce ? 0 : (now - self.t0) / 1000, open = reduce ? 1 : clamp(t / 1.4);
+      var yaw = (reduce ? .4 : Math.sin(now * .00011) * .35 + now * .00004 * (opt.spin || 1)) + self.tilt * .25, pitch = .12 + (reduce ? 0 : Math.sin(now * .00017) * .08);
+      c.setTransform(dpr, 0, 0, dpr, 0, 0); c.clearRect(0, 0, W, H);
+      c.fillStyle = 'rgba(255,255,255,.22)';
+      extra.forEach(function (p) { var q = proj(p, yaw * .6, pitch); if (q.x > 0 && q.x < W && q.y > 0 && q.y < H) c.fillRect(q.x, q.y, 1, 1); });
+      var C = opt.center ? proj({ x: 0, y: 0, z: 0 }, yaw, pitch) : null, pts = [];
+      hubs.forEach(function (h, i) {
+        var e = clamp(open * 1.4 - i * .06), hp = proj({ x: h.x * e, y: h.y * e, z: h.z * e }, yaw, pitch), on = self.active === i || (self.hover && self.hover.hub === h);
+        if (C) { c.strokeStyle = on ? rgb(MINT, .9) : 'rgba(255,255,255,.28)'; c.lineWidth = on ? 1.2 : 1; c.beginPath(); c.moveTo(C.x, C.y); c.lineTo(hp.x, hp.y); c.stroke(); }
+        h.sats.forEach(function (s, q) {
+          var sp = proj({ x: h.x * e + s.x * e, y: h.y * e + s.y * e, z: h.z * e + s.z * e }, yaw, pitch), lit = self.hover === s;
+          var near = self.mx < 0 ? 0 : clamp(1.2 - Math.sqrt((sp.x - self.mx) * (sp.x - self.mx) + (sp.y - self.my) * (sp.y - self.my)) / 150);
+          c.strokeStyle = on || lit ? rgb(MINT, .75) : rgb(lerp(BLUE[0], 255, near), (.22 + near * .5) * e); c.lineWidth = 1; c.beginPath(); c.moveTo(hp.x, hp.y); c.lineTo(sp.x, sp.y); c.stroke();
+          if (s.box) { c.fillStyle = rgb(INK, e); c.fillRect(sp.x - 8, sp.y - 6, 16, 12); c.strokeStyle = 'rgba(255,255,255,' + .7 * e + ')'; c.strokeRect(sp.x - 8, sp.y - 6, 16, 12); c.fillStyle = 'rgba(255,255,255,' + e + ')'; c.fillRect(sp.x - 5, sp.y - 3, 7, 6); c.fillRect(sp.x + 3, sp.y - 3, 3, 3); }
+          else { c.fillStyle = lit || near > .25 || on ? 'rgba(255,255,255,' + e + ')' : rgb([150, 180, 255], e * .9); c.beginPath(); c.arc(sp.x, sp.y, (1.6 + near * 1.4) * sp.p + (lit ? 1.5 : 0), 0, 6.283); c.fill(); }
+          pts.push({ x: sp.x, y: sp.y, item: s, hub: h });
+        });
+        var hs = (on ? 5.5 : 4) * hp.p; c.fillStyle = on ? rgb(MINT, 1) : rgb(BLUE, 1); c.fillRect(hp.x - hs, hp.y - hs, hs * 2, hs * 2);
+        pts.push({ x: hp.x, y: hp.y, item: h, hub: h, isHub: true });
+        var full = on || self.hover === h, text = h.tag && !full ? h.tag : (h.tag ? h.tag + '  ' + h.label : h.label);
+        if (text && opt.labels !== false && e > .5) {
+          c.font = '400 12px "Geist Mono", monospace'; var lw = c.measureText(text).width;
+          var lx = hp.x + 9, ly = hp.y - 7; if (lx + lw > W - 6) lx = hp.x - 9 - lw;
+          c.fillStyle = on ? rgb(MINT, 1) : rgb(INK, .85); c.fillRect(lx - 4, ly - 12, lw + 8, 17);
+          c.fillStyle = on ? rgb(INK, 1) : 'rgba(255,255,255,.95)'; c.fillText(text, lx, ly);
+        }
+      });
+      if (C) { c.strokeStyle = '#fff'; c.lineWidth = 1; c.beginPath(); c.arc(C.x, C.y, 6, 0, 6.283); c.stroke(); c.fillStyle = rgb(MINT, 1); c.fillRect(C.x - 2, C.y - 2, 4, 4); }
+      if (self.hover && self.hover.label && !self.hover.sats) {
+        var hv = pts.filter(function (p) { return p.item === self.hover; })[0];
+        if (hv) { c.font = '400 12px "Geist Mono", monospace'; var w2 = c.measureText(self.hover.label).width, x2 = Math.min(hv.x + 10, W - w2 - 10); c.fillStyle = '#fff'; c.fillRect(x2 - 5, hv.y - 22, w2 + 10, 18); c.fillStyle = rgb(INK, 1); c.fillText(self.hover.label, x2, hv.y - 9); }
+      }
+      self.pts = pts;
+    };
+    self.pick = function (x, y) {
+      var best = null, lim = 24 * 24;
+      self.pts.forEach(function (p) { var d = (p.x - x) * (p.x - x) + (p.y - y) * (p.y - y); if (d < lim && (p.item.href || p.isHub)) { lim = d; best = p; } });
+      return best;
+    };
+    self.size = size;
+    all.push(self);
+    return self;
+  }
+  function interactive(map, canvas, onPick) {
+    canvas.addEventListener('mousemove', function (e) {
+      var r = canvas.getBoundingClientRect(); map.mx = e.clientX - r.left; map.my = e.clientY - r.top; map.tilt = (map.mx / r.width - .5) * 2;
+      var p = map.pick(map.mx, map.my); map.hover = p ? p.item : null; canvas.style.cursor = p && (p.item.href || p.isHub) ? 'pointer' : '';
+    });
+    canvas.addEventListener('mouseleave', function () { map.mx = map.my = -1; map.hover = null; map.tilt = 0; });
+    canvas.addEventListener('click', function (e) { var r = canvas.getBoundingClientRect(), p = map.pick(e.clientX - r.left, e.clientY - r.top); if (p) onPick(p); });
+  }
+  /* Small static art for cards: one frame of a post's map */
+  function art(canvas, slug, col, n) {
+    var m = Map(canvas, { seed: slug, col: col, hubs: [{ label: '', n: 8 + n % 4 }, { label: '', n: 6 + n % 3 }, { label: '', n: 7 }, { label: '', n: 5 + n % 2 }], center: true, labels: false, zoom: .55, dust: 60 });
+    m.t0 = -1e9; return m;
+  }
+
+  var loops = [];
+  function loop(now) {
+    paintSky(now);
+    loops.forEach(function (f) { f(now); });
+    if (!reduce) requestAnimationFrame(loop);
+  }
+  var visible = function (el) { var r = el.getBoundingClientRect(); return r.bottom > 0 && r.top < innerHeight; };
+
+  /* reveal on scroll */
+  var seen = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('seen'); seen.unobserve(e.target); } }); }, { rootMargin: '0px 0px -8% 0px' });
+  [].forEach.call(document.querySelectorAll('.rise,.checklist li'), function (e) { if (reduce) e.classList.add('seen'); else seen.observe(e); });
+  /* titles rise letter by letter */
+  [].forEach.call(document.querySelectorAll('[data-split]'), function (t) {
+    if (reduce) return; var text = t.textContent, i = 0; t.setAttribute('aria-label', text); t.textContent = '';
+    text.split(' ').forEach(function (w, k) {
+      if (k) t.appendChild(document.createTextNode(' '));
+      var box = document.createElement('span'); box.setAttribute('aria-hidden', 'true'); box.style.display = 'inline-block';
+      w.split('').forEach(function (l) { var s = document.createElement('span'); s.className = 'split-ch'; s.style.setProperty('--i', i++); s.textContent = l; box.appendChild(s); });
+      t.appendChild(box);
+    });
+  });
+
+  /* ---------- Archive ---------- */
+  if (DATA.page === 'archive') {
+    var base = hex(DATA.base), cur = base.slice(), goal = base.slice();
+    var cats = DATA.cats, posts = DATA.posts;
+    var amap = document.getElementById('amap');
+    var M = Map(amap, { seed: 'yazilar', hubs: cats.map(function (k) { var ps = posts.filter(function (p) { return p.cat === k.name; }); return { label: k.name, n: ps.length, items: ps.map(function (p) { return p.title; }), hrefs: ps.map(function (p) { return p.href; }) }; }), center: true, zoom: mobile ? .5 : .48, deco: 7, dust: 110 });
+    interactive(M, amap, function (p) { if (p.item.href) location.href = p.item.href; else if (p.isHub) filter(p.item.label); });
+    loops.push(function (now) { if (visible(amap)) M.draw(now); });
+    var chips = [].slice.call(document.querySelectorAll('.filters .chip')), rows = [].slice.call(document.querySelectorAll('.row'));
+    function filter(name) {
+      chips.forEach(function (c) { c.setAttribute('aria-pressed', String(c.dataset.cat === name || (!name && !c.dataset.cat))); });
+      rows.forEach(function (r) { r.classList.toggle('out', !!name && r.dataset.cat !== name); });
+      var k = cats.filter(function (x) { return x.name === name; })[0]; goal = k ? hex(k.bg) : base.slice();
+      M.active = k ? cats.indexOf(k) : -1;
+    }
+    chips.forEach(function (c) { c.addEventListener('click', function () { filter(c.getAttribute('aria-pressed') === 'true' ? '' : c.dataset.cat); }); });
+    loops.push(function () {
+      for (var i = 0; i < 3; i++) cur[i] += (goal[i] - cur[i]) * (reduce ? 1 : .06);
+      root.style.setProperty('--page', 'rgb(' + (cur[0] | 0) + ',' + (cur[1] | 0) + ',' + (cur[2] | 0) + ')');
+    });
+    /* row hover: the post's own map follows the pointer */
+    var peek = document.getElementById('peek'), pc = peek.querySelector('canvas'), pm = null, px = 0, py = 0, tx = 0, ty = 0;
+    rows.forEach(function (r) {
+      var a = r.querySelector('a');
+      a.addEventListener('mouseenter', function () { var p = posts[+r.dataset.i]; pm = art(pc, p.slug, hex(p.bg), +r.dataset.i); pm.size(); peek.classList.add('on'); M.hover = null; M.active = cats.map(function (k) { return k.name; }).indexOf(p.cat); });
+      a.addEventListener('mouseleave', function () { peek.classList.remove('on'); M.active = -1; chips.forEach(function (c) { if (c.getAttribute('aria-pressed') === 'true' && c.dataset.cat) M.active = cats.map(function (k) { return k.name; }).indexOf(c.dataset.cat); }); });
+      a.addEventListener('mousemove', function (e) { var rb = a.getBoundingClientRect(); tx = Math.max(e.clientX + 40, rb.right - 430); ty = e.clientY - 95; });
+    });
+    loops.push(function (now) {
+      if (!peek.classList.contains('on') || !pm) return;
+      px += (tx - px) * .18; py += (ty - py) * .18; peek.style.transform = 'translate3d(' + Math.min(px, innerWidth - 316).toFixed(1) + 'px,' + py.toFixed(1) + 'px,0)';
+      pm.draw(now);
+    });
+    var lead = document.getElementById('leadArt'), LM = art(lead, posts[0].slug, hex(posts[0].bg), 0);
+    LM.t0 = performance.now(); loops.push(function (now) { if (visible(lead)) LM.draw(now); });
+    if (reduce) { M.draw(0); LM.draw(0); }
+  }
+
+  /* ---------- Single post ---------- */
+  if (DATA.page === 'post') {
+    var heads = [].slice.call(document.querySelectorAll('.body h2[id]')), toc = [].slice.call(document.querySelectorAll('.toc a'));
+    var pmap = document.getElementById('pmap');
+    var PM = Map(pmap, { seed: DATA.slug, center: true, hubs: DATA.sections.map(function (s, i) { return { label: s.short, tag: (i < 9 ? '0' : '') + (i + 1), n: s.n, href: '#' + s.id }; }), zoom: mobile ? .5 : .46, spin: .6, deco: 2 });
+    interactive(PM, pmap, function (p) { var id = p.hub.href; if (id) document.querySelector(id).scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' }); });
+    loops.push(function (now) { if (visible(pmap)) PM.draw(now); });
+    var bar = document.getElementById('bar'), art0 = document.querySelector('.body'), notes = [].slice.call(document.querySelectorAll('.notes li'));
+    var wires = document.getElementById('wires'), wc = wires.getContext('2d'), current = -1;
+    function setCurrent(i) {
+      if (i === current) return; current = i; PM.active = i;
+      toc.forEach(function (a, k) { if (k === i) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current'); });
+      notes.forEach(function (n) { n.classList.toggle('on', +n.dataset.s === i); });
+    }
+    loops.push(function (now) {
+      var r = art0.getBoundingClientRect(), p = clamp((innerHeight * .5 - r.top) / r.height);
+      bar.style.transform = 'scaleX(' + p.toFixed(4) + ')';
+      var i = -1; heads.forEach(function (h, k) { if (h.getBoundingClientRect().top < innerHeight * .4) i = k; }); setCurrent(i);
+      wires.width = innerWidth; wires.height = innerHeight; wc.clearRect(0, 0, innerWidth, innerHeight);
+      if (i < 0 || innerWidth <= 1180) return;
+      var dot = toc[i].getBoundingClientRect(), h = heads[i].getBoundingClientRect(), nb = document.querySelector('.notes').getBoundingClientRect();
+      if (h.bottom < 0 || h.top > innerHeight) return;
+      var ws = [[dot.right, dot.top + dot.height / 2, h.left - 10, h.top + 30], [h.right + 10, h.top + 30, nb.left, nb.top + 14]];
+      wc.strokeStyle = 'rgba(255,255,255,.4)'; wc.lineWidth = 1; wc.beginPath(); ws.forEach(function (w) { wc.moveTo(w[0], w[1]); wc.lineTo(w[2], w[3]); }); wc.stroke();
+      if (!reduce) { var run = (now % 4000) / 4000 * 1.5 - .15; wc.strokeStyle = '#fff'; wc.lineWidth = 1.5; wc.beginPath(); ws.forEach(function (w) { var a = clamp(run), b = clamp(run + .15); if (b > a) { wc.moveTo(lerp(w[0], w[2], a), lerp(w[1], w[3], a)); wc.lineTo(lerp(w[0], w[2], b), lerp(w[1], w[3], b)); } }); wc.stroke(); }
+      wc.fillStyle = '#fff'; wc.fillRect(h.left - 12, h.top + 28, 4, 4); wc.fillRect(h.right + 8, h.top + 28, 4, 4);
+    });
+    [].forEach.call(document.querySelectorAll('.rel .art canvas'), function (cv, k) {
+      var m = art(cv, cv.dataset.slug, hex(cv.dataset.bg), k); m.size();
+      loops.push(function (now) { if (visible(cv)) m.draw(now); });
+      if (reduce) m.draw(0);
+    });
+    if (reduce) PM.draw(0);
+  }
+
+  addEventListener('resize', function () { mobile = innerWidth <= 860; all.forEach(function (m) { m.size(); if (reduce) m.draw(0); }); });
+  if (reduce) { paintSky(0); addEventListener('scroll', function () { paintSky(0); }, { passive: true }); }
+  requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>
