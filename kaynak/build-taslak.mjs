@@ -251,7 +251,10 @@ a,button,canvas{-webkit-tap-highlight-color:transparent}
   .hero{grid-template-columns:minmax(0,1fr);min-height:0}
   .word{min-height:0}
   .word span{position:static;transform:none;writing-mode:horizontal-tb;display:block;font-size:clamp(58px,17.5vw,150px);line-height:1}
-  .mapbox{order:-1;min-height:0;aspect-ratio:1/1}
+  /* phones: the word and the intro card first, then a taller map, then the other cards */
+  .stack{display:contents}
+  .word{order:0}.stack>.tile:first-child{order:1}.stack>:not(:first-child){order:3}
+  .mapbox{order:2;min-height:0;aspect-ratio:auto;height:min(118vw,72vh)}
   .points{grid-template-columns:minmax(0,1fr);gap:0}
   .card-wide.split{grid-template-columns:minmax(0,1fr)}
   .ask{width:62%;padding:8px 10px;font-size:12px}.ask span{font-size:11px}.ask p{margin-top:5px}

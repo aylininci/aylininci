@@ -26,7 +26,7 @@ body.at-top .notes{opacity:0;pointer-events:none}
   .scene{height:auto}
   .hero{position:relative;top:auto;height:auto;overflow:visible}
   .word,.stack{transform:none;will-change:auto}
-  .mapbox{aspect-ratio:1/1}
+  .mapbox{aspect-ratio:auto;height:min(118vw,72vh)}
 }
 @media (prefers-reduced-motion:reduce){
   .scene{height:auto}
