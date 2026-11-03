@@ -10,6 +10,7 @@
 - [LinkedIn](https://www.linkedin.com/in/aylin-inci/)
 
 ## Blog
+- [robots.txt ile Yapay Zeka Eğitimini Kontrol Etmek: Yeni Ortak Sinyal](https://aylininci.com/blog/robots-txt-yapay-zeka-egitimi): Google'ın 2027'de desteklemeyi planladığı ortak yapay zeka eğitim sinyali ve robots.txt'de eğitim ile aramayı ayırmanın yolu.
 - [Shopify Fall '26 Edition: Yapay Zeka Kanallarında ve SEO'da Ne Değişti?](https://aylininci.com/blog/shopify-fall-26-edition): Shopify'ın ilk sonbahar sürümü ajanlarla alışverişi öne çıkarıyor. Ürün verisi, işletme bilgileri ve mağaza tarafında önce kontrol edilecekler.
 - [Yapay Zeka ile İçerik Üretimi ve Google: 2026'da Ne Değişti?](https://aylininci.com/blog/yapay-zeka-icerik-google-seo): Google Ekim 2026'da içerik rehberini güncelledi: denetimsiz AI metni düşük emek sayılıyor. Yapay zekayı SEO'ya zarar vermeden kullanmanın yolları.
 - [ChatGPT Trafiği GA4'te Neden Direct Görünüyor? Yapay Zeka Trafiğini Ölçmek](https://aylininci.com/blog/chatgpt-trafigi-ga4-olcumu): Ekim 2026'da ChatGPT ziyaretleri GA4'te Direct göründü. Ne oldu, verinizi nasıl kontrol edersiniz ve yapay zeka trafiği için ayrı kanal nasıl kurulur?
