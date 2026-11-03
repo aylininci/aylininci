@@ -42,7 +42,9 @@ main{position:relative;z-index:2}
 .ahero-text{display:grid;align-content:space-between;gap:24px;padding:18px 8px 8px}
 .ahero h1{font-weight:500;font-size:clamp(88px,13vw,210px);line-height:.88;letter-spacing:-.045em;margin:0}
 .ahero p{font-size:clamp(20px,2vw,26px);line-height:1.2;letter-spacing:-.01em;color:var(--fg-2);margin:0;max-width:24ch}
-.filters{display:flex;flex-wrap:wrap;gap:8px}
+.filters{display:flex;flex-wrap:nowrap;gap:6px;overflow-x:auto;scrollbar-width:none;margin-right:-8px;padding-right:8px}
+.filters::-webkit-scrollbar{display:none}
+.filters .chip{flex:none;padding:4px 9px;gap:6px;font-size:11.5px}
 .amap{position:relative;background:var(--ink);min-height:520px;overflow:hidden}
 .amap canvas,.pmap canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
 .amap .hint,.pmap .hint{position:absolute;left:12px;bottom:10px;margin:0;font:300 12px var(--mono);color:var(--fg-3);pointer-events:none}
@@ -194,6 +196,7 @@ main{position:relative;z-index:2}
 .srcs{display:none;margin-top:2.4em;border-top:1px solid var(--line);padding-top:12px}
 .srcs ol{font:300 13px var(--mono)}
 @media (max-width:1180px){.srcs{display:block}}
+.filters .chip::before{display:none}
 </style>
 </head>
 <body>
@@ -272,7 +275,7 @@ main{position:relative;z-index:2}
     <p>Bu hafta yapılacak tek bir iş seçecekseniz: En çok trafik alan 10 sayfanızı açın ve her birinde "Bu sayfada yalnızca bizim verebileceğimiz bilgi ne?" sorusuna cevap arayın. Cevabı olmayan sayfalar, ilk güçlendirmeniz gerekenlerdir.</p>
 <section class="faq"><h2 id="sss"><span class="no">08</span><span>Sık sorulan sorular</span></h2><details><summary>Yapay zeka ile yazılmış içerik Google tarafından cezalandırılır mı?</summary><p>Hayır, yapay zekayla üretilmiş olması tek başına bir ceza sebebi değil. Google içeriğin nasıl üretildiğine değil, insanlara fayda sağlayıp sağlamadığına ve arkasında insan emeği olup olmadığına bakıyor. Ancak yapay zekayla manuel denetim olmadan büyük miktarda metin üretmek "çok az emek" sayılıyor; sıralamaları manipüle etmek için toplu sayfa üretmek ise spam politikalarının ihlali.</p></details><details><summary>Yapay zeka kullandığımı belirtmem gerekiyor mu?</summary><p>Google, okuyucunun "Bu nasıl hazırlandı?" diye düşüneceği içeriklerde, makul olarak beklendiği yerlerde yapay zeka ya da otomasyon kullanımının açıklanmasını öneriyor. İçeriğin önemli bir kısmı yapay zekayla üretildiyse bunu ve neden yararlı bulunduğunu belirtmek güveni artırır.</p></details><details><summary>Yapay zekayla oluşturulmuş yazar profili kullanabilir miyim?</summary><p>Hayır. Google, yapay zekayla üretilmiş yüz fotoğrafları, uydurma isimler ya da sahte unvanlarla içeriği insan uzmanlar yazmış gibi göstermeyi açıkça aldatma olarak tanımlıyor. Bu tür uygulamalar sayfayı hem kullanıcılar hem Google'ın sistemleri için güvenilmez kılar.</p></details><details><summary>Sitemde çok sayıda eski yapay zeka içeriği var, ne yapmalıyım?</summary><p>Önce Search Console ile tıklama almayan sayfaları listeleyin. Aynı konuyu tekrar edenleri en güçlü sayfada birleştirip 301 ile yönlendirin, potansiyeli olanları birinci elden bilgiyle güçlendirin, kurtarılamayacak ince sayfaları ise kaldırın.</p></details></section>
 <section class="srcs" aria-label="Kaynaklar"><h3>Kaynaklar</h3><ol><li id="ref-1"><a href="https://developers.google.com/search/docs/fundamentals/creating-helpful-content" target="_blank" rel="noopener">developers.google.com</a></li><li id="ref-2"><a href="https://developers.google.com/search/docs/essentials/spam-policies" target="_blank" rel="noopener">developers.google.com</a></li></ol></section>
-      <div class="byline"><span class="mono-av" aria-hidden="true">Aİ</span><div><strong>Aylin İnci</strong><p>Teknik SEO, GEO ve web geliştirme üzerine çalışıyor; içerik yapısı ve arama görünürlüğü odaklı danışmanlık veriyor. <a href="https://www.linkedin.com/in/aylin-inci/" target="_blank" rel="noopener">LinkedIn</a></p></div></div>
+      <div class="byline"><span class="mono-av" aria-hidden="true">Aİ</span><div><strong>Aylin İnci</strong><p>SEO, GEO ve web geliştirme üzerine çalışıyor. <a href="https://www.linkedin.com/in/aylin-inci/" target="_blank" rel="noopener">LinkedIn</a></p></div></div>
     </div>
     <aside class="notes" aria-label="Kaynaklar"><b>Kaynaklar</b><ol><li data-s="0"><span>[1]</span><a href="https://developers.google.com/search/docs/fundamentals/creating-helpful-content" target="_blank" rel="noopener">developers.google.com</a></li><li data-s="1"><span>[2]</span><a href="https://developers.google.com/search/docs/essentials/spam-policies" target="_blank" rel="noopener">developers.google.com</a></li></ol></aside>
   </div>

@@ -42,7 +42,9 @@ main{position:relative;z-index:2}
 .ahero-text{display:grid;align-content:space-between;gap:24px;padding:18px 8px 8px}
 .ahero h1{font-weight:500;font-size:clamp(88px,13vw,210px);line-height:.88;letter-spacing:-.045em;margin:0}
 .ahero p{font-size:clamp(20px,2vw,26px);line-height:1.2;letter-spacing:-.01em;color:var(--fg-2);margin:0;max-width:24ch}
-.filters{display:flex;flex-wrap:wrap;gap:8px}
+.filters{display:flex;flex-wrap:nowrap;gap:6px;overflow-x:auto;scrollbar-width:none;margin-right:-8px;padding-right:8px}
+.filters::-webkit-scrollbar{display:none}
+.filters .chip{flex:none;padding:4px 9px;gap:6px;font-size:11.5px}
 .amap{position:relative;background:var(--ink);min-height:520px;overflow:hidden}
 .amap canvas,.pmap canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
 .amap .hint,.pmap .hint{position:absolute;left:12px;bottom:10px;margin:0;font:300 12px var(--mono);color:var(--fg-3);pointer-events:none}
@@ -194,6 +196,7 @@ main{position:relative;z-index:2}
 .srcs{display:none;margin-top:2.4em;border-top:1px solid var(--line);padding-top:12px}
 .srcs ol{font:300 13px var(--mono)}
 @media (max-width:1180px){.srcs{display:block}}
+.filters .chip::before{display:none}
 </style>
 </head>
 <body>
@@ -284,7 +287,7 @@ main{position:relative;z-index:2}
     <p>Bir düşüş gördüğünüzde ilk iş, düşüşün gerçek olup olmadığını ve hangi tarihte başladığını doğrulamak. Panikle toplu silme ya da bağlantı reddetme kararları, çoğu zaman sorunun kendisinden daha fazla zarar verir.</p>
 <section class="faq"><h2 id="sss"><span class="no">08</span><span>Sık sorulan sorular</span></h2><details><summary>Google Eylül 2026 spam güncellemesi ne zaman bitti?</summary><p>Google Search Status Dashboard'a göre güncelleme 24 Eylül 2026'da başladı ve 13 gün 16 saat sürdü; 8 Ekim 2026'da tamamlandı.</p></details><details><summary>Spam güncellemesinden etkilendiğimi nasıl anlarım?</summary><p>Search Console Performans raporunda düşüşün 24 Eylül – 8 Ekim penceresinde başlayıp başlamadığına bakın. Ölçüm hatalarını ve mevsimselliği eleyin, düşüşün hangi sayfa grubunda yoğunlaştığını belirleyin ve Manuel işlemler raporunu kontrol edin. Spam güncellemeleri algoritmiktir ve bildirim gönderilmez.</p></details><details><summary>Spam güncellemesinden sonra ne kadar sürede toparlanırım?</summary><p>Google sabit bir süre vermiyor. Politikalara uyum sağlandıktan sonra otomatik sistemlerin bunu aylar içinde öğrendiğini belirtiyor. Link spam'inde ise etkisiz hale getirilen bağlantıların sağladığı sıralama faydası geri kazanılamıyor.</p></details><details><summary>Ekim 2026'da bir core güncellemesi var mı?</summary><p>23 Ekim 2026 itibarıyla Google tarafından onaylanmış bir core güncellemesi yok. 2026'nın son core güncellemesi Mayıs'ta yapıldı. Forumlarda dalgalanma yorumları olsa da onaylanmamış hareketlere göre acele karar vermemek gerekir.</p></details></section>
 <section class="srcs" aria-label="Kaynaklar"><h3>Kaynaklar</h3><ol><li id="ref-1"><a href="https://status.search.google.com/products/rGHU1u87FJnkP6W2GwMi/history" target="_blank" rel="noopener">status.search.google.com</a></li><li id="ref-2"><a href="https://developers.google.com/search/docs/essentials/spam-policies" target="_blank" rel="noopener">developers.google.com</a></li><li id="ref-3"><a href="https://developers.google.com/search/docs/appearance/spam-updates" target="_blank" rel="noopener">developers.google.com</a></li></ol></section>
-      <div class="byline"><span class="mono-av" aria-hidden="true">Aİ</span><div><strong>Aylin İnci</strong><p>Teknik SEO, GEO ve web geliştirme üzerine çalışıyor; içerik yapısı ve arama görünürlüğü odaklı danışmanlık veriyor. <a href="https://www.linkedin.com/in/aylin-inci/" target="_blank" rel="noopener">LinkedIn</a></p></div></div>
+      <div class="byline"><span class="mono-av" aria-hidden="true">Aİ</span><div><strong>Aylin İnci</strong><p>SEO, GEO ve web geliştirme üzerine çalışıyor. <a href="https://www.linkedin.com/in/aylin-inci/" target="_blank" rel="noopener">LinkedIn</a></p></div></div>
     </div>
     <aside class="notes" aria-label="Kaynaklar"><b>Kaynaklar</b><ol><li data-s="0"><span>[1]</span><a href="https://status.search.google.com/products/rGHU1u87FJnkP6W2GwMi/history" target="_blank" rel="noopener">status.search.google.com</a></li><li data-s="1"><span>[2]</span><a href="https://developers.google.com/search/docs/essentials/spam-policies" target="_blank" rel="noopener">developers.google.com</a></li><li data-s="4"><span>[3]</span><a href="https://developers.google.com/search/docs/appearance/spam-updates" target="_blank" rel="noopener">developers.google.com</a></li></ol></aside>
   </div>

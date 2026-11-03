@@ -42,7 +42,9 @@ main{position:relative;z-index:2}
 .ahero-text{display:grid;align-content:space-between;gap:24px;padding:18px 8px 8px}
 .ahero h1{font-weight:500;font-size:clamp(88px,13vw,210px);line-height:.88;letter-spacing:-.045em;margin:0}
 .ahero p{font-size:clamp(20px,2vw,26px);line-height:1.2;letter-spacing:-.01em;color:var(--fg-2);margin:0;max-width:24ch}
-.filters{display:flex;flex-wrap:wrap;gap:8px}
+.filters{display:flex;flex-wrap:nowrap;gap:6px;overflow-x:auto;scrollbar-width:none;margin-right:-8px;padding-right:8px}
+.filters::-webkit-scrollbar{display:none}
+.filters .chip{flex:none;padding:4px 9px;gap:6px;font-size:11.5px}
 .amap{position:relative;background:var(--ink);min-height:520px;overflow:hidden}
 .amap canvas,.pmap canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
 .amap .hint,.pmap .hint{position:absolute;left:12px;bottom:10px;margin:0;font:300 12px var(--mono);color:var(--fg-3);pointer-events:none}
@@ -194,6 +196,7 @@ main{position:relative;z-index:2}
 .srcs{display:none;margin-top:2.4em;border-top:1px solid var(--line);padding-top:12px}
 .srcs ol{font:300 13px var(--mono)}
 @media (max-width:1180px){.srcs{display:block}}
+.filters .chip::before{display:none}
 </style>
 </head>
 <body>
@@ -285,7 +288,7 @@ main{position:relative;z-index:2}
     <p>Başlamak için en çok satan 10 ürününüzün başlığını, açıklamasını ve varyant adlarını yukarıdaki listeye göre gözden geçirin. Çoğu mağazada en büyük kazanç, en çok satan ürünlerin verisini düzeltmekten geliyor.</p>
 <section class="faq"><h2 id="sss"><span class="no">09</span><span>Sık sorulan sorular</span></h2><details><summary>Shopify Agentic Storefronts ücretli mi?</summary><p>Shopify'a göre Agentic Storefronts için standart ödeme işleme ücretleri dışında ek bir işlem ücreti alınmıyor ve kurulum gerektirmiyor; uygun mağazalarda kanal otomatik olarak etkin.</p></details><details><summary>Türkiye'deki bir Shopify mağazası ChatGPT'de satış yapabilir mi?</summary><p>Mağaza konumu ChatGPT ve Copilot için belirleyici değil, ancak AI kanallarındaki satın almalar şu an yalnızca ABD'deki alıcılarla sınırlı. Yani ABD'ye satış yapan Türk markaları bu kanallardan yararlanabilir; yalnızca Türkiye'ye satış yapan mağazalar için kanal henüz satış getirmiyor.</p></details><details><summary>ChatGPT'den gelen siparişte ödeme nerede yapılıyor?</summary><p>ChatGPT'de satın alma, uygulama içi tarayıcıda mağazanızın kendi Shopify ödeme sayfasında tamamlanıyor. Copilot, Google AI Modu ve Gemini'de ise uygun mağazalar için asistanın içine gömülü ödeme kullanılabiliyor; bu seçenek kanal bazında açılıp kapatılabiliyor.</p></details><details><summary>Ürünlerimin AI asistanları tarafından önerilmesi için ne yapmalıyım?</summary><p>Ürün başlığında ürünün ne olduğunu açıkça yazın, açıklamada malzeme, ölçü ve kullanım gibi somut bilgileri verin, varyant adlarını tutarlı tutun, doğru kategori atayın, stok ve fiyatı güncel tutun ve kargo ile iade bilgilerini netleştirin. Ürün sayfasındaki Product yapılandırılmış verisi de sayfadaki bilgilerle uyumlu olmalı.</p></details></section>
 <section class="srcs" aria-label="Kaynaklar"><h3>Kaynaklar</h3><ol><li id="ref-1"><a href="https://www.shopify.com/blog/how-agentic-commerce-works" target="_blank" rel="noopener">shopify.com</a></li></ol></section>
-      <div class="byline"><span class="mono-av" aria-hidden="true">Aİ</span><div><strong>Aylin İnci</strong><p>Teknik SEO, GEO ve web geliştirme üzerine çalışıyor; içerik yapısı ve arama görünürlüğü odaklı danışmanlık veriyor. <a href="https://www.linkedin.com/in/aylin-inci/" target="_blank" rel="noopener">LinkedIn</a></p></div></div>
+      <div class="byline"><span class="mono-av" aria-hidden="true">Aİ</span><div><strong>Aylin İnci</strong><p>SEO, GEO ve web geliştirme üzerine çalışıyor. <a href="https://www.linkedin.com/in/aylin-inci/" target="_blank" rel="noopener">LinkedIn</a></p></div></div>
     </div>
     <aside class="notes" aria-label="Kaynaklar"><b>Kaynaklar</b><ol><li data-s="1"><span>[1]</span><a href="https://www.shopify.com/blog/how-agentic-commerce-works" target="_blank" rel="noopener">shopify.com</a></li></ol></aside>
   </div>

@@ -42,7 +42,9 @@ main{position:relative;z-index:2}
 .ahero-text{display:grid;align-content:space-between;gap:24px;padding:18px 8px 8px}
 .ahero h1{font-weight:500;font-size:clamp(88px,13vw,210px);line-height:.88;letter-spacing:-.045em;margin:0}
 .ahero p{font-size:clamp(20px,2vw,26px);line-height:1.2;letter-spacing:-.01em;color:var(--fg-2);margin:0;max-width:24ch}
-.filters{display:flex;flex-wrap:wrap;gap:8px}
+.filters{display:flex;flex-wrap:nowrap;gap:6px;overflow-x:auto;scrollbar-width:none;margin-right:-8px;padding-right:8px}
+.filters::-webkit-scrollbar{display:none}
+.filters .chip{flex:none;padding:4px 9px;gap:6px;font-size:11.5px}
 .amap{position:relative;background:var(--ink);min-height:520px;overflow:hidden}
 .amap canvas,.pmap canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
 .amap .hint,.pmap .hint{position:absolute;left:12px;bottom:10px;margin:0;font:300 12px var(--mono);color:var(--fg-3);pointer-events:none}
@@ -194,6 +196,7 @@ main{position:relative;z-index:2}
 .srcs{display:none;margin-top:2.4em;border-top:1px solid var(--line);padding-top:12px}
 .srcs ol{font:300 13px var(--mono)}
 @media (max-width:1180px){.srcs{display:block}}
+.filters .chip::before{display:none}
 </style>
 </head>
 <body>
@@ -269,7 +272,7 @@ main{position:relative;z-index:2}
     <p>Bu hafta yapmanız gereken iki şey var: 9–15 Ekim dönemini raporlarınızda not olarak işaretleyin ve GA4'te yapay zeka asistanları için ayrı bir kanal tanımlayın. Böylece bir sonraki ani değişimde "trafik mi düştü, etiket mi kayboldu?" sorusunu dakikalar içinde cevaplayabilirsiniz.</p>
 <section class="faq"><h2 id="sss"><span class="no">07</span><span>Sık sorulan sorular</span></h2><details><summary>ChatGPT trafiği neden GA4'te Direct olarak göründü?</summary><p>Yaklaşık 9 Ekim 2026'dan itibaren ChatGPT bağlantıları utm_source=chatgpt.com etiketi ve referrer bilgisi olmadan açıldı. Kaynak bilgisi olmayan ziyaretleri GA4 (direct) / (none) olarak kaydeder. OpenAI 14 Ekim'de bunun bir hata olduğunu doğruladı ve düzeltme 15 Ekim'de yayına girdi.</p></details><details><summary>Hatalı dönemdeki veriler düzelecek mi?</summary><p>Hayır. GA4 bir ziyaretin kaynağını ziyaret anında kaydeder; OpenAI tarafındaki düzeltme geçmiş veriyi değiştirmez. 9–15 Ekim arasındaki etkilenen ziyaretler Direct olarak kalır. Bu dönemi raporlarınızda not olarak işaretlemeniz önerilir.</p></details><details><summary>GA4'te yapay zeka asistanları için nasıl ayrı kanal oluştururum?</summary><p>Yönetici > Veri görüntüleme > Kanal grupları bölümünden yeni bir kanal grubu oluşturun, "Yapay Zeka Asistanları" adında bir kanal ekleyin ve Kaynak boyutu için chatgpt.com, perplexity.ai, gemini.google.com gibi alan adlarını içeren bir normal ifade tanımlayın. Kanalı listede Referral'ın üstüne taşımayı unutmayın.</p></details><details><summary>Google AI Modu'ndan gelen trafik GA4'te ayrı görünür mü?</summary><p>Hayır. Google'ın AI Modu ve AI Bakışı'ndan gelen tıklamalar Google organik trafiğinin içinde sayılır. Bu özelliklerdeki görünürlüğü Search Console'daki Üretken AI raporundan takip edebilirsiniz.</p></details></section>
 
-      <div class="byline"><span class="mono-av" aria-hidden="true">Aİ</span><div><strong>Aylin İnci</strong><p>Teknik SEO, GEO ve web geliştirme üzerine çalışıyor; içerik yapısı ve arama görünürlüğü odaklı danışmanlık veriyor. <a href="https://www.linkedin.com/in/aylin-inci/" target="_blank" rel="noopener">LinkedIn</a></p></div></div>
+      <div class="byline"><span class="mono-av" aria-hidden="true">Aİ</span><div><strong>Aylin İnci</strong><p>SEO, GEO ve web geliştirme üzerine çalışıyor. <a href="https://www.linkedin.com/in/aylin-inci/" target="_blank" rel="noopener">LinkedIn</a></p></div></div>
     </div>
     <aside class="notes" aria-label="Kaynaklar"><b>Kaynaklar</b><p class="none">Bu yazıda dış kaynak bağlantısı yok.</p></aside>
   </div>
