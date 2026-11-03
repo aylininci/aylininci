@@ -169,4 +169,15 @@
       requestAnimationFrame(artLoop);
     })(performance.now());
   }
+
+  /* Phone menu: opens under the header, closes on a link, Escape or a tap outside */
+  (function () {
+    var btn = document.querySelector('.menu-btn'), menu = document.getElementById('menu');
+    if (!btn || !menu) return;
+    var set = function (open) { menu.hidden = !open; btn.setAttribute('aria-expanded', String(open)); };
+    btn.addEventListener('click', function (e) { e.stopPropagation(); set(menu.hidden); });
+    menu.addEventListener('click', function (e) { if (e.target.closest('a')) set(false); });
+    document.addEventListener('click', function (e) { if (!menu.hidden && !menu.contains(e.target)) set(false); });
+    addEventListener('keydown', function (e) { if (e.key === 'Escape') set(false); });
+  })();
 })();

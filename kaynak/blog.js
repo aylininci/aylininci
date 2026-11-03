@@ -18,7 +18,7 @@
     ['wheel', 'touchstart', 'keydown', 'mousedown', 'click', 'hashchange'].forEach(function (t) { addEventListener(t, release, { passive: true, once: true }); });
     (function hold() {
       if (!held) return;
-      if (scrollY) scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      if (scrollY) { var de = document.documentElement; de.style.scrollBehavior = 'auto'; scrollTo(0, 0); de.style.scrollBehavior = ''; }
       if (performance.now() < 1800) requestAnimationFrame(hold);
     })();
   }
@@ -207,4 +207,15 @@
   addEventListener('resize', function () { mobile = innerWidth <= 860; all.forEach(function (m) { m.size(); if (reduce) m.draw(0); }); });
   if (reduce) { paintSky(0); addEventListener('scroll', function () { paintSky(0); }, { passive: true }); }
   requestAnimationFrame(loop);
+
+  /* Phone menu: opens under the header, closes on a link, Escape or a tap outside */
+  (function () {
+    var btn = document.querySelector('.menu-btn'), menu = document.getElementById('menu');
+    if (!btn || !menu) return;
+    var set = function (open) { menu.hidden = !open; btn.setAttribute('aria-expanded', String(open)); };
+    btn.addEventListener('click', function (e) { e.stopPropagation(); set(menu.hidden); });
+    menu.addEventListener('click', function (e) { if (e.target.closest('a')) set(false); });
+    document.addEventListener('click', function (e) { if (!menu.hidden && !menu.contains(e.target)) set(false); });
+    addEventListener('keydown', function (e) { if (e.key === 'Escape') set(false); });
+  })();
 })();

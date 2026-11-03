@@ -169,7 +169,9 @@ main{position:relative;z-index:3}
 body.at-top .rail,body.at-top .notes{opacity:0;visibility:hidden}
 .band{padding-block:clamp(72px,12vh,140px)}
 .band-in{max-width:1040px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:clamp(28px,5vh,56px)}
-h2{font-weight:500;font-size:clamp(52px,8.2vw,118px);line-height:1;letter-spacing:-.025em;margin:0;text-wrap:balance}
+h2{font-weight:500;font-size:clamp(52px,8.2vw,118px);line-height:1;letter-spacing:-.025em;margin:0;text-wrap:balance;overflow-wrap:break-word;-webkit-hyphens:auto;hyphens:auto}
+.band-in>*{min-width:0}
+@media (max-width:480px){h2{font-size:clamp(34px,11.5vw,52px)}}
 .card{background:var(--panel);border:1px solid var(--line);padding:24px;min-width:0}
 .card-wide{display:grid;grid-template-columns:minmax(0,1fr);gap:24px}
 .card-wide.split{grid-template-columns:minmax(0,.72fr) minmax(0,1fr);align-items:start}
@@ -225,8 +227,23 @@ h3{font-weight:500;font-size:19px;line-height:1.2;margin:0;display:flex;align-it
 .contact .mail:hover{color:var(--mint)}
 .row{display:flex;flex-wrap:wrap;gap:10px}
 footer{position:relative;z-index:3;border-top:1px solid var(--line);padding-block:24px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));font:300 13px var(--mono);color:var(--fg-2);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
-footer .legal{display:flex;flex-wrap:wrap;gap:6px 18px}
+footer .legal{display:flex;flex-wrap:wrap;gap:2px 18px}
+footer .legal a{display:inline-block;padding:7px 0}
 footer a{text-decoration:none}footer a:hover{text-decoration:underline;color:#fff}
+/* Phones and tablets: the header links move into a menu */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+a,button,canvas{-webkit-tap-highlight-color:transparent}
+.menu-btn{display:none;flex:none;align-items:center;justify-content:center;flex-direction:column;gap:5px;width:44px;height:44px;margin-left:-4px;border:1px solid var(--line);border-radius:999px;background:none;color:#fff;cursor:pointer;padding:0}
+.menu-btn span{display:block;width:16px;height:1.5px;background:currentColor;transition:transform .25s ease}
+.menu-btn[aria-expanded="true"] span:first-child{transform:translateY(3.25px) rotate(45deg)}
+.menu-btn[aria-expanded="true"] span:last-child{transform:translateY(-3.25px) rotate(-45deg)}
+.menu{position:fixed;left:0;right:0;top:var(--head);z-index:60;display:grid;background:var(--page);border-bottom:1px solid var(--line);padding:4px max(16px,env(safe-area-inset-right,0px)) 18px max(16px,env(safe-area-inset-left,0px));box-shadow:0 18px 40px rgba(0,0,0,.25)}
+.menu[hidden]{display:none}
+.menu a{display:block;padding:15px 0;border-bottom:1px solid var(--line);font-weight:500;font-size:22px;letter-spacing:-.01em;text-decoration:none}
+.menu a:last-child{border-bottom:0;font:300 14px var(--mono);color:var(--fg-2)}
+@media (max-width:860px){.menu-btn{display:flex}.top-links{gap:10px}}
+@media (min-width:861px){.menu{display:none!important}}
+@media (max-width:380px){.cta{padding:8px 12px;font-size:14px}.brand{font-size:16px;gap:8px}.top{gap:8px}}
 @media (max-width:1320px){.notes{display:none}}
 @media (max-width:1120px){.rail{display:none}#links{display:none}.points{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:860px){
@@ -255,8 +272,10 @@ ${fs.readFileSync('taslak-motion.css', 'utf8')}</style>
   <nav class="top-links" aria-label="Ana menü">
     <a href="#hakkimda">Hakkımda</a><a href="blog.html">Yazılar</a><a href="#iletisim">İletişim</a><a href="/en/" lang="en" hreflang="en">EN</a>
     <a class="cta" href="${LIVE}/Aylin_Inci_CV_TR.pdf" target="_blank" rel="noopener">Özgeçmiş</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu" aria-label="Menü"><span></span><span></span></button>
   </nav>
 </header>
+<nav class="menu" id="menu" hidden aria-label="Mobil menü"><a href="#hakkimda">Hakkımda</a><a href="blog.html">Yazılar</a><a href="#iletisim">İletişim</a><a href="/en/" lang="en" hreflang="en">English</a></nav>
 
 <div class="scene" id="ust"><div class="hero">
   <div class="word" aria-hidden="true"><span>Görünürlük</span></div>

@@ -10,7 +10,7 @@
     ['wheel', 'touchstart', 'keydown', 'mousedown', 'click', 'hashchange'].forEach(function (t) { addEventListener(t, release, { passive: true, once: true }); });
     (function hold() {
       if (!held) return;
-      if (scrollY) scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      if (scrollY) { var de = document.documentElement; de.style.scrollBehavior = 'auto'; scrollTo(0, 0); de.style.scrollBehavior = ''; }
       if (performance.now() < 1800) requestAnimationFrame(hold);
     })();
   }
@@ -268,9 +268,9 @@
       } else if (v === 2) {
         t.style.clipPath = g > .002 ? 'inset(-20% ' + (g * 100).toFixed(2) + '% -25% -2%)' : 'none';
       } else if (v === 3) {
-        t.style.transformOrigin = '0 100%'; t.style.opacity = f.toFixed(3); t.style.transform = g > .002 ? 'scale(' + (1 + g * .34).toFixed(4) + ')' : 'none';
+        t.style.transformOrigin = '0 100%'; t.style.opacity = f.toFixed(3); t.style.transform = g > .002 ? (mobile ? 'translate3d(0,' + (g * 28).toFixed(1) + 'px,0)' : 'scale(' + (1 + g * .12).toFixed(4) + ')') : 'none';
       } else {
-        t.style.opacity = f.toFixed(3); t.style.transform = g > .002 ? 'translate3d(' + (-g * 14).toFixed(2) + 'vw,0,0)' : 'none';
+        t.style.opacity = f.toFixed(3); t.style.transform = g > .002 ? (mobile ? 'translate3d(0,' + (g * 28).toFixed(1) + 'px,0)' : 'translate3d(' + (-g * 8).toFixed(2) + 'vw,0,0)') : 'none';
       }
     });
     if (!reduce && !mobile) cards.forEach(function (e, i) {

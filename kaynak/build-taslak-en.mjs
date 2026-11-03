@@ -93,6 +93,8 @@ const pairs = [
   ["fs.readFileSync('taslak.js', 'utf8')", "fs.readFileSync('taslak.js', 'utf8').replace(\"'Yazıyı oku'\", \"'Read the article'\").replace(\"'Bölüme git'\", \"'Go to section'\")"],
   ['<nav class="top-links" aria-label="Ana menü">', '<nav class="top-links" aria-label="Main menu">'],
   ['<a href="#hakkimda">Hakkımda</a><a href="blog.html">Yazılar</a><a href="#iletisim">İletişim</a><a href="/en/" lang="en" hreflang="en">EN</a>', '<a href="#hakkimda">About</a><a href="blog.html">Articles</a><a href="#iletisim">Contact</a><a href="/" lang="tr" hreflang="tr">TR</a>'],
+  ['aria-controls="menu" aria-label="Menü"', 'aria-controls="menu" aria-label="Menu"'],
+  ['<nav class="menu" id="menu" hidden aria-label="Mobil menü"><a href="#hakkimda">Hakkımda</a><a href="blog.html">Yazılar</a><a href="#iletisim">İletişim</a><a href="/en/" lang="en" hreflang="en">English</a></nav>', '<nav class="menu" id="menu" hidden aria-label="Mobile menu"><a href="#hakkimda">About</a><a href="blog.html">Articles</a><a href="#iletisim">Contact</a><a href="/" lang="tr" hreflang="tr">Türkçe</a></nav>'],
   ['<a class="cta" href="${LIVE}/Aylin_Inci_CV_TR.pdf" target="_blank" rel="noopener">Özgeçmiş</a>', '<a class="cta" href="${LIVE}/Aylin_Inci_CV_EN.pdf" target="_blank" rel="noopener">Résumé</a>'],
   ['<span>Görünürlük</span>', '<span>Visibility</span>'],
   ['<p>SEO, GEO ve Web Geliştirme Uzmanı</p>', '<p>SEO, GEO &amp; Web Development Specialist</p>'],

@@ -21,7 +21,7 @@ body.at-top .rail{pointer-events:none}
 body.at-top .notes{opacity:0;pointer-events:none}
 .band{padding-block:clamp(150px,34vh,340px)}
 #hakkimda{padding-top:clamp(60px,14vh,140px)}
-.card{background:color-mix(in srgb,var(--page) 62%,rgba(255,255,255,.2));backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.card{background:rgba(255,255,255,.1);background:color-mix(in srgb,var(--page) 62%,rgba(255,255,255,.2));backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
 @media (max-width:860px){
   .scene{height:auto}
   .hero{position:relative;top:auto;height:auto;overflow:visible}
@@ -73,9 +73,11 @@ body.at-top .notes{opacity:0;pointer-events:none}
   .fx .grid2>:nth-child(odd){transform:translate3d(-60px,0,0)}
   .fx .grid2>:nth-child(even){transform:translate3d(60px,0,0)}
   .fx .grid3>*{transform:translate3d(0,48px,0) rotate(1.2deg)}
+  @media (max-width:860px){.fx .grid2>:nth-child(n),.fx .band:nth-of-type(n) .points li{transform:translate3d(0,24px,0)}}
   /* the end state must beat every per-section start state, which use longer selectors */
   .fx .seen li,.fx .seen>*{opacity:1!important;transform:none!important;clip-path:inset(0 0 0 0)!important}
 }
 
 /* entrances may start outside the page width */
 .band{overflow-x:clip}
+@supports not (overflow:clip){.band{overflow-x:hidden}body{overflow-x:hidden}}
