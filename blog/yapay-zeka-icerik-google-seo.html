@@ -167,7 +167,7 @@ main{position:relative;z-index:2}
 .amap canvas,.pmap canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
 .amap .hint,.pmap .hint{position:absolute;left:12px;bottom:10px;margin:0;font:300 12px var(--mono);color:var(--fg-3);pointer-events:none}
 .wrap{max-width:1180px;margin-inline:auto;padding-inline:max(16px,env(safe-area-inset-left,0px))}
-.lead-post{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:0;margin:clamp(72px,14vh,140px) auto clamp(40px,8vh,80px);border:1px solid var(--line);background:color-mix(in srgb,var(--page) 62%,rgba(255,255,255,.2));text-decoration:none;min-height:420px}
+.lead-post{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:0;margin:clamp(72px,14vh,140px) auto clamp(40px,8vh,80px);border:1px solid var(--line);background:rgba(255,255,255,.1);background:color-mix(in srgb,var(--page) 62%,rgba(255,255,255,.2));text-decoration:none;min-height:420px}
 .lead-post .txt{padding:28px;display:grid;align-content:space-between;gap:24px}
 .lead-post h2{font-weight:500;font-size:clamp(32px,3.6vw,52px);line-height:1.02;letter-spacing:-.025em;margin:0}
 .lead-post p{margin:0;color:var(--fg-2);font-size:19px;line-height:1.3;max-width:40ch}
@@ -245,7 +245,7 @@ main{position:relative;z-index:2}
 .body th,.body td{padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top}
 .body tr:last-child td{border-bottom:0}
 .body tr:hover td{background:rgba(255,255,255,.05)}
-.callout{position:relative;margin:1.6em 0;padding:20px 22px 20px 22px;border:1px solid var(--line);background:color-mix(in srgb,var(--page) 62%,rgba(255,255,255,.2))}
+.callout{position:relative;margin:1.6em 0;padding:20px 22px 20px 22px;border:1px solid var(--line);background:rgba(255,255,255,.1);background:color-mix(in srgb,var(--page) 62%,rgba(255,255,255,.2))}
 .callout::before{content:"Not";position:absolute;left:-1px;top:-11px;background:var(--mint);color:var(--ink);font:400 11px var(--mono);padding:2px 7px}
 .callout p:last-child{margin:0}
 .ref{font:300 11px var(--mono);color:var(--mint);margin-left:2px;vertical-align:super;line-height:0;text-decoration:none}
@@ -315,10 +315,26 @@ main{position:relative;z-index:2}
 .srcs ol{font:300 13px var(--mono)}
 @media (max-width:1180px){.srcs{display:block}}
 .filters .chip::before{display:none}
+
+/* Phones and tablets: the header links move into a menu */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+a,button,canvas{-webkit-tap-highlight-color:transparent}
+.menu-btn{display:none;flex:none;align-items:center;justify-content:center;flex-direction:column;gap:5px;width:44px;height:44px;margin-left:-4px;border:1px solid var(--line);border-radius:999px;background:none;color:#fff;cursor:pointer;padding:0}
+.menu-btn span{display:block;width:16px;height:1.5px;background:currentColor;transition:transform .25s ease}
+.menu-btn[aria-expanded="true"] span:first-child{transform:translateY(3.25px) rotate(45deg)}
+.menu-btn[aria-expanded="true"] span:last-child{transform:translateY(-3.25px) rotate(-45deg)}
+.menu{position:fixed;left:0;right:0;top:var(--head);z-index:60;display:grid;background:var(--page);border-bottom:1px solid var(--line);padding:4px max(16px,env(safe-area-inset-right,0px)) 18px max(16px,env(safe-area-inset-left,0px));box-shadow:0 18px 40px rgba(0,0,0,.25)}
+.menu[hidden]{display:none}
+.menu a{display:block;padding:15px 0;border-bottom:1px solid var(--line);font-weight:500;font-size:22px;letter-spacing:-.01em;text-decoration:none}
+.menu a:last-child{border-bottom:0;font:300 14px var(--mono);color:var(--fg-2)}
+@media (max-width:860px){.menu-btn{display:flex}.top-links{gap:10px}}
+@media (min-width:861px){.menu{display:none!important}}
+@media (max-width:380px){.cta{padding:8px 12px;font-size:14px}.brand{font-size:16px;gap:8px}.top{gap:8px}}
+@supports not (overflow:clip){html,body{overflow-x:hidden}}
 </style>
 </head>
 <body>
-<canvas id="sky" aria-hidden="true"></canvas><header class="top"><a class="brand" href="/"><img src="/assets/img/logo-mark.svg" alt="" width="28" height="28">Aylin İnci</a><nav class="top-links" aria-label="Ana menü"><a href="/#hakkimda">Hakkımda</a><a href="/blog/" aria-current="page">Yazılar</a><a href="/#iletisim">İletişim</a><a href="/en/" lang="en" hreflang="en">EN</a><a class="cta" href="/Aylin_Inci_CV_TR.pdf" target="_blank" rel="noopener">Özgeçmiş</a></nav></header>
+<canvas id="sky" aria-hidden="true"></canvas><header class="top"><a class="brand" href="/"><img src="/assets/img/logo-mark.svg" alt="" width="28" height="28">Aylin İnci</a><nav class="top-links" aria-label="Ana menü"><a href="/#hakkimda">Hakkımda</a><a href="/blog/" aria-current="page">Yazılar</a><a href="/#iletisim">İletişim</a><a href="/en/" lang="en" hreflang="en">EN</a><a class="cta" href="/Aylin_Inci_CV_TR.pdf" target="_blank" rel="noopener">Özgeçmiş</a><button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu" aria-label="Menü"><span></span><span></span></button></nav></header><nav class="menu" id="menu" hidden aria-label="Mobil menü"><a href="/#hakkimda">Hakkımda</a><a href="/blog/">Yazılar</a><a href="/#iletisim">İletişim</a><a href="/en/" lang="en" hreflang="en">English</a></nav>
 <div class="progress" id="bar" aria-hidden="true"></div>
 <canvas id="wires" aria-hidden="true"></canvas>
 <main>
@@ -421,7 +437,7 @@ main{position:relative;z-index:2}
     ['wheel', 'touchstart', 'keydown', 'mousedown', 'click', 'hashchange'].forEach(function (t) { addEventListener(t, release, { passive: true, once: true }); });
     (function hold() {
       if (!held) return;
-      if (scrollY) scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      if (scrollY) { var de = document.documentElement; de.style.scrollBehavior = 'auto'; scrollTo(0, 0); de.style.scrollBehavior = ''; }
       if (performance.now() < 1800) requestAnimationFrame(hold);
     })();
   }
@@ -610,6 +626,17 @@ main{position:relative;z-index:2}
   addEventListener('resize', function () { mobile = innerWidth <= 860; all.forEach(function (m) { m.size(); if (reduce) m.draw(0); }); });
   if (reduce) { paintSky(0); addEventListener('scroll', function () { paintSky(0); }, { passive: true }); }
   requestAnimationFrame(loop);
+
+  /* Phone menu: opens under the header, closes on a link, Escape or a tap outside */
+  (function () {
+    var btn = document.querySelector('.menu-btn'), menu = document.getElementById('menu');
+    if (!btn || !menu) return;
+    var set = function (open) { menu.hidden = !open; btn.setAttribute('aria-expanded', String(open)); };
+    btn.addEventListener('click', function (e) { e.stopPropagation(); set(menu.hidden); });
+    menu.addEventListener('click', function (e) { if (e.target.closest('a')) set(false); });
+    document.addEventListener('click', function (e) { if (!menu.hidden && !menu.contains(e.target)) set(false); });
+    addEventListener('keydown', function (e) { if (e.key === 'Escape') set(false); });
+  })();
 })();
 </script>
 </body>
