@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>robots.txt ile Yapay Zeka Eğitimi Kontrolü | Aylin İnci</title>
+<meta name="description" content="Google'ın desteklemeyi planladığı ortak yapay zeka eğitim sinyali, Google-Extended ile ilişkisi ve robots.txt'de yapay zeka botları için doğru ayarlar.">
+<link rel="canonical" href="https://aylininci.com/blog/robots-txt-yapay-zeka-egitimi">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Aylin İnci">
+<meta property="og:type" content="article">
+<meta property="og:title" content="robots.txt ile Yapay Zeka Eğitimini Kontrol Etmek">
+<meta property="og:description" content="Ortak AI eğitim sinyali __usage_ai-training, Google-Extended ile ilişkisi ve robots.txt için örnek ayarlar.">
+<meta property="og:url" content="https://aylininci.com/blog/robots-txt-yapay-zeka-egitimi">
+<meta property="og:site_name" content="Aylin İnci">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:image" content="https://aylininci.com/blog/images/robots-txt-yapay-zeka-egitimi-og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="article:published_time" content="2026-11-06">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="robots.txt ile Yapay Zeka Eğitimini Kontrol Etmek">
+<meta name="twitter:description" content="Ortak AI eğitim sinyali __usage_ai-training, Google-Extended ile ilişkisi ve robots.txt için örnek ayarlar.">
+<meta name="twitter:image" content="https://aylininci.com/blog/images/robots-txt-yapay-zeka-egitimi-og.jpg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "image": "https://aylininci.com/blog/images/robots-txt-yapay-zeka-egitimi-og.jpg",
+  "headline": "robots.txt ile Yapay Zeka Eğitimini Kontrol Etmek",
+  "description": "Google'ın desteklemeyi planladığı ortak yapay zeka eğitim sinyali, Google-Extended ile ilişkisi ve robots.txt'de yapay zeka botları için doğru ayarlar.",
+  "author": {
+    "@type": "Person",
+    "@id": "https://aylininci.com/#person",
+    "name": "Aylin İnci",
+    "url": "https://aylininci.com/"
+  },
+  "publisher": {
+    "@id": "https://aylininci.com/#person"
+  },
+  "datePublished": "2026-11-06",
+  "dateModified": "2026-11-06",
+  "inLanguage": "tr",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://aylininci.com/blog/robots-txt-yapay-zeka-egitimi"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Anasayfa",
+      "item": "https://aylininci.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://aylininci.com/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "robots.txt ile yapay zeka eğitimi",
+      "item": "https://aylininci.com/blog/robots-txt-yapay-zeka-egitimi"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": []}
+</script>
+</head>
+<body>
+<main id="main">
+<article>
+  <header class="article-head">
+    <div class="wrap">
+      <span class="eyebrow">Teknik SEO</span>
+      <h1>robots.txt ile Yapay Zeka Eğitimini Kontrol Etmek: Yeni Ortak Sinyal</h1>
+      <div class="meta-row">
+        <span>Aylin İnci</span>
+        <span>·</span>
+        <span>6 Kasım 2026</span>
+        <span>·</span>
+        <span>Yaklaşık 5 dakika okuma</span>
+      </div>
+      <p class="lead">Google, 30 Ekim 2026'da robots.txt üzerinden çalışan ortak bir yapay zeka eğitimi kontrolünü desteklemeyi planladığını duyurdu. Bu sinyal, içeriğinizin yapay zeka modellerinin eğitiminde kullanılmasına dair tercihinizi tek bir kuralla birden fazla sağlayıcıya bildirmeyi amaçlıyor. Bu yazı sinyalin nasıl yazıldığını, Google-Extended ile ilişkisini ve sitenizin robots.txt dosyasında bugün neyi değiştirmeniz gerektiğini anlatıyor.</p>
+    </div>
+  </header>
+
+  <div class="content wrap">
+
+    <p>Bugün bir site sahibi içeriğinin yapay zeka eğitiminde kullanılmasını istemiyorsa, her şirketin botunu robots.txt dosyasına tek tek yazmak zorunda: Google için Google-Extended, OpenAI için GPTBot ve diğerleri. Yeni bot isimleri çıktıkça liste uzuyor ve dosyayı güncel tutmak zorlaşıyor.</p>
+    <p><a href="https://developers.google.com/search/blog/2026/10/ai-training-control" target="_blank" rel="noopener">Google'ın Search Central blogunda 30 Ekim 2026'da yayımlanan duyuru</a> bu soruna ortak bir çözüm öneriyor: IETF'in yapay zeka tercihleri (AIPREF) çalışmasına dayanan ve tüm sağlayıcıların okuyabileceği tek bir "politika belirteci".</p>
+
+    <h2>1. Ortak eğitim sinyali nedir?</h2>
+    <p><strong>Ortak eğitim sinyali, robots.txt dosyasında <code>__usage_ai-training</code> adlı bir politika belirteciyle yazılan ve içeriğin yapay zeka eğitiminde kullanılmasına dair tercihi bildiren bir kural grubudur.</strong> Belirteç, <a href="https://datatracker.ietf.org/doc/draft-kelley-aipref-training-preference-signal/" target="_blank" rel="noopener">IETF taslağı draft-kelley-aipref-training-preference-signal</a> ile tanımlanıyor ve "yapay zeka eğitimi" kavramının anlamını IETF AIPREF çalışma grubunun ortak sözlüğünden alıyor.</p>
+    <p>Sinyal yeni bir söz dizimi getirmiyor; robots.txt standardının (RFC 9309) bildiğimiz kural grubu yapısını kullanıyor. Taslaktaki örnek şu:</p>
+    <pre><code>User-Agent: __usage_ai-training
+Disallow: /
+Allow: /press-kit/</code></pre>
+    <p>Bu grup, sitenin tamamı için yapay zeka eğitimine karşı, <code>/press-kit/</code> klasörü için ise lehte bir tercih bildiriyor. Taslağa göre <code>Disallow</code> eğitime karşı, <code>Allow</code> ise eğitimden yana bir tercih anlamına geliyor.</p>
+    <div class="callout">
+      <p><strong>Önemli:</strong> Taslak şu an bireysel bir IETF taslağı; IETF tarafından onaylanmış bir standart değil. Google ise bu kontrolü diğer yapay zeka sağlayıcılarıyla birlikte 2027'de desteklemeyi hedeflediğini belirtiyor. Yani belirteci bugün eklemek zarar vermez, ama tek başına bugün bir şeyi engellemez.</p>
+    </div>
+
+    <h2>2. Tarama kuralı değil, kullanım tercihi</h2>
+    <p>Bu sinyalin en sık yanlış anlaşılabilecek yönü şu: <code>__usage_ai-training</code> bir tarama kuralı değil. Taslak bunu açıkça belirtiyor; belirteç botların sitenizi tarayıp taramayacağını değil, taranan içeriğin eğitimde kullanılıp kullanılmayacağına dair tercihinizi bildiriyor. Taramayı sınırlamak isteyen bir site, botların kendi isimleriyle yazılan grupları kullanmaya devam etmeli.</p>
+    <p>İki ayrıntı daha önemli:</p>
+    <ul>
+      <li><strong><code>User-agent: *</code> bu belirteci kapsamaz.</strong> Taslağa göre joker grup, politika belirteci için kullanılamaz; tercihinizi ayrı bir grupla yazmanız gerekir.</li>
+      <li><strong>Grup yoksa tercih de yok.</strong> robots.txt dosyanızda <code>__usage_ai-training</code> grubu bulunmuyorsa, herhangi bir tercih bildirmemiş sayılırsınız.</li>
+    </ul>
+
+    <h2>3. Google-Extended ile ilişkisi</h2>
+    <p>Google-Extended, Google'ın içeriğinizi Gemini modellerinin eğitimi ve Gemini uygulamalarında yanıtların temellendirilmesi için kullanmasını kontrol eden robots.txt belirteci. <a href="https://developers.google.com/search/docs/crawling-indexing/google-common-crawlers" target="_blank" rel="noopener">Google'ın tarayıcı belgelerine</a> göre Google-Extended, sitenin Google Arama'ya dahil edilmesini ya da sıralamasını etkilemiyor.</p>
+    <p>Duyuruya göre yeni sinyalle Google-Extended şöyle birlikte çalışacak:</p>
+    <table>
+      <tr><th>Durum</th><th>Google'ın yorumu</th></tr>
+      <tr><td>Ortak sinyalle eğitime karşı tercih var, Google-Extended için ayrı kural yok</td><td>Google-Extended engellenmiş gibi değerlendirilir</td></tr>
+      <tr><td>Ortak sinyalle eğitime karşı tercih var, Google-Extended açıkça izinli</td><td>Gemini uygulamalarında temellendirme yoluyla görünmeye ve tıklama almaya uygun kalır</td></tr>
+      <tr><td>Şirkete özel kurallar var</td><td>Ortak sinyalin yanında çalışmaya devam eder</td></tr>
+    </table>
+    <p>Bu tablo, "eğitime kapalı ama Gemini'de kaynak olarak görünmeye açık" gibi ince ayarların mümkün olduğunu gösteriyor. Duyuru, sinyalin AI Bakışı ya da AI Modu üzerindeki etkisinden söz etmiyor. Arama sonuçlarındaki yapay zeka özelliklerinde görünmeyi sınırlamak için kullanılan <code>nosnippet</code> ve <code>max-snippet</code> gibi kontroller ayrı bir konu; bunlar <a href="/blog/google-ai-modu-seo">Google AI Modu ve SEO</a> yazısının "AI özelliklerinde görünmek istemezseniz" bölümünde anlatılıyor.</p>
+
+    <h2>4. Eğitim, arama ve kullanıcı istekleri birbirinden ayrı</h2>
+    <p>Yapay zeka şirketleri genellikle farklı işler için farklı botlar kullanıyor. Örneğin <a href="https://developers.openai.com/api/docs/bots" target="_blank" rel="noopener">OpenAI</a>, model eğitimi için GPTBot'u, ChatGPT arama sonuçları için ise OAI-SearchBot'u ayrı belirteçlerle tanımlıyor. Bu ayrım önemli, çünkü:</p>
+    <ul>
+      <li>Eğitim botunu engellemek, içeriğinizin gelecekteki modellerin eğitiminde kullanılmasını sınırlar.</li>
+      <li>Arama botunu engellemek ise içeriğinizin o asistanın arama yanıtlarında kaynak olarak gösterilmesini engelleyebilir ve trafik kaybına yol açabilir.</li>
+    </ul>
+    <p>Yapay zeka destekli aramada kaynak olarak seçilmenin ne kadar değerli olduğu <a href="/blog/yapay-zeka-arama-icin-icerik-yapisi">yapay zeka destekli arama için içerik yapısı</a> yazısında anlatılıyor. Bu yüzden "tüm yapay zeka botlarını engelle" kararı, çoğu işletme sitesi için görünürlük kaybı anlamına gelir.</p>
+
+    <h2>5. robots.txt için örnek ayarlar</h2>
+    <h3>Eğitime kapalı, aramaya açık</h3>
+    <p>Yayıncılar ve içeriğin kendisini satan siteler için yaygın tercih budur. Ortak sinyal 2027'de desteklenmeye başlayana kadar şirket bazlı kuralların da yazılması gerekir:</p>
+    <pre><code># Ortak eğitim sinyali (destek 2027'de bekleniyor)
+User-Agent: __usage_ai-training
+Disallow: /
+
+# Bugün geçerli şirket bazlı kurallar
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: GPTBot
+Disallow: /
+
+# Arama botları ve Googlebot için kural yok: aramada görünmeye devam eder
+User-agent: *
+Allow: /
+
+Sitemap: https://www.ornek.com/sitemap.xml</code></pre>
+    <h3>Her şeye açık</h3>
+    <p>Hizmet ve e-ticaret sitelerinin çoğu için yapay zeka asistanlarında görünmek bir kazançtır. Bu durumda engelleyici bir kural yazmamak yeterlidir; isterseniz tercihinizi açıkça belirtebilirsiniz:</p>
+    <pre><code>User-Agent: __usage_ai-training
+Allow: /</code></pre>
+    <h3>Bölüm bazında tercih</h3>
+    <p>Blog yazılarının eğitimde kullanılmasına izin verip ücretli rehberleri dışarıda tutmak gibi ayrımlar da mümkün:</p>
+    <pre><code>User-Agent: __usage_ai-training
+Allow: /
+Disallow: /rehberler/</code></pre>
+    <p>Shopify mağazalarında robots.txt dosyası doğrudan değil, <a href="https://shopify.dev/docs/storefronts/themes/seo/robots-txt" target="_blank" rel="noopener">Shopify belgelerinde anlatıldığı gibi</a> temaya eklenen <code>robots.txt.liquid</code> şablonu üzerinden düzenleniyor. Tema dosyalarına dokunurken dikkat edilmesi gerekenler <a href="/blog/shopify-liquid-performans-optimizasyonu">Shopify Liquid geliştirmelerinde performans</a> yazısında, mağazaların yapay zeka kanallarındaki son durumu ise <a href="/blog/shopify-fall-26-edition">Shopify Fall '26 Edition</a> yazısında bulunuyor.</p>
+
+    <h2>6. Hangi site ne seçmeli?</h2>
+    <table>
+      <tr><th>Site türü</th><th>Önerilen yaklaşım</th></tr>
+      <tr><td>Haber ve içerik yayıncısı</td><td>Eğitime kapalı, aramaya açık. Google-Extended ve eğitim botlarını engelleyin, arama botlarına dokunmayın.</td></tr>
+      <tr><td>E-ticaret</td><td>Genellikle her şeye açık. Ürünlerin asistanlarda önerilmesi satış getirir.</td></tr>
+      <tr><td>Hizmet ve kurumsal site</td><td>Genellikle her şeye açık. Marka ve uzmanlık bilgisinin asistanlarda doğru aktarılması önemli.</td></tr>
+      <tr><td>Ücretli içerik ve eğitim platformu</td><td>Bölüm bazında tercih. Ücretsiz tanıtım içeriği açık, ücretli içerik kapalı.</td></tr>
+    </table>
+    <p>Hangi yolu seçerseniz seçin, Googlebot'u engellemeyin: Bu, sitenizi Google Arama'dan tamamen çıkarır ve yapay zeka eğitimiyle ilgisi yoktur.</p>
+
+    <h2>7. 2027'ye kadar takip edilecekler</h2>
+    <ul class="checklist">
+      <li>Google'ın duyuruda söz verdiği ilerleme güncellemelerini Search Central blogundan takip edin.</li>
+      <li>IETF taslağının çalışma grubu belgesine dönüşüp dönüşmediğini ve belirteç adının değişip değişmediğini kontrol edin.</li>
+      <li>Diğer yapay zeka sağlayıcılarının sinyali desteklediğini resmi belgelerinde açıklayıp açıklamadığını izleyin.</li>
+      <li>robots.txt dosyanızı her değiştirdiğinizde Search Console'daki robots.txt raporuyla doğrulayın.</li>
+      <li>Yapay zeka asistanlarından gelen trafiği analitikte ayrı bir kanal olarak izleyin ki bir değişikliğin etkisini görebilesiniz.</li>
+    </ul>
+
+    <h2>Sonuç</h2>
+    <p>Ortak eğitim sinyali, yapay zeka tercihlerini robots.txt'de yönetmeyi sadeleştirmeyi vaat ediyor, ancak henüz bir taslak ve desteği 2027'de bekleniyor. Bugün yapılması gereken, eğitim ile aramayı birbirinden ayırarak bilinçli bir tercih yapmak ve bu tercihi şirket bazlı kurallarla uygulamaya devam etmek. Google'ın yapay zeka içeriğiyle ilgili diğer güncel değişiklikleri <a href="/blog/yapay-zeka-icerik-google-seo">yapay zeka içeriği ve Google</a> yazısında bulabilirsiniz.</p>
+
+    <h2>Sık sorulan sorular</h2>
+    <div class="faq-item">
+      <h3>__usage_ai-training nedir?</h3>
+      <p>robots.txt dosyasında içeriğin yapay zeka eğitiminde kullanılmasına dair tercihi bildirmek için önerilen ortak politika belirtecidir. IETF taslağı draft-kelley-aipref-training-preference-signal ile tanımlanır ve bir tarama kuralı değil, kullanım tercihidir.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Google bu sinyali ne zaman desteklemeye başlayacak?</h3>
+      <p>Google, 30 Ekim 2026 tarihli duyurusunda bu kontrolü diğer yapay zeka sağlayıcılarıyla birlikte 2027'de desteklemeyi hedeflediğini belirtiyor. O zamana kadar Google-Extended gibi şirket bazlı kurallar geçerliliğini koruyor.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Yapay zeka eğitimini engellemek Google sıralamasını etkiler mi?</h3>
+      <p>Google'ın belgelerine göre Google-Extended, sitenin Google Arama'ya dahil edilmesini ve sıralamasını etkilemez. Googlebot'u engellemek ise siteyi aramadan çıkarır; bu yüzden eğitim tercihleri için Googlebot'a dokunulmamalıdır.</p>
+    </div>
+    <div class="faq-item">
+      <h3>User-agent: * kuralı yapay zeka eğitimini de kapsar mı?</h3>
+      <p>Hayır. Taslağa göre joker grup, ortak eğitim belirteci yerine kullanılamaz. Tercihinizi bildirmek için User-Agent satırında __usage_ai-training yazan ayrı bir grup gerekir.</p>
+    </div>
+
+    <div class="author-box">
+      <div>
+        <strong>Aylin İnci</strong>
+        <span>SEO, GEO ve web geliştirme üzerine çalışıyor. <a href="https://www.linkedin.com/in/aylin-inci/" target="_blank" rel="noopener">LinkedIn</a></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="related wrap">
+    <h2>İlgili içerikler</h2>
+    <div class="related-list">
+      <a href="/blog/yapay-zeka-arama-icin-icerik-yapisi">Yapay zeka araması için içerik yapısı<span>GEO için yapılandırılmış veri ve içerik netliği</span></a>
+      <a href="/blog/google-ai-modu-seo">Google AI Modu ve SEO<span>AI Modu trafiği ve Search Console Üretken AI raporu</span></a>
+      <a href="/blog/yapay-zeka-icerik-google-seo">Yapay zeka içeriği ve Google<span>Google'ın Ekim 2026 içerik rehberi güncellemesi</span></a>
+      <a href="/blog/shopify-fall-26-edition">Shopify Fall '26 Edition<span>Yapay zeka alışveriş kanallarında ve ürün verisinde yenilikler</span></a>
+    </div>
+  </div>
+</article>
+</main>
+</body>
+</html>
